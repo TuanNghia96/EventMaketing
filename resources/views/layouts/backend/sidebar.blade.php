@@ -65,6 +65,11 @@
                                     <span class="sub-item">Su kien dang cho</span>
                                 </a>
                             </li>
+                            <li>
+                                <a href="{{ route('vouchers.index') }}">
+                                    <span class="sub-item">Phiếu giảm giá.</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>

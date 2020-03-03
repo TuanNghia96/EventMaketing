@@ -25,8 +25,7 @@ class CreateEventsTable extends Migration
             $table->date('public_date');
             $table->date('start_date');
             $table->date('end_date');
-            $table->boolean('has_voucher')->default(1);
-            $table->unsignedInteger('voucher_id');
+            $table->unsignedInteger('voucher_id')->nullable();
             $table->unsignedInteger('point')->default(0);
             $table->timestamps();
             $table->softDeletes();

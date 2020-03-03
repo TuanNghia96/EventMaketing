@@ -29,7 +29,6 @@ class Event extends Model
         'public_date',
         'start_date',
         'end_date',
-        'has_voucher',
         'voucher_id',
         'point',
     ];
@@ -43,10 +42,10 @@ class Event extends Model
         self::HOLIDAY => 'Ngày lễ',
     ];
 
-/*    public function user()
+    public function user()
     {
-        return $this->belongsTo('App\Models\User');
-    }*/
+        return $this->hasOne('App\Models\Voucher');
+    }
 
     /**
      * Pagination data of model

@@ -9,7 +9,6 @@ $factory->define(Event::class, function (Faker $faker) {
     $endDate = $faker->date(\Carbon\Carbon::now());
     $startDate = $faker->date('Y-m-d',$endDate);
     $publicDate = $faker->date('Y-m-d',$startDate);
-    $hasVoucher = $faker->boolean;
     return [
         'name' => $faker->name,
         'title' => $faker->title,
@@ -21,8 +20,7 @@ $factory->define(Event::class, function (Faker $faker) {
         'public_date' => $publicDate,
         'start_date' => $startDate,
         'end_date' => $endDate,
-        'has_voucher' => $hasVoucher,
-        'voucher_id' => $hasVoucher ? 123 : 0,
+        'voucher_id' => null,
         'point' => $faker->numerify('###'),
     ];
 });
