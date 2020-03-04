@@ -30,27 +30,27 @@
     <link href="https://fonts.googleapis.com/css?family=Sacramento" rel="stylesheet">
     
     <!-- Animate.css -->
-    <link rel="stylesheet" href="{{ asset('fontend/css/animate.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/animate.css') }}">
     <!-- Icomoon Icon Fonts-->
-    <link rel="stylesheet" href="{{ asset('fontend/css/icomoon.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/icomoon.css') }}">
     <!-- Bootstrap  -->
-    <link rel="stylesheet" href="{{ asset('fontend/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.css') }}">
     
     <!-- Magnific Popup -->
-    <link rel="stylesheet" href="{{ asset('fontend/css/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/magnific-popup.css') }}">
     
     <!-- Owl Carousel  -->
-    <link rel="stylesheet" href="{{ asset('fontend/css/owl.carousel.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('fontend/css/owl.theme.default.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/owl.theme.default.min.css') }}">
     
     <!-- Theme style  -->
-    <link rel="stylesheet" href="{{ asset('fontend/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
     
     <!-- Modernizr JS -->
-    <script src="{{ asset('fontend/js/modernizr-2.6.2.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/modernizr-2.6.2.min.js') }}"></script>
     <!-- FOR IE9 below -->
 <!--[if lt IE 9]>
-	<script src="{{ asset('fontend/js/respond.min.js') }}"></script>
+	<script src="{{ asset('frontend/js/respond.min.js') }}"></script>
 	<![endif]-->
 
 </head>
@@ -88,7 +88,7 @@
                                 <li><a href="#">jQuery</a></li>
                             </ul>
                         </li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="{{ route('contact') }}">Contact</a></li>
                     </ul>
                 </div>
             </div>
@@ -96,7 +96,7 @@
         </div>
     </nav>
     
-    <header id="fh5co-header" class="fh5co-cover" role="banner" style="background-image:url({{ asset('fontend/images/img_bg_2.jpg') }});" data-stellar-background-ratio="0.5">
+    <header id="fh5co-header" class="fh5co-cover" role="banner" style="background-image:url({{ asset('frontend/images/img_bg_2.jpg') }});" data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
         <div class="container">
             <div class="row">
@@ -126,7 +126,7 @@
         </div>
     </div>
     @foreach($events as $key => $event)
-        {{--<div id="fh5co-event" class="fh5co-bg" style="background-image:url({{ asset('fontend/images/img_bg_3.jpg') }});">--}}
+        {{--<div id="fh5co-event" class="fh5co-bg" style="background-image:url({{ asset('frontend/images/img_bg_3.jpg') }});">--}}
         <div id="fh5co-event" class="fh5co-bg" style="background-image:url({{ asset($event->image) }});">
             <div class="overlay"></div>
             <div class="container">
@@ -209,7 +209,7 @@
         </div>
     </div>
     
-    <div id="fh5co-counter" class="fh5co-bg fh5co-counter" style="background-image:url({{ asset('fontend/images/img_bg_5.jpg') }});">
+    <div id="fh5co-counter" class="fh5co-bg fh5co-counter" style="background-image:url({{ asset('frontend/images/img_bg_5.jpg') }});">
         <div class="overlay"></div>
         <div class="container">
             <div class="row">
@@ -278,7 +278,7 @@
                                 <div class="item">
                                     <div class="testimony-slide active text-center">
                                         <figure>
-                                            <img src="{{ asset('fontend/images/couple-1.jpg') }}" alt="user">
+                                            <img src="{{ asset('frontend/images/couple-1.jpg') }}" alt="user">
                                         </figure>
                                         <span>John Doe, via <a href="#" class="twitter">Twitter</a></span>
                                         <blockquote>
@@ -289,7 +289,7 @@
                                 <div class="item">
                                     <div class="testimony-slide active text-center">
                                         <figure>
-                                            <img src="{{ asset('fontend/images/couple-2.jpg') }}" alt="user">
+                                            <img src="{{ asset('frontend/images/couple-2.jpg') }}" alt="user">
                                         </figure>
                                         <span>John Doe, via <a href="#" class="twitter">Twitter</a></span>
                                         <blockquote>
@@ -300,7 +300,7 @@
                                 <div class="item">
                                     <div class="testimony-slide active text-center">
                                         <figure>
-                                            <img src="{{ asset('fontend/images/couple-3.jpg') }}" alt="user">
+                                            <img src="{{ asset('frontend/images/couple-3.jpg') }}" alt="user">
                                         </figure>
                                         <span>John Doe, via <a href="#" class="twitter">Twitter</a></span>
                                         <blockquote>
@@ -361,7 +361,7 @@
                 </div>
                 
                 <div class="col-md-6 animate-box">
-                    <div class="fh5co-video fh5co-bg" style="background-image: url({{ asset('fontend/images/img_bg_3.jpg') }}); ">
+                    <div class="fh5co-video fh5co-bg" style="background-image: url({{ asset('frontend/images/img_bg_3.jpg') }}); ">
                         <a href="https://vimeo.com/channels/staffpicks/93951774" class="popup-vimeo"><i class="icon-video2"></i></a>
                         <div class="overlay"></div>
                     </div>
@@ -373,7 +373,7 @@
     </div>
     
     
-    <div id="fh5co-started" class="fh5co-bg" style="background-image:url({{ asset('fontend/images/img_bg_4.jpg') }});">
+    <div id="fh5co-started" class="fh5co-bg" style="background-image:url({{ asset('frontend/images/img_bg_4.jpg') }});">
         <div class="overlay"></div>
         <div class="container">
             <div class="row animate-box">
@@ -433,28 +433,28 @@
 </div>
 
 <!-- jQuery -->
-<script src="{{ asset('fontend/js/jquery.min.js') }}"></script>
+<script src="{{ asset('frontend/js/jquery.min.js') }}"></script>
 <!-- jQuery Easing -->
-<script src="{{ asset('fontend/js/jquery.easing.1.3.js') }}"></script>
+<script src="{{ asset('frontend/js/jquery.easing.1.3.js') }}"></script>
 <!-- Bootstrap -->
-<script src="{{ asset('fontend/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('frontend/js/bootstrap.min.js') }}"></script>
 <!-- Waypoints -->
-<script src="{{ asset('fontend/js/jquery.waypoints.min.js') }}"></script>
+<script src="{{ asset('frontend/js/jquery.waypoints.min.js') }}"></script>
 <!-- Carousel -->
-<script src="{{ asset('fontend/js/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('frontend/js/owl.carousel.min.js') }}"></script>
 <!-- countTo -->
-<script src="{{ asset('fontend/js/jquery.countTo.js') }}"></script>
+<script src="{{ asset('frontend/js/jquery.countTo.js') }}"></script>
 
 <!-- Stellar -->
-<script src="{{ asset('fontend/js/jquery.stellar.min.js') }}"></script>
+<script src="{{ asset('frontend/js/jquery.stellar.min.js') }}"></script>
 <!-- Magnific Popup -->
-<script src="{{ asset('fontend/js/jquery.magnific-popup.min.js') }}"></script>
-<script src="{{ asset('fontend/js/magnific-popup-options.js') }}"></script>
+<script src="{{ asset('frontend/js/jquery.magnific-popup.min.js') }}"></script>
+<script src="{{ asset('frontend/js/magnific-popup-options.js') }}"></script>
 
 <!-- // <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.js') }}"></script> -->
-<script src="{{ asset('fontend/js/simplyCountdown.js') }}"></script>
+<script src="{{ asset('frontend/js/simplyCountdown.js') }}"></script>
 <!-- Main -->
-<script src="{{ asset('fontend/js/main.js') }}"></script>
+<script src="{{ asset('frontend/js/main.js') }}"></script>
 
 <script>
     var d = new Date(new Date().getTime() + 200 * 120 * 120 * 2000);

@@ -6,6 +6,7 @@ use App\Models\Backend\Buyer;
 use App\Models\Backend\Enterprise;
 use App\Models\Event;
 use Carbon\Carbon;
+use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 
@@ -23,7 +24,7 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return Renderable
      */
     public function index()
     {
@@ -34,7 +35,7 @@ class HomeController extends Controller
             'event' => Event::where('end_date', '<', Carbon::now())->count(),
             'enterprise' => Enterprise::count(),
         ];
-            return view('fontend.index', compact('events', 'subEvents', 'webInfo'));
+            return view('frontend.index', compact('events', 'subEvents', 'webInfo'));
     }
 
     public function download()
@@ -49,5 +50,10 @@ class HomeController extends Controller
         }
 
         echo "File downloaded!";
+    }
+
+    public function contact()
+    {
+        return view('frontend.contact');
     }
 }
