@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Backend\Admin;
+use App\Models\Admin;
 use Illuminate\Auth\Authenticatable as AuthenticableTrait;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;

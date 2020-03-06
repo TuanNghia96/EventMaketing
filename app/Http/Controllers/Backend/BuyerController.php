@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Models\Backend\Buyer;
+use App\Models\Buyer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 

@@ -21,7 +21,8 @@ Route::get('/hello_world', 'HelloWorldController@show')->name('showHelloWorld');
 //Restful
 Route::resource('/users', 'UsersController')->middleware('auth');
 
-Auth::routes();
+\Auth::routes();
+Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -40,5 +41,6 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin'], function () {
 
 });
 
+Auth::routes();
 
-
+Route::get('/home', 'HomeController@index')->name('home');
