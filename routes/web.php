@@ -27,6 +27,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/contact', 'ContactController@contact')->name('contact');
 Route::post('/contact', 'ContactController@send')->name('contact.send');
+Route::get('/about_us', 'ContactController@about')->name('contact.about');
 
 Route::get('/home/download', 'HomeController@download')->name('home.download');
 Route::group(['namespace' => 'Backend', 'prefix' => 'admin'], function () {

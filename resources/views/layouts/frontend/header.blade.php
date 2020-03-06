@@ -26,6 +26,7 @@
                             <li><a href="#">jQuery</a></li>
                         </ul>
                     </li>
+                    <li><a href="{{ route('contact.about') }}">About Us</a></li>
                     <li><a href="{{ route('contact') }}">Contact</a></li>
                 </ul>
             </div>

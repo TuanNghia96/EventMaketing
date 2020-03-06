@@ -58,7 +58,7 @@
 @include('layouts.frontend.header')
 
 <div id="page">
-@yield('content')
+    @yield('content')
     @include('layouts.frontend.footer')
 </div>
 
