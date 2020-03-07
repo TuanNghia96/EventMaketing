@@ -11,7 +11,7 @@ $factory->define(Event::class, function (Faker $faker) {
         'title' => $faker->title,
         'code' => $faker->postcode,
         'location' => $faker->streetAddress,
-        'sumary' => $faker->realText(300),
+        'summary' => $faker->realText(300),
         'image' => 'fakers/images/img_bg_' . rand(1, 50) . '.jpg',
         'type' => array_rand(Event::$type),
         'public_date' => $faker->dateTime('now'),

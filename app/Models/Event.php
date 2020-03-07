@@ -23,7 +23,7 @@ class Event extends Model
         'title',
         'code',
         'location',
-        'sumary',
+        'summary',
         'image',
         'type',
         'public_date',

@@ -8,6 +8,7 @@ use App\Models\Event;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -36,6 +37,24 @@ class HomeController extends Controller
             'enterprise' => Enterprise::count(),
         ];
         return view('frontend.index', compact('events', 'subEvents', 'webInfo'));
+    }
+
+
+    public function eventIndex()
+    {
+        $events = Event::paginate();
+        $webInfo = [
+            'buyer' => Buyer::count(),
+            'event' => Event::where('end_date', '<', Carbon::now())->count(),
+            'enterprise' => Enterprise::count(),
+        ];
+        return view('frontend.event', compact('events', 'webInfo'));
+    }
+
+    public function eventDetail($id)
+    {
+        $event = Event::findOrFail($id);
+        return view('frontend.detail', compact('event'));
     }
 
     public function download()

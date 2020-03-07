@@ -6,9 +6,9 @@
             </div>
             <div class="col-xs-10 text-right menu-1">
                 <ul>
-                    <li class="active"><a href="{{ route('home') }}">Home</a></li>
-                    <li><a href="about.html">Story</a></li>
-                    <li class="has-dropdown">
+                    <li class="header_button" id="homeHeader"><a href="{{ route('home') }}">Home</a></li>
+                    <li class="header_button" id="eventHeader" ><a href="{{ route('event.index') }}">Event</a></li>
+                    <li id="" class="header_button has-dropdown">
                         <a href="services.html">Services</a>
                         <ul class="dropdown">
                             <li><a href="#">Web Design</a></li>
@@ -17,7 +17,7 @@
                             <li><a href="#">API</a></li>
                         </ul>
                     </li>
-                    <li class="has-dropdown">
+                    <li id="" class="header_button has-dropdown">
                         <a href="gallery.html">Gallery</a>
                         <ul class="dropdown">
                             <li><a href="#">HTML5</a></li>
@@ -26,9 +26,9 @@
                             <li><a href="#">jQuery</a></li>
                         </ul>
                     </li>
-                    <li><a href="{{ route('contact.about') }}">About Us</a></li>
-                    <li><a href="{{ route('contact') }}">Contact</a></li>
-                    <li class="has-dropdown">
+                    <li class="header_button" id=""><a href="{{ route('contact.about') }}">About Us</a></li>
+                    <li class="header_button" id=""><a href="{{ route('contact') }}">Contact</a></li>
+                    <li id="" class="header_button has-dropdown">
                         @guest
                             <a href="#">User</a>
                             <ul class="dropdown">

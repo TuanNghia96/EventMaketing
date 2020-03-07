@@ -57,7 +57,7 @@
                                             <span>{{ date('H:i d-m', strtotime($event->start_date)) }}</span>
                                             <span>{{ date('H:i d-m', strtotime($event->end_date)) }}</span>
                                         </div>
-                                        <p>{{ $event->sumary }}</p>
+                                        <p>{{ $event->summary }}</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-6 text-center">
@@ -75,7 +75,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-sm-12 text-center">
-                                    <p><a href="#" class="btn btn-default btn-sm" style="margin-top: 3%;">Tham gia</a></p>
+                                    <p><a href="{{ route('event.detail', $event->id) }}" class="btn btn-default btn-sm" style="margin-top: 3%;">Tham gia</a></p>
                                 </div>
                             </div>
                         </div>
@@ -342,5 +342,8 @@
             day: d.getDate(),
             enableUtc: false
         });
+
+        $('.header_button').removeClass('active');
+        $('#homeHeader').addClass('active');
     </script>
 @endsection
