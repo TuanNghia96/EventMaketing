@@ -21,6 +21,7 @@ class BuyerTableSeeder extends Seeder
             //seeder user
             $user = User::create([
                 'email' => $faker->unique()->email,
+                'user_name' => $faker->unique()->name,
                 'password' => Hash::make('123456'),
                 'role' => User::BUYER,
             ]);
@@ -31,6 +32,7 @@ class BuyerTableSeeder extends Seeder
                 'buyer_code' => $code,
                 'first_name' => $faker->firstName,
                 'last_name' => $faker->lastName,
+                'avatar' => $faker->imageUrl(70, 70),
                 'address' => $faker->address,
                 'phone' => $faker->phoneNumber,
                 'bank_account' => $faker->bankAccountNumber,

@@ -18,6 +18,7 @@ class UsersTableSeeder extends Seeder
         // crete admin account
         User::create([
             'email' => 'admin@gmail.com',
+            'user_name' => 'admin',
             'password' => Hash::make('123456'),
             'role' => User::ADMIN,
         ]);

@@ -33,7 +33,7 @@ Route::post('/contact', 'ContactController@send')->name('contact.send');
 Route::get('/about_us', 'ContactController@about')->name('contact.about');
 
 Route::get('/home/download', 'HomeController@download')->name('home.download');
-Route::group(['namespace' => 'Backend', 'prefix' => 'admin'], function () {
+Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => ['admin_able']], function () {
     Route::get('/admin', 'AdminController@index')->name('admin.index');
     Route::get('/enterprises', 'EnterpriseController@index')->name('enterprises.index');
     Route::get('/buyers', 'BuyerController@index')->name('buyers.index');

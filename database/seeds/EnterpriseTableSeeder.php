@@ -20,6 +20,7 @@ class EnterpriseTableSeeder extends Seeder
             //seeder user
             $user = User::create([
                 'email' => $faker->unique()->email,
+                'user_name' => $faker->unique()->name,
                 'password' => Hash::make('123456'),
                 'role' => User::ENTERPRISE,
             ]);
@@ -30,6 +31,8 @@ class EnterpriseTableSeeder extends Seeder
                 'enterprise_code' => $code,
                 'name' => $faker->name,
                 'address' => $faker->address,
+                'avatar' => $faker->imageUrl(70, 70),
+                'city' => array_rand(Enterprise::CITY),
                 'phone' => $faker->phoneNumber,
                 'bank_account' => $faker->bankAccountNumber,
             ]);

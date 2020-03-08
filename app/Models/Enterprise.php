@@ -16,8 +16,17 @@ class Enterprise extends Model
         'enterprise_code',
         'name',
         'address',
+        'city',
+        'avatar',
         'phone',
         'bank_account',
+    ];
+
+    const CITY = [
+        1 => 'Hà Nội',
+        2 => 'Đà nẵng',
+        3 => 'Tp. Hồ Chí Minh',
+        4 => 'Tp khác',
     ];
 
     protected $hidden = [
@@ -39,5 +48,18 @@ class Enterprise extends Model
     public function getPaginate($input)
     {
         return self::with('user')->get();
+    }
+
+    /**
+     * gen next code
+     *
+     * @param string $preCode
+     * @return string
+     */
+    public static function getNextCode(string $preCode)
+    {
+        $codeArray = explode('P', $preCode);
+        $number = $codeArray[1] + 1;
+        return sprintf("EP%05s", $number);
     }
 }

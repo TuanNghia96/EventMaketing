@@ -23,6 +23,7 @@ class User extends Model implements Authenticatable
     protected $perPage = 20;
     protected $fillable = [
         'email',
+        'user_name',
         'password',
         'role',
     ];
@@ -33,8 +34,8 @@ class User extends Model implements Authenticatable
 
     public static $role = [
         self::ADMIN => 'Quản trị viên',
-        self::ENTERPRISE => 'Doanh nghiep',
-        self::BUYER => 'Khach hang'
+        self::ENTERPRISE => 'Doanh nghiệp',
+        self::BUYER => 'Khách hàng',
     ];
 
     /**
@@ -221,5 +222,19 @@ class User extends Model implements Authenticatable
         } else {
             return $this->buyer;
         }
+    }
+
+    /**
+     * gen next code
+     *
+     * @param string $role
+     * @param string $preCode
+     * @return string
+     */
+    public static function getNextCode(string $role,string $preCode)
+    {
+        $codeArray = explode($role[1], $preCode);
+        $number = $codeArray[1] + 1;
+        return sprintf($role . "%05s", $number);
     }
 }
