@@ -51,18 +51,21 @@
     <!-- FOR IE9 below -->
 <!--[if lt IE 9]>
 	<script src="{{ asset('frontend/js/respond.min.js') }}"></script>
+
 	<![endif]-->
 
 </head>
 <body>
 @include('layouts.frontend.header')
-
-<div id="page">
-    @yield('content')
-    @include('layouts.frontend.footer')
+<div id="app" class="app-body flex-grow-1">
+    <div id="page">
+        @yield('content')
+        @include('layouts.frontend.footer')
+    </div>
 </div>
 
-
+<!-- VueJs -->
+<script src="{{ asset('/js/app.js') }}"></script>
 <!-- jQuery -->
 <script src="{{ asset('frontend/js/jquery.min.js') }}"></script>
 <!-- jQuery Easing -->

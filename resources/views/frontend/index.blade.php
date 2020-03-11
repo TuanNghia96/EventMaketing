@@ -96,18 +96,12 @@
             </div>
             <div class="row row-bottom-padded-md">
                 <div class="col-md-12">
-                    <ul id="fh5co-gallery-list">
-                        @foreach($subEvents as $key => $event)
-                            <li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url({{ asset($event->image) }}); ">
-                                <a href="{{ asset($event->image) }}">
-                                    <div class="case-studies-summary">
-                                        <span>{{ \App\Models\Event::$type[$event->type] }}</span>
-                                        <h2>{{ $event->name }}</h2>
-                                    </div>
-                                </a>
-                            </li>
-                        @endforeach
-                    </ul>
+
+                        <my-component
+                                sub-events="{{ json_encode($subEvents) }}"
+                                all-type="{{ json_encode(\App\Models\Event::$type) }}"
+                                url-sub="{{ route('event.sub')  }}"
+                        ></my-component>
                 </div>
             </div>
         </div>
@@ -309,7 +303,6 @@
             </div>
         </div>
     </div>
-
 @endsection
 
 @section('inline_script')
@@ -323,12 +316,12 @@
             month: d.getMonth() + 1,
             day: d.getDate()
         });
-        var timestamp = new Date().getTime();
 
         function updateTime() {
-            // $('#time').html(Date(moment(timestamp, 'H:i:s d-m-Y')));
-            $('#time').html(Date(timestamp));
-            timestamp++;
+            let timestamp = new Date().getTime();
+            let date = new Date(timestamp);
+            let realTime = date.toLocaleString('vi-VN');
+            $('#time').html('Current time is:' + realTime);
         }
 
         $(function () {

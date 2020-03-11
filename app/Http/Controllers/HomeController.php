@@ -39,6 +39,18 @@ class HomeController extends Controller
         return view('frontend.index', compact('events', 'subEvents', 'webInfo'));
     }
 
+    /**
+     * Show the application dashboard.
+     *
+     * @param Request $request
+     * @return Renderable
+     */
+    public function getSubEvent(Request $request)
+    {
+        $params = $request->all();
+        return $subEvents = Event::skip(5)->take($params['number'] + 6)->get();
+    }
+
 
     public function eventIndex()
     {
