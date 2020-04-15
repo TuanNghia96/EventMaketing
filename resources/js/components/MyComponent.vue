@@ -1,7 +1,7 @@
 <template>
     <div>
         <ul id="fh5co-gallery-list">
-                <li v-for="(event, i) in sub_events" :key="i" class="one-third animate-box my-component fadeIn animated-fast" :style="`background-image: url( ${event.image} )`">
+                <li v-for="(event, i) in sub_events" :key="i" class="one-third animate-box my-component fadeIn animated-fast" :style="`background-image: url( ${event.avatar} )`">
                     <a href="">
                         <div class="case-studies-summary">
                             <span>{{ all_type[event.type] }}</span>

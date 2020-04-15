@@ -22,6 +22,7 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('my-component', require('./components/MyComponent.vue').default);
 Vue.component('search-event', require('./components/SearchEvent.vue').default);
+Vue.component('create-event', require('./components/CreateEvent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

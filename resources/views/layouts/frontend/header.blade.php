@@ -36,8 +36,7 @@
                                 <li><a href="{{ route('register') }}">Sign In</a></li>
                             </ul>
                         @else
-
-                            <a href="#">{{ Auth::user()->user_name }}</a>
+.21                            <a href="#">{{ Auth::user()->user_name }}</a>
                             <ul class="dropdown">
                                 <li><a href="{{ route('login') }}">Info</a></li>
                                 <li><a href="{{ route('logout') }}">Log out</a></li>

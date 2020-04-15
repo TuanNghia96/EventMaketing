@@ -18,7 +18,7 @@ Circles.create({
 //Notify
 $.notify({
 	icon: 'flaticon-alarm-1',
-	title: 'Azzara',
+	title: 'Event',
 	message: 'Premium Bootstrap 4 Admin Dashboard',
 },{
 	type: 'info',

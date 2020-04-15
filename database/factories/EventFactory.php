@@ -12,7 +12,7 @@ $factory->define(Event::class, function (Faker $faker) {
         'code' => $faker->postcode,
         'location' => $faker->streetAddress,
         'summary' => $faker->realText(300),
-        'image' => 'fakers/images/img_bg_' . rand(1, 50) . '.jpg',
+        'avatar' => 'fakers/images/img_bg_' . rand(1, 50) . '.jpg',
         'classify' => array_rand(Event::$classify),
         'type' => array_rand(Event::TYPE),
         'public_date' => $faker->dateTime('now'),

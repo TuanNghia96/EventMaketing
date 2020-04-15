@@ -1,11 +1,11 @@
 <footer class="footer">
     <div class="container-fluid">
         <div>
-            <a href="">CR7 STORE Admin</a>
-            <span>© 2020 HuyChuongCR7</span>
+            <a href="">EVENT MANAGE ADMIN</a>
+            <span>© 2020 TuanNghia59</span>
         </div>
         <div class="copyright ml-auto">
-            Powered by <a href="https://www.facebook.com/chuongdhcr7">Đào Huy Chương</a>
+            Powered by <a href="https://www.facebook.com/nghia.ba">Nguyễn Bá Tuấn Nghĩa</a>
         </div>
     </div>
 </footer>

@@ -10,8 +10,8 @@
                         <div class="display-tc animate-box" data-animate-effect="fadeIn">
                             <h1>Event Countdown</h1>
                             <h2>Let join your event</h2>
-                            <div class="simply-countdown simply-countdown-one"></div>
-                            <p><a href="#" class="btn btn-default btn-sm">Save the date</a></p>
+                            {{--<div class="simply-countdown simply-countdown-one"></div>--}}
+                            {{--<p><a href="#" class="btn btn-default btn-sm">Save the date</a></p>--}}
                         </div>
                     </div>
                 </div>
@@ -24,14 +24,13 @@
                 <div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
                     <h2>Hello!</h2>
                     <h3 id="time"></h3>
-                    <p>Đây là những sự kiện có thể bạn quan tâm</p>
+                    <p>These are events that may interest you</p>
                 </div>
             </div>
         </div>
     </div>
     @foreach($events as $key => $event)
-        {{--<div id="fh5co-event" class="fh5co-bg" style="background-image:url({{ asset('frontend/images/img_bg_3.jpg') }});">--}}
-        <div id="fh5co-event" class="fh5co-bg" style="background-image:url({{ asset($event->image) }});">
+        <div id="fh5co-event" class="fh5co-bg" style="background-image:url({{ asset($event->avatar) }});">
             <div class="overlay"></div>
             <div class="container">
                 <div class="row">
@@ -107,6 +106,7 @@
         </div>
     </div>
 
+    {{--buyer,ent,eventcount--}}
     <div id="fh5co-counter" class="fh5co-bg fh5co-counter" style="background-image:url({{ asset('frontend/images/img_bg_5.jpg') }});">
         <div class="overlay"></div>
         <div class="container">
@@ -160,67 +160,12 @@
         </div>
     </div>
 
-    <div id="fh5co-testimonial">
-        <div class="container">
-            <div class="row">
-                <div class="row animate-box">
-                    <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-                        <span>Best Wishes</span>
-                        <h2>Friends Wishes</h2>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12 animate-box">
-                        <div class="wrap-testimony">
-                            <div class="owl-carousel-fullwidth">
-                                <div class="item">
-                                    <div class="testimony-slide active text-center">
-                                        <figure>
-                                            <img src="{{ asset('frontend/images/couple-1.jpg') }}" alt="user">
-                                        </figure>
-                                        <span>John Doe, via <a href="#" class="twitter">Twitter</a></span>
-                                        <blockquote>
-                                            <p>"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics"</p>
-                                        </blockquote>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="testimony-slide active text-center">
-                                        <figure>
-                                            <img src="{{ asset('frontend/images/couple-2.jpg') }}" alt="user">
-                                        </figure>
-                                        <span>John Doe, via <a href="#" class="twitter">Twitter</a></span>
-                                        <blockquote>
-                                            <p>"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, at the coast of the Semantics, a large language ocean."</p>
-                                        </blockquote>
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="testimony-slide active text-center">
-                                        <figure>
-                                            <img src="{{ asset('frontend/images/couple-3.jpg') }}" alt="user">
-                                        </figure>
-                                        <span>John Doe, via <a href="#" class="twitter">Twitter</a></span>
-                                        <blockquote>
-                                            <p>"Far far away, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."</p>
-                                        </blockquote>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div id="fh5co-services" class="fh5co-section-gray">
         <div class="container">
-
             <div class="row animate-box">
                 <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
                     <h2>We Offer Services</h2>
-                    <p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
+                    <p>Many event are waiting for you to join it.</p>
                 </div>
             </div>
 
@@ -276,27 +221,15 @@
         <div class="container">
             <div class="row animate-box">
                 <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-                    <h2>Are You Attending?</h2>
-                    <p>Please Fill-up the form to notify you that you're attending. Thanks.</p>
+                    <h2>Are You Register?</h2>
+                    <p>Please Fill-up the this form to notify you that you're want to join. Thanks.</p>
                 </div>
             </div>
             <div class="row animate-box">
                 <div class="col-md-10 col-md-offset-1">
                     <form class="form-inline">
-                        <div class="col-md-4 col-sm-4">
-                            <div class="form-group">
-                                <label for="name" class="sr-only">Name</label>
-                                <input type="name" class="form-control" id="name" placeholder="Name">
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-4">
-                            <div class="form-group">
-                                <label for="email" class="sr-only">Email</label>
-                                <input type="email" class="form-control" id="email" placeholder="Email">
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-4">
-                            <button type="submit" class="btn btn-default btn-block">I am Attending</button>
+                        <div class="col-md-4 col-md-offset-4 col-sm-4">
+                            <button type="submit" class="btn btn-default btn-block">I Want Sign In</button>
                         </div>
                     </form>
                 </div>
@@ -321,7 +254,7 @@
             let timestamp = new Date().getTime();
             let date = new Date(timestamp);
             let realTime = date.toLocaleString('vi-VN');
-            $('#time').html('Current time is:' + realTime);
+            $('#time').html('Current time is: ' + realTime);
         }
 
         $(function () {

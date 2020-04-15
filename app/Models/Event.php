@@ -24,13 +24,16 @@ class Event extends Model
         'code',
         'location',
         'summary',
-        'image',
+        'avatar',
         'type',
         'public_date',
         'start_date',
         'end_date',
         'voucher_id',
         'point',
+        'classify',
+        'status',
+        'images',
     ];
 
     public static $classify = [
@@ -48,6 +51,11 @@ class Event extends Model
         4 => 'Hàng tiêu dùng',
         5 => 'Đồ ăn',
         6 => 'Khác',
+    ];
+    const STATUS = [
+        0 => 'Chua kiem duyet',
+        1 => 'Da kiem duyet',
+        2 => 'Huy bo',
     ];
 
     public function user()

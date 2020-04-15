@@ -3,15 +3,12 @@
 @section('content')
 
     <search-event
-            bg-url="{{ asset('frontend/images/img_bg_2.jpg') }}"
+            bg-url="{{ asset('frontend/images/img_bg_8.jpg') }}"
             all-type="{{ json_encode(\App\Models\Event::TYPE) }}"
             all-classify="{{ json_encode(\App\Models\Event::$classify) }}"
             url="{{ route('event.search') }}"
     >
-
     </search-event>
-
-
 @endsection
 
 @section('inline_css')

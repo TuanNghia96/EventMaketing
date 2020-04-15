@@ -19,48 +19,42 @@
                                                             <path d="M18.869 19.162l-5.943-6.484c1.339-1.401 2.075-3.233 2.075-5.178 0-2.003-0.78-3.887-2.197-5.303s-3.3-2.197-5.303-2.197-3.887 0.78-5.303 2.197-2.197 3.3-2.197 5.303 0.78 3.887 2.197 5.303 3.3 2.197 5.303 2.197c1.726 0 3.362-0.579 4.688-1.645l5.943 6.483c0.099 0.108 0.233 0.162 0.369 0.162 0.121 0 0.242-0.043 0.338-0.131 0.204-0.187 0.217-0.503 0.031-0.706zM1 7.5c0-3.584 2.916-6.5 6.5-6.5s6.5 2.916 6.5 6.5-2.916 6.5-6.5 6.5-6.5-2.916-6.5-6.5z"></path>
                                                         </svg>
                                                     </div>
-                                                    <input id="search" type="text" placeholder="Search..."/>
+                                                    <input id="search" type="text" placeholder="Search..." v-model="nameSearch" @keyup="getSearch()"/>
                                                     <div class="result-count">
-                                                        <span>108 </span>results
+                                                        <span>{{ result }} </span>results
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="advance-search" v-if="advanceBtn">
-
-                                                <button class="btn btn-link" @click="getAdvance()" id="delete">
-                                                    <span class="">Advanced Search</span>
-                                                </button>
+                                            <div class="advance-search">
+                                                <span>Advanced Search</span>
                                                 <div class="row">
                                                     <div class="input-field">
                                                         <div class="input-select">
-                                                            <select data-trigger="" name="choices-single-defaul">
-                                                                <option placeholder="" value=""></option>
-                                                                <option  v-for="(type, i) in typesData">{{ type }}</option>
+                                                            <select data-trigger="" name="choices-single-defaul" @change="getSearch()" v-model="typeSearch">
+                                                                <option placeholder="" value="" class="text-center">Type</option>
+                                                                <option v-for="(type, i) in typesData">{{ type }}</option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="input-field">
                                                         <div class="input-select">
-                                                            <select data-trigger="" name="choices-single-defaul">
-                                                                <option placeholder="" value="">COLOR</option>
-                                                                <option>GREEN</option>
-                                                                <option>SUBJECT B</option>
-                                                                <option>SUBJECT C</option>
+                                                            <select data-trigger="" name="choices-single-defaul" v-model="classifySearch" @change="getSearch()">
+                                                                <option placeholder="" value="">CLASSIFY</option>
+                                                                <option v-for="(classify, i) in classifyData">{{ classify }}</option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="input-field">
                                                         <div class="input-select">
-                                                            <select data-trigger="" name="choices-single-defaul">
-                                                                <option placeholder="" value="">SIZE</option>
-                                                                <option>SIZE</option>
-                                                                <option>SUBJECT B</option>
-                                                                <option>SUBJECT C</option>
+                                                            <select data-trigger="" name="choices-single-defaul" v-model="statusSearch" @change="getSearch()">
+                                                                <option placeholder="" value="">STATUS</option>
+                                                                <option value="1">START</option>
+                                                                <option value="2">WAITING</option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="row second">
+                                                <!--<div class="row second">
                                                     <div class="input-field">
                                                         <div class="input-select">
                                                             <select data-trigger="" name="choices-single-defaul">
@@ -91,18 +85,13 @@
                                                             </select>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div>-->
                                                 <div class="row third">
                                                     <div class="input-field">
-                                                        <button class="btn-search">Search</button>
-                                                        <button class="btn-delete" >Delete</button>
+                                                        <!--<button class="btn-search">Search</button>-->
+                                                        <!--<button class="btn-delete">Delete</button>-->
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="" v-else>
-                                                <button class="btn btn-link" @click="getAdvance()">
-                                                    <span class="">Advanced Search</span>
-                                                </button>
                                             </div>
                                         </div>
                                     </form>
@@ -113,7 +102,6 @@
                 </div>
             </div>
         </header>
-        <button>ab</button>
         <!--<section class="search-sec">
             <div class="container">
                 <form action="#" method="post" novalidate="novalidate">
@@ -164,19 +152,22 @@
                 typesData: [],
                 classifyData: [],
                 typeSearch: null,
+                statusSearch: null,
                 classifySearch: null,
                 nameSearch: null,
                 advanceBtn: true,
+                result: 0,
             }
         },
-        computed:{
-        },
+        computed: {},
         methods: {
             getSearch() {
-                axios.post(this.url, {
+                console.log('a'),
+                axios.get(this.url, {
                         params: {
                             type: this.typeSearch,
                             classify: this.classifySearch,
+                            status: this.statusSearch,
                             name: this.nameSearch,
                         }
                     }

@@ -1,7 +1,7 @@
 @extends('layouts.frontend.app')
 
 @section('content')
-    <header id="fh5co-header" class="fh5co-cover fh5co-cover-sm" role="banner" style="background-image:url({{ asset('frontend/images/img_bg_1.jpg') }});">
+    <header id="fh5co-header" class="fh5co-cover fh5co-cover-sm" role="banner" style="background-image:url({{ asset('frontend/images/img_bg_6.jpg') }});">
         <div class="overlay"></div>
         <div class="fh5co-container">
             <div class="row">

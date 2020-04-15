@@ -70,6 +70,7 @@ class HomeController extends Controller
     public function eventDetail($id)
     {
         $event = Event::findOrFail($id);
+        $event->images = json_decode($event->images);
         return view('frontend.detail', compact('event'));
     }
 

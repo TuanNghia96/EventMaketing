@@ -17,7 +17,7 @@ class CreateVouchersTable extends Migration
             $table->increments('id');
             $table->string('name', 30);
             $table->string('title', 30);
-            $table->string('code', 30);
+            $table->string('code', 30)->unique();
             $table->string('image');
             $table->tinyInteger('type');
             $table->integer('value');

@@ -25,12 +25,9 @@ class AddRelaytionshipAllTable extends Migration
         Schema::table('buyers', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');
         });
-        Schema::table('enterprise_staffs', function (Blueprint $table) {
-            $table->foreign('enterprise_id')->references('id')->on('enterprises');
-        });
         Schema::table('tickets', function (Blueprint $table) {
             $table->foreign('buyer_id')->references('id')->on('buyers');
-            $table->foreign('voucher_id')->references('id')->on('vouchers');
+            $table->foreign('event_id')->references('id')->on('events');
         });
         Schema::table('enterprise_events', function (Blueprint $table) {
             $table->foreign('enterprise_id')->references('id')->on('enterprises');

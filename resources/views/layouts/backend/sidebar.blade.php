@@ -8,7 +8,7 @@
                 <div class="info">
                     <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
                         <span>
-                            <span class="user-level">Quản trị viên</span>
+                            <span class="user-level">{{ Auth::user()->user_name }}</span>
                             <span class="caret"></span>
                         </span>
                     </a>
