@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddRelaytionshipAllTable extends Migration
+class AddRelationshipAllTable extends Migration
 {
     /**
      * Run the migrations.
@@ -34,7 +34,7 @@ class AddRelaytionshipAllTable extends Migration
             $table->foreign('event_id')->references('id')->on('events');
         });
     }
-    
+
     /**
      * Reverse the migrations.
      *
