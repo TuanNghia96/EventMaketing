@@ -17,7 +17,7 @@ class BuyerTableSeeder extends Seeder
     {
         $faker = Factory::create();
 
-        for ($i = 1; $i <= 100; $i++) {
+        for ($i = 1; $i <= 20; $i++) {
             //seeder user
             $user = User::create([
                 'email' => $faker->unique()->email,

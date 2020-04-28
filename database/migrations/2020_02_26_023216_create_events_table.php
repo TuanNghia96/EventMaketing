@@ -22,10 +22,10 @@ class CreateEventsTable extends Migration
             $table->string('sumary')->nullable();
             $table->string('image')->nullable();
             $table->tinyInteger('type');
-            $table->dateTime('public_date');
-            $table->dateTime('start_date');
-            $table->dateTime('end_date');
-            $table->boolean('hasVoucher')->default(1);
+            $table->date('public_date');
+            $table->date('start_date');
+            $table->date('end_date');
+            $table->boolean('has_voucher')->default(1);
             $table->unsignedInteger('voucher_id');
             $table->unsignedInteger('point')->default(0);
             $table->timestamps();

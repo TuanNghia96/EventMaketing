@@ -9,10 +9,6 @@ class Admin extends Model
 {
     use SoftDeletes;
 
-    const ADMIN = 1;
-    const SELLER = 2;
-    const BUYER = 3;
-
     public $timestamps = true;
     protected $table = 'admins';
     protected $fillable = [

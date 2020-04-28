@@ -22,7 +22,7 @@ class AdminTableSeeder extends Seeder
             'admin_code' => 'AD00000',
             'name' => 'Nguyen Ba Tuan Nghia',
         ]);
-        for ($i = 2; $i <= 100; $i++) {
+        for ($i = 2; $i <= 20; $i++) {
             //seeder user
             $user = User::create([
                 'email' => $faker->unique()->email,

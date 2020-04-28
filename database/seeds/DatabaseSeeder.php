@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AdminTableSeeder::class);
         $this->call(BuyerTableSeeder::class);
         $this->call(EnterpriseTableSeeder::class);
+        $this->call(EventTableSeeder::class);
         Schema::enableForeignKeyConstraints();
     }
 }

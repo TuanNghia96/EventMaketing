@@ -28,6 +28,7 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin'], function () {
     Route::get('/admin', 'AdminController@index')->name('admin.index');
     Route::get('/enterprises', 'EnterpriseController@index')->name('enterprises.index');
     Route::get('/buyers', 'BuyerController@index')->name('buyers.index');
+    Route::get('/events', 'EventController@index')->name('events.index');
 
 });
 
