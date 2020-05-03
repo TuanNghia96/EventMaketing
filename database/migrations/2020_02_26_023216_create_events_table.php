@@ -18,7 +18,7 @@ class CreateEventsTable extends Migration
             $table->string('name', 30);
             $table->string('title', 30);
             $table->string('code', 30);
-            $table->string('location', 30)->nullable();
+            $table->string('location', 50)->nullable();
             $table->text('sumary')->nullable();
             $table->string('image')->nullable();
             $table->tinyInteger('type');

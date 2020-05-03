@@ -120,67 +120,65 @@
                 <div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
                     <h2>Hello!</h2>
                     <h3 id="time"></h3>
-                    <p>We intro you to our special events</p>
+                    <p>Đây là những sự kiện có thể bạn quan tâm</p>
                 </div>
             </div>
         </div>
     </div>
     @foreach($events as $key => $event)
-    {{--<div id="fh5co-event" class="fh5co-bg" style="background-image:url({{ asset('fontend/images/img_bg_3.jpg') }});">--}}
-    <div id="fh5co-event" class="fh5co-bg" style="background-image:url({{ asset($event->image) }});">
-        <div class="overlay"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
-                    <span>Our Special Events</span>
-                    <h2>{{ $event->name }}</h2>
+        {{--<div id="fh5co-event" class="fh5co-bg" style="background-image:url({{ asset('fontend/images/img_bg_3.jpg') }});">--}}
+        <div id="fh5co-event" class="fh5co-bg" style="background-image:url({{ asset($event->image) }});">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
+                        <h2>{{ $event->name }}</h2>
+                        <span>{{ \App\Models\Event::$type[$event->type] }}</span>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="display-t">
-                    <div class="display-tc">
-                        <div class="col-md-10 col-md-offset-1">
-                            <div class="col-md-6 col-sm-6 text-center">
-                                <div class="event-wrap animate-box">
-                                    <h3>Thông tin</h3>
-                                    <div class="event-col">
-                                        <i class="icon-calendar"></i>
-                                        <span>Bắt đầu</span>
-                                        <span>Kết thúc</span>
+                <div class="row">
+                    <div class="display-t">
+                        <div class="display-tc">
+                            <div class="col-md-10 col-md-offset-1">
+                                <div class="col-md-6 col-sm-6 text-center">
+                                    <div class="event-wrap animate-box">
+                                        <h3>Thông tin</h3>
+                                        <div class="event-col">
+                                            <i class="icon-calendar"></i>
+                                            <span>Bắt đầu</span>
+                                            <span>Kết thúc</span>
+                                        </div>
+                                        <div class="event-col">
+                                            <i class="icon-clock"></i>
+                                            <span>{{ date('H:i d-m', strtotime($event->start_date)) }}</span>
+                                            <span>{{ date('H:i d-m', strtotime($event->end_date)) }}</span>
+                                        </div>
+                                        <p>{{ $event->sumary }}</p>
                                     </div>
-                                    <div class="event-col">
-                                        <i class="icon-clock"></i>
-                                        <span>{{ date('H:i d-m', strtotime($event->start_date)) }}</span>
-                                        <span>{{ date('H:i d-m', strtotime($event->start_date)) }}</span>
-                                    </div>
-                                    <p>{{ $event->sumary }}</p>
                                 </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 text-center">
-                                <div class="event-wrap animate-box">
-                                    <h3>Wedding Party</h3>
-                                    <div class="event-col">
-                                        <i class="icon-clock"></i>
-                                        <span>7:00 PM</span>
-                                        <span>12:00 AM</span>
+                                <div class="col-md-6 col-sm-6 text-center">
+                                    <div class="event-wrap animate-box">
+                                        <h3>Sự kiện chính</h3>
+                                        <div class="event-col">
+                                            <i class="icon-home"></i>
+                                            <span>{{ $event->location }}</span>
+                                        </div>
+                                        <div class="event-col">
+                                            <i class="icon-flag"></i>
+                                            <span>{{ \App\Models\Event::$type[$event->type] }}</span>
+                                        </div>
+                                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
                                     </div>
-                                    <div class="event-col">
-                                        <i class="icon-calendar"></i>
-                                        <span>Monday 28</span>
-                                        <span>November, 2016</span>
-                                    </div>
-                                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
                                 </div>
-                            </div>
-                            <div class="col-md-12 col-sm-12 text-center">
-                                <p><a href="#" class="btn btn-default btn-sm" style="margin-top: 3%;">Tham gia</a></p>
+                                <div class="col-md-12 col-sm-12 text-center">
+                                    <p><a href="#" class="btn btn-default btn-sm" style="margin-top: 3%;">Tham gia</a></p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     @endforeach
     
     <div id="fh5co-gallery" class="fh5co-section-gray">
@@ -195,92 +193,16 @@
             <div class="row row-bottom-padded-md">
                 <div class="col-md-12">
                     <ul id="fh5co-gallery-list">
-                        
-                        <li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url({{ asset('fontend/images/gallery-1.jpg') }}); ">
-                            <a href="{{ asset('fontend/images/gallery-1.jpg') }}">
-                                <div class="case-studies-summary">
-                                    <span>14 Photos</span>
-                                    <h2>Two Glas of Juice</h2>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url({{ asset('fontend/images/gallery-2.jpg') }}); ">
-                            <a href="#" class="color-2">
-                                <div class="case-studies-summary">
-                                    <span>30 Photos</span>
-                                    <h2>Timer starts now!</h2>
-                                </div>
-                            </a>
-                        </li>
-                        
-                        
-                        <li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url({{ asset('fontend/images/gallery-3.jpg') }}); ">
-                            <a href="#" class="color-3">
-                                <div class="case-studies-summary">
-                                    <span>90 Photos</span>
-                                    <h2>Beautiful sunset</h2>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url({{ asset('fontend/images/gallery-4.jpg') }}); ">
-                            <a href="#" class="color-4">
-                                <div class="case-studies-summary">
-                                    <span>12 Photos</span>
-                                    <h2>Company's Conference Room</h2>
-                                </div>
-                            </a>
-                        </li>
-                        
-                        <li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url({{ asset('fontend/images/gallery-5.jpg') }}); ">
-                            <a href="#" class="color-3">
-                                <div class="case-studies-summary">
-                                    <span>50 Photos</span>
-                                    <h2>Useful baskets</h2>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url({{ asset('fontend/images/gallery-6.jpg') }}); ">
-                            <a href="#" class="color-4">
-                                <div class="case-studies-summary">
-                                    <span>45 Photos</span>
-                                    <h2>Skater man in the road</h2>
-                                </div>
-                            </a>
-                        </li>
-                        
-                        <li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url({{ asset('fontend/images/gallery-7.jpg') }}); ">
-                            <a href="#" class="color-4">
-                                <div class="case-studies-summary">
-                                    <span>35 Photos</span>
-                                    <h2>Two Glas of Juice</h2>
-                                </div>
-                            </a>
-                        </li>
-                        
-                        <li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url({{ asset('fontend/images/gallery-8.jpg') }}); ">
-                            <a href="#" class="color-5">
-                                <div class="case-studies-summary">
-                                    <span>90 Photos</span>
-                                    <h2>Timer starts now!</h2>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url({{ asset('fontend/images/gallery-9.jpg') }}); ">
-                            <a href="#" class="color-6">
-                                <div class="case-studies-summary">
-                                    <span>56 Photos</span>
-                                    <h2>Beautiful sunset</h2>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url({{ asset('fontend/images/gallery-9.jpg') }}); ">
-                            <a href="#" class="color-6">
-                                <div class="case-studies-summary">
-                                    <span>56 Photos</span>
-                                    <h2>Beautiful sunset</h2>
-                                </div>
-                            </a>
-                        </li>
+                        @foreach($subEvents as $key => $event)
+                            <li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url({{ asset($event->image) }}); ">
+                                <a href="{{ asset($event->image) }}">
+                                    <div class="case-studies-summary">
+                                        <span>{{ \App\Models\Event::$type[$event->type] }}</span>
+                                        <h2>{{ $event->name }}</h2>
+                                    </div>
+                                </a>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
@@ -299,8 +221,8 @@
 									<i class="icon-users"></i>
 								</span>
                                 
-                                <span class="counter js-counter" data-from="0" data-to="500" data-speed="5000" data-refresh-interval="50">1</span>
-                                <span class="counter-label">Estimated Guest</span>
+                                <span class="counter js-counter" data-from="0" data-to="{{ $webInfo['buyer'] }}" data-speed="5000" data-refresh-interval="50">1</span>
+                                <span class="counter-label">Thành viên</span>
                             
                             </div>
                         </div>
@@ -310,8 +232,8 @@
 									<i class="icon-user"></i>
 								</span>
                                 
-                                <span class="counter js-counter" data-from="0" data-to="1000" data-speed="5000" data-refresh-interval="50">1</span>
-                                <span class="counter-label">We Catter</span>
+                                <span class="counter js-counter" data-from="0" data-to="{{ $webInfo['enterprise'] }}" data-speed="5000" data-refresh-interval="50">1</span>
+                                <span class="counter-label">Đối tác</span>
                             </div>
                         </div>
                         <div class="col-md-3 col-sm-6 animate-box">
@@ -319,8 +241,8 @@
 								<span class="icon">
 									<i class="icon-calendar"></i>
 								</span>
-                                <span class="counter js-counter" data-from="0" data-to="402" data-speed="5000" data-refresh-interval="50">1</span>
-                                <span class="counter-label">Events Done</span>
+                                <span class="counter js-counter" data-from="0" data-to="{{ $webInfo['event'] }}" data-speed="5000" data-refresh-interval="50">1</span>
+                                <span class="counter-label">Sự kiện hoàn thành</span>
                             </div>
                         </div>
                         <div class="col-md-3 col-sm-6 animate-box">
@@ -544,12 +466,14 @@
         day: d.getDate()
     });
     var timestamp = new Date().getTime();
-    function updateTime(){
+    
+    function updateTime() {
         // $('#time').html(Date(moment(timestamp, 'H:i:s d-m-Y')));
         $('#time').html(Date(timestamp));
         timestamp++;
     }
-    $(function(){
+    
+    $(function () {
         setInterval(updateTime, 1000);
     });
     

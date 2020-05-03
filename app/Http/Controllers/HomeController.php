@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Backend\Buyer;
+use App\Models\Backend\Enterprise;
 use App\Models\Event;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 
@@ -25,7 +28,13 @@ class HomeController extends Controller
     public function index()
     {
         $events = Event::take(5)->get();
-        return view('fontend.index', compact('events'));
+        $subEvents = Event::skip(5)->take(6)->get();
+        $webInfo = [
+            'buyer' => Buyer::count(),
+            'event' => Event::where('end_date', '<', Carbon::now())->count(),
+            'enterprise' => Enterprise::count(),
+        ];
+            return view('fontend.index', compact('events', 'subEvents', 'webInfo'));
     }
 
     public function download()
