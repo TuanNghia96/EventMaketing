@@ -19,12 +19,12 @@ class CreateEventsTable extends Migration
             $table->string('title', 30);
             $table->string('code', 30);
             $table->string('location', 30)->nullable();
-            $table->string('sumary')->nullable();
+            $table->text('sumary')->nullable();
             $table->string('image')->nullable();
             $table->tinyInteger('type');
-            $table->date('public_date');
-            $table->date('start_date');
-            $table->date('end_date');
+            $table->dateTime('public_date');
+            $table->dateTime('start_date');
+            $table->dateTime('end_date');
             $table->unsignedInteger('voucher_id')->nullable();
             $table->unsignedInteger('point')->default(0);
             $table->timestamps();

@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::get('/hello_world', 'HelloWorldController@show')->name('showHelloWorld');
 
 //Restful
@@ -23,6 +24,7 @@ Route::resource('/users', 'UsersController')->middleware('auth');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home/download', 'HomeController@download')->name('home.download');
 Route::group(['namespace' => 'Backend', 'prefix' => 'admin'], function () {
 
     Route::get('/admin', 'AdminController@index')->name('admin.index');
@@ -32,4 +34,6 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'admin'], function () {
     Route::get('/vouchers', 'VoucherController@index')->name('vouchers.index');
 
 });
+
+
 
