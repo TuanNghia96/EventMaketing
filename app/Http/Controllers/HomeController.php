@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Backend\Buyer;
-use App\Models\Backend\Enterprise;
+use App\Models\Buyer;
+use App\Models\Enterprise;
 use App\Models\Event;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {

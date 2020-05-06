@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Backend\Buyer;
+use App\Models\Buyer;
 use App\Models\User;
 use Faker\Factory;
 use Illuminate\Database\Seeder;

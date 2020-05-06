@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Backend\Admin;
 use Illuminate\Auth\Authenticatable as AuthenticableTrait;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
@@ -14,7 +15,7 @@ class User extends Model implements Authenticatable
     use AuthenticableTrait;
 
     const ADMIN = 1;
-    const SELLER = 2;
+    const ENTERPRISE = 2;
     const BUYER = 3;
 
     public $timestamps = true;
@@ -32,15 +33,9 @@ class User extends Model implements Authenticatable
 
     public static $role = [
         self::ADMIN => 'Quản trị viên',
-        self::SELLER => 'Doanh nghiep',
+        self::ENTERPRISE => 'Doanh nghiep',
         self::BUYER => 'Khach hang'
     ];
-
-    public function admin()
-    {
-        return $this->hasMany('App\Models\Backend\Admin');
-    }
-
 
     /**
      * Scope a query by name
@@ -169,5 +164,62 @@ class User extends Model implements Authenticatable
     public function deleteUser($id)
     {
         return $this->find($id)->delete();
+    }
+
+    /**
+     * relation to users table
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function users()
+    {
+        if ($this->role == self::ADMIN) {
+            $relaytion = $this->hasOne(\App\Models\Admin::class, 'user_id', 'id');
+        } elseif ($this->role == self::ENTERPRISE) {
+            $relaytion = $this->hasOne(\App\Models\Enterprise::class);
+        } else {
+            $relaytion = $this->hasOne(\App\Models\Buyer::class);
+        }
+        return $relaytion;
+    }
+
+    /**
+     * relation to admin table
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function admin()
+    {
+        return $this->hasOne(\App\Models\Admin::class, 'user_id', 'id');
+    }
+
+    /**
+     * relation to enterprise table
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function enterprise()
+    {
+        return $this->hasOne(\App\Models\Enterprise::class, 'user_id', 'id');
+    }
+    /**
+     * relation to buyer table
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function buyer()
+    {
+        return $this->hasOne(\App\Models\Buyer::class, 'user_id', 'id');
+    }
+
+    public function getUserAttribute()
+    {
+        if ($this->role == self::ADMIN) {
+            return $this->admin;
+        } elseif ($this->role == self::ENTERPRISE) {
+            return $this->enterprise;
+        } else {
+            return $this->buyer;
+        }
     }
 }

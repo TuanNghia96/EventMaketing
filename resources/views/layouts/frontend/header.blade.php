@@ -28,6 +28,22 @@
                     </li>
                     <li><a href="{{ route('contact.about') }}">About Us</a></li>
                     <li><a href="{{ route('contact') }}">Contact</a></li>
+                    <li class="has-dropdown">
+                        @guest
+                            <a href="#">User</a>
+                            <ul class="dropdown">
+                                <li><a href="{{ route('login') }}">Login</a></li>
+                                <li><a href="#">Sign In</a></li>
+                            </ul>
+                        @else
+
+                            <a href="#">{{ Auth::user()->user->name }}</a>
+                            <ul class="dropdown">
+                                <li><a href="{{ route('login') }}">Info</a></li>
+                                <li><a href="{{ route('logout') }}">Log out</a></li>
+                            </ul>
+                        @endguest
+                    </li>
                 </ul>
             </div>
         </div>

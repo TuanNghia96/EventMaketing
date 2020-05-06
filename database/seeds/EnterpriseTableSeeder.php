@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Backend\Enterprise;
+use App\Models\Enterprise;
 use App\Models\User;
 use Faker\Factory;
 use Illuminate\Database\Seeder;
@@ -21,7 +21,7 @@ class EnterpriseTableSeeder extends Seeder
             $user = User::create([
                 'email' => $faker->unique()->email,
                 'password' => Hash::make('123456'),
-                'role' => User::SELLER,
+                'role' => User::ENTERPRISE,
             ]);
 
             $code = sprintf("EP%05s", $i);
