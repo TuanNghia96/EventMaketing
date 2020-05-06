@@ -1,0 +1,30 @@
+.pagination {
+    justify-content: center;
+}
+
+#flash {
+    margin-top: 63px;
+}
+
+.alert {
+    margin-bottom: 10px;
+}
+
+.caption {
+    border-bottom: 2px solid #6c757d;
+    margin-bottom: 20px;
+}
+
+#bigheader {
+    text-decoration: none;
+}
+
+th.cellinline {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.modal-dialog {
+    padding-top: 15%;
+}
