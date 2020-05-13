@@ -28,6 +28,7 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/event/{event}', 'HomeController@eventDetail')->name('event.detail');
 Route::get('/sub_event', 'HomeController@getSubEvent')->name('event.sub');
 Route::get('/event', 'HomeController@eventIndex')->name('event.index');
+Route::get('/event/search', 'HomeController@eventSearch')->name('event.search');
 
 Route::get('/contact', 'ContactController@contact')->name('contact');
 Route::post('/contact', 'ContactController@send')->name('contact.send');

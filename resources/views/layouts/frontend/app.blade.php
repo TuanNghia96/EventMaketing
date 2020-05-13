@@ -45,6 +45,7 @@
 
     <!-- Theme style  -->
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
+    @yield('inline_css')
 
     <!-- Modernizr JS -->
     <script src="{{ asset('frontend/js/modernizr-2.6.2.min.js') }}"></script>

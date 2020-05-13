@@ -37,7 +37,7 @@
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
                         <h2>{{ $event->name }}</h2>
-                        <span>{{ \App\Models\Event::$type[$event->type] }}</span>
+                        <span>{{ \App\Models\Event::$classify[$event->type] }}</span>
                     </div>
                 </div>
                 <div class="row">
@@ -69,7 +69,7 @@
                                         </div>
                                         <div class="event-col">
                                             <i class="icon-flag"></i>
-                                            <span>{{ \App\Models\Event::$type[$event->type] }}</span>
+                                            <span>{{ \App\Models\Event::$classify[$event->type] }}</span>
                                         </div>
                                         <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
                                     </div>
@@ -99,7 +99,7 @@
 
                         <my-component
                                 sub-events="{{ json_encode($subEvents) }}"
-                                all-type="{{ json_encode(\App\Models\Event::$type) }}"
+                                all-type="{{ json_encode(\App\Models\Event::$classify) }}"
                                 url-sub="{{ route('event.sub')  }}"
                         ></my-component>
                 </div>

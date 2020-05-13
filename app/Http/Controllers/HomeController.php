@@ -51,7 +51,6 @@ class HomeController extends Controller
         return $subEvents = Event::skip(5)->take($params['number'] + 6)->get();
     }
 
-
     public function eventIndex()
     {
         $events = Event::paginate();
@@ -61,6 +60,11 @@ class HomeController extends Controller
             'enterprise' => Enterprise::count(),
         ];
         return view('frontend.event', compact('events', 'webInfo'));
+    }
+
+    public function eventSearch(Request $request)
+    {
+        return $request->all();
     }
 
     public function eventDetail($id)

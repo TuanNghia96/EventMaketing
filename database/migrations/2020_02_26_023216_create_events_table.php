@@ -22,6 +22,7 @@ class CreateEventsTable extends Migration
             $table->text('summary')->nullable();
             $table->string('image')->nullable();
             $table->tinyInteger('type');
+            $table->tinyInteger('classify');
             $table->dateTime('public_date');
             $table->dateTime('start_date');
             $table->dateTime('end_date');

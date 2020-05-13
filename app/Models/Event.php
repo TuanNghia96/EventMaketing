@@ -33,13 +33,21 @@ class Event extends Model
         'point',
     ];
 
-    public static $type = [
+    public static $classify = [
         self::SALE => 'Giảm giá',
         self::NEW => 'Ra mắt sp mới',
         self::FAIR => 'Hội chợ',
         self::SPECIAL => 'Kỷ niệm thày lập, khai trương',
         self::MEETING => 'Hội nghị, hội thảo',
         self::HOLIDAY => 'Ngày lễ',
+    ];
+    const TYPE = [
+        1 => 'Thời trang',
+        2 => 'Điện tử',
+        3 => 'Phong cách số',
+        4 => 'Hàng tiêu dùng',
+        5 => 'Đồ ăn',
+        6 => 'Khác',
     ];
 
     public function user()
