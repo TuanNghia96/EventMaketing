@@ -96,11 +96,11 @@
             <div class="row row-bottom-padded-md">
                 <div class="col-md-12">
 
-                        <my-component
-                                sub-events="{{ json_encode($subEvents) }}"
-                                all-type="{{ json_encode(\App\Models\Event::$classify) }}"
-                                url-sub="{{ route('event.sub')  }}"
-                        ></my-component>
+                    <my-component
+                            sub-events="{{ json_encode($subEvents) }}"
+                            all-type="{{ json_encode(\App\Models\Event::$classify) }}"
+                            url-sub="{{ route('event.sub')  }}"
+                    ></my-component>
                 </div>
             </div>
         </div>
@@ -219,21 +219,41 @@
     <div id="fh5co-started" class="fh5co-bg" style="background-image:url({{ asset('frontend/images/img_bg_4.jpg') }});">
         <div class="overlay"></div>
         <div class="container">
-            <div class="row animate-box">
-                <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-                    <h2>Are You Register?</h2>
-                    <p>Please Fill-up the this form to notify you that you're want to join. Thanks.</p>
+            @if(!Auth::check())
+                <div class="row animate-box">
+                    <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+                        <h2>Are You Register?</h2>
+                        <p>Please Fill-up the this form to notify you that you're want to join. Thanks.</p>
+                    </div>
                 </div>
-            </div>
-            <div class="row animate-box">
-                <div class="col-md-10 col-md-offset-1">
-                    <form class="form-inline">
-                        <div class="col-md-4 col-md-offset-4 col-sm-4">
-                            <button type="submit" class="btn btn-default btn-block">I Want Sign In</button>
-                        </div>
-                    </form>
+                <div class="row animate-box">
+                    <div class="col-md-10 col-md-offset-1">
+                        <form class="form-inline">
+                            <div class="col-md-4 col-md-offset-4 col-sm-4">
+                                <a href=""><button type="button" class="btn btn-default btn-block">I Want Sign In</button></a>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
+            @else
+                <div class="row animate-box">
+                    <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+                        <h2>Are You Join it?</h2>
+                        <p>Please See many event we got and join it. Thanks.</p>
+                    </div>
+                </div>
+                <div class="row animate-box">
+                    <div class="col-md-10 col-md-offset-1">
+                        <form class="form-inline">
+                            <div class="col-md-4 col-md-offset-4 col-sm-4">
+                                <a href="{{ route('event.index') }}">
+                                    <button type="button" class="btn btn-default btn-block">I Want See More</button>
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
 @endsection

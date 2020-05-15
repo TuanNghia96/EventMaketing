@@ -25,9 +25,11 @@ Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/event/detail/{event}', 'HomeController@eventDetail')->name('event.detail');
 Route::get('/event/search', 'HomeController@eventIndex')->name('event.index');
-Route::get('/event/create', 'EnterpriseController@createEvent')->name('event.create');
-Route::post('/event', 'EnterpriseController@postEvent')->name('event.store');
-Route::resource('abc', 'HomeController');
+
+Route::get('/enterprises/create', 'EnterpriseController@createEvent')->name('event.create');
+Route::post('/enterprises/event', 'EnterpriseController@postEvent')->name('event.store');
+Route::post('/enterprises', 'EnterpriseController@show')->name('enterprises.show');
+
 Route::get('/contact', 'ContactController@contact')->name('contact');
 Route::post('/contact', 'ContactController@send')->name('contact.send');
 Route::get('/about_us', 'ContactController@about')->name('contact.about');
