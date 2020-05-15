@@ -2,10 +2,11 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\User;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class ClassAble
+class EnterpiseAble
 {
     /**
      * Handle an incoming request.
@@ -16,9 +17,11 @@ class ClassAble
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user()->classroom_id >= 5) {
-            return redirect('home');
+        if (Auth::user()) {
+            if (Auth::user()->role == User::ENTERPRISE) {
+                return $next($request);
+            }
         }
-        return $next($request);
+        return redirect()->route('home');
     }
 }

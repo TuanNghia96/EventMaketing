@@ -26,13 +26,16 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/event/detail/{event}', 'HomeController@eventDetail')->name('event.detail');
 Route::get('/event/search', 'HomeController@eventIndex')->name('event.index');
 
-Route::get('/enterprises/create', 'EnterpriseController@createEvent')->name('event.create');
-Route::post('/enterprises/event', 'EnterpriseController@postEvent')->name('event.store');
-Route::post('/enterprises', 'EnterpriseController@show')->name('enterprises.show');
-
+//webinfo
 Route::get('/contact', 'ContactController@contact')->name('contact');
 Route::post('/contact', 'ContactController@send')->name('contact.send');
 Route::get('/about_us', 'ContactController@about')->name('contact.about');
+
+Route::group(['middleware' => 'enterprise_able'], function () {
+    Route::get('/enterprises/create', 'EnterpriseController@createEvent')->name('event.create');
+    Route::post('/enterprises/event', 'EnterpriseController@postEvent')->name('event.store');
+    Route::post('/enterprises', 'EnterpriseController@show')->name('enterprises.show');
+});
 
 Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => ['admin_able']], function () {
     Route::get('/admin', 'AdminController@index')->name('admin.index');
