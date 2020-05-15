@@ -1,4 +1,5 @@
-<nav class="fh5co-nav" role="navigation">
+{{--{{ dd(request()->is('event/*')) }}--}}
+<nav class="fh5co-nav" role="n  avigation">
     <div class="container">
         <div class="row">
             <div class="col-xs-2">
@@ -6,8 +7,8 @@
             </div>
             <div class="col-xs-10 text-right menu-1">
                 <ul>
-                    <li class="header_button" id="homeHeader"><a href="{{ route('home') }}">Home</a></li>
-                    <li class="header_button" id="eventHeader" ><a href="{{ route('event.index') }}">Event</a></li>
+                    <li class="header_button @if(url()->full() == route('home')) active @endif" id="homeHeader"><a href="{{ route('home') }}">Home</a></li>
+                    <li class="header_button @if(request()->is('event/*')) active @endif" id="eventHeader" ><a href="{{ route('event.index') }}">Event</a></li>
                     <li id="" class="header_button has-dropdown">
                         <a href="services.html">Services</a>
                         <ul class="dropdown">

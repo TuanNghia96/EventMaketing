@@ -27,6 +27,7 @@
                                             </div>
                                             <div class="advance-search">
                                                 <span>Advanced Search</span>
+                                                <!--<button class="btn btn-link" type="button"><span>Advanced Search</span></button>-->
                                                 <div class="row">
                                                     <div class="input-field">
                                                         <div class="input-select">
@@ -54,38 +55,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!--<div class="row second">
-                                                    <div class="input-field">
-                                                        <div class="input-select">
-                                                            <select data-trigger="" name="choices-single-defaul">
-                                                                <option placeholder="" value="">SALE</option>
-                                                                <option>SALE</option>
-                                                                <option>SUBJECT B</option>
-                                                                <option>SUBJECT C</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="input-field">
-                                                        <div class="input-select">
-                                                            <select data-trigger="" name="choices-single-defaul">
-                                                                <option placeholder="" value="">TIME</option>
-                                                                <option>THIS WEEK</option>
-                                                                <option>SUBJECT B</option>
-                                                                <option>SUBJECT C</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="input-field">
-                                                        <div class="input-select">
-                                                            <select data-trigger="" name="choices-single-defaul">
-                                                                <option placeholder="" value="">TYPE</option>
-                                                                <option>TYPE</option>
-                                                                <option>SUBJECT B</option>
-                                                                <option>SUBJECT C</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>-->
                                                 <div class="row third">
                                                     <div class="input-field">
                                                         <!--<button class="btn-search">Search</button>-->
@@ -135,7 +104,7 @@
         <div class="row row-bottom-padded-md">
             <div class="col-md-12">
                 <ul id="fh5co-gallery-list">
-                    <li class="one-third animate-box search-event fadeIn animated-fast" v-for="(event, i) in eventsShow" :key="i" data-animate-effect="fadeIn" :style="`background-image: url( ${event.avatar} )`">
+                    <li class="one-third animate-box search-event fadeIn animated-fast" v-for="(event, i) in eventsShow" :key="i" data-animate-effect="fadeIn" :style="`background-image: url(${ '../' + event.avatar})`">
                         <a :href="urlEvent.replace(/.$/,event.id)">
                             <div class="case-studies-summary">
                                 <span>{{ classifyData[event.classify] }}</span><br>

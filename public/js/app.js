@@ -1996,37 +1996,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['bgUrl', 'allType', 'allClassify', 'url', 'allEvent', 'urlEvent'],
   created: function created() {
@@ -39014,7 +38983,7 @@ var render = function() {
                 key: i,
                 staticClass:
                   "one-third animate-box search-event fadeIn animated-fast",
-                style: "background-image: url( " + event.avatar + " )",
+                style: "background-image: url(" + ("../" + event.avatar) + ")",
                 attrs: { "data-animate-effect": "fadeIn" }
               },
               [
@@ -51668,8 +51637,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Nghia\Desktop\laravel_nghianbt\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Nghia\Desktop\laravel_nghianbt\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Nghia\Desktop\EventMarketing\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Nghia\Desktop\EventMarketing\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

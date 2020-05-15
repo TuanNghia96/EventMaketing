@@ -89,20 +89,6 @@ class HomeController extends Controller
         return view('frontend.events.detail', compact('event'));
     }
 
-    public function download()
-    {
-        for ($x = 47; $x <= 50; $x++) {
-            $url =
-                "https://placeimg.com/1500/1000/" . $x;
-
-            $img = 'fakers/images/img_bg_' . $x . '.jpg';
-
-            file_put_contents($img, file_get_contents($url));
-        }
-
-        echo "File downloaded!";
-    }
-
     public function contact()
     {
         return view('frontend.contact');
