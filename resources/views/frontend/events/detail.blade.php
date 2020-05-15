@@ -67,7 +67,7 @@
 						</span>
                         <div class="feature-copy">
                             <h3>Thời gian kết thúc:</h3>
-                                <p>{{  date('H:i d/m/Y', strtotime($event->end_date)) }}</p>
+                            <p>{{  date('H:i d/m/Y', strtotime($event->end_date)) }}</p>
                         </div>
                     </div>
                 </div>
@@ -115,34 +115,37 @@
             </div>
         </div>
     </div>--}}
-    <div id="fh5co-couple-story">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
-                    <h2>Our Image</h2>
+    @isset($event->images)
+
+        <div id="fh5co-couple-story">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
+                        <h2>Our Image</h2>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 col-md-offset-0">
-                    <ul class="timeline animate-box">
-                        @foreach($event->images as $key => $value)
-                            <li class="@if($key%2) timeline-inverted @endif animate-box">
-                                {{--<div class="timeline-badge" style="background-image:url(images/couple-1.jpg);"></div>--}}
-                                <div class="timeline-panel">
-                                    <div class="timeline-heading">
-                                        <h3 class="timeline-title">{{ $key }}. {{ $value->title }}</h3>
+                <div class="row">
+                    <div class="col-md-12 col-md-offset-0">
+                        <ul class="timeline animate-box">
+                            @foreach($event->images as $key => $value)
+                                <li class="@if($key%2) timeline-inverted @endif animate-box">
+                                    {{--<div class="timeline-badge" style="background-image:url(images/couple-1.jpg);"></div>--}}
+                                    <div class="timeline-panel">
+                                        <div class="timeline-heading">
+                                            <h3 class="timeline-title">{{ $key }}. {{ $value->title }}</h3>
+                                        </div>
+                                        <div class="timeline-body img_box">
+                                            <img src="{{ $value->image }}" width="100%" height="auto" alt="" sizes="" srcset="">
+                                        </div>
                                     </div>
-                                    <div class="timeline-body img_box">
-                                        <img src="{{ $value->image }}" width="100%" height="auto" alt="" sizes="" srcset="">
-                                    </div>
-                                </div>
-                            </li>
-                        @endforeach
-                    </ul>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endisset
     <div id="fh5co-counter" class="fh5co-bg fh5co-counter" style="background-image:url({{ asset('frontend/images/img_bg_5.jpg') }});">
         <div class="container">
             <div class="row">

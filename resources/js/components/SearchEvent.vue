@@ -21,7 +21,7 @@
                                                     </div>
                                                     <input id="search" type="text" placeholder="Search..." v-model="nameSearch" @keyup="getSearch()"/>
                                                     <div class="result-count">
-                                                        <span>{{ result }} </span>results
+                                                        <span>{{ eventsData.length }} </span>results
                                                     </div>
                                                 </div>
                                             </div>
@@ -32,7 +32,7 @@
                                                         <div class="input-select">
                                                             <select data-trigger="" name="choices-single-defaul" @change="getSearch()" v-model="typeSearch">
                                                                 <option placeholder="" value="" class="text-center">Type</option>
-                                                                <option v-for="(type, i) in typesData">{{ type }}</option>
+                                                                <option v-for="(type, i) in typesData" :value="i">{{ type }}</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -40,7 +40,7 @@
                                                         <div class="input-select">
                                                             <select data-trigger="" name="choices-single-defaul" v-model="classifySearch" @change="getSearch()">
                                                                 <option placeholder="" value="">CLASSIFY</option>
-                                                                <option v-for="(classify, i) in classifyData">{{ classify }}</option>
+                                                                <option v-for="(classify, i) in classifyData" :value="i">{{ classify }}</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -49,7 +49,7 @@
                                                             <select data-trigger="" name="choices-single-defaul" v-model="statusSearch" @change="getSearch()">
                                                                 <option placeholder="" value="">STATUS</option>
                                                                 <option value="1">START</option>
-                                                                <option value="2">WAITING</option>
+                                                                <option value="0">WAITING</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -132,6 +132,26 @@
                 </form>
             </div>
         </section>-->
+        <div class="row row-bottom-padded-md">
+            <div class="col-md-12">
+                <ul id="fh5co-gallery-list">
+                    <li class="one-third animate-box search-event fadeIn animated-fast" v-for="(event, i) in eventsShow" :key="i" data-animate-effect="fadeIn" :style="`background-image: url( ${event.avatar} )`">
+                        <a :href="urlEvent.replace(/.$/,event.id)">
+                            <div class="case-studies-summary">
+                                <span>{{ classifyData[event.classify] }}</span><br>
+                                <span>{{ typesData[event.type] }}</span>
+                                <h2>{{ event.name }}</h2>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row row-bottom-padded-md">
+            <div class="col-md-offset-4 col-md-4 text-center">
+                <button type="button" class="btn btn-success" @click="loadMore()">Load more</button>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -142,10 +162,14 @@
             'allType',
             'allClassify',
             'url',
+            'allEvent',
+            'urlEvent',
         ],
         created() {
             this.typesData = JSON.parse(this.allType) || [];
             this.classifyData = JSON.parse(this.allClassify) || [];
+            this.eventsData = JSON.parse(this.allEvent) || [];
+            this.eventsShow = this.eventsData.slice(0, 6);
         },
         data() {
             return {
@@ -156,13 +180,14 @@
                 classifySearch: null,
                 nameSearch: null,
                 advanceBtn: true,
-                result: 0,
+                eventsData: [],
+                eventsShow: [],
+                result: 6,
             }
         },
         computed: {},
         methods: {
             getSearch() {
-                console.log('a'),
                 axios.get(this.url, {
                         params: {
                             type: this.typeSearch,
@@ -172,13 +197,18 @@
                         }
                     }
                 ).then(response => {
-                    console.log(response.data)
+                    this.eventsData = response.data;
+                    this.eventsShow = this.eventsData.slice(0, this.result)
                 }).catch(error => {
                     console.log(error)
                 })
             },
             getAdvance() {
                 this.advanceBtn = !this.advanceBtn
+            },
+            loadMore() {
+                this.result+= 6;
+                this.eventsShow = this.eventsData.slice(0, this.result)
             }
         }
     }

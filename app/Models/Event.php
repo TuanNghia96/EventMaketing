@@ -73,4 +73,50 @@ class Event extends Model
     {
         return self::get();
     }
+
+    /**
+     * Scope a query by phone
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param string $phone
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeOfPhone($query, $phone)
+    {
+        return $query->where('phone', $phone);
+    }
+
+    /**
+     * Pagination data of model
+     *
+     * @param array $input input data to search
+     * @return Illuminate\Pagination\Paginator
+     */
+    public function getSearch($input)
+    {
+        $query = $this->query();
+
+        //check like
+        if (isset($input['name'])) {
+            $query->where('name', 'like', '%' . $input['name'] . '%')->orWhere('title', 'like', '%' . $input['name'] . '%');
+        }
+        //check input to type
+        if (isset($input['type'])) {
+            $query->where('type', $input['type']);
+        }
+        //check input to classify
+        if (isset($input['classify'])) {
+            $query->where('classify', $input['classify']);
+        }
+        //check input to status
+        if (isset($input['status'])) {
+            //started
+            if ($input['status']) {
+                $query->where('start_date', '<', now())->where('end_date', '>', now());
+            } else {
+                $query->where('start_date', '>', now());
+            }
+        }
+        return $query->select('type', 'classify', 'name', 'title', 'id', 'avatar')->get();
+    }
 }

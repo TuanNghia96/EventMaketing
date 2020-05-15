@@ -2007,11 +2007,33 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['bgUrl', 'allType', 'allClassify', 'url'],
+  props: ['bgUrl', 'allType', 'allClassify', 'url', 'allEvent', 'urlEvent'],
   created: function created() {
     this.typesData = JSON.parse(this.allType) || [];
     this.classifyData = JSON.parse(this.allClassify) || [];
+    this.eventsData = JSON.parse(this.allEvent) || [];
+    this.eventsShow = this.eventsData.slice(0, 6);
   },
   data: function data() {
     return {
@@ -2022,13 +2044,17 @@ __webpack_require__.r(__webpack_exports__);
       classifySearch: null,
       nameSearch: null,
       advanceBtn: true,
-      result: 0
+      eventsData: [],
+      eventsShow: [],
+      result: 6
     };
   },
   computed: {},
   methods: {
     getSearch: function getSearch() {
-      console.log('a'), axios.get(this.url, {
+      var _this = this;
+
+      axios.get(this.url, {
         params: {
           type: this.typeSearch,
           classify: this.classifySearch,
@@ -2036,13 +2062,18 @@ __webpack_require__.r(__webpack_exports__);
           name: this.nameSearch
         }
       }).then(function (response) {
-        console.log(response.data);
+        _this.eventsData = response.data;
+        _this.eventsShow = _this.eventsData.slice(0, _this.result);
       })["catch"](function (error) {
         console.log(error);
       });
     },
     getAdvance: function getAdvance() {
       this.advanceBtn = !this.advanceBtn;
+    },
+    loadMore: function loadMore() {
+      this.result += 6;
+      this.eventsShow = this.eventsData.slice(0, this.result);
     }
   }
 });
@@ -38738,7 +38769,9 @@ var render = function() {
                               }),
                               _vm._v(" "),
                               _c("div", { staticClass: "result-count" }, [
-                                _c("span", [_vm._v(_vm._s(_vm.result) + " ")]),
+                                _c("span", [
+                                  _vm._v(_vm._s(_vm.eventsData.length) + " ")
+                                ]),
                                 _vm._v(
                                   "results\n                                                "
                                 )
@@ -38806,9 +38839,11 @@ var render = function() {
                                       ),
                                       _vm._v(" "),
                                       _vm._l(_vm.typesData, function(type, i) {
-                                        return _c("option", [
-                                          _vm._v(_vm._s(type))
-                                        ])
+                                        return _c(
+                                          "option",
+                                          { domProps: { value: i } },
+                                          [_vm._v(_vm._s(type))]
+                                        )
                                       })
                                     ],
                                     2
@@ -38874,9 +38909,11 @@ var render = function() {
                                         classify,
                                         i
                                       ) {
-                                        return _c("option", [
-                                          _vm._v(_vm._s(classify))
-                                        ])
+                                        return _c(
+                                          "option",
+                                          { domProps: { value: i } },
+                                          [_vm._v(_vm._s(classify))]
+                                        )
                                       })
                                     ],
                                     2
@@ -38942,7 +38979,7 @@ var render = function() {
                                         _vm._v("START")
                                       ]),
                                       _vm._v(" "),
-                                      _c("option", { attrs: { value: "2" } }, [
+                                      _c("option", { attrs: { value: "0" } }, [
                                         _vm._v("WAITING")
                                       ])
                                     ]
@@ -38963,7 +39000,65 @@ var render = function() {
           ])
         ])
       ]
-    )
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "row row-bottom-padded-md" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c(
+          "ul",
+          { attrs: { id: "fh5co-gallery-list" } },
+          _vm._l(_vm.eventsShow, function(event, i) {
+            return _c(
+              "li",
+              {
+                key: i,
+                staticClass:
+                  "one-third animate-box search-event fadeIn animated-fast",
+                style: "background-image: url( " + event.avatar + " )",
+                attrs: { "data-animate-effect": "fadeIn" }
+              },
+              [
+                _c(
+                  "a",
+                  { attrs: { href: _vm.urlEvent.replace(/.$/, event.id) } },
+                  [
+                    _c("div", { staticClass: "case-studies-summary" }, [
+                      _c("span", [
+                        _vm._v(_vm._s(_vm.classifyData[event.classify]))
+                      ]),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("span", [_vm._v(_vm._s(_vm.typesData[event.type]))]),
+                      _vm._v(" "),
+                      _c("h2", [_vm._v(_vm._s(event.name))])
+                    ])
+                  ]
+                )
+              ]
+            )
+          }),
+          0
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row row-bottom-padded-md" }, [
+      _c("div", { staticClass: "col-md-offset-4 col-md-4 text-center" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-success",
+            attrs: { type: "button" },
+            on: {
+              click: function($event) {
+                return _vm.loadMore()
+              }
+            }
+          },
+          [_vm._v("Load more")]
+        )
+      ])
+    ])
   ])
 }
 var staticRenderFns = [

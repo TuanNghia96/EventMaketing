@@ -5,21 +5,22 @@ namespace App\Http\Controllers;
 use App\Models\Buyer;
 use App\Models\Enterprise;
 use App\Models\Event;
-use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
+    private $event;
+
     /**
      * Create a new controller instance.
      *
-     * @return void
+     * @param Event $event
      */
-    public function __construct()
+    public function __construct(Event $event)
     {
+        $this->event = $event;
     }
 
     /**
@@ -51,27 +52,41 @@ class HomeController extends Controller
         return $subEvents = Event::skip(5)->take($params['number'] + 6)->get();
     }
 
+    /**
+     * get
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function eventIndex()
     {
-        $events = Event::paginate();
-        $webInfo = [
-            'buyer' => Buyer::count(),
-            'event' => Event::where('end_date', '<', Carbon::now())->count(),
-            'enterprise' => Enterprise::count(),
-        ];
-        return view('frontend.event', compact('events', 'webInfo'));
+        $events = Event::get();
+        return view('frontend.events.index', compact('events'));
     }
 
+    /**
+     * api get search ajax
+     *
+     * @param Request $request
+     * @return \App\Models\Illuminate\Pagination\Paginator
+     */
     public function eventSearch(Request $request)
     {
-        return $request->all();
+        $params = $request->all();
+        $events = $this->event->getSearch($params);
+        return $events;
     }
 
+    /**
+     * get event detail
+     *
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function eventDetail($id)
     {
         $event = Event::findOrFail($id);
         $event->images = json_decode($event->images);
-        return view('frontend.detail', compact('event'));
+        return view('frontend.events.detail', compact('event'));
     }
 
     public function download()
