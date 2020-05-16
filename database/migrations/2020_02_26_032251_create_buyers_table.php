@@ -19,10 +19,12 @@ class CreateBuyersTable extends Migration
             $table->string('buyer_code')->unique();
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('address');
-            $table->string('avatar', 255)->nullable();
             $table->string('phone');
+            $table->string('address');
             $table->string('bank_account')->nullable();
+            $table->string('avatar', 255)->nullable();
+            $table->tinyInteger('event_type')->nullable();
+            $table->tinyInteger('event_classify')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
