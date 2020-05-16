@@ -73,9 +73,10 @@
                                         <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
                                     </div>
                                 </div>
-                                <div class="col-md-12 col-sm-12 text-center">
-                                    <p><a href="{{ route('event.detail', $event->id) }}" class="btn btn-default btn-sm" style="margin-top: 3%;">Tham gia</a></p>
-                                </div>
+
+                            </div>
+                            <div class="col-md-10 col-md-offset-1 text-center">
+                                <p><a href="{{ route('event.detail', $event->id) }}" class="btn btn-default btn-sm" style="margin-top: 3%;">Tham gia</a></p>
                             </div>
                         </div>
                     </div>
@@ -168,7 +169,6 @@
                     <p>Many event are waiting for you to join it.</p>
                 </div>
             </div>
-
             <div class="row">
                 <div class="col-md-6">
                     <div class="feature-left animate-box" data-animate-effect="fadeInLeft">
@@ -180,7 +180,6 @@
                             <p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit. Eos cumque dicta adipisci architecto culpa amet.</p>
                         </div>
                     </div>
-
                     <div class="feature-left animate-box" data-animate-effect="fadeInLeft">
 						<span class="icon">
 							<i class="icon-image"></i>
@@ -190,7 +189,6 @@
                             <p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit. Eos cumque dicta adipisci architecto culpa amet.</p>
                         </div>
                     </div>
-
                     <div class="feature-left animate-box" data-animate-effect="fadeInLeft">
 						<span class="icon">
 							<i class="icon-video"></i>
@@ -200,9 +198,7 @@
                             <p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit. Eos cumque dicta adipisci architecto culpa amet.</p>
                         </div>
                     </div>
-
                 </div>
-
                 <div class="col-md-6 animate-box">
                     <div class="fh5co-video fh5co-bg" style="background-image: url({{ asset('frontend/images/img_bg_3.jpg') }}); ">
                         <a href="https://vimeo.com/channels/staffpicks/93951774" class="popup-vimeo"><i class="icon-video2"></i></a>
@@ -214,8 +210,6 @@
 
         </div>
     </div>
-
-
     <div id="fh5co-started" class="fh5co-bg" style="background-image:url({{ asset('frontend/images/img_bg_4.jpg') }});">
         <div class="overlay"></div>
         <div class="container">
@@ -230,7 +224,9 @@
                     <div class="col-md-10 col-md-offset-1">
                         <form class="form-inline">
                             <div class="col-md-4 col-md-offset-4 col-sm-4">
-                                <a href=""><button type="button" class="btn btn-default btn-block">I Want Sign In</button></a>
+                                <a href="">
+                                    <button type="button" class="btn btn-default btn-block">I Want Sign In</button>
+                                </a>
                             </div>
                         </form>
                     </div>

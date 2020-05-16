@@ -11,6 +11,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Event Countdown &mdash; 100% Free Fully Responsive HTML5</title>
+    <link rel="icon" href="https://i.ibb.co/sypbrmQ/EC-logo.png" type="image/x-icon">
+
+    {{--<link rel="shortcut icon" href="C:\Users\Nghia\Downloads\EV_logo.ico" />--}}
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Free HTML5 Template by FREEHTML5.CO"/>
     <meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive"/>
