@@ -34,9 +34,9 @@
     <link rel="stylesheet" href="{{ asset('backend/css/demo.css') }}">
 </head>
 <body>
-@if($errors->any())
+{{--@if($errors->any())
     {{ implode('', $errors->all('<div>:message</div>')) }}
-@endif
+@endif--}}
 <div class="wrapper">
     <div class="content">
         <div class="page-inner">
@@ -65,20 +65,19 @@
                             </div>
                             <div class="tab-content">
                                 <div class="tab-pane active" id="account">
-
                                     <h4 class="info-text">Tạo tài khoản đăng nhập </h4>
                                     <div class="row">
                                         <div class="col-md-8 ml-auto mr-auto">
                                             <div class="form-group @error('email') has-error @enderror">
                                                 <label>Email :</label>
-                                                <input type="email" name="email" class="form-control">
+                                                <input type="email" name="email" class="form-control" value="{{ old('email') }}">
                                                 @error('email')
                                                 <div>{{ $message }}</div>
                                                 @enderror
                                             </div>
                                             <div class="form-group @error('user_name') has-error @enderror">
                                                 <label>Tên đăng nhập :</label>
-                                                <input type="text" name="user_name" class="form-control">
+                                                <input type="text" name="user_name" class="form-control" value="{{ old('user_name') }}">
                                                 @error('user_name')
                                                 <div>{{ $message }}</div>
                                                 @enderror
@@ -102,12 +101,12 @@
                                                 <label>Tôi tham gia với tư cách là :</label><br>
                                                 <div class="form-check form-check-inline">
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" id="byr_check" name="role" class="custom-control-input " value="{{ \App\Models\User::ENTERPRISE }}">
-                                                        <label class="custom-control-label" for="byr_check">{{ $role[\App\Models\User::ENTERPRISE] }}</label>
-                                                    </div>
-                                                    <div class="custom-control custom-radio">
                                                         <input type="radio" id="enp_check" name="role" class="custom-control-input" checked="" value="{{ \App\Models\User::BUYER }}">
                                                         <label class="custom-control-label" for="enp_check">{{ $role[\App\Models\User::BUYER] }}</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio">
+                                                        <input type="radio" id="byr_check" name="role" class="custom-control-input" @if(\App\Models\User::ENTERPRISE == old('role')) checked @endif value="{{ \App\Models\User::ENTERPRISE }}">
+                                                        <label class="custom-control-label" for="byr_check">{{ $role[\App\Models\User::ENTERPRISE] }}</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -122,14 +121,14 @@
                                         <div class="col-md-6">
                                             <div class="form-group @error('first_name') has-error @enderror byr_class">
                                                 <label class="">Họ:</label>
-                                                <input name="first_name" type="text" class="form-control">
+                                                <input name="first_name" type="text" class="form-control" value="{{ old('first_name') }}">
                                                 @error('first_name')
                                                 <div>{{ $message }}</div>
                                                 @enderror
                                             </div>
                                             <div class="form-group @error('text') has-error @enderror enp_class">
                                                 <label class="">Tiền tố(vd:Công ty, Công ty TNHH) :</label>
-                                                <input name="" type="text" class="form-control">
+                                                <input name="" type="text" class="form-control" value="{{ old('text') }}">
                                                 @error('text')
                                                 <div>{{ $message }}</div>
                                                 @enderror
@@ -144,7 +143,7 @@
                                             </div>
                                             <div class="form-group @error('phone') has-error @enderror">
                                                 <label>Số điện thoại(vd: 0123457896) :</label>
-                                                <input name="phone" type="text" class="form-control">
+                                                <input name="phone" type="text" class="form-control" value="{{ old('phone') }}">
                                                 @error('phone')
                                                 <div>{{ $message }}</div>
                                                 @enderror
@@ -154,14 +153,14 @@
                                         <div class="col-md-6">
                                             <div class="form-group @error('last_name') has-error @enderror byr_class">
                                                 <label class="">Tên:</label>
-                                                <input name="last_name" type="text" class="form-control">
+                                                <input name="last_name" type="text" class="form-control" value="{{ old('last_name') }}">
                                                 @error('last_name')
                                                 <div>{{ $message }}</div>
                                                 @enderror
                                             </div>
                                             <div class="form-group @error('name') has-error @enderror enp_class">
                                                 <label class="">Tên cty :</label>
-                                                <input name="name" type="text" class="form-control">
+                                                <input name="name" type="text" class="form-control" value="{{ old('name') }}">
                                                 @error('name')
                                                 <div>{{ $message }}</div>
                                                 @enderror
@@ -176,6 +175,9 @@
                                                     @error('avatar')
                                                     <div>{{ $message }}</div>
                                                     @enderror
+                                                    @if($errors->any())
+                                                        <div>Xin chọn lại avatar</div>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
@@ -187,10 +189,9 @@
                                         <div class="col-sm-8 ml-auto mr-auto">
                                             <div class="form-group @error('city') has-error @enderror enp_class">
                                                 <label>Thành phố :</label>
-
-                                                <select name="city" class="form-control">
+                                                <select name="city" class="form-control" value="{{ old('city') }}">
                                                     <option value="">-- Chọn thành phố --</option>
-                                                @foreach(\App\Models\Enterprise::CITY as $key => $city)
+                                                    @foreach(\App\Models\Enterprise::CITY as $key => $city)
                                                         <option value="{{ $key }}">{{ $city }}</option>
                                                     @endforeach
                                                 </select>
@@ -198,10 +199,9 @@
                                                 <div>{{ $message }}</div>
                                                 @enderror
                                             </div>
-
                                             <div class="form-group @error('address') has-error @enderror">
                                                 <label>Địa chỉ chi tiết</label>
-                                                <input name="address" type="text" class="form-control">
+                                                <input name="address" type="text" class="form-control" value="{{ old('address') }}">
                                                 @error('address')
                                                 <div>{{ $message }}</div>
                                                 @enderror
