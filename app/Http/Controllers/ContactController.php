@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ContactStoreRequest;
 use App\Models\Comment;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Redirector;
-use Illuminate\View\View;
 
 class ContactController extends Controller
 {
@@ -21,7 +18,9 @@ class ContactController extends Controller
     }
 
     /**
-     * @return Factory|View
+     * get contact view
+     *
+     * @return \Illuminate\View\View
      */
     public function contact()
     {
@@ -29,17 +28,21 @@ class ContactController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @return RedirectResponse|Redirector
+     * store comment
+     *
+     * @param ContactStoreRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function send(Request $request)
+    public function send(ContactStoreRequest $request)
     {
         Comment::create($request->all());
         return redirect(route('contact'));
     }
 
     /**
-     * @return Factory|View
+     * get view about
+     *
+     * @return \Illuminate\View\View
      */
     public function about()
     {

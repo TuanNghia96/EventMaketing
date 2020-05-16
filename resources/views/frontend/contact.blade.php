@@ -16,7 +16,6 @@
             </div>
         </div>
     </header>
-
     <div class="fh5co-section">
         <div class="container">
             <div class="row">
@@ -27,46 +26,48 @@
                         <div class="row form-group">
                             <div class="col-md-6">
                                 <label for="fname">Họ Tên *</label>
-                                <input type="text" id="fname" name="name" class="form-control" placeholder="" required>
+                                @guest()
+                                    <input type="text" id="fname" name="name" class="form-control" placeholder="" value="" required>
+                                @else
+                                    <input type="text" id="fname" name="name" class="form-control" placeholder="" value="{{ Auth::user()->name }}" readonly required>
+                                @endguest
                             </div>
                             <div class="col-md-6">
                                 <label for="lname">Số điện thoại</label>
-                                <input type="text" id="lname" name="phone" class="form-control" placeholder="">
+                                @guest()
+                                    <input type="text" id="" name="phone" class="form-control" placeholder="">
+                                @else
+                                    <input type="text" id="" name="phone" class="form-control" placeholder="" value="{{ Auth::user()->user->phone }}" readonly>
+                                @endguest
                             </div>
                         </div>
-
                         <div class="row form-group">
                             <div class="col-md-12">
                                 <label for="email">Email</label>
-                                <input type="text" id="email" name="email" class="form-control" placeholder="">
+                                @guest()
+                                    <input type="text" id="email" name="email" class="form-control" placeholder="">
+                                @else
+                                    <input type="text" id="email" name="email" class="form-control" placeholder="" value="{{ Auth::user()->email }}" readonly>
+                                @endguest
                             </div>
                         </div>
-
-                        <div class="row form-group">
-                            <div class="col-md-12">
-                                <label for="email">Tên công ty(nếu là doanh nghiệp)</label>
-                                <input type="text" id="cname" name="company_name" class="form-control" placeholder="">
-                            </div>
-
-                        </div>
-
                         <div class="row form-group">
                             <div class="col-md-12">
                                 <label for="subject">Tiêu đề</label>
                                 <input type="text" id="subject" name="subject" class="form-control" placeholder="">
                             </div>
                         </div>
-
                         <div class="row form-group">
                             <div class="col-md-12">
                                 <label for="message">Tin nhắn.</label>
-                                <textarea name="message" id="message" cols="30" rows="10" class="form-control" placeholder=""></textarea>
+                                <textarea name="message" id="message" cols="30" rows="10" class="form-control" placeholder="" required></textarea>
                             </div>
                         </div>
                         <div class="form-group">
-                            <input type="submit" value="Gửi" class="btn btn-primary">
+                            <div class="col-md-12 text-center">
+                                <input type="submit" value="Gửi" class="btn btn-primary">
+                            </div>
                         </div>
-
                     </form>
                 </div>
                 <div class="col-md-5 col-md-pull-5 animate-box">

@@ -213,6 +213,11 @@ class User extends Model implements Authenticatable
         return $this->hasOne(\App\Models\Buyer::class, 'user_id', 'id');
     }
 
+    /**
+     * get user information
+     *
+     * @return mixed
+     */
     public function getUserAttribute()
     {
         if ($this->role == self::ADMIN) {
@@ -221,6 +226,22 @@ class User extends Model implements Authenticatable
             return $this->enterprise;
         } else {
             return $this->buyer;
+        }
+    }
+
+    /**
+     * get user name
+     *
+     * @return mixed
+     */
+    public function getNameAttribute()
+    {
+        if ($this->role == self::ADMIN) {
+            return $this->admin->name;
+        } elseif ($this->role == self::ENTERPRISE) {
+            return $this->enterprise->name;
+        } else {
+            return $this->buyer->first_name . $this->buyer->last_name;
         }
     }
 

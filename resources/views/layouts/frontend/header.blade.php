@@ -9,26 +9,28 @@
                 <ul>
                     <li class="header_button @if(url()->full() == route('home')) active @endif" id="homeHeader"><a href="{{ route('home') }}">Home</a></li>
                     <li class="header_button @if(request()->is('event/*')) active @endif" id="eventHeader"><a href="{{ route('event.index') }}">Event</a></li>
-                    @if(Auth::user()->role == \App\Models\User::ENTERPRISE)
-                        <li id="" class="header_button has-dropdown">
-                            <a href="{{ route('enterprises.show') }}">Enterprise</a>
-                            <ul class="dropdown">
-                                <li><a href="{{ route('event.create') }}">Make Event</a></li>
-                                <li><a href="#">Main Event</a></li>
-                                <li><a href="#">Join Event</a></li>
-                                <li><a href="#">List Event</a></li>
-                            </ul>
-                        </li>
-                    @elseif(Auth::user()->role == \App\Models\User::BUYER)
-                        <li id="" class="header_button has-dropdown">
-                            <a href="gallery.html">Member</a>
-                            <ul class="dropdown">
-                                <li><a href="#">Events</a></li>
-                                <li><a href="#">CSS3</a></li>
-                                <li><a href="#">Sass</a></li>
-                                <li><a href="#">jQuery</a></li>
-                            </ul>
-                        </li>
+                    @if(Auth::user())
+                        @if(Auth::user()->role == \App\Models\User::ENTERPRISE)
+                            <li id="" class="header_button has-dropdown">
+                                <a href="{{ route('enterprises.show') }}">Enterprise</a>
+                                <ul class="dropdown">
+                                    <li><a href="{{ route('event.create') }}">Make Event</a></li>
+                                    <li><a href="#">Main Event</a></li>
+                                    <li><a href="#">Join Event</a></li>
+                                    <li><a href="#">List Event</a></li>
+                                </ul>
+                            </li>
+                        @elseif(Auth::user()->role == \App\Models\User::BUYER)
+                            <li id="" class="header_button has-dropdown">
+                                <a href="gallery.html">Member</a>
+                                <ul class="dropdown">
+                                    <li><a href="#">Events</a></li>
+                                    <li><a href="#">CSS3</a></li>
+                                    <li><a href="#">Sass</a></li>
+                                    <li><a href="#">jQuery</a></li>
+                                </ul>
+                            </li>
+                        @endif
                     @endif
                     <li class="header_button" id=""><a href="{{ route('contact.about') }}">About Us</a></li>
                     <li class="header_button" id=""><a href="{{ route('contact') }}">Contact</a></li>
