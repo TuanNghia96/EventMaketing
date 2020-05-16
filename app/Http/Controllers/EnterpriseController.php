@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EventStoreRequest;
 use App\Models\Event;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EnterpriseController extends Controller
 {
@@ -26,10 +27,11 @@ class EnterpriseController extends Controller
         return view('frontend.events.create');
     }
 
-    public function postEvent(Request $request)
+    public function postEvent(EventStoreRequest $request)
     {
         $params = $request->all();
 
+        \DB::beginTransaction();
         //code
         $code = Event::withTrashed()->orderBy('code', 'desc')->first()->code;
         $params['code'] = $code + 1;
@@ -57,7 +59,12 @@ class EnterpriseController extends Controller
             }
             $params['images'] = json_encode($params['images']);
         }
+
+        //create event
         $event = Event::create($params);
+        //attach event to enterprise
+        Auth::user()->user->events()->sync([$event->id => ['role' => 1]]);
+        \DB::commit();
         return redirect(route('event.detail', $event->id));
     }
 }

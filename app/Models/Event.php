@@ -34,6 +34,7 @@ class Event extends Model
         'classify',
         'status',
         'images',
+        'ticket_number',
     ];
 
     public static $classify = [
@@ -90,7 +91,7 @@ class Event extends Model
      * Pagination data of model
      *
      * @param array $input input data to search
-     * @return Illuminate\Pagination\Paginator
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function getSearch($input)
     {

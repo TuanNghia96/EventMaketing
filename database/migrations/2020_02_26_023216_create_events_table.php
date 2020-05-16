@@ -17,7 +17,7 @@ class CreateEventsTable extends Migration
             $table->increments('id');
             $table->string('name', 30);
             $table->string('title', 30);
-            $table->string('code', 30)->unique();
+            $table->unsignedInteger('code');
             $table->string('location', 50)->nullable();
             $table->text('summary')->nullable();
             $table->string('avatar');
@@ -27,6 +27,7 @@ class CreateEventsTable extends Migration
             $table->dateTime('public_date');
             $table->dateTime('start_date');
             $table->dateTime('end_date');
+            $table->unsignedInteger('ticket_number');
             $table->unsignedInteger('voucher_id')->nullable();
             $table->unsignedInteger('point')->default(1000);
             $table->tinyInteger('status')->default(0);

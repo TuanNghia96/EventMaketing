@@ -62,4 +62,14 @@ class Enterprise extends Model
         $number = $codeArray[1] + 1;
         return sprintf("EP%05s", $number);
     }
+
+    /**
+     * relationship to event
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function events()
+    {
+        return $this->belongsToMany(Event::class, 'enterprise_events');
+    }
 }
