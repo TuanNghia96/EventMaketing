@@ -56,7 +56,8 @@ class Event extends Model
     const STATUS = [
         0 => 'Chua kiem duyet',
         1 => 'Da kiem duyet',
-        2 => 'Huy bo',
+        2 => 'Da cong bo',
+        3 => 'Huy bo',
     ];
 
     public function user()

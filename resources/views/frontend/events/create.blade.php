@@ -92,21 +92,21 @@
                         </div>
                         <div class="col-md-3 mb-3 md-form">
                             <label for="validationCustom012">Public at</label>
-                            <input type="text" name="public_date" class="form-control datetime_picker" id="publicDate">
+                            <input type="text" name="public_date" class="form-control datetime_picker" id="publicDate" autocomplete="off">
                             <div class="valid-feedback">
                                 {{--Looks good!--}}
                             </div>
                         </div>
                         <div class="col-md-3 mb-3 md-form">
                             <label for="validationCustom012">Start at</label>
-                            <input type="text" name="start_date" class="form-control datetime_picker" id="startDate">
+                            <input type="text" name="start_date" class="form-control datetime_picker" id="startDate" autocomplete="off">
                             <div class="valid-feedback">
                                 {{--Looks good!--}}
                             </div>
                         </div>
                         <div class="col-md-3 mb-3 md-form">
                             <label for="validationCustom012">End at</label>
-                            <input type="text" name="end_date" class="form-control datetime_picker" id="endDate">
+                            <input type="text" name="end_date" class="form-control datetime_picker" id="endDate" autocomplete="off">
                             <div class="valid-feedback">
                                 {{--Looks good!--}}
                             </div>
@@ -171,7 +171,7 @@
     <script src="{{ asset('frontend/js/bootstrap-datepicker.min.js') }}"></script>
     <script>
         $('.datetime_picker').datetimepicker({
-                format: 'Y-MM-DD H:m',
+                format: 'Y-MM-DD H:mm',
                 useCurrent: false
             }
         );
