@@ -1,4 +1,5 @@
-<footer class="footer">
+<div class="card-footer">
+    <hr>
     <div class="container-fluid">
         <div>
             <a href="">EVENT MANAGE ADMIN</a>
@@ -8,4 +9,4 @@
             Powered by <a href="https://www.facebook.com/nghia.ba">Nguyễn Bá Tuấn Nghĩa</a>
         </div>
     </div>
-</footer>
+</div>

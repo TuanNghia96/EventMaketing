@@ -56,12 +56,12 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="{{ route('events.validated') }}">
                                     <span class="sub-item">Su kien dang dien ra</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="{{ route('events.waiting') }}">
                                     <span class="sub-item">Su kien dang cho</span>
                                 </a>
                             </li>

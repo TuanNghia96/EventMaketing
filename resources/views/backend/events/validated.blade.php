@@ -1,20 +1,15 @@
 @extends('layouts.backend.admin')
 
-@section('title', 'Danh sách người dùng')
-
-@section('btnAdd')
-    <div class="col text-right">
-        <a href="{{ route('users.create') }}" class="btn btn-primary">Add User</a>
-    </div>
-@endsection
+@section('title', 'Danh sách sự kiện thành công.')
 
 @section('content')
-    {{-- check admins is empty --}}
-    @if($users->count())
-        {{-- admins table --}}
+    {{-- check events is empty --}}
+    @if($events->count())
+        {{-- events table --}}
+
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Danh sách tất cả quản lý</h4>
+                <h4 class="card-title">Danh sách sự kiện thành công</h4>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -23,31 +18,31 @@
                         <tr>
                             <th>Id</th>
                             <th>Name</th>
-                            <th>Admin Code</th>
-                            <th>Account</th>
-                            <th>Birthday</th>
-                            <th>Start date</th>
+                            <th>Code</th>
+                            <th>Public Date</th>
+                            <th>Voucher Id</th>
+                            <th>Point</th>
                         </tr>
                         </thead>
                         <tfoot>
                         <tr>
                             <th>Id</th>
                             <th>Name</th>
-                            <th>Admin Code</th>
-                            <th>Email</th>
-                            <th>Birthday</th>
-                            <th>Start date</th>
+                            <th>Code</th>
+                            <th>Public Date</th>
+                            <th>Voucher Id</th>
+                            <th>Point</th>
                         </tr>
                         </tfoot>
                         <tbody>
-                        @foreach($users as $key => $user)
+                        @foreach($events as $key => $event)
                             <tr>
                                 <th>{{ $key + 1 }}</th>
-                                <th>{{ $user->name }}</th>
-                                <th>{{ $user->admin_code }}</th>
-                                <th>{{ $user->user->email }}</th>
-                                <th>{{ date_format(date_create($user->birthday) ,"d/m/Y") }}</th>
-                                <th>{{ $user->created_at }}</th>
+                                <th><a href="{{ route('events.detail', $event->id) }}">{{ $event->name }}</a></th>
+                                <th>{{ $event->code }}</th>
+                                <th>{{ date_format(date_create($event->public_date) ,"d/m/Y") }}</th>
+                                <th>{{ $event->voucher_id }}</th>
+                                <th>{{ $event->point }}</th>
                             </tr>
                         @endforeach
                         </tbody>
@@ -58,12 +53,11 @@
     @else
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Không có quản lý nào</h4>
+                <h4 class="card-title">Khong co sự kiện thành công nào</h4>
             </div>
         </div>
     @endif
 @endsection
-
 @section('inline_scripts')
 
     <script>

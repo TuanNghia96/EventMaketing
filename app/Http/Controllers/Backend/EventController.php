@@ -21,7 +21,7 @@ class EventController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of the events.
      *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -30,5 +30,58 @@ class EventController extends Controller
     {
         $events = $this->event->getPaginate($request->all());
         return view('backend.events.index', compact('events'));
+    }
+
+    /**
+     * Display a listing of the events are waiting.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getWaiting(Request $request)
+    {
+        $events = $this->event->where('status', Event::STATUS[0])->orderBy('public_date')->get();
+        return view('backend.events.waiting', compact('events'));
+    }
+
+    /**
+     * Display a listing of the event have validated.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getValidated(Request $request)
+    {
+        $events = $this->event->where('status', '!=', Event::STATUS[0])->orderBy('public_date')->get();
+        return view('backend.events.validated', compact('events'));
+    }
+
+    /**
+     * Display a listing of the event have validated.
+     *
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getDetail($id)
+    {
+        $event = $this->event->find($id);
+//        dd($event);
+        return view('backend.events.detail', compact('event'));
+    }
+
+    /**
+     * Display a listing of the event have validated.
+     *
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function setSuccess($id)
+    {
+        $event = $this->event->find($id);
+        if ($event->status == Event::STATUS[0]){
+            $event->status->update(['status' => Event::STATUS[1]]);
+        }
+
+        return view('backend.events.detail', compact('event'));
     }
 }

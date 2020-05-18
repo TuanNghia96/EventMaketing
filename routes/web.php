@@ -41,6 +41,12 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => [
     Route::get('/admin', 'AdminController@index')->name('admin.index');
     Route::get('/enterprises', 'EnterpriseController@index')->name('enterprises.index');
     Route::get('/buyers', 'BuyerController@index')->name('buyers.index');
+    //events
     Route::get('/events', 'EventController@index')->name('events.index');
+    Route::get('/events/waiting', 'EventController@getWaiting')->name('events.waiting');
+    Route::get('/events/validated', 'EventController@getValidated')->name('events.validated');
+    Route::get('/events/detail/{id}', 'EventController@getDetail')->name('events.detail');
+    Route::get('/events/success/{id}', 'EventController@setSuccess')->name('events.success');
+    Route::get('/events/remove/{id}', 'EventController@removeEvent')->name('events.remove');
     Route::get('/vouchers', 'VoucherController@index')->name('vouchers.index');
 });
