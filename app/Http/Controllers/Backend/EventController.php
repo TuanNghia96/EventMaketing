@@ -70,7 +70,7 @@ class EventController extends Controller
     }
 
     /**
-     * Display a listing of the event have validated.
+     * set success event
      *
      * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -78,8 +78,24 @@ class EventController extends Controller
     public function setSuccess($id)
     {
         $event = $this->event->find($id);
-        if ($event->status == Event::STATUS[0]){
-            $event->status->update(['status' => Event::STATUS[1]]);
+        if ($event->status == 0){
+            $event->update(['status' => 1]);
+        }
+
+        return view('backend.events.detail', compact('event'));
+    }
+
+    /**
+     * remove event
+     *
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function removeEvent($id)
+    {
+        $event = $this->event->find($id);
+        if ($event->status != 3){
+            $event->update(['status' => 3]);
         }
 
         return view('backend.events.detail', compact('event'));

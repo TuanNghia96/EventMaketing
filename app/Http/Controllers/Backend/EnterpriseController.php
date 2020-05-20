@@ -31,4 +31,16 @@ class EnterpriseController extends Controller
         $users = $this->enterprise->getPaginate($request->all());
         return view('backend.enterprises.index', compact('users'));
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function show($id)
+    {
+        $user = Enterprise::with('user')->findOrFail($id);
+        return view('backend.enterprises.detail', compact('user'));
+    }
 }

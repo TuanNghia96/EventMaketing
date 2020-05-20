@@ -34,9 +34,13 @@ class Enterprise extends Model
         'remember_token',
     ];
 
+    /**
+     * relation to buyer table
+     *
+     */
     public function user()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->hasOne(\App\Models\User::class, 'id', 'user_id');
     }
 
     /**

@@ -12,136 +12,63 @@
             <tbody>
             <tr>
                 <td>
-                    <p>id</p>
+                    <p>user_id</p>
                 </td>
-                <td><p>{{ $event->id }}</p></td>
+                <td><p>{{ $user->user_id }}</p></td>
+            </tr>
+            <tr>
+                <td>
+                    <p>email</p>
+                </td>
+                <td><p>{{ $user->user->email }}</p></td>
+            </tr>
+            <tr>
+                <td>
+                    <p>user_name</p>
+                </td>
+                <td><p>{{ $user->user->user_name }}</p></td>
+            </tr>
+            <tr>
+                <td>
+                    <p>enterprise_code</p>
+                </td>
+                <td><p>{{ $user->enterprise_code }}</p></td>
             </tr>
             <tr>
                 <td>
                     <p>name</p>
                 </td>
-                <td><p>{{ $event->name }}</p></td>
+                <td><p>{{ $user->name }}</p></td>
             </tr>
             <tr>
                 <td>
-                    <p>title</p>
+                    <p>address</p>
                 </td>
-                <td><p>{{ $event->title }}</p></td>
+                <td><p>{{ $user->address }}</p></td>
             </tr>
             <tr>
                 <td>
-                    <p>code</p>
+                    <p>city</p>
                 </td>
-                <td><p>{{ $event->code }}</p></td>
-            </tr>
-            <tr>
-                <td>
-                    <p>location</p>
-                </td>
-                <td><p>{{ $event->location }}</p></td>
-            </tr>
-            <tr>
-                <td>
-                    <p>summary</p>
-                </td>
-                <td><p>{{ $event->summary }}</p></td>
+                <td><p>{{ $user->city }}</p></td>
             </tr>
             <tr>
                 <td>
                     <p>avatar</p>
                 </td>
-                <td><p>{{ $event->avatar }}</p></td>
+                <td><p>{{ $user->avatar }}</p></td>
             </tr>
             <tr>
                 <td>
-                    <p>type</p>
+                    <p>phone</p>
                 </td>
-                <td><p>{{ $event->type }}</p></td>
+                <td><p>{{ $user->phone }}</p></td>
             </tr>
             <tr>
                 <td>
-                    <p>public_date</p>
+                    <p>bank_account</p>
                 </td>
-                <td><p>{{ $event->public_date }}</p></td>
-            </tr>
-            <tr>
-                <td>
-                    <p>start_date</p>
-                </td>
-                <td><p>{{ $event->start_date }}</p></td>
-            </tr>
-            <tr>
-                <td>
-                    <p>end_date</p>
-                </td>
-                <td><p>{{ $event->end_date }}</p></td>
-            </tr>
-            <tr>
-                <td>
-                    <p>voucher_id</p>
-                </td>
-                <td><p>{{ $event->voucher_id }}</p></td>
-            </tr>
-            <tr>
-                <td>
-                    <p>point</p>
-                </td>
-                <td><p>{{ $event->point }}</p></td>
-            </tr>
-            <tr>
-                <td>
-                    <p>classify</p>
-                </td>
-                <td><p>{{ $event->classify }}</p></td>
-            </tr>
-            <tr>
-                <td>
-                    <p>status</p>
-                </td>
-                <td><p>{{ $event->status }}</p></td>
-            </tr>
-            <tr>
-                <td>
-                    <p>images</p>
-                </td>
-                <td><p>{{ $event->images }}</p></td>
-            </tr>
-            <tr>
-                <td>
-                    <p>ticket_number</p>
-                </td>
-                <td><p>{{ $event->ticket_number }}</p></td>
-            </tr>
-            <tr>
-                <td>
-                    <p>Enterprise name</p>
-                </td>
-                <td>
-                    @foreach($event->enterprises()->get()->pluck('name', 'id')->toArray() as $key => $value)
-                        <a href="{{ route('enterprises.show', $key) }}"><p>{{ $value }}</p></a>
-                    @endforeach
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p>Hành động</p>
-                </td>
-                <td>
-                    @if($event->public_date < now())
-                        <a class="btn btn-danger" href="{{ route('events.remove', $event->id) }}">
-                            <span class="btn-label">
-                                <i class="fa fa-times"></i>
-                            </span>Remove
-                        </a>
-                    @endif
-                    @if($event->status == \App\Models\Event::STATUS[0])
-                        <a class="btn btn-success" href="{{ route('events.success', $event->id) }}">
-                            <span class="btn-label">
-                                <i class="fa fa-check"></i>
-                            </span>Success
-                        </a>
-                    @endif
-                </td>
+                <td><p>{{ $user->bank_account }}</p></td>
             </tr>
             </tbody>
         </table>

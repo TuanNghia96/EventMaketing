@@ -121,4 +121,14 @@ class Event extends Model
         }
         return $query->select('type', 'classify', 'name', 'title', 'id', 'avatar')->get();
     }
+
+    /**
+     * relationship to enterprise
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function enterprises()
+    {
+        return $this->belongsToMany(Enterprise::class, 'enterprise_events');
+    }
 }

@@ -37,7 +37,7 @@
                         @foreach($events as $key => $event)
                             <tr>
                                 <th>{{ $key + 1 }}</th>
-                                <th>{{ $event->name }}</th>
+                                <th><a href="{{ route('events.detail', $event->id) }}">{{ $event->name }}</a></th>
                                 <th>{{ $event->code }}</th>
                                 <th>{{ date_format(date_create($event->public_date) ,"d/m/Y") }}</th>
                                 <th>{{ $event->voucher_id }}</th>

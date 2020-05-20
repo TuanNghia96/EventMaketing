@@ -39,7 +39,8 @@ Route::group(['middleware' => 'enterprise_able'], function () {
 
 Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => ['admin_able']], function () {
     Route::get('/admin', 'AdminController@index')->name('admin.index');
-    Route::get('/enterprises', 'EnterpriseController@index')->name('enterprises.index');
+    //enterprise
+    Route::resource('/enterprises', 'EnterpriseController');
     Route::get('/buyers', 'BuyerController@index')->name('buyers.index');
     //events
     Route::get('/events', 'EventController@index')->name('events.index');
