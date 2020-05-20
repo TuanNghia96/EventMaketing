@@ -13,7 +13,7 @@ class EventTableSeeder extends Seeder
     public function run()
     {
         Event::truncate();
-        factory('App\Models\Event', 50)->create()->each(function ($event) {
+        factory('App\Models\Event', 100)->create()->each(function ($event) {
             // Seed the relation with one address
             $voucher = factory(App\Models\Voucher::class)->create();
             $event->voucher_id = $voucher->id;

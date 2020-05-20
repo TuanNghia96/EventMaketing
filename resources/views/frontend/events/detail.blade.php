@@ -105,18 +105,7 @@
 
         </div>
     </div>
-    {{--<div id="fh5co-couple">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
-                    <h2>Hello!</h2>
-                    <p>{{ $event->summary }}</p>
-                </div>
-            </div>
-        </div>
-    </div>--}}
     @isset($event->images)
-
         <div id="fh5co-couple-story">
             <div class="container">
                 <div class="row">
@@ -132,7 +121,7 @@
                                     {{--<div class="timeline-badge" style="background-image:url(images/couple-1.jpg);"></div>--}}
                                     <div class="timeline-panel">
                                         <div class="timeline-heading">
-                                            <h3 class="timeline-title">{{ $key }}. {{ $value->title }}</h3>
+                                            <h3 class="timeline-title">{{ $key + 1 }}. {{ $value->title }}</h3>
                                         </div>
                                         <div class="timeline-body img_box">
                                             <img src="{{ $value->image }}" width="100%" height="auto" alt="" sizes="" srcset="">
@@ -146,7 +135,7 @@
             </div>
         </div>
     @endisset
-    <div id="fh5co-counter" class="fh5co-bg fh5co-counter" style="background-image:url({{ asset('frontend/images/img_bg_5.jpg') }});">
+    {{--<div id="fh5co-counter" class="fh5co-bg fh5co-counter" style="background-image:url({{ asset('frontend/images/img_bg_5.jpg') }});">
         <div class="container">
             <div class="row">
                 <div class="display-t">
@@ -220,11 +209,70 @@
                 </div>
             </div>
         </div>
+    </div>--}}
+
+    <div id="fh5co-started" class="fh5co-bg" style="background-image:url({{ asset('frontend/images/img_bg_4.jpg') }});">
+        <div class="overlay"></div>
+        <div class="container">
+            @if(!Auth::check())
+                <div class="row animate-box">
+                    <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+                        <h2>Are You Register?</h2>
+                        <p>Please Fill-up the this form to notify you that you're want to join. Thanks.</p>
+                    </div>
+                </div>
+                <div class="row animate-box">
+                    <div class="col-md-10 col-md-offset-1">
+                        <form class="form-inline">
+                            <div class="col-md-4 col-md-offset-4 col-sm-4">
+                                <a href="">
+                                    <button type="button" class="btn btn-default btn-block">I Want Sign In</button>
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            @elseif(!$event->buyer->find(Auth::user()->user->id))
+                <div class="row animate-box">
+                    <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+                        <h2>Are You Join it?</h2>
+                        <p>Have {{ ($event->ticket_number - $event->buyer->count()) . '/' . $event->ticket_number }} ticket left</p>
+                    </div>
+                </div>
+                <div class="row animate-box">
+                    <div class="col-md-10 col-md-offset-1">
+                        <form class="form-inline">
+                            <div class="col-md-4 col-md-offset-4 col-sm-4">
+                                <a href="{{ route('event.join', $event->id) }}">
+                                    <button type="button" class="btn btn-default btn-block" @if($event->ticket_number <= $event->buyer->count()) disabled @endif>I want to joint it</button>
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            @else
+                <div class="row animate-box">
+                    <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+                        <h2>You already join it Thanh you</h2>
+                        <p>Have {{ ($event->ticket_number - $event->buyer->count()) . '/' . $event->ticket_number }} ticket left</p>
+                    </div>
+                </div>
+                <div class="row animate-box">
+                    <div class="col-md-10 col-md-offset-1">
+                        <form class="form-inline">
+                            <div class="col-md-4 col-md-offset-4 col-sm-4">
+                                <a href="{{ route('event.unjoin', $event->id) }}">
+                                    <button type="button" class="btn btn-danger btn-block" @if($event->status != \App\Models\Event::VALIDATED) disabled @endif>I want to un joint it</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            @endif
+        </div>
     </div>
 @endsection
 
 @section('inline_script')
-
     <script>
         var d = new Date($('#countDate').val());
         // default example

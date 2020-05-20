@@ -22,5 +22,6 @@ $factory->define(Event::class, function (Faker $faker) {
         'voucher_id' => null,
         'ticket_number' => $faker->numerify('##000'),
         'point' => $faker->numerify('###'),
+        'status' => array_rand(Event::$status)
     ];
 });

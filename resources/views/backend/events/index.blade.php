@@ -49,7 +49,7 @@
                                 <th>{{ $event->code }}</th>
                                 <th>{{ date_format(date_create($event->public_date) ,"d/m/Y") }}</th>
                                 <th>{{ $event->voucher_id }}</th>
-                                <th>{{ \App\Models\Event::STATUS[$event->status] }}</th>
+                                <th>{{ \App\Models\Event::$status[$event->status] }}</th>
                                 <th>{{ $event->point }}</th>
                             </tr>
                         @endforeach

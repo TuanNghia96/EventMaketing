@@ -16,6 +16,11 @@ class Event extends Model
     const MEETING = 5;
     const HOLIDAY = 6;
 
+    const WAITING = 0;
+    const VALIDATED = 1;
+    const PUBLIC = 2;
+    const CANCEL = 3;
+
     public $timestamps = true;
     protected $table = 'events';
     protected $fillable = [
@@ -45,6 +50,7 @@ class Event extends Model
         self::MEETING => 'Hội nghị, hội thảo',
         self::HOLIDAY => 'Ngày lễ',
     ];
+
     const TYPE = [
         1 => 'Thời trang',
         2 => 'Điện tử',
@@ -53,11 +59,12 @@ class Event extends Model
         5 => 'Đồ ăn',
         6 => 'Khác',
     ];
-    const STATUS = [
-        0 => 'Chua kiem duyet',
-        1 => 'Da kiem duyet',
-        2 => 'Da cong bo',
-        3 => 'Huy bo',
+
+    public static $status = [
+        self::WAITING => 'Chua kiem duyet',
+        self::VALIDATED => 'Da kiem duyet',
+        self::PUBLIC => 'Da cong bo',
+        self::CANCEL => 'Huy bo',
     ];
 
     public function user()
@@ -96,7 +103,7 @@ class Event extends Model
      */
     public function getSearch($input)
     {
-        $query = $this->query();
+        $query = $this->active()->query();
 
         //check like
         if (isset($input['name'])) {
@@ -130,5 +137,26 @@ class Event extends Model
     public function enterprises()
     {
         return $this->belongsToMany(Enterprise::class, 'enterprise_events');
+    }
+
+    /**
+     * relationship to enterprise
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function buyer()
+    {
+        return $this->belongsToMany(Buyer::class, 'tickets');
+    }
+
+    /**
+     * Scope a query to only active.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeActive($query)
+    {
+        return $query->whereIn('status', [Event::VALIDATED, Event::PUBLIC]);
     }
 }

@@ -134,7 +134,7 @@
                             </span>Remove
                         </a>
                     @endif
-                    @if($event->status == \App\Models\Event::STATUS[0])
+                    @if($event->status == \App\Models\Event::$status[0])
                         <a class="btn btn-success" href="{{ route('events.success', $event->id) }}">
                             <span class="btn-label">
                                 <i class="fa fa-check"></i>
@@ -147,8 +147,8 @@
         </table>
     </div>
 @endsection
-@section('inline_scripts')
 
+@section('inline_scripts')
     <script>
         $(document).ready(function () {
             $('#basic-datatables').DataTable({});

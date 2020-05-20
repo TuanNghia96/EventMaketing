@@ -12,7 +12,7 @@
                     @if(Auth::user())
                         @if(Auth::user()->role == \App\Models\User::ENTERPRISE)
                             <li id="" class="header_button has-dropdown">
-                                <a href="{{ route('enterprises.show') }}">Enterprise</a>
+                                <a href="{{ route('enterprises.show', Auth::user()->user->id) }}">Enterprise</a>
                                 <ul class="dropdown">
                                     <li><a href="{{ route('event.create') }}">Make Event</a></li>
                                     <li><a href="#">Main Event</a></li>

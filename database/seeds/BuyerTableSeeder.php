@@ -16,8 +16,26 @@ class BuyerTableSeeder extends Seeder
     public function run()
     {
         $faker = Factory::create();
+        Buyer::truncate();
 
-        for ($i = 1; $i <= 20; $i++) {
+        $user1 = User::create([
+            'email' => 'khachhang@gmail.com',
+            'user_name' => 'Khach Hang',
+            'password' => Hash::make('123456'),
+            'role' => User::BUYER,
+        ]);
+        Buyer::create([
+            'user_id' => $user1->id,
+            'buyer_code' => 'BY00001',
+            'first_name' => $faker->firstName,
+            'last_name' => $faker->lastName,
+            'avatar' => $faker->imageUrl(70, 70),
+            'address' => $faker->address,
+            'phone' => $faker->phoneNumber,
+            'bank_account' => $faker->bankAccountNumber,
+        ]);
+
+        for ($i = 2; $i <= 20; $i++) {
             //seeder user
             $user = User::create([
                 'email' => $faker->unique()->email,
@@ -25,7 +43,6 @@ class BuyerTableSeeder extends Seeder
                 'password' => Hash::make('123456'),
                 'role' => User::BUYER,
             ]);
-
             $code = sprintf("BY%05s",   $i);
             Buyer::create([
                 'user_id' => $user->id,

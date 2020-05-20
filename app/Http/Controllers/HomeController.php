@@ -8,6 +8,8 @@ use App\Models\Event;
 use Carbon\Carbon;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -30,8 +32,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $events = Event::take(5)->get();
-        $subEvents = Event::skip(5)->take(6)->get();
+        $events = Event::active()->orderBy('id')->take(5)->get();
+        $subEvents = Event::active()->skip(5)->take(6)->get();
         $webInfo = [
             'buyer' => Buyer::count(),
             'event' => Event::where('end_date', '<', Carbon::now())->count(),
@@ -49,7 +51,7 @@ class HomeController extends Controller
     public function getSubEvent(Request $request)
     {
         $params = $request->all();
-        return $subEvents = Event::skip(5)->take($params['number'] + 6)->get();
+        return $subEvents = Event::active()->skip(5)->take($params['number'] + 6)->get();
     }
 
     /**
@@ -67,13 +69,12 @@ class HomeController extends Controller
      * api get search ajax
      *
      * @param Request $request
-     * @return \App\Models\Illuminate\Pagination\Paginator
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function eventSearch(Request $request)
     {
         $params = $request->all();
-        $events = $this->event->getSearch($params);
-        return $events;
+        return $this->event->getSearch($params);
     }
 
     /**
@@ -84,12 +85,62 @@ class HomeController extends Controller
      */
     public function eventDetail($id)
     {
-        $event = Event::findOrFail($id);
+        $event = Event::active()->with('buyer')->findOrFail($id);
         $event->images = json_decode($event->images);
         return view('frontend.events.detail', compact('event'));
     }
 
-    public function contact()
+    /**
+     * get join event
+     *
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function joinEvent($id)
+    {
+        $event = Event::active()->with('buyer')->findOrFail($id);
+
+        if (!$event->buyer->find(Auth::user()->user->id)) {
+            DB::beginTransaction();
+            $event->buyer()->attach(Auth::user()->user->id);
+
+            DB::commit();
+        }
+        return redirect(route('event.detail', $event->id));
+    }
+
+    /**
+     * get un join event
+     *
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function unJoinEvent($id)
+    {
+        $event = Event::active()->with('buyer')->findOrFail($id);
+
+        if ($event->buyer->find(Auth::user()->user->id) && ($event->status == Event::VALIDATED)) {
+            DB::beginTransaction();
+            try {
+                $event->buyer()->detach(Auth::user()->user->id);
+            } catch (Exception $e) {
+                DB::rollBack();
+
+                throw new Exception($e->getMessage());
+            }
+            DB::commit();
+        }
+        return redirect(route('event.detail', $event->id));
+
+    }
+
+    /**
+     * get contact page
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public
+    function contact()
     {
         return view('frontend.contact');
     }

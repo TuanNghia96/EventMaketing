@@ -25,6 +25,8 @@ Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/event/detail/{event}', 'HomeController@eventDetail')->name('event.detail');
 Route::get('/event/search', 'HomeController@eventIndex')->name('event.index');
+Route::get('/event/join/{id}', 'HomeController@joinEvent')->name('event.join');
+Route::get('/event/unjoin/{id}', 'HomeController@unJoinEvent')->name('event.unjoin');
 
 //webinfo
 Route::get('/contact', 'ContactController@contact')->name('contact');
