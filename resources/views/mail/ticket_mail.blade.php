@@ -383,9 +383,10 @@
                                 <div style="text-align: left ; display: inline-block; display: inline;">
 
                                     <h1 style="font-size: 450%">
-                                        <a href="https://www.facebook.com/nguyetanh.nguyen.733"><img src="https://i.ibb.co/m5cDQ8h/logo1.png" width="200px" style="width:75px; height:75px;" alt="logo1" border="0"></a>
+                                        <a href="https://www.facebook.com/nguyetanh.nguyen.733"><img src="{{ asset('storage/img-1590070305.png') }}" width="200px" style="width:75px; height:75px;" alt="logo1" border="0"></a>
                                         Nebula<br>
-                                        <q style="font-size: 50%">realize your dream</q>
+
+                                        <q style="font-size: 50%"><img src="{{$message->embed($url)}}">
                                     </h1>
                                 </div>
                             </div>

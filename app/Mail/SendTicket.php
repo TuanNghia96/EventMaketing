@@ -5,7 +5,6 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Log;
 
 class SendTicket extends Mailable
 {
@@ -13,16 +12,19 @@ class SendTicket extends Mailable
 
     protected $name;
     protected $event;
+    protected $url;
 
     /**
      * Create a new message instance.
      *
      * @param string $name
      * @param $event
+     * @param $url
      */
-    public function __construct($name, $event)
+    public function __construct($name, $event, $url)
     {
         $this->name = $name;
+        $this->url = $url;
     }
 
     /**
@@ -32,7 +34,9 @@ class SendTicket extends Mailable
      */
     public function build()
     {
-        Log::error($this->name);
-        return $this->view('mail.ticket_mail')->with('name', $this->name);
+        $name = $this->name;
+        $message= $this;
+        $url =  $this->url;
+        return $this->view('mail.ticket_mail', compact('name', 'message', 'url'));
     }
 }

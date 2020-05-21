@@ -41,4 +41,9 @@ class Buyer extends Model
     {
         return self::with('user')->get();
     }
+
+    public function events()
+    {
+        return $this->belongsToMany(Event::class, 'tickets')->withPivot('qrcode_check', );
+    }
 }

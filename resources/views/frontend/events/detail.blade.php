@@ -263,6 +263,7 @@
                             <div class="col-md-4 col-md-offset-4 col-sm-4">
                                 <a href="{{ route('event.unjoin', $event->id) }}">
                                     <button type="button" class="btn btn-danger btn-block" @if($event->status != \App\Models\Event::VALIDATED) disabled @endif>I want to un joint it</button>
+                                </a>
                             </div>
                         </form>
                     </div>

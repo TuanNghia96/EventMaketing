@@ -103,8 +103,15 @@ class HomeController extends Controller
 
         if (!$event->buyer->find(Auth::user()->user->id)) {
             DB::beginTransaction();
-            $event->buyer()->attach(Auth::user()->user->id);
-            dispatch(new SendTicketMail(Auth::user()->email, Auth::user()->user->toArray(), $event));
+            $check = Auth::user()->user->buyer_code . '-' . $event->code . '-' . rand(100000, 999999);
+            $image = \QrCode::format('png')
+                ->size(200)
+                ->generate(route('event.checkQR', $check));
+            $output_file = '/public/img/qr-code/' . $check . '.png';
+            \Storage::disk('local')->put($output_file, $image);
+
+            $event->buyer()->attach([Auth::user()->user->id => ['qrcode_check' => $check]]);
+            dispatch(new SendTicketMail(Auth::user()->email, Auth::user()->user->toArray(), $event, asset('storage/img/qr-code/' . $check . '.png')));
             DB::commit();
         }
         return redirect(route('event.detail', $event->id));
@@ -133,6 +140,26 @@ class HomeController extends Controller
         }
         return redirect(route('event.detail', $event->id));
 
+    }
+
+    /**
+     * get un join event
+     *
+     * @param $number
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function checkQR($number)
+    {
+        $this->authorize('admin');
+        $arr = explode('-', $number);
+        $buyer = Buyer::with('events')->where('buyer_code', $arr[0])->first();
+        $event = $buyer->events->find($arr[1]);
+        if ($buyer && $event && !$event->pivot->is_used && ($event->pivot->qrcode_check == $number)) {
+            $event->pivot->is_used = !$event->pivot->is_used;
+            $event->pivot->save();
+        }
+        dd($event);
     }
 
     /**

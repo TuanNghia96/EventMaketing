@@ -19,7 +19,7 @@ class BuyerTableSeeder extends Seeder
         Buyer::truncate();
 
         $user1 = User::create([
-            'email' => 'khachhang@gmail.com',
+            'email' => 'nguyenbatuannghia5996@gmail.com',
             'user_name' => 'Khach Hang',
             'password' => Hash::make('123456'),
             'role' => User::BUYER,

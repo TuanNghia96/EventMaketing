@@ -8,7 +8,6 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 class SendTicketMail implements ShouldQueue
@@ -18,6 +17,7 @@ class SendTicketMail implements ShouldQueue
     protected $user;
     protected $event;
     protected $email;
+    protected $url;
 
     /**
      * Create a new job instance.
@@ -26,11 +26,12 @@ class SendTicketMail implements ShouldQueue
      * @param array $user
      * @param $event
      */
-    public function __construct($email, $user, $event)
+    public function __construct($email, $user, $event, $url)
     {
         $this->email = $email;
         $this->user = $user;
         $this->event = $event;
+        $this->url = $url;
     }
 
     /**
@@ -40,8 +41,7 @@ class SendTicketMail implements ShouldQueue
      */
     public function handle()
     {
-        Log::info($this->user['first_name'] . ' ' . $this->user['last_name']);
-        $email = new SendTicket($this->user['first_name'] . ' ' . $this->user['last_name'], $this->event);
+        $email = new SendTicket($this->user['first_name'] . ' ' . $this->user['last_name'], $this->event, $this->url);
         Mail::to($this->email)->send($email);
     }
 }

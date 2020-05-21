@@ -27,6 +27,7 @@ Route::get('/event/detail/{event}', 'HomeController@eventDetail')->name('event.d
 Route::get('/event/search', 'HomeController@eventIndex')->name('event.index');
 Route::get('/event/join/{id}', 'HomeController@joinEvent')->name('event.join');
 Route::get('/event/unjoin/{id}', 'HomeController@unJoinEvent')->name('event.unjoin');
+Route::get('/event/ticket/{qr}', 'HomeController@checkQR')->name('event.checkQR');
 
 //webinfo
 Route::get('/contact', 'ContactController@contact')->name('contact');
@@ -52,4 +53,15 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => [
     Route::get('/events/success/{id}', 'EventController@setSuccess')->name('events.success');
     Route::get('/events/remove/{id}', 'EventController@removeEvent')->name('events.remove');
     Route::get('/vouchers', 'VoucherController@index')->name('vouchers.index');
+});
+
+Route::get('qrcode', function () {
+    $image = \QrCode::format('png')
+        ->size(200)
+        ->generate('A simple example of QR code!');
+    $output_file = '/img/qr-code/img-' . time() . '.png';
+
+    Storage::disk('local')->put($output_file, $image);
+    return \QrCode::size(500)
+        ->generate('http://127.0.0.1:8000/event/detail/1');
 });
