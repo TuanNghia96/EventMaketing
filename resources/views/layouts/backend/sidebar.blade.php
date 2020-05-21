@@ -171,8 +171,8 @@
                     <div class="collapse" id="charts">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="#">
-                                    <span class="sub-item">Cuối ngày</span>
+                                <a href="{{ route('chart.event') }}">
+                                    <span class="sub-item">Sự kiện</span>
                                 </a>
                             </li>
                             <li>

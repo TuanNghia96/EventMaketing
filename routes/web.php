@@ -53,6 +53,11 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => [
     Route::get('/events/success/{id}', 'EventController@setSuccess')->name('events.success');
     Route::get('/events/remove/{id}', 'EventController@removeEvent')->name('events.remove');
     Route::get('/vouchers', 'VoucherController@index')->name('vouchers.index');
+
+    //chart
+    Route::get('/charts/event', 'ChartController@chartEvent')->name('chart.event');
+    Route::get('/charts/enterprise', 'ChartController@chartEvent')->name('chart.enterprise');
+    Route::get('/charts/buyer', 'ChartController@chartEvent')->name('chart.buyer');
 });
 
 Route::get('qrcode', function () {
