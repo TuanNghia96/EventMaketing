@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendTicketMail;
 use App\Models\Buyer;
 use App\Models\Enterprise;
 use App\Models\Event;
@@ -103,7 +104,7 @@ class HomeController extends Controller
         if (!$event->buyer->find(Auth::user()->user->id)) {
             DB::beginTransaction();
             $event->buyer()->attach(Auth::user()->user->id);
-
+            dispatch(new SendTicketMail(Auth::user()->email, Auth::user()->user->toArray(), $event));
             DB::commit();
         }
         return redirect(route('event.detail', $event->id));
