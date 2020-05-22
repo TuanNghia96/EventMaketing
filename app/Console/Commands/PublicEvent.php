@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Event;
 use Illuminate\Console\Command;
 
 class PublicEvent extends Command
@@ -37,6 +38,11 @@ class PublicEvent extends Command
      */
     public function handle()
     {
-        $this->info('Process success in: ' . now());
+        $events = Event::where('public_date', now()->format('Y-m-d H:i'))->get();
+        $this->info($events->count() . ' events publict at: '. now()->format('Y-m-d H:i'));
+        foreach ($events as $event) {
+            $event->update(['status' => Event::PUBLIC]);
+            $this->info('   -Name:' . $event->name . ' code:' . $event->code);
+        }
     }
 }

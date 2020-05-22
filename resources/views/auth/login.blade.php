@@ -33,66 +33,55 @@
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link rel="stylesheet" href="{{ asset('backend/css/demo.css') }}">
 </head>
-<body>
-@if($errors->any())
-    {{ implode('', $errors->all('<div>:message</div>')) }}
-@endif
-<div class="wrapper">
-    <div class="content">
-        <div class="page-inner">
-            <div class="row">
-                <div class="wizard-container wizard-round col-md-9">
-                    <div class="card">
-                        <div class="wizard-header text-center">
-                            <h3 class="wizard-title">Đăng nhập vào hệ thống.</h3>
+<body class="login">
+<div class="wrapper wrapper-login">
+    <div class="container container-login animated fadeIn">
+        <h3 class="text-center">Log In</h3>
+        <form id="loginForm" method="POST" action="{{ route('login') }}">
+            @csrf
+            <div class="login-form">
+                <div class="form-group">
+                    <label for="email" class="placeholder"><b>Email</b><span class="required-label">*</span></label>
+                    <input id="email" name="email" type="text" class="form-control" value="{{ old('email') }}" required>
+                    @error('email')
+                    <span class="text-danger" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="password" class="placeholder"><b>Password</b></label>
+                    <a href="#" class="link float-right">Forget Password ?</a>
+                    <div class="position-relative">
+                        <input id="password" name="password" type="password" class="form-control" required>
+                        <div class="show-password">
+                            <i class="flaticon-interface"></i>
                         </div>
-                        <form id="exampleValidation" method="POST" action="{{ route('login') }}">
-                            @csrf
-                            <div class="card-body text-center">
-                                <div class="form-group row @error('email') has-error @enderror">
-                                    <label for="email" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 mt-sm-4 text-right">Email (or user name)<span class="required-label">*</span></label>
-                                    <div class="col-lg-4 col-md-8 col-sm-8 col-xs-8">
-                                        <input id="email" type="text" class="form-control" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                                            @error('email')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
-                                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                                    </div>
-                                </div>
-                                <div class="form-group form-show-validation row @error('password') has-error @enderror">
-                                    <label for="password" class="col-lg-4 col-md-4 col-sm-4 mt-sm-2 col-xs-4 text-right">Password <span class="required-label">*</span></label>
-                                    <div class="col-lg-4 col-md-8 col-sm-8 col-xs-8">
-                                        <input id="password" type="password" class="form-control" name="password" required autocomplete="current-password">
-                                        @error('password')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="form-group form-show-validation row text-left">
-                                    <label for="password" class="col-lg-4 col-md-4 col-sm-4 mt-sm-2 text-right"></label>
-                                    <div class="col-lg-4 col-md-9 col-sm-8">
-                                        <p>Chưa có tài khoản, <a href="{{ route('register') }}">đăng ký</a></p>
-                                    </div>
-                                </div>
-                                <div class="card-action">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <input class="btn btn-success" type="submit" value="Login">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+                        @error('password')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
                     </div>
                 </div>
+                <div class="form-group form-action-d-flex mb-3">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="rememberme">
+                        <label class="custom-control-label m-0" for="rememberme">Remember Me</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary col-md-5 float-right mt-3 mt-sm-0 fw-bold">Login</button>
+                </div>
+                <!-- 				<div class="form-action">
+                    <a href="#" class="btn btn-primary btn-rounded btn-login">Sign In</a>
+                </div> -->
+                <div class="login-account">
+                    <span class="msg">Don't have an account yet ?</span>
+                    <a href="{{ route('register') }}" id="show-signup" class="link">Sign Up</a>
+                </div>
             </div>
-        </div>
+
+        </form>
     </div>
-    <!-- End Custom template -->
 </div>
 <!--   Core JS Files   -->
 <!--   Core JS Files   -->
