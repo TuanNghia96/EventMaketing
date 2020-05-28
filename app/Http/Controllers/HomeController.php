@@ -63,6 +63,7 @@ class HomeController extends Controller
     public function eventIndex()
     {
         $events = Event::get();
+
         return view('frontend.events.index', compact('events'));
     }
 
@@ -75,7 +76,9 @@ class HomeController extends Controller
     public function eventSearch(Request $request)
     {
         $params = $request->all();
+        \Log::info($this->event->getSearch($params));
         return $this->event->getSearch($params);
+//        return Event::first();
     }
 
     /**

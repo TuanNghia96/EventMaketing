@@ -1,140 +1,191 @@
 @extends('layouts.frontend.app')
 
-@section('content')
-
-    <search-event
-            bg-url="{{ asset('frontend/images/img_bg_8.jpg') }}"
-            all-type="{{ json_encode(\App\Models\Event::TYPE) }}"
-            all-classify="{{ json_encode(\App\Models\Event::$classify) }}"
-            url="{{ route('event.search') }}"
-            url-event="{{ route('event.detail', 0) }}"
-            all-event="{{ json_encode($events) }}"
-    >
-    </search-event>
-    {{--<div class="row row-bottom-padded-md">
-        <div class="col-md-12">
-            <ul id="fh5co-gallery-list">
-
-                <li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url({{ asset('frontend/images/gallery-1.jpg') }}); ">
-                    <a href="images/gallery-1.jpg">
-                        <div class="case-studies-summary">
-                            <span>14 Photos</span>
-                            <h2>Two Glas of Juice</h2>
-                        </div>
-                    </a>
-                </li>
-                <li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url({{ asset('frontend/images/gallery-2.jpg') }}); ">
-                    <a href="#" class="color-2">
-                        <div class="case-studies-summary">
-                            <span>30 Photos</span>
-                            <h2>Timer starts now!</h2>
-                        </div>
-                    </a>
-                </li>
-
-
-                <li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url({{ asset('frontend/images/gallery-3.jpg') }}); ">
-                    <a href="#" class="color-3">
-                        <div class="case-studies-summary">
-                            <span>90 Photos</span>
-                            <h2>Beautiful sunset</h2>
-                        </div>
-                    </a>
-                </li>
-                <li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url({{ asset('frontend/images/gallery-4.jpg') }}); ">
-                    <a href="#" class="color-4">
-                        <div class="case-studies-summary">
-                            <span>12 Photos</span>
-                            <h2>Company's Conference Room</h2>
-                        </div>
-                    </a>
-                </li>
-
-                <li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url({{ asset('frontend/images/gallery-5.jpg') }}); ">
-                    <a href="#" class="color-3">
-                        <div class="case-studies-summary">
-                            <span>50 Photos</span>
-                            <h2>Useful baskets</h2>
-                        </div>
-                    </a>
-                </li>
-                <li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url({{ asset('frontend/images/gallery-6.jpg') }}); ">
-                    <a href="#" class="color-4">
-                        <div class="case-studies-summary">
-                            <span>45 Photos</span>
-                            <h2>Skater man in the road</h2>
-                        </div>
-                    </a>
-                </li>
-
-                <li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url({{ asset('frontend/images/gallery-7.jpg') }}); ">
-                    <a href="#" class="color-4">
-                        <div class="case-studies-summary">
-                            <span>35 Photos</span>
-                            <h2>Two Glas of Juice</h2>
-                        </div>
-                    </a>
-                </li>
-
-                <li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url({{ asset('frontend/images/gallery-8.jpg') }}); ">
-                    <a href="#" class="color-5">
-                        <div class="case-studies-summary">
-                            <span>90 Photos</span>
-                            <h2>Timer starts now!</h2>
-                        </div>
-                    </a>
-                </li>
-                <li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url({{ asset('frontend/images/gallery-9.jpg') }}); ">
-                    <a href="#" class="color-6">
-                        <div class="case-studies-summary">
-                            <span>56 Photos</span>
-                            <h2>Beautiful sunset</h2>
-                        </div>
-                    </a>
-                </li>
-            </ul>
+@section('background_header')
+    <div class="page-header events-page-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <header class="entry-header">
+                        <h1 class="entry-title">Events.</h1>
+                    </header>
+                </div>
+            </div>
         </div>
-    </div>--}}
+    </div>
 @endsection
 
-@section('inline_css')
-    <link rel="stylesheet" href="{{ asset('frontend/css/searchBar.css') }}">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet"/>
-    <link href="css/main.css" rel="stylesheet"/>
+@section('content')
+    <div id="app">
+        <search-event
+                bg-url="{{ asset('frontend/images/img_bg_8.jpg') }}"
+                all-type="{{ json_encode(\App\Models\Event::TYPE) }}"
+                all-classify="{{ json_encode(\App\Models\Event::$classify) }}"
+                url="{{ route('event.search') }}"
+                url-event="{{ route('event.detail', 0) }}"
+                all-event="{{ json_encode($events) }}"
+        >
+        </search-event>
+    </div>
+    <script src="/js/app.js"></script>
+
+
+
+    <div class="upcoming-events-outer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="upcoming-events">
+                        <div class="upcoming-events-header">
+                            <h4>Upcoming Events</h4>
+                        </div>
+
+                        <div class="upcoming-events-list">
+                            <div class="upcoming-event-wrap flex flex-wrap justify-content-between align-items-center">
+                                <figure class="events-thumbnail">
+                                    <a href="#"><img src="{{ asset('frontend/images/upcoming-1.jpg') }}" alt=""></a>
+                                </figure>
+
+                                <div class="entry-meta">
+                                    <div class="event-date">
+                                        25<span>February</span>
+                                    </div>
+                                </div>
+
+                                <header class="entry-header">
+                                    <h3 class="entry-title"><a href="#">Blockchain Conference</a></h3>
+
+                                    <div class="event-date-time">May 29, 2018 @ 8:00 Pm - May 30, 2018 @ 4:00 Am</div>
+
+                                    <div class="event-speaker">Speackers: Maria Williams, Luis Smith, James Doe</div>
+                                </header>
+
+                                <footer class="entry-footer">
+                                    <a href="#">Buy Tikets</a>
+                                </footer>
+                            </div>
+
+                            <div class="upcoming-event-wrap flex flex-wrap justify-content-between align-items-center">
+                                <figure class="events-thumbnail">
+                                    <a href="#"><img src="{{ asset('frontend/images/upcoming-2.jpg') }}" alt=""></a>
+                                </figure>
+
+                                <div class="entry-meta">
+                                    <div class="event-date">
+                                        27<span>February</span>
+                                    </div>
+                                </div>
+
+                                <header class="entry-header">
+                                    <h3 class="entry-title"><a href="#">Financial Conference</a></h3>
+
+                                    <div class="event-date-time">May 29, 2018 @ 8:00 Pm - May 30, 2018 @ 4:00 Am</div>
+
+                                    <div class="event-speaker">Speackers: Maria Williams, Luis Smith, James Doe</div>
+                                </header>
+
+                                <footer class="entry-footer">
+                                    <a href="#">Buy Tikets</a>
+                                </footer>
+                            </div>
+
+                            <div class="upcoming-event-wrap flex flex-wrap justify-content-between align-items-center">
+                                <figure class="events-thumbnail">
+                                    <a href="#"><img src="{{ asset('frontend/images/upcoming-3.jpg') }}" alt=""></a>
+                                </figure>
+
+                                <div class="entry-meta">
+                                    <div class="event-date">
+                                        27<span>February</span>
+                                    </div>
+                                </div>
+
+                                <header class="entry-header">
+                                    <h3 class="entry-title"><a href="#">Winter Festival</a></h3>
+
+                                    <div class="event-date-time">May 29, 2018 @ 8:00 Pm - May 30, 2018 @ 4:00 Am</div>
+
+                                    <div class="event-speaker">Speackers: Maria Williams, Luis Smith, James Doe</div>
+                                </header>
+
+                                <footer class="entry-footer">
+                                    <a href="#">Buy Tikets</a>
+                                </footer>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="newsletter-subscribe">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <header class="entry-header">
+                        <h2 class="entry-title">Subscribe to our newsletter to get the latest trends & news</h2>
+                        <p>Join our database NOW!</p>
+                    </header>
+
+                    <div class="newsletter-form">
+                        <form class="flex flex-wrap justify-content-center align-items-center">
+                            <div class="col-md-12 col-lg-3">
+                                <input type="text" placeholder="Name">
+                            </div>
+
+                            <div class="col-md-12 col-lg-6">
+                                <input type="email" placeholder="Your e-mail">
+                            </div>
+
+                            <div class="col-md-12 col-lg-3">
+                                <input class="btn gradient-bg" type="submit" value="Subscribe">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <figure class="footer-logo">
+                        <a href="#"><img src="{{ asset('frontend/images/logo.png') }}" alt="logo"></a>
+                    </figure>
+
+                    <nav class="footer-navigation">
+                        <ul class="flex flex-wrap justify-content-center align-items-center">
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">About us</a></li>
+                            <li><a href="#">Events</a></li>
+                            <li><a href="#">News</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </nav>
+
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+                    All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+
+                    <div class="footer-social">
+                        <ul class="flex flex-wrap justify-content-center align-items-center">
+                            <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="back-to-top flex justify-content-center align-items-center">
+        <span><svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1395 1184q0 13-10 23l-50 50q-10 10-23 10t-23-10l-393-393-393 393q-10 10-23 10t-23-10l-50-50q-10-10-10-23t10-23l466-466q10-10 23-10t23 10l466 466q10 10 10 23z"/></svg></span>
+    </div>
 @endsection
 
-@section('inline_script')
-    <script src="{{ asset('frontend/js/extention/choices.js') }}"></script>
-
-    <script>
-        const customSelects = document.querySelectorAll("select");
-        const deleteBtn = document.getElementById('delete')
-        const choices = new Choices('select',
-            {
-                searchEnabled: false,
-                removeItemButton: true,
-                itemSelectText: '',
-            });
-        for (let i = 0; i < customSelects.length; i++) {
-            customSelects[i].addEventListener('addItem', function (event) {
-                if (event.detail.value) {
-                    let parent = this.parentNode.parentNode
-                    parent.classList.add('valid')
-                    parent.classList.remove('invalid')
-                } else {
-                    let parent = this.parentNode.parentNode
-                    parent.classList.add('invalid')
-                    parent.classList.remove('valid')
-                }
-            }, false);
-        }
-        deleteBtn.addEventListener("click", function (e) {
-            e.preventDefault()
-            const deleteAll = document.querySelectorAll('.choices__button')
-            for (let i = 0; i < deleteAll.length; i++) {
-                deleteAll[i].click();
-            }
-        });
-
-    </script>
-@endsection

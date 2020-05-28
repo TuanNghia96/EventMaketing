@@ -103,7 +103,7 @@ class Event extends Model
      */
     public function getSearch($input)
     {
-        $query = $this->active()->query();
+        $query = $this->active()->orderBy('id');
 
         //check like
         if (isset($input['name'])) {

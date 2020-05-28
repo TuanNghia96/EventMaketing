@@ -1,24 +1,45 @@
-<footer id="fh5co-footer" role="contentinfo">
+<footer class="site-footer">
     <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <figure class="footer-logo">
+                    <a href="#"><img src="{{ asset('frontend/images/logo.png')}}" alt="logo"></a>
+                </figure>
 
-        <div class="row copyright">
-            <div class="col-md-12 text-center">
-                <p>
-                    <small class="block">&copy; 2016 Free HTML5. All Rights Reserved.</small>
-                    <small class="block">Designed by <a href="http://freehtml5.co/" target="_blank">FREEHTML5.co</a> Demo Images: <a href="http://unsplash.co/" target="_blank">Unsplash</a></small>
-                </p>
-                <ul class="fh5co-social-icons">
-                    <li><a href="#"><i class="icon-twitter"></i></a></li>
-                    <li><a href="#"><i class="icon-facebook"></i></a></li>
-                    <li><a href="#"><i class="icon-linkedin"></i></a></li>
-                    <li><a href="#"><i class="icon-dribbble"></i></a></li>
-                </ul>
+                <nav class="footer-navigation">
+                    <ul class="flex flex-wrap justify-content-center align-items-center">
+                        <li><a href="{{ route('home') }}">Home</a></li>
+                        <li><a href="{{ route('event.index') }}">Events</a></li>
+                        @if(Auth::user())
+                            @if(Auth::user()->role == \App\Models\User::ENTERPRISE)
+                                <li><a href="{{ route('event.create') }}">Make Event</a></li>
+                                <li><a href="#">Main Event</a></li>
+                                <li><a href="#">Join Event</a></li>
+                                <li><a href="#">List Event</a></li>
+                            @elseif(Auth::user()->role == \App\Models\User::BUYER)
+                                <li><a href="#">News</a></li>
+
+                            @endif
+                        @endif
+                        <li><a href="{{ route('contact.about') }}">About us</a></li>
+                        <li><a href="{{ route('contact') }}">Contact</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://www.facebook.com/nghia.batuan" target="_blank">Nghia.nbt</a>
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+
+                <div class="footer-social">
+                    <ul class="flex flex-wrap justify-content-center align-items-center">
+                        <li><a href="https://www.pinterest.com/"><i class="fa fa-pinterest"></i></a></li>
+                        <li><a href="https://www.linkedin.com/"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="https://www.instagram.com/?hl=vi"><i class="fa fa-instagram"></i></a></li>
+                        <li><a href="https://www.facebook.com/nghia.batuan"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="https://twitter.com/?lang=vi#"><i class="fa fa-twitter"></i></a></li>
+                    </ul>
+                </div>
             </div>
         </div>
-
     </div>
 </footer>
-
-<div class="gototop js-top">
-    <a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
-</div>

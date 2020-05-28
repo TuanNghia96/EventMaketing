@@ -36,7 +36,7 @@ class ContactController extends Controller
     public function send(ContactStoreRequest $request)
     {
         Comment::create($request->all());
-        return redirect(route('contact'));
+        return redirect(route('home'));
     }
 
     /**

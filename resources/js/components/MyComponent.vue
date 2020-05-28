@@ -1,16 +1,29 @@
 <template>
-    <div>
-        <ul id="fh5co-gallery-list">
-                <li v-for="(event, i) in sub_events" :key="i" class="one-third animate-box my-component fadeIn animated-fast" :style="`background-image: url( ${event.avatar} )`">
-                    <a href="">
-                        <div class="case-studies-summary">
-                            <span>{{ all_type[event.type] }}</span>
-                            <h2>{{ event.name }}</h2>
-                        </div>
-                    </a>
-                </li>
-        </ul>
-        <div class="col-md-12 col-sm-12 text-center">
+    <div class="row">
+        <div class="col-12 col-sm-6 col-md-4" v-for="(event, i) in sub_events" :key="i">
+            <div class="next-event-wrap">
+                <figure>
+                    <a :href="urlDetail.replace(999, event.id)"><img :src="event.avatar" alt="1"></a>
+
+                    <div class="event-rating">{{ event.point % 100 }}</div>
+                </figure>
+
+                <header class="entry-header">
+                    <h3 class="entry-title">{{ event.name }}</h3>
+
+                    <div class="posted-date">Saturday <span>{{ event.start_date }}</span></div>
+                </header>
+
+                <div class="entry-content">
+                    <p>{{ event.title }}</p>
+                </div>
+
+                <footer class="entry-footer">
+                    <a :href="urlDetail.replace(999, event.id)" >Get Ticket</a>
+                </footer>
+            </div>
+        </div>
+        <div class="col-md-12 col-sm-12 mt-3 text-center">
             <button class="btn btn-default btn-sm" @click="getMore">Thêm</button>
         </div>
     </div>
@@ -22,6 +35,7 @@
             "subEvents",
             "allType",
             "urlSub",
+            "urlDetail",
         ],
         created() {
             this.sub_events = JSON.parse(this.subEvents) || [];

@@ -1830,8 +1830,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["subEvents", "allType", "urlSub"],
+  props: ["subEvents", "allType", "urlSub", "urlDetail"],
   created: function created() {
     this.sub_events = JSON.parse(this.subEvents) || [];
     this.all_type = JSON.parse(this.allType) || [];
@@ -1948,61 +1961,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['bgUrl', 'allType', 'allClassify', 'url', 'allEvent', 'urlEvent'],
   created: function created() {
     this.typesData = JSON.parse(this.allType) || [];
     this.classifyData = JSON.parse(this.allClassify) || [];
     this.eventsData = JSON.parse(this.allEvent) || [];
-    this.eventsShow = this.eventsData.slice(0, 6);
+    this.eventsShow = this.eventsData.slice(0, 0);
   },
   data: function data() {
     return {
@@ -2031,6 +1996,7 @@ __webpack_require__.r(__webpack_exports__);
           name: this.nameSearch
         }
       }).then(function (response) {
+        console.log(response.data);
         _this.eventsData = response.data;
         _this.eventsShow = _this.eventsData.slice(0, _this.result);
       })["catch"](function (error) {
@@ -38591,41 +38557,61 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "ul",
-      { attrs: { id: "fh5co-gallery-list" } },
+  return _c(
+    "div",
+    { staticClass: "row" },
+    [
       _vm._l(_vm.sub_events, function(event, i) {
-        return _c(
-          "li",
-          {
-            key: i,
-            staticClass:
-              "one-third animate-box my-component fadeIn animated-fast",
-            style: "background-image: url( " + event.avatar + " )"
-          },
-          [
-            _c("a", { attrs: { href: "" } }, [
-              _c("div", { staticClass: "case-studies-summary" }, [
-                _c("span", [_vm._v(_vm._s(_vm.all_type[event.type]))]),
-                _vm._v(" "),
-                _c("h2", [_vm._v(_vm._s(event.name))])
+        return _c("div", { key: i, staticClass: "col-12 col-sm-6 col-md-4" }, [
+          _c("div", { staticClass: "next-event-wrap" }, [
+            _c("figure", [
+              _c(
+                "a",
+                { attrs: { href: _vm.urlDetail.replace(999, event.id) } },
+                [_c("img", { attrs: { src: event.avatar, alt: "1" } })]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "event-rating" }, [
+                _vm._v(_vm._s(event.point % 100))
               ])
+            ]),
+            _vm._v(" "),
+            _c("header", { staticClass: "entry-header" }, [
+              _c("h3", { staticClass: "entry-title" }, [
+                _vm._v(_vm._s(event.name))
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "posted-date" }, [
+                _vm._v("Saturday "),
+                _c("span", [_vm._v(_vm._s(event.start_date))])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "entry-content" }, [
+              _c("p", [_vm._v(_vm._s(event.title))])
+            ]),
+            _vm._v(" "),
+            _c("footer", { staticClass: "entry-footer" }, [
+              _c(
+                "a",
+                { attrs: { href: _vm.urlDetail.replace(999, event.id) } },
+                [_vm._v("Get Ticket")]
+              )
             ])
-          ]
-        )
+          ])
+        ])
       }),
-      0
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "col-md-12 col-sm-12 text-center" }, [
-      _c(
-        "button",
-        { staticClass: "btn btn-default btn-sm", on: { click: _vm.getMore } },
-        [_vm._v("Thêm")]
-      )
-    ])
-  ])
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-12 col-sm-12 mt-3 text-center" }, [
+        _c(
+          "button",
+          { staticClass: "btn btn-default btn-sm", on: { click: _vm.getMore } },
+          [_vm._v("Thêm")]
+        )
+      ])
+    ],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -38650,383 +38636,231 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c(
-      "header",
-      {
-        staticClass: "fh5co-cover",
-        style: "background-image: url( " + _vm.bgUrl + " )",
-        attrs: {
-          id: "fh5co-header",
-          role: "banner",
-          "data-stellar-background-ratio": "0.5"
-        }
-      },
-      [
-        _c("div", { staticClass: "container" }, [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-md-8 col-md-offset-2 text-center" }, [
-              _c("div", { staticClass: "display-t" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass: "display-tc animate-box",
-                    attrs: { "data-animate-effect": "fadeIn" }
-                  },
-                  [
-                    _c("h1", [_vm._v(" ")]),
-                    _vm._v(" "),
-                    _c("h1", [_vm._v("Event Countdown")]),
-                    _vm._v(" "),
-                    _c("h2", [_vm._v("Let join your event")]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "s007" }, [
-                      _c("form", { attrs: { href: "#" } }, [
-                        _c("div", { staticClass: "inner-form" }, [
-                          _c("div", { staticClass: "basic-search" }, [
-                            _c("div", { staticClass: "input-field" }, [
-                              _c("div", { staticClass: "icon-wrap" }, [
-                                _c(
-                                  "svg",
-                                  {
-                                    attrs: {
-                                      version: "1.1",
-                                      xmlns: "http://www.w3.org/2000/svg",
-                                      "xmlns:xlink":
-                                        "http://www.w3.org/1999/xlink",
-                                      width: "20",
-                                      height: "20",
-                                      viewBox: "0 0 20 20"
-                                    }
-                                  },
-                                  [
-                                    _c("path", {
-                                      attrs: {
-                                        d:
-                                          "M18.869 19.162l-5.943-6.484c1.339-1.401 2.075-3.233 2.075-5.178 0-2.003-0.78-3.887-2.197-5.303s-3.3-2.197-5.303-2.197-3.887 0.78-5.303 2.197-2.197 3.3-2.197 5.303 0.78 3.887 2.197 5.303 3.3 2.197 5.303 2.197c1.726 0 3.362-0.579 4.688-1.645l5.943 6.483c0.099 0.108 0.233 0.162 0.369 0.162 0.121 0 0.242-0.043 0.338-0.131 0.204-0.187 0.217-0.503 0.031-0.706zM1 7.5c0-3.584 2.916-6.5 6.5-6.5s6.5 2.916 6.5 6.5-2.916 6.5-6.5 6.5-6.5-2.916-6.5-6.5z"
-                                      }
-                                    })
-                                  ]
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.nameSearch,
-                                    expression: "nameSearch"
-                                  }
-                                ],
-                                attrs: {
-                                  id: "search",
-                                  type: "text",
-                                  placeholder: "Search..."
-                                },
-                                domProps: { value: _vm.nameSearch },
-                                on: {
-                                  keyup: function($event) {
-                                    return _vm.getSearch()
-                                  },
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.nameSearch = $event.target.value
-                                  }
-                                }
-                              }),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "result-count" }, [
-                                _c("span", [
-                                  _vm._v(_vm._s(_vm.eventsData.length) + " ")
-                                ]),
-                                _vm._v(
-                                  "results\n                                                "
-                                )
-                              ])
-                            ])
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "advance-search" }, [
-                            _c("span", [_vm._v("Advanced Search")]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "row" }, [
-                              _c("div", { staticClass: "input-field" }, [
-                                _c("div", { staticClass: "input-select" }, [
-                                  _c(
-                                    "select",
-                                    {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.typeSearch,
-                                          expression: "typeSearch"
-                                        }
-                                      ],
-                                      attrs: {
-                                        "data-trigger": "",
-                                        name: "choices-single-defaul"
-                                      },
-                                      on: {
-                                        change: [
-                                          function($event) {
-                                            var $$selectedVal = Array.prototype.filter
-                                              .call(
-                                                $event.target.options,
-                                                function(o) {
-                                                  return o.selected
-                                                }
-                                              )
-                                              .map(function(o) {
-                                                var val =
-                                                  "_value" in o
-                                                    ? o._value
-                                                    : o.value
-                                                return val
-                                              })
-                                            _vm.typeSearch = $event.target
-                                              .multiple
-                                              ? $$selectedVal
-                                              : $$selectedVal[0]
-                                          },
-                                          function($event) {
-                                            return _vm.getSearch()
-                                          }
-                                        ]
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "option",
-                                        {
-                                          staticClass: "text-center",
-                                          attrs: { placeholder: "", value: "" }
-                                        },
-                                        [_vm._v("Type")]
-                                      ),
-                                      _vm._v(" "),
-                                      _vm._l(_vm.typesData, function(type, i) {
-                                        return _c(
-                                          "option",
-                                          { domProps: { value: i } },
-                                          [_vm._v(_vm._s(type))]
-                                        )
-                                      })
-                                    ],
-                                    2
-                                  )
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "input-field" }, [
-                                _c("div", { staticClass: "input-select" }, [
-                                  _c(
-                                    "select",
-                                    {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.classifySearch,
-                                          expression: "classifySearch"
-                                        }
-                                      ],
-                                      attrs: {
-                                        "data-trigger": "",
-                                        name: "choices-single-defaul"
-                                      },
-                                      on: {
-                                        change: [
-                                          function($event) {
-                                            var $$selectedVal = Array.prototype.filter
-                                              .call(
-                                                $event.target.options,
-                                                function(o) {
-                                                  return o.selected
-                                                }
-                                              )
-                                              .map(function(o) {
-                                                var val =
-                                                  "_value" in o
-                                                    ? o._value
-                                                    : o.value
-                                                return val
-                                              })
-                                            _vm.classifySearch = $event.target
-                                              .multiple
-                                              ? $$selectedVal
-                                              : $$selectedVal[0]
-                                          },
-                                          function($event) {
-                                            return _vm.getSearch()
-                                          }
-                                        ]
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "option",
-                                        {
-                                          attrs: { placeholder: "", value: "" }
-                                        },
-                                        [_vm._v("CLASSIFY")]
-                                      ),
-                                      _vm._v(" "),
-                                      _vm._l(_vm.classifyData, function(
-                                        classify,
-                                        i
-                                      ) {
-                                        return _c(
-                                          "option",
-                                          { domProps: { value: i } },
-                                          [_vm._v(_vm._s(classify))]
-                                        )
-                                      })
-                                    ],
-                                    2
-                                  )
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "input-field" }, [
-                                _c("div", { staticClass: "input-select" }, [
-                                  _c(
-                                    "select",
-                                    {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.statusSearch,
-                                          expression: "statusSearch"
-                                        }
-                                      ],
-                                      attrs: {
-                                        "data-trigger": "",
-                                        name: "choices-single-defaul"
-                                      },
-                                      on: {
-                                        change: [
-                                          function($event) {
-                                            var $$selectedVal = Array.prototype.filter
-                                              .call(
-                                                $event.target.options,
-                                                function(o) {
-                                                  return o.selected
-                                                }
-                                              )
-                                              .map(function(o) {
-                                                var val =
-                                                  "_value" in o
-                                                    ? o._value
-                                                    : o.value
-                                                return val
-                                              })
-                                            _vm.statusSearch = $event.target
-                                              .multiple
-                                              ? $$selectedVal
-                                              : $$selectedVal[0]
-                                          },
-                                          function($event) {
-                                            return _vm.getSearch()
-                                          }
-                                        ]
-                                      }
-                                    },
-                                    [
-                                      _c(
-                                        "option",
-                                        {
-                                          attrs: { placeholder: "", value: "" }
-                                        },
-                                        [_vm._v("STATUS")]
-                                      ),
-                                      _vm._v(" "),
-                                      _c("option", { attrs: { value: "1" } }, [
-                                        _vm._v("START")
-                                      ]),
-                                      _vm._v(" "),
-                                      _c("option", { attrs: { value: "0" } }, [
-                                        _vm._v("WAITING")
-                                      ])
-                                    ]
-                                  )
-                                ])
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _vm._m(0)
-                          ])
-                        ])
-                      ])
+    _c("form", { staticClass: "events-search" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-12 col-md-9" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.nameSearch,
+                  expression: "nameSearch"
+                }
+              ],
+              attrs: { id: "search", type: "text", placeholder: "Search..." },
+              domProps: { value: _vm.nameSearch },
+              on: {
+                keyup: function($event) {
+                  return _vm.getSearch()
+                },
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.nameSearch = $event.target.value
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "col-12 col-md-4", on: { change: _vm.getSearch } },
+            [
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.classifySearch,
+                      expression: "classifySearch"
+                    }
+                  ],
+                  staticClass: "form-control search-slt",
+                  attrs: { id: "exampleFormControlSelect2" },
+                  on: {
+                    change: [
+                      function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.classifySearch = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      },
+                      function($event) {
+                        return _vm.getSearch()
+                      }
+                    ]
+                  }
+                },
+                [
+                  _c("option", [_vm._v("Classify")]),
+                  _vm._v(" "),
+                  _vm._l(_vm.classifyData, function(classify, i) {
+                    return _c("option", { key: i, domProps: { value: i } }, [
+                      _vm._v(_vm._s(classify))
                     ])
+                  })
+                ],
+                2
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-12 col-md-4" }, [
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.typeSearch,
+                    expression: "typeSearch"
+                  }
+                ],
+                staticClass: "form-control search-slt",
+                attrs: { id: "exampleFormControlSelect1" },
+                on: {
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.typeSearch = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    },
+                    function($event) {
+                      return _vm.getSearch()
+                    }
                   ]
+                }
+              },
+              [
+                _c("option", [_vm._v("Type")]),
+                _vm._v(" "),
+                _vm._l(_vm.typesData, function(type, i) {
+                  return _c("option", { key: i, domProps: { value: i } }, [
+                    _vm._v(_vm._s(type))
+                  ])
+                })
+              ],
+              2
+            )
+          ]),
+          _vm._v(" "),
+          _vm._m(1),
+          _vm._v(" "),
+          _vm._m(2)
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "container" }, [
+      _c(
+        "div",
+        { staticClass: "row events-list" },
+        _vm._l(_vm.eventsShow, function(event, i) {
+          return _c(
+            "div",
+            { key: i, staticClass: "col-12 col-lg-6 single-event" },
+            [
+              _c("figure", { staticClass: "events-thumbnail" }, [
+                _c("a", { attrs: { href: "#" } }, [
+                  _c("img", {
+                    attrs: {
+                      src: "" + ("../" + event.avatar),
+                      width: "100%",
+                      height: "auto",
+                      alt: ""
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "event-content-wrap" }, [
+                _c(
+                  "header",
+                  { staticClass: "entry-header flex justify-content-between" },
+                  [
+                    _c("div", [
+                      _c("h2", { staticClass: "entry-title" }, [
+                        _c("a", { attrs: { href: "#" } }, [
+                          _vm._v(_vm._s(event.name))
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "event-location" }, [
+                        _c("a", { attrs: { href: "#" } }, [
+                          _vm._v(_vm._s(event.location))
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "event-date" }, [
+                        _vm._v(
+                          _vm._s(event.start_date) +
+                            "May 29, 2018 @ 8:00 Pm - May 30, 2018 @ 4:00 Am"
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(3, true)
+                  ]
+                ),
+                _vm._v(" "),
+                _c("footer", { staticClass: "entry-footer" }, [
+                  _c(
+                    "a",
+                    { attrs: { href: _vm.urlEvent.replace(/.$/, event.id) } },
+                    [_vm._v("Buy Tikets")]
+                  )
+                ])
+              ])
+            ]
+          )
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _vm.eventsShow.length
+        ? _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-12 text-center" }, [
+              _c("div", { staticClass: "load-more-btn" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn gradient-bg",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function($event) {
+                        return _vm.loadMore()
+                      }
+                    }
+                  },
+                  [_vm._v("Load more")]
                 )
               ])
             ])
           ])
-        ])
-      ]
-    ),
-    _vm._v(" "),
-    _c("div", { staticClass: "row row-bottom-padded-md" }, [
-      _c("div", { staticClass: "col-md-12" }, [
-        _c(
-          "ul",
-          { attrs: { id: "fh5co-gallery-list" } },
-          _vm._l(_vm.eventsShow, function(event, i) {
-            return _c(
-              "li",
-              {
-                key: i,
-                staticClass:
-                  "one-third animate-box search-event fadeIn animated-fast",
-                style: "background-image: url(" + ("../" + event.avatar) + ")",
-                attrs: { "data-animate-effect": "fadeIn" }
-              },
-              [
-                _c(
-                  "a",
-                  { attrs: { href: _vm.urlEvent.replace(/.$/, event.id) } },
-                  [
-                    _c("div", { staticClass: "case-studies-summary" }, [
-                      _c("span", [
-                        _vm._v(_vm._s(_vm.classifyData[event.classify]))
-                      ]),
-                      _c("br"),
-                      _vm._v(" "),
-                      _c("span", [_vm._v(_vm._s(_vm.typesData[event.type]))]),
-                      _vm._v(" "),
-                      _c("h2", [_vm._v(_vm._s(event.name))])
-                    ])
-                  ]
-                )
-              ]
-            )
-          }),
-          0
-        )
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row row-bottom-padded-md" }, [
-      _c("div", { staticClass: "col-md-offset-4 col-md-4 text-center" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-success",
-            attrs: { type: "button" },
-            on: {
-              click: function($event) {
-                return _vm.loadMore()
-              }
-            }
-          },
-          [_vm._v("Load more")]
-        )
-      ])
+        : _vm._e()
     ])
   ])
 }
@@ -39035,9 +38869,43 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row third" }, [
-      _c("div", { staticClass: "input-field" })
+    return _c("div", { staticClass: "col-12 col-md-3" }, [
+      _c("input", { attrs: { type: "date", placeholder: "Date" } })
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-12 col-md-3" }, [
+      _c("input", { attrs: { type: "date", placeholder: "Date" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-12 text-center" }, [
+      _c("input", {
+        staticClass: "btn gradient-bg",
+        attrs: { type: "submit", value: "Search Events" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "event-cost flex justify-content-center align-items-center"
+      },
+      [
+        _vm._v("\n                            from"),
+        _c("span", [_vm._v("$89")])
+      ]
+    )
   }
 ]
 render._withStripped = true
