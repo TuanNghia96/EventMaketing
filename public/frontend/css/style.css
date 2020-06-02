@@ -143,7 +143,7 @@ a:hover, a:active {
     .site-branding {
         margin-left: 45px;
     }
-
+    
     .site-header .site-title img {
         max-height: 999px;
     }
@@ -274,7 +274,7 @@ a:hover, a:active {
         height: auto;
         background: transparent;
     }
-
+    
     .site-navigation ul {
         display: flex;
         flex-wrap: wrap;
@@ -289,7 +289,7 @@ a:hover, a:active {
         overflow: auto;
         background: transparent;
     }
-
+    
     .site-navigation ul li a {
         color: #fff;
     }
@@ -440,12 +440,12 @@ a:hover, a:active {
     .hero-slider .entry-title {
         font-size: 42px;
     }
-
+    
     .countdown-holder {
         margin-right: 24px;
         font-size: 42px;
     }
-
+    
     .countdown-holder label {
         font-size: 18px;
     }
@@ -456,20 +456,20 @@ a:hover, a:active {
     .hero-slider {
         /*height: 100vh;*/
     }
-
+    
     .hero-content {
         padding-top: 300px;
     }
-
+    
     .hero-slider .entry-title {
         font-size: 72px;
     }
-
+    
     .countdown-holder {
         margin-right: 52px;
         font-size: 60px;
     }
-
+    
     .countdown-holder label {
         font-size: 24px;
     }
@@ -479,11 +479,11 @@ a:hover, a:active {
     .hero-content {
         padding-top: 400px;
     }
-
+    
     .swiper-button-next {
         right: 64px;
     }
-
+    
     .swiper-button-prev {
         left: 64px;
     }
@@ -605,7 +605,7 @@ a:hover, a:active {
     .featured-events-wrap .event-content-wrap {
         width: calc(50% - 15px);
     }
-
+    
     .featured-events-wrap .event-content-wrap.half {
         width: calc(33.333333% - 15px);
     }
@@ -615,72 +615,72 @@ a:hover, a:active {
     .homepage-featured-events {
         min-height: 1260px;
     }
-
+    
     .featured-events-wrap .event-content-wrap {
         position: absolute;
         top: 0;
         left: 0;
         margin-bottom: 0;
     }
-
+    
     .homepage-featured-events .positioning-event-1 {
         width: 290px;
     }
-
+    
     .homepage-featured-events .positioning-event-2 {
         width: 210px;
         top: 192px;
         left: 320px;
     }
-
+    
     .homepage-featured-events .positioning-event-3 {
         width: 210px;
         top: 75px;
         left: 560px;
     }
-
+    
     .homepage-featured-events .positioning-event-4 {
         width: 130px;
         top: 235px;
         left: 800px;
     }
-
+    
     .homepage-featured-events .positioning-event-5 {
         width: 130px;
         top: 350px;
         left: 0;
     }
-
+    
     .homepage-featured-events .positioning-event-6 {
         width: 130px;
         top: 344px;
         left: 560px;
     }
-
+    
     .homepage-featured-events .positioning-event-7 {
         width: 210px;
         top: 457px;
         left: 160px;
     }
-
+    
     .homepage-featured-events .positioning-event-8 {
         width: 290px;
         top: 457px;
         left: 400px;
     }
-
+    
     .homepage-featured-events .positioning-event-9 {
         width: 210px;
         top: 395px;
         left: 720px;
     }
-
+    
     .homepage-featured-events .positioning-event-10 {
         width: 130px;
         top: 653px;
         left: 720px;
     }
-
+    
     .homepage-featured-events .positioning-event-11 {
         width: 130px;
         top: 807px;
@@ -692,65 +692,65 @@ a:hover, a:active {
     .homepage-featured-events {
         min-height: 1480px;
     }
-
+    
     .homepage-featured-events .positioning-event-1 {
         width: 350px;
     }
-
+    
     .homepage-featured-events .positioning-event-2 {
         width: 255px;
         top: 230px;
         left: 380px;
     }
-
+    
     .homepage-featured-events .positioning-event-3 {
         width: 255px;
         top: 90px;
         left: 665px;
     }
-
+    
     .homepage-featured-events .positioning-event-4 {
         width: 160px;
         top: 280px;
         left: 950px;
     }
-
+    
     .homepage-featured-events .positioning-event-5 {
         width: 160px;
         top: 417px;
         left: 0;
     }
-
+    
     .homepage-featured-events .positioning-event-6 {
         width: 160px;
         top: 410px;
         left: 665px;
     }
-
+    
     .homepage-featured-events .positioning-event-7 {
         width: 255px;
         top: 546px;
         left: 190px;
     }
-
+    
     .homepage-featured-events .positioning-event-8 {
         width: 350px;
         top: 546px;
         left: 475px;
     }
-
+    
     .homepage-featured-events .positioning-event-9 {
         width: 255px;
         top: 470px;
         left: 855px;
     }
-
+    
     .homepage-featured-events .positioning-event-10 {
         width: 160px;
         top: 776px;
         left: 855px;
     }
-
+    
     .homepage-featured-events .positioning-event-11 {
         width: 160px;
         top: 963px;
@@ -815,11 +815,11 @@ a:hover, a:active {
     height: 78px;
     border: 2px solid #fff;
     border-radius: 50%;
-
+    
     font-size: 22px;
     font-weight: bold;
     color: #fff;
-
+    
     background: #9a28d7;
 }
 
@@ -960,12 +960,12 @@ a:hover, a:active {
     width: 100%;
     height: 100%;
     background: rgba(154,40,215, .85);
-
+    
     font-size: 30px;
     font-weight: bold;
     text-decoration: none;
     color: #fff;
-
+    
     visibility: hidden;
     opacity: 0;
     transition: all .35s;
@@ -1079,7 +1079,7 @@ a:hover, a:active {
     .page-header {
         height: 300px;
     }
-
+    
     .page-header .entry-title {
         font-size: 52px;
     }
@@ -1090,11 +1090,11 @@ a:hover, a:active {
         height: 400px;
         padding: 150px 0;
     }
-
+    
     .page-header .entry-title {
         font-size: 72px;
     }
-
+    
 }
 
 @media screen and (min-width: 1200px){
@@ -1102,7 +1102,7 @@ a:hover, a:active {
         height: 525px;
         padding: 220px 0;
     }
-
+    
 }
 
 .events-page-header {
@@ -1370,13 +1370,13 @@ a:hover, a:active {
     .upcoming-events-list .upcoming-event-wrap {
         padding: 30px 42px;
     }
-
+    
     .upcoming-events-list .entry-header,
     .upcoming-events-list .entry-footer {
         width: 45%;
         margin-top: 0;
     }
-
+    
     .upcoming-events-list .entry-footer {
         width: auto;
     }
@@ -1437,7 +1437,7 @@ ul.tabs-nav .tab-nav.active {
         padding: 14px 24px;
         margin-right: 12px;
     }
-
+    
     .tabs-container {
         padding: 48px;
     }
@@ -1500,7 +1500,7 @@ ul.tabs-nav .tab-nav.active {
 }
 
 .single-event-page .single-event-heading {
-   width: 100%;
+    width: 100%;
 }
 
 .single-event-page .event-content-wrap .entry-title {
@@ -1710,16 +1710,16 @@ ul.tabs-nav .tab-nav.active {
     .single-event-page .single-event-heading {
         width: auto;
     }
-
+    
     .single-event-details {
         width: 220px;
     }
-
+    
     .single-event-map {
         width: calc(100% - 220px);
         margin: 0;
     }
-
+    
     .event-tickets {
         padding: 40px;
     }
@@ -1729,21 +1729,21 @@ ul.tabs-nav .tab-nav.active {
     .single-event-details {
         width: 320px;
     }
-
+    
     .single-event-map {
         width: calc(100% - 320px);
         margin: 0;
     }
-
+    
     .event-tickets .ticket-row {
         margin-bottom: 15px;
     }
-
+    
     .ticket-type {
         width: calc(100% - 400px);
         margin-bottom: 0;
     }
-
+    
     .event-tickets .number-of-ticket {
         margin-bottom: 0;
     }
@@ -1814,7 +1814,7 @@ ul.tabs-nav .tab-nav.active {
     background: -ms-linear-gradient(180deg, rgba(171,0,229,1) 0%, rgba(88,20,121,1) 100%); /* ie10+ */
     background: linear-gradient(270deg, rgba(171,0,229,1) 0%, rgba(88,20,121,1) 100%); /* w3c */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#581479', endColorstr='#ab00e5',GradientType=1 ); /* ie6-9 */
-
+    
     font-size: 18px;
     font-weight: bold;
     color: #fff;
@@ -1856,7 +1856,7 @@ ul.tabs-nav .tab-nav.active {
     align-items: center;
     width: 28px;
     height: 28px;
-
+    
     font-size: 18px;
     font-weight: bold;
     color: #232127;
@@ -2160,7 +2160,7 @@ ul.tabs-nav .tab-nav.active {
     background: #9a28d7;
     transition: all .35s;
     cursor: pointer;
-
+    
     visibility: hidden;
     opacity: 0;
 }

@@ -22,7 +22,7 @@
                 all-type="{{ json_encode(\App\Models\Event::TYPE) }}"
                 all-classify="{{ json_encode(\App\Models\Event::$classify) }}"
                 url="{{ route('event.search') }}"
-                url-event="{{ route('event.detail', 999) }}"
+                    url-event="{{ route('event.detail', 999) }}"
                 all-event="{{ json_encode($events) }}"
         >
         </search-event>

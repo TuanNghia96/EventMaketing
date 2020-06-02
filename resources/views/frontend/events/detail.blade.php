@@ -38,7 +38,7 @@
                     </header>
 
                     <figure class="events-thumbnail">
-                        <img src="images/summer.jpg" alt="">
+                        <img src="{{ asset($event->avatar) }}" id="event_thumbnail" alt="">
                     </figure>
                 </div>
             </div>
@@ -248,9 +248,14 @@
             pointer-events: none;
             color: #ccc;
         }
+
+        #event_thumbnail {
+            width: 100%; height: auto
+        }
     </style>
 @endsection
 
 
 @section('inline_script')
+    <script type='text/javascript' src="{{ asset('frontend/js/custom.js') }}"></script>
 @endsection
