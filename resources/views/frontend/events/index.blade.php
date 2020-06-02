@@ -18,10 +18,11 @@
     <div id="app">
         <search-event
                 bg-url="{{ asset('frontend/images/img_bg_8.jpg') }}"
+                url-detail="{{ route('event.detail', 999) }}"
                 all-type="{{ json_encode(\App\Models\Event::TYPE) }}"
                 all-classify="{{ json_encode(\App\Models\Event::$classify) }}"
                 url="{{ route('event.search') }}"
-                url-event="{{ route('event.detail', 0) }}"
+                url-event="{{ route('event.detail', 999) }}"
                 all-event="{{ json_encode($events) }}"
         >
         </search-event>

@@ -38784,16 +38784,20 @@ var render = function() {
             { key: i, staticClass: "col-12 col-lg-6 single-event" },
             [
               _c("figure", { staticClass: "events-thumbnail" }, [
-                _c("a", { attrs: { href: "#" } }, [
-                  _c("img", {
-                    attrs: {
-                      src: "" + ("../" + event.avatar),
-                      width: "100%",
-                      height: "auto",
-                      alt: ""
-                    }
-                  })
-                ])
+                _c(
+                  "a",
+                  { attrs: { href: _vm.urlEvent.replace(999, event.id) } },
+                  [
+                    _c("img", {
+                      attrs: {
+                        src: "" + ("../" + event.avatar),
+                        width: "100%",
+                        height: "auto",
+                        alt: ""
+                      }
+                    })
+                  ]
+                )
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "event-content-wrap" }, [
@@ -38803,15 +38807,23 @@ var render = function() {
                   [
                     _c("div", [
                       _c("h2", { staticClass: "entry-title" }, [
-                        _c("a", { attrs: { href: "#" } }, [
-                          _vm._v(_vm._s(event.name))
-                        ])
+                        _c(
+                          "a",
+                          {
+                            attrs: { href: _vm.urlEvent.replace(999, event.id) }
+                          },
+                          [_vm._v(_vm._s(event.name))]
+                        )
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "event-location" }, [
-                        _c("a", { attrs: { href: "#" } }, [
-                          _vm._v(_vm._s(event.location))
-                        ])
+                        _c(
+                          "a",
+                          {
+                            attrs: { href: _vm.urlEvent.replace(999, event.id) }
+                          },
+                          [_vm._v(_vm._s(event.location))]
+                        )
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "event-date" }, [
@@ -38829,7 +38841,7 @@ var render = function() {
                 _c("footer", { staticClass: "entry-footer" }, [
                   _c(
                     "a",
-                    { attrs: { href: _vm.urlEvent.replace(/.$/, event.id) } },
+                    { attrs: { href: _vm.urlEvent.replace(999, event.id) } },
                     [_vm._v("Buy Tikets")]
                   )
                 ])

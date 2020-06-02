@@ -40,15 +40,15 @@
             <div class="row events-list">
                 <div class="col-12 col-lg-6 single-event" v-for="(event, i) in eventsShow" :key="i">
                     <figure class="events-thumbnail">
-                        <a href="#"><img :src="`${'../' + event.avatar}`" width="100%" height="auto" alt=""></a>
+                        <a :href="urlEvent.replace(999, event.id)"><img :src="`${'../' + event.avatar}`" width="100%" height="auto" alt=""></a>
                     </figure>
 
                     <div class="event-content-wrap">
                         <header class="entry-header flex justify-content-between">
                             <div>
-                                <h2 class="entry-title"><a href="#">{{ event.name }}</a></h2>
+                                <h2 class="entry-title"><a :href="urlEvent.replace(999, event.id)">{{ event.name }}</a></h2>
 
-                                <div class="event-location"><a href="#">{{ event.location }}</a></div>
+                                <div class="event-location"><a :href="urlEvent.replace(999, event.id)">{{ event.location }}</a></div>
 
                                 <div class="event-date">{{ event.start_date }}May 29, 2018 @ 8:00 Pm - May 30, 2018 @ 4:00 Am</div>
                             </div>
@@ -59,7 +59,7 @@
                         </header>
 
                         <footer class="entry-footer">
-                            <a :href="urlEvent.replace(/.$/,event.id)">Buy Tikets</a>
+                            <a :href="urlEvent.replace(999, event.id)">Buy Tikets</a>
                         </footer>
                     </div>
                 </div>
