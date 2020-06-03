@@ -55,6 +55,12 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => [
     Route::get('/events/remove/{id}', 'EventController@removeEvent')->name('events.remove');
     Route::get('/vouchers', 'VoucherController@index')->name('vouchers.index');
 
+    //type, category
+    Route::resource('/types', 'TypeController');
+    Route::post('/types/restore', 'TypeController@restore')->name('types.restore');
+    Route::resource('/categories', 'CategoryController');
+    Route::post('/categories/restore', 'CategoryController@restore')->name('categories.restore');
+
     //chart
     Route::get('/charts/event', 'ChartController@chartEvent')->name('chart.event');
     Route::get('/charts/enterprise', 'ChartController@chartEvent')->name('chart.enterprise');

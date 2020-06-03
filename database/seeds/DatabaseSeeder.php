@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
         $this->call(AdminTableSeeder::class);
         $this->call(BuyerTableSeeder::class);
         $this->call(EnterpriseTableSeeder::class);
+        $this->call(CategoryTableSeeder::class);
+        $this->call(TypeTableSeeder::class);
         $this->call(EventTableSeeder::class);
         $this->call(EnterpriseEventTableSeeder::class);
         $this->call(TicketsTableSeeder::class);

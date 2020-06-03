@@ -51,7 +51,7 @@
                         </div>
                         <div class="card-body">
                             <div class="chart-container">
-                                <canvas id="classifyChart" style="width: 50%; height: 50%"></canvas>
+                                <canvas id="categoryChart" style="width: 50%; height: 50%"></canvas>
                             </div>
                         </div>
                     </div>
@@ -142,12 +142,12 @@
         var countThisYears = <?php echo $countThisYears?>;
         var countLastYear = <?php echo $countLastYear?>;
         var countTypes = <?php echo $countTypes?>;
-        var countClassify = <?php echo $countClassify?>;
+        var countCategory = <?php echo $countCategory?>;
         console.log();
         var lineChart = document.getElementById('lineChart').getContext('2d'),
             // barChart = document.getElementById('barChart').getContext('2d'),
             pieChart = document.getElementById('pieChart').getContext('2d'),
-            classifyChart = document.getElementById('classifyChart').getContext('2d');
+            categoryChart = document.getElementById('categoryChart').getContext('2d');
             // doughnutChart = document.getElementById('doughnutChart').getContext('2d'),
             // radarChart = document.getElementById('radarChart').getContext('2d'),
             // bubbleChart = document.getElementById('bubbleChart').getContext('2d'),
@@ -244,7 +244,7 @@
                     backgroundColor: ["#1d7af3", "#73a45d", "#f4af4b", "#f3a4cd", "#a3545d", "#335b5d"],
                     borderWidth: 0
                 }],
-                labels: <?php echo json_encode(array_values(\App\Models\Event::TYPE))?>
+                labels: <?php echo $types ?>
             },
             options: {
                 responsive: true,
@@ -275,15 +275,15 @@
             }
         })
 
-        var myClassifyChart = new Chart(classifyChart, {
+        var myCategoryChart = new Chart(categoryChart, {
             type: 'pie',
             data: {
                 datasets: [{
-                    data: countClassify,
+                    data: countCategory,
                     backgroundColor: ["#1d74f3", "#7ba45d", "#f4afcb", "#a3a4cd", "#c6545d", "#3f5b9d"],
                     borderWidth: 0
                 }],
-                labels: <?php echo json_encode(array_values(\App\Models\Event::$classify))?>
+                labels: <?php echo $categories?>
             },
             options: {
                 responsive: true,

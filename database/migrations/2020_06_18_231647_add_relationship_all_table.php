@@ -15,6 +15,8 @@ class AddRelationshipAllTable extends Migration
     {
         Schema::table('events', function (Blueprint $table) {
             $table->foreign('voucher_id')->references('id')->on('vouchers');
+            $table->foreign('type_id')->references('id')->on('types');
+            $table->foreign('category_id')->references('id')->on('categories');
         });
         Schema::table('admins', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');

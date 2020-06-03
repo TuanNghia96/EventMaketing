@@ -28,7 +28,7 @@ class EventController extends Controller
      */
     public function index(Request $request)
     {
-        $events = $this->event->getPaginate($request->all());
+        $events = $this->event->with('type', 'category')->getPaginate($request->all());
         return view('backend.events.index', compact('events'));
     }
 
@@ -40,7 +40,7 @@ class EventController extends Controller
      */
     public function getWaiting(Request $request)
     {
-        $events = $this->event->where('status', Event::STATUS[0])->orderBy('public_date')->get();
+        $events = $this->event->with('type', 'category')->where('status', Event::STATUS[0])->orderBy('public_date')->get();
         return view('backend.events.waiting', compact('events'));
     }
 
@@ -52,7 +52,7 @@ class EventController extends Controller
      */
     public function getValidated(Request $request)
     {
-        $events = $this->event->where('status', '!=', Event::STATUS[0])->orderBy('public_date')->get();
+        $events = $this->event->with('type', 'category')->where('status', '!=', Event::$status[0])->orderBy('public_date')->get();
         return view('backend.events.validated', compact('events'));
     }
 
@@ -64,7 +64,7 @@ class EventController extends Controller
      */
     public function getDetail($id)
     {
-        $event = $this->event->find($id);
+        $event = $this->event->with('type', 'category')->find($id);
 //        dd($event);
         return view('backend.events.detail', compact('event'));
     }
@@ -77,7 +77,7 @@ class EventController extends Controller
      */
     public function setSuccess($id)
     {
-        $event = $this->event->find($id);
+        $event = $this->event->with('type', 'category')->find($id);
         if ($event->status == 0){
             $event->update(['status' => 1]);
         }
@@ -93,7 +93,7 @@ class EventController extends Controller
      */
     public function removeEvent($id)
     {
-        $event = $this->event->find($id);
+        $event = $this->event->with('type', 'category')->find($id);
         if ($event->status != 3){
             $event->update(['status' => 3]);
         }

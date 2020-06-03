@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\EventStoreRequest;
 use App\Models\Buyer;
+use App\Models\Category;
 use App\Models\Event;
+use App\Models\Type;
 use Illuminate\Support\Facades\Auth;
 
 class EnterpriseController extends Controller
@@ -25,7 +27,9 @@ class EnterpriseController extends Controller
      */
     public function createEvent()
     {
-        return view('frontend.events.create');
+        $types= Type::pluck('name')->toArray();
+        $categories= Category::pluck('name', 'id')->toArray();
+        return view('frontend.events.create', compact('types', 'categories'));
     }
 
     public function postEvent(EventStoreRequest $request)

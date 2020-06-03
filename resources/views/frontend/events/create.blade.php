@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-12">
                     <header class="entry-header">
-                        <h1 class="entry-title">Make event</h1>
+                        <h1 class="entry-title">Khởi tạo sự kiện mới</h1>
                     </header>
                 </div>
             </div>
@@ -26,21 +26,21 @@
                         @csrf
                         <div class="col-md-12 mb-3 md-form row">
                             <div class="col-md-4 mb-3 md-form">
-                                <label for="validationCustom012">Name</label>
+                                <label for="validationCustom012">Tên</label>
                                 <input type="text" name="name" class="form-control" id="validationCustom012" placeholder="Event name" value="">
                                 <div class="valid-feedback">
                                     {{--Looks good!--}}
                                 </div>
                             </div>
                             <div class="col-md-4 mb-3 md-form">
-                                <label for="validationCustom022">Title</label>
+                                <label for="validationCustom022">Tiêu đề</label>
                                 <input type="text" class="form-control" name="title" id="validationCustom022" value="">
                                 <div class="valid-feedback">
                                     {{--Looks good!--}}
                                 </div>
                             </div>
                             <div class="col-md-4 mb-3 md-form">
-                                <label for="validationCustomUsername2">Location</label>
+                                <label for="validationCustomUsername2">Đại điểm</label>
                                 <input type="text" class="form-control" name="location" data-toggle="datetimepicker" aria-describedby="inputGroupPrepend2"
                                 >
                                 <div class="invalid-feedback">
@@ -49,10 +49,10 @@
                             </div>
 
                             <div class="col-md-4 mb-3 md-form">
-                                <label for="validationCustom042">Type</label>
+                                <label for="validationCustom042">Thể loại</label>
                                 <select name="type" class="form-control" id="">
                                     <option value=""></option>
-                                    @foreach(\App\Models\Event::TYPE as $key => $value)
+                                    @foreach($types as $key => $value)
                                         <option value="{{ $key }}">{{ $value }}</option>
                                     @endforeach
                                 </select>
@@ -62,10 +62,10 @@
                                 </div>
                             </div>
                             <div class="col-md-4 mb-3 md-form">
-                                <label for="validationCustom042">Classify</label>
+                                <label for="validationCustom042">Danh mục</label>
                                 <select name="classify" class="form-control" id="">
                                     <option value=""></option>
-                                    @foreach(\App\Models\Event::$classify as $key => $value)
+                                    @foreach($categories as $key => $value)
                                         <option value="{{ $key }}">{{ $value }}</option>
                                     @endforeach
                                 </select>
@@ -73,7 +73,7 @@
                                 </div>
                             </div>
                             <div class="col-md-4 mb-3 md-form">
-                                <label for="validatinonCustom032">Ticket Number(min: 100 ticket)</label>
+                                <label for="validatinonCustom032">Số vé(min: 100 ticket)</label>
                                 <input type="text" class="form-control" name="ticket_number">
                                 <div class="invalid-feedback">
                                 </div>
@@ -81,7 +81,7 @@
                         </div>
                         <div class="col-md-6 mb-3 md-form row">
                             <div class="col-md-12">
-                                <label for="validatinonCustom032">Summary</label>
+                                <label for="validatinonCustom032">Nội dung</label>
                                 <textarea name="summary" class="form-control" id="" cols="30" rows="8"></textarea>
                                 {{--<input type="text" class="form-control" id="validationCustom032">--}}
                                 <div class="invalid-feedback">
@@ -91,14 +91,14 @@
                         <div class="col-md-6 mb-3 md-form row">
                             <div class="col-md-12 mb-3 md-form row">
                                 <div class="col-md-6">
-                                    <label for="validationCustom012">Public date at</label>
+                                    <label for="validationCustom012">Ngày công bố</label>
                                     <input type="date" name="public_date" class="form-control datetime_picker" id="publicDate" autocomplete="off">
                                     <div class="valid-feedback">
                                         {{--Looks good!--}}
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="validationCustom012">Public time at</label>
+                                    <label for="validationCustom012">Giờ công bố</label>
                                     <input type="time" name="public_time" class="form-control datetime_picker" required>
                                     <div class="valid-feedback">
                                         {{--Looks good!--}}
@@ -107,14 +107,14 @@
                             </div>
                             <div class="col-md-12 mb-3 md-form row">
                                 <div class="col-md-6">
-                                    <label for="validationCustom012">Start date at</label>
+                                    <label for="validationCustom012">Ngày bắt đầu</label>
                                     <input type="date" name="start_date" class="form-control datetime_picker" id="publicDate" autocomplete="off">
                                     <div class="valid-feedback">
                                         {{--Looks good!--}}
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="validationCustom012">Start time at</label>
+                                    <label for="validationCustom012">Giờ bắt đầu</label>
                                     <input type="time" name="start_time" class="form-control datetime_picker" required>
                                     <div class="valid-feedback">
                                         {{--Looks good!--}}
@@ -123,14 +123,14 @@
                             </div>
                             <div class="col-md-12 mb-3 md-form row">
                                 <div class="col-md-6">
-                                    <label for="validationCustom012">End date at</label>
+                                    <label for="validationCustom012">Ngày kết thúc</label>
                                     <input type="date" name="end_date" class="form-control datetime_picker" id="publicDate" autocomplete="off">
                                     <div class="valid-feedback">
                                         {{--Looks good!--}}
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="validationCustom012">End time at</label>
+                                    <label for="validationCustom012">Thời gian kết thúc</label>
                                     <input type="time" name="end_time" class="form-control datetime_picker" required>
                                     <div class="valid-feedback">
                                         {{--Looks good!--}}
@@ -145,7 +145,7 @@
                         <div class="col-md-12 mb-12 md-form">
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModalLong">
-                                Agree to terms and conditions
+                                Đồng ý với điều khoản
                             </button>
 
                             <!-- Modal -->
@@ -162,7 +162,7 @@
                                             ...
                                         </div>
                                         <div class="modal-footer">
-                                            Tôi hoàn toàn đồng ý với mọi điều khoản.
+                                            <span>Tôi hoàn toàn đồng ý với mọi điều khoản.</span>
                                             <input class="form-check-input" type="checkbox" value="" id="agreeCheck" data-toggle="modal" data-target="#exampleModalLong">
                                         </div>
                                     </div>
@@ -171,7 +171,11 @@
                             <div class="invalid-feedback">
                                 You must agree before submitting.
                             </div>
-                            <button class="btn btn-primary btn-lg btn-rounded" type="submit" id="submitBtn" disabled>Submit form</button>
+                            <br>
+                            <br>
+                            <div class="col-md-12 text-center">
+                                <button class="btn btn-primary btn-lg btn-rounded" type="submit" id="submitBtn" disabled>Tạo sự kiện</button>
+                            </div>
                         </div>
                     </form>
                 </div>

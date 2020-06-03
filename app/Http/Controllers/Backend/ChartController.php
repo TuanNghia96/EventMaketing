@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\DB;
 class ChartController extends Controller
 {
 
+    /**
+     * get chart of event
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function chartEvent()
     {
         $events = Event::get();
@@ -33,25 +38,27 @@ class ChartController extends Controller
         }, $countLastYear->toArray());
 
         $countTypes = Event::whereYear('public_date', '=', date('Y'))
-            ->select(DB::raw('count(id) as `data`'), 'type')
-            ->groupBy('type')
+            ->select(DB::raw('count(id) as `data`'), 'type_id')
+            ->groupBy('type_id')
             ->get();
         $countTypes = array_map(function ($countTypes) {
             return $countTypes['data'];
         }, $countTypes->toArray());
 
-        $countClassify = Event::whereYear('public_date', '=', date('Y'))
-            ->select(DB::raw('count(id) as `data`'), 'classify')
-            ->groupBy('classify')
+        $countCategory = Event::whereYear('public_date', '=', date('Y'))
+            ->select(DB::raw('count(id) as `data`'), 'category_id')
+            ->groupBy('category_id')
             ->get();
-        $countClassify = array_map(function ($count) {
+        $countCategory = array_map(function ($count) {
             return $count['data'];
-        }, $countClassify->toArray());
+        }, $countCategory->toArray());
 
         return view('backend.charts.event')
             ->with('countThisYears', json_encode($countThisYears))
             ->with('countLastYear', json_encode($countLastYear))
             ->with('countTypes', json_encode($countTypes))
-            ->with('countClassify', json_encode($countClassify));
+            ->with('countCategory', json_encode($countCategory))
+            ->with('types', json_encode(\App\Models\Type::pluck('name')->toArray()))
+            ->with('categories', json_encode(\App\Models\Category::pluck('name')->toArray()));
     }
 }

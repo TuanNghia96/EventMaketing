@@ -50,71 +50,71 @@
                 <td>
                     <p>avatar</p>
                 </td>
-                <td><p>{{ $event->avatar }}</p></td>
+                <td><img src="{{ asset($event->avatar) }}" alt="" width="50%"></td>
             </tr>
             <tr>
                 <td>
-                    <p>type</p>
-                </td>
-                <td><p>{{ $event->type }}</p></td>
-            </tr>
-            <tr>
-                <td>
-                    <p>public_date</p>
+                    <p>Thời gian công bố</p>
                 </td>
                 <td><p>{{ $event->public_date }}</p></td>
             </tr>
             <tr>
                 <td>
-                    <p>start_date</p>
+                    <p>Thời gian bắt đầu</p>
                 </td>
                 <td><p>{{ $event->start_date }}</p></td>
             </tr>
             <tr>
                 <td>
-                    <p>end_date</p>
+                    <p>Thời gian kết thúc</p>
                 </td>
                 <td><p>{{ $event->end_date }}</p></td>
             </tr>
             <tr>
                 <td>
-                    <p>voucher_id</p>
+                    <p>Voucher</p>
                 </td>
                 <td><p>{{ $event->voucher_id }}</p></td>
             </tr>
             <tr>
                 <td>
-                    <p>point</p>
+                    <p>Điểm</p>
                 </td>
                 <td><p>{{ $event->point }}</p></td>
             </tr>
             <tr>
                 <td>
-                    <p>classify</p>
+                    <p>Thể loại</p>
                 </td>
-                <td><p>{{ $event->classify }}</p></td>
+                <td><p>{{ $event->type->name }}</p></td>
             </tr>
             <tr>
                 <td>
-                    <p>status</p>
+                    <p>Danh mục</p>
+                </td>
+                <td><p>{{ $event->category->name }}</p></td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Tình trạng</p>
                 </td>
                 <td><p>{{ $event->status }}</p></td>
             </tr>
             <tr>
                 <td>
-                    <p>images</p>
+                    <p>Hình ảnh</p>
                 </td>
                 <td><p>{{ $event->images }}</p></td>
             </tr>
             <tr>
                 <td>
-                    <p>ticket_number</p>
+                    <p>Vé</p>
                 </td>
                 <td><p>{{ $event->ticket_number }}</p></td>
             </tr>
             <tr>
                 <td>
-                    <p>Enterprise name</p>
+                    <p>Tên doanh nghiệp</p>
                 </td>
                 <td>
                     @foreach($event->enterprises()->get()->pluck('name', 'id')->toArray() as $key => $value)
@@ -149,51 +149,4 @@
 @endsection
 
 @section('inline_scripts')
-    <script>
-        $(document).ready(function () {
-            $('#basic-datatables').DataTable({});
-            
-            $('#multi-filter-select').DataTable({
-                "pageLength": 10,
-                initComplete: function () {
-                    this.api().columns().every(function () {
-                        var column = this;
-                        var select = $('<select class="form-control"><option value=""></option></select>')
-                            .appendTo($(column.footer()).empty())
-                            .on('change', function () {
-                                var val = $.fn.dataTable.util.escapeRegex(
-                                    $(this).val()
-                                );
-                                
-                                column
-                                    .search(val ? '^' + val + '$' : '', true, false)
-                                    .draw();
-                            });
-                        
-                        column.data().unique().sort().each(function (d, j) {
-                            select.append('<option value="' + d + '">' + d + '</option>')
-                        });
-                    });
-                }
-            });
-            
-            // Add Row
-            $('#add-row').DataTable({
-                "pageLength": 5,
-            });
-            
-            var action = '<td> <div class="form-button-action"> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task"> <i class="fa fa-edit"></i> </button> <button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove"> <i class="fa fa-times"></i> </button> </div> </td>';
-            
-            $('#addRowButton').click(function () {
-                $('#add-row').dataTable().fnAddData([
-                    $("#addName").val(),
-                    $("#addPosition").val(),
-                    $("#addOffice").val(),
-                    action
-                ]);
-                $('#addRowModal').modal('hide');
-                
-            });
-        });
-    </script>
 @endsection

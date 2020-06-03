@@ -22,8 +22,8 @@ class CreateEventsTable extends Migration
             $table->text('summary')->nullable();
             $table->string('avatar');
             $table->json('images')->nullable();;
-            $table->tinyInteger('type');
-            $table->tinyInteger('classify');
+            $table->unsignedInteger('type_id');
+            $table->unsignedInteger('category_id');
             $table->dateTime('public_date');
             $table->dateTime('start_date');
             $table->dateTime('end_date');

@@ -2,7 +2,9 @@
 
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 
+use App\Models\Category;
 use App\Models\Event;
+use App\Models\Type;
 use Faker\Generator as Faker;
 
 $factory->define(Event::class, function (Faker $faker) {
@@ -14,8 +16,8 @@ $factory->define(Event::class, function (Faker $faker) {
         'location' => $faker->streetAddress,
         'summary' => $faker->realText(300),
         'avatar' => 'fakers/images/img_bg_' . rand(1, 50) . '.jpg',
-        'classify' => array_rand(Event::$classify),
-        'type' => array_rand(Event::TYPE),
+        'type_id' => $faker->randomElement(Type::pluck('id')),
+        'category_id' => $faker->randomElement(Category::pluck('id')),
         'public_date' => $faker->dateTimeThisYear('now'),
         'start_date' => $faker->dateTimeThisYear('+3 days'),
         'end_date' => $faker->dateTimeThisYear( '+6 days'),

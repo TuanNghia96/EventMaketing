@@ -30,13 +30,13 @@ class Event extends Model
         'location',
         'summary',
         'avatar',
-        'type',
+        'type_id',
         'public_date',
         'start_date',
         'end_date',
         'voucher_id',
         'point',
-        'classify',
+        'category_id',
         'status',
         'images',
         'ticket_number',
@@ -147,6 +147,26 @@ class Event extends Model
     public function buyer()
     {
         return $this->belongsToMany(Buyer::class, 'tickets');
+    }
+
+    /**
+     * relationship to type
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function type()
+    {
+        return $this->belongsTo(Type::class);
+    }
+
+    /**
+     * relationship to category
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 
     /**

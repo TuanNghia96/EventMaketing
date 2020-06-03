@@ -45,24 +45,34 @@
                 <li class="nav-item">
                     <a data-toggle="collapse" href="#base">
                         <i class="fas fa-cube"></i>
-                        <p>Quản lý su kien</p>
+                        <p>Quản lý sự kiện</p>
                         <span class="caret"></span>
                     </a>
                     <div class="collapse" id="base">
                         <ul class="nav nav-collapse">
                             <li>
                                 <a href="{{ route('events.index') }}">
-                                    <span class="sub-item">Danh mục su kien</span>
+                                    <span class="sub-item">Danh mục sự kiện</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('events.validated') }}">
-                                    <span class="sub-item">Su kien dang dien ra</span>
+                                    <span class="sub-item">Sự kiện đang diễn ra</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('events.waiting') }}">
-                                    <span class="sub-item">Su kien dang cho</span>
+                                    <span class="sub-item">Sự kiện đang chờ</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('types.index') }}">
+                                    <span class="sub-item">Thể loại sự kiện</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('categories.index') }}">
+                                    <span class="sub-item">Danh mục sự kiện</span>
                                 </a>
                             </li>
                             <li>

@@ -1745,6 +1745,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -38379,17 +38380,13 @@ var render = function() {
     [
       _vm._m(0),
       _vm._v(" "),
-      _c("label", [
-        _vm._v("More image(please chose image size over 1280x720px)")
-      ]),
-      _vm._v(" "),
       _vm._l(_vm.imageData, function(event, i) {
         return _c(
           "div",
           { key: i, staticClass: "col-md-12 mb-3 md-form row" },
           [
             _c("div", { staticClass: "col-md-4" }, [
-              _c("label", [_vm._v("Sub title number " + _vm._s(i + 1))]),
+              _c("label", [_vm._v("Tiêu đề ảnh thứ " + _vm._s(i + 1))]),
               _vm._v(" "),
               _c("input", {
                 staticClass: "form-control",
@@ -38407,7 +38404,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "col-md-8" }, [
-              _c("label", [_vm._v("Sub image number " + _vm._s(i + 1))]),
+              _c("label", [_vm._v("Ảnh thứ " + _vm._s(i + 1))]),
               _vm._v(" "),
               _c("input", {
                 staticClass: "form-control",
@@ -38470,7 +38467,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-12 mb-3 md-form" }, [
-      _c("label", [_vm._v("Avatar(please chose image size over 1280x720px)")]),
+      _c("label", [_vm._v("Ảnh đại diện(độ phân giải tối thiểu 1280x720px)")]),
       _vm._v(" "),
       _c("input", {
         staticClass: "form-control",
@@ -38484,7 +38481,11 @@ var staticRenderFns = [
         }
       }),
       _vm._v(" "),
-      _c("div", { staticClass: "invalid-feedback" })
+      _c("div", { staticClass: "invalid-feedback" }),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("label", [_vm._v("Ảnh thêm(độ phân giải tối thiểu 1280x720px)")])
     ])
   }
 ]
