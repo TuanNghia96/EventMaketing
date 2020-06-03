@@ -1745,7 +1745,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -38380,82 +38379,86 @@ var render = function() {
     [
       _vm._m(0),
       _vm._v(" "),
-      _vm._l(_vm.imageData, function(event, i) {
-        return _c("div", { key: i, staticClass: "form-row" }, [
-          _c("div", { staticClass: "col-md-4 mb-3 md-form" }, [
-            _c("label", [_vm._v("Sub title number " + _vm._s(i + 1))]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control",
-              attrs: {
-                type: "text",
-                name: "images[" + i + "][title]",
-                placeholder: "Event name",
-                value: "",
-                accept: "image/*",
-                required: ""
-              }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "invalid-feedback" })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-8 mb-3 md-form" }, [
-            _c("label", [_vm._v("Sub image number " + _vm._s(i + 1))]),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "form-control",
-              attrs: {
-                type: "file",
-                name: "images[" + i + "][image]",
-                placeholder: "Event name",
-                value: "",
-                accept: "image/*",
-                required: ""
-              }
-            }),
-            _vm._v(" "),
-            _c("div", { staticClass: "invalid-feedback" })
-          ])
-        ])
-      }),
+      _c("label", [
+        _vm._v("More image(please chose image size over 1280x720px)")
+      ]),
       _vm._v(" "),
-      _c("div", { staticClass: "form-row pt-3" }, [
-        _c(
+      _vm._l(_vm.imageData, function(event, i) {
+        return _c(
           "div",
-          { staticClass: "col-md-4 col-md-offset-4 mb-3 md-form text-center" },
+          { key: i, staticClass: "col-md-12 mb-3 md-form row" },
           [
-            _c("label", [_vm._v(" ")]),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-success btn-sm btn-rounded",
-                attrs: { type: "button", id: "addBtn" },
-                on: {
-                  click: function($event) {
-                    return _vm.addImage()
-                  }
+            _c("div", { staticClass: "col-md-4" }, [
+              _c("label", [_vm._v("Sub title number " + _vm._s(i + 1))]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  name: "images[" + i + "][title]",
+                  placeholder: "Image title",
+                  value: "",
+                  accept: "image/*",
+                  required: ""
                 }
-              },
-              [_vm._v("ADD IMAGE")]
-            ),
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "invalid-feedback" })
+            ]),
             _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-danger btn-sm btn-rounded",
-                attrs: { type: "button", id: "delBtn" },
-                on: {
-                  click: function($event) {
-                    return _vm.delImage()
-                  }
+            _c("div", { staticClass: "col-md-8" }, [
+              _c("label", [_vm._v("Sub image number " + _vm._s(i + 1))]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: {
+                  type: "file",
+                  name: "images[" + i + "][image]",
+                  placeholder: "Event name",
+                  value: "",
+                  accept: "image/*",
+                  required: ""
                 }
-              },
-              [_vm._v("DEL IMAGE")]
-            )
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "invalid-feedback" })
+            ])
           ]
         )
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-12 mb-3 md-form row" }, [
+        _c("div", { staticClass: "col text-left" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-success",
+              attrs: { type: "button", id: "addBtn" },
+              on: {
+                click: function($event) {
+                  return _vm.addImage()
+                }
+              }
+            },
+            [_vm._v("+")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col text-right" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-danger",
+              attrs: { type: "button", id: "delBtn" },
+              on: {
+                click: function($event) {
+                  return _vm.delImage()
+                }
+              }
+            },
+            [_vm._v("-")]
+          )
+        ])
       ])
     ],
     2
@@ -38466,26 +38469,22 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-row" }, [
-      _c("div", { staticClass: "col-md-12 mb-3 md-form" }, [
-        _c("label", [
-          _vm._v("Avatar(please chose image size over 1280x720px)")
-        ]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            type: "file",
-            name: "avatar",
-            placeholder: "Event name",
-            value: "",
-            accept: "image/*",
-            required: ""
-          }
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "invalid-feedback" })
-      ])
+    return _c("div", { staticClass: "col-md-12 mb-3 md-form" }, [
+      _c("label", [_vm._v("Avatar(please chose image size over 1280x720px)")]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control",
+        attrs: {
+          type: "file",
+          name: "avatar",
+          placeholder: "Event name",
+          value: "",
+          accept: "image/*",
+          required: ""
+        }
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "invalid-feedback" })
     ])
   }
 ]

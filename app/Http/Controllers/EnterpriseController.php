@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\EventStoreRequest;
+use App\Models\Buyer;
 use App\Models\Event;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,16 +31,15 @@ class EnterpriseController extends Controller
     public function postEvent(EventStoreRequest $request)
     {
         $params = $request->all();
-
         \DB::beginTransaction();
         //code
         $code = Event::withTrashed()->orderBy('code', 'desc')->first()->code;
         $params['code'] = $code + 1;
 
         //format date
-        $params['public_date'] = date('Y-m-d H:i:s', strtotime($params['public_date']));;
-        $params['start_date'] = date('Y-m-d H:i:s', strtotime($params['start_date']));;
-        $params['end_date'] = date('Y-m-d H:i:s', strtotime($params['end_date']));;
+        $params['public_date'] = date('Y-m-d H:i:s', strtotime($params['public_date'] . ' '. $params['public_time']));
+        $params['start_date'] = date('Y-m-d H:i:s', strtotime($params['start_date'] . ' '. $params['start_time']));
+        $params['end_date'] = date('Y-m-d H:i:s', strtotime($params['end_date'] . ' '. $params['end_time']));
 
         //save event avatar
         $avatar = $params['avatar'];
@@ -65,6 +65,37 @@ class EnterpriseController extends Controller
         //attach event to enterprise
         Auth::user()->user->events()->sync([$event->id => ['role' => 1]]);
         \DB::commit();
-        return redirect(route('event.detail', $event->id));
+        return redirect(route('event.review', $event->id));
+    }
+
+
+    /**
+     * get event detail
+     *
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function eventReview($id)
+    {
+        $event = Event::with('buyer')->findOrFail($id);
+        $event->images = json_decode($event->images);
+        return view('frontend.events.detail', compact('event'));
+    }
+
+    /**
+     * check ticket
+     *
+     * @param $number
+     * @return void
+     */
+    public function checkQR($number)
+    {
+        $arr = explode('-', $number);
+        $buyer = Buyer::with('events')->where('buyer_code', $arr[0])->first();
+        $event = $buyer->events->find($arr[1]);
+        if ($buyer && $event && !$event->pivot->is_used && ($event->pivot->qrcode_check == $number)) {
+            $event->pivot->is_used = !$event->pivot->is_used;
+            $event->pivot->save();
+        }
     }
 }

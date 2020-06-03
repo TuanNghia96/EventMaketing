@@ -30,8 +30,7 @@
                     <div class="form-row">
                         <div class="col-md-4 mb-3 md-form">
                             <label for="validationCustom012">Name</label>
-                            <input type="text" name="name" class="form-control" id="validationCustom012" placeholder="Event name" value=""
-                            >
+                            <input type="text" name="name" class="form-control" id="validationCustom012" placeholder="Event name" value="">
                             <div class="valid-feedback">
                                 {{--Looks good!--}}
                             </div>

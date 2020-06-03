@@ -99,6 +99,7 @@
                                     @foreach($event->images as $key => $value)
                                         <div class="column">
                                             <img src="{{ $value->image }}" alt="Snow" style="width:100%">
+                                            <label for="">{{ $value->title }}</label>
                                         </div>
                                     @endforeach
                                 @endisset

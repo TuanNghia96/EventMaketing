@@ -146,26 +146,6 @@ class HomeController extends Controller
     }
 
     /**
-     * get un join event
-     *
-     * @param $number
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     */
-    public function checkQR($number)
-    {
-        $this->authorize('admin');
-        $arr = explode('-', $number);
-        $buyer = Buyer::with('events')->where('buyer_code', $arr[0])->first();
-        $event = $buyer->events->find($arr[1]);
-        if ($buyer && $event && !$event->pivot->is_used && ($event->pivot->qrcode_check == $number)) {
-            $event->pivot->is_used = !$event->pivot->is_used;
-            $event->pivot->save();
-        }
-        dd($event);
-    }
-
-    /**
      * get contact page
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View

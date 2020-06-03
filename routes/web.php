@@ -27,7 +27,6 @@ Route::get('/event/detail/{event}', 'HomeController@eventDetail')->name('event.d
 Route::get('/event/search', 'HomeController@eventIndex')->name('event.index');
 Route::get('/event/join/{id}', 'HomeController@joinEvent')->name('event.join');
 Route::get('/event/unjoin/{id}', 'HomeController@unJoinEvent')->name('event.unjoin');
-Route::get('/event/ticket/{qr}', 'HomeController@checkQR')->name('event.checkQR');
 
 //webinfo
 Route::get('/contact', 'ContactController@contact')->name('contact');
@@ -38,6 +37,8 @@ Route::group(['middleware' => 'enterprise_able'], function () {
     Route::get('/enterprises/create', 'EnterpriseController@createEvent')->name('event.create');
     Route::post('/enterprises/event', 'EnterpriseController@postEvent')->name('event.store');
     Route::post('/enterprises', 'EnterpriseController@show')->name('enterprises.show');
+    Route::get('/event/review/{event}', 'EnterpriseController@eventReview')->name('event.review');
+    Route::get('/event/ticket/{qr}', 'EnterpriseController@checkQR')->name('event.checkQR');
 });
 
 Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => ['admin_able']], function () {
