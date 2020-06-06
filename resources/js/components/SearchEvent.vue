@@ -38,7 +38,7 @@
 
         <div class="container">
             <div class="row events-list">
-                <div class="col-12 col-lg-6 single-event" v-for="(event, i) in eventsShow" :key="i">
+                <div class="col-12 col-lg-6 single-event mb-3" v-for="(event, i) in eventsShow" :key="i">
                     <figure class="events-thumbnail">
                         <a :href="urlEvent.replace(999, event.id)"><img :src="`${'../' + event.avatar}`" width="100%" height="auto" alt=""></a>
                     </figure>
@@ -58,8 +58,8 @@
                             </div>
                         </header>
 
-                        <footer class="entry-footer">
-                            <a :href="urlEvent.replace(999, event.id)">Buy Tikets</a>
+                        <footer class="entry-footer text-center">
+                            <a :href="urlEvent.replace(999, event.id)" class="btn btn-defaul">Buy Tikets</a>
                         </footer>
                     </div>
                 </div>

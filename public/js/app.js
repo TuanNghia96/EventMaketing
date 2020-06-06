@@ -38824,7 +38824,7 @@ var render = function() {
         _vm._l(_vm.eventsShow, function(event, i) {
           return _c(
             "div",
-            { key: i, staticClass: "col-12 col-lg-6 single-event" },
+            { key: i, staticClass: "col-12 col-lg-6 single-event mb-3" },
             [
               _c("figure", { staticClass: "events-thumbnail" }, [
                 _c(
@@ -38878,10 +38878,13 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
-                _c("footer", { staticClass: "entry-footer" }, [
+                _c("footer", { staticClass: "entry-footer text-center" }, [
                   _c(
                     "a",
-                    { attrs: { href: _vm.urlEvent.replace(999, event.id) } },
+                    {
+                      staticClass: "btn btn-defaul",
+                      attrs: { href: _vm.urlEvent.replace(999, event.id) }
+                    },
                     [_vm._v("Buy Tikets")]
                   )
                 ])
