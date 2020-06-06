@@ -13,6 +13,8 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
+//use Alert;
 
 class HomeController extends Controller
 {
@@ -42,6 +44,7 @@ class HomeController extends Controller
             'event' => Event::where('end_date', '<', Carbon::now())->count(),
             'enterprise' => Enterprise::count(),
         ];
+        Alert::alert('Title', 'Message', 'Type');
         return view('frontend.index', compact('events', 'subEvents', 'webInfo'));
     }
 

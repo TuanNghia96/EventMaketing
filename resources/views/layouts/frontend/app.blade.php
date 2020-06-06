@@ -18,10 +18,13 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('frontend/style.css')}}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
+
     @yield('inline_css')
 
 </head>
 <body>
+@include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
 <header class="site-header">
     <div class="header-bar">
         <div class="container-fluid">
@@ -87,6 +90,7 @@
 <script type='text/javascript' src='{{ asset('frontend/js/jquery.countdown.min.js')}}'></script>
 <script type='text/javascript' src='{{ asset('frontend/js/circle-progress.min.js')}}'></script>
 <script type='text/javascript' src='{{ asset('frontend/js/jquery.countTo.min.js')}}'></script>
+<script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
 @yield('inline_script')
 </body>
 </html>
