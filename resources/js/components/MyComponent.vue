@@ -5,7 +5,7 @@
                 <figure>
                     <a :href="urlDetail.replace(999, event.id)"><img :src="event.avatar" alt="1"></a>
 
-                    <div class="event-rating">{{ event.point % 100 }}</div>
+                    <div class="event-rating">{{ event.point / 100 }}</div>
                 </figure>
 
                 <header class="entry-header">
@@ -23,7 +23,7 @@
                 </footer>
             </div>
         </div>
-        <div class="col-md-12 col-sm-12 mt-3 text-center">
+        <div class="col-md-12 col-sm-12 mt-3 mb-5 text-center">
             <button class="btn btn-default btn-sm" @click="getMore">Thêm</button>
         </div>
     </div>

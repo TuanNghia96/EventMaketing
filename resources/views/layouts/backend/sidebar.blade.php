@@ -83,7 +83,7 @@
                         </ul>
                     </div>
                 </li>
-                <li class="nav-item">
+                {{--<li class="nav-item">
                     <a data-toggle="collapse" href="#sidebarLayouts">
                         <i class="fas fa-exchange-alt"></i>
                         <p>Giao dịch</p>
@@ -113,7 +113,7 @@
                             </li>
                         </ul>
                     </div>
-                </li>
+                </li>--}}
                 <li class="nav-item">
                     <a data-toggle="collapse" href="#forms">
                         <i class="fas fa-male"></i>
@@ -147,7 +147,7 @@
                                 <a href="{{ route('admin.index') }}">
                                     <span class="sub-item">Nhân viên</span>
                                 </a>
-                            </li>
+                            </li>{{--
                             <li>
                                 <a href="#">
                                     <span class="sub-item">Chấm công</span>
@@ -162,16 +162,16 @@
                                 <a href="#">
                                     <span class="sub-item">Thiết lập hoa hồng</span>
                                 </a>
-                            </li>
+                            </li>--}}
                         </ul>
                     </div>
                 </li>
-                <li class="nav-item">
+                {{--<li class="nav-item">
                     <a href="#">
                         <i class="fas fa-hand-holding-usd"></i>
                         <p>Sổ quỹ</p>
                     </a>
-                </li>
+                </li>--}}
                 <li class="nav-item">
                     <a data-toggle="collapse" href="#charts">
                         <i class="far fa-chart-bar"></i>

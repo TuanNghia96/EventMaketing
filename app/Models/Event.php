@@ -9,18 +9,6 @@ class Event extends Model
 {
     use SoftDeletes;
 
-    const SALE = 1;
-    const NEW = 2;
-    const FAIR = 3;
-    const SPECIAL = 4;
-    const MEETING = 5;
-    const HOLIDAY = 6;
-
-    const WAITING = 0;
-    const VALIDATED = 1;
-    const PUBLIC = 2;
-    const CANCEL = 3;
-
     public $timestamps = true;
     protected $table = 'events';
     protected $fillable = [
@@ -42,29 +30,16 @@ class Event extends Model
         'ticket_number',
     ];
 
-    public static $classify = [
-        self::SALE => 'Giảm giá',
-        self::NEW => 'Ra mắt sp mới',
-        self::FAIR => 'Hội chợ',
-        self::SPECIAL => 'Kỷ niệm thày lập, khai trương',
-        self::MEETING => 'Hội nghị, hội thảo',
-        self::HOLIDAY => 'Ngày lễ',
-    ];
-
-    const TYPE = [
-        1 => 'Thời trang',
-        2 => 'Điện tử',
-        3 => 'Phong cách số',
-        4 => 'Hàng tiêu dùng',
-        5 => 'Đồ ăn',
-        6 => 'Khác',
-    ];
+    const WAITING = 0;
+    const VALIDATED = 1;
+    const PUBLIC = 2;
+    const CANCEL = 3;
 
     public static $status = [
-        self::WAITING => 'Chua kiem duyet',
-        self::VALIDATED => 'Da kiem duyet',
-        self::PUBLIC => 'Da cong bo',
-        self::CANCEL => 'Huy bo',
+        self::WAITING => 'Chưa kiểm duyệt',
+        self::VALIDATED => 'Đã kiểm duyệt',
+        self::PUBLIC => 'Đã công bố',
+        self::CANCEL => 'Hủy bố',
     ];
 
     public function user()
@@ -111,22 +86,22 @@ class Event extends Model
         }
         //check input to type
         if (isset($input['type'])) {
-            $query->where('type', $input['type']);
+            $query->where('type_id', $input['type']);
         }
         //check input to classify
-        if (isset($input['classify'])) {
-            $query->where('classify', $input['classify']);
+        if (isset($input['category'])) {
+            $query->where('category_id', $input['category']);
         }
         //check input to status
         if (isset($input['status'])) {
             //started
-            if ($input['status']) {
-                $query->where('start_date', '<', now())->where('end_date', '>', now());
-            } else {
+            if ($input['status'] == 1) {
                 $query->where('start_date', '>', now());
+            } else {
+                $query->where('start_date', '<', now())->where('end_date', '>', now());
             }
         }
-        return $query->select('type', 'classify', 'name', 'title', 'id', 'avatar')->get();
+        return $query->select('type_id', 'category_id', 'name', 'title', 'id', 'avatar', 'start_date')->get();
     }
 
     /**

@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Jobs\SendTicketMail;
 use App\Models\Buyer;
+use App\Models\Category;
 use App\Models\Enterprise;
 use App\Models\Event;
+use App\Models\Type;
 use Carbon\Carbon;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
@@ -33,8 +35,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $events = Event::active()->orderBy('id')->take(5)->get();
-        $subEvents = Event::active()->skip(5)->take(6)->get();
+        $events = Event::active()->orderBy('point')->take(5)->get();
+        $subEvents = Event::active()->orderBy('point', 'desc')->skip(5)->take(6)->get();
         $webInfo = [
             'buyer' => Buyer::count(),
             'event' => Event::where('end_date', '<', Carbon::now())->count(),
@@ -52,7 +54,7 @@ class HomeController extends Controller
     public function getSubEvent(Request $request)
     {
         $params = $request->all();
-        return $subEvents = Event::active()->skip(5)->take($params['number'] + 6)->get();
+        return $subEvents = Event::active()->orderBy('point', 'desc')->skip(5)->take($params['number'] + 6)->get();
     }
 
     /**
@@ -63,8 +65,9 @@ class HomeController extends Controller
     public function eventIndex()
     {
         $events = Event::get();
-
-        return view('frontend.events.index', compact('events'));
+        $types = Type::pluck('name', 'id')->toArray();
+        $categories = Category::pluck('name', 'id')->toArray();
+        return view('frontend.events.index', compact('events', 'types', 'categories'));
     }
 
     /**
@@ -76,9 +79,8 @@ class HomeController extends Controller
     public function eventSearch(Request $request)
     {
         $params = $request->all();
-        \Log::info($this->event->getSearch($params));
+        \Log::info($params);
         return $this->event->getSearch($params);
-//        return Event::first();
     }
 
     /**

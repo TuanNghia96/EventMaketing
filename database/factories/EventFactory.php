@@ -18,12 +18,12 @@ $factory->define(Event::class, function (Faker $faker) {
         'avatar' => 'fakers/images/img_bg_' . rand(1, 50) . '.jpg',
         'type_id' => $faker->randomElement(Type::pluck('id')),
         'category_id' => $faker->randomElement(Category::pluck('id')),
-        'public_date' => $faker->dateTimeThisYear('now'),
-        'start_date' => $faker->dateTimeThisYear('+3 days'),
-        'end_date' => $faker->dateTimeThisYear( '+6 days'),
+        'public_date' => $faker->dateTimeBetween($startDate = 'now', $endDate = '+5 months'),
+        'start_date' => $faker->dateTimeBetween($startDate = 'now', $endDate = '+5 months'),
+        'end_date' => $faker->dateTimeBetween( $startDate = 'now', $endDate = '+5 months'),
         'voucher_id' => null,
         'ticket_number' => $faker->numerify('##000'),
-        'point' => $faker->numerify('###'),
+//        'point' => $faker->numerify('###'),
         'status' => array_rand(Event::$status)
     ];
 });

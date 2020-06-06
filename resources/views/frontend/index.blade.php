@@ -83,7 +83,7 @@
                                     </div><!--- .entry-header -->
 
                                     <div class="entry-footer">
-                                        {{--<a class="btn gradient-bg" href="{{ route('event.detail', $event->id) }}">Order here</a>--}}
+                                        <a class="btn gradient-bg" href="{{ route('event.detail', $event->id) }}">Order here</a>
                                     </div><!-- .entry-footer" -->
                                 </div><!-- .col -->
                             </div><!-- .container -->
@@ -256,7 +256,7 @@
             <div id="app">
                 <my-component
                         sub-events="{{ json_encode($subEvents) }}"
-                        all-type="{{ json_encode(\App\Models\Event::$classify) }}"
+                        all-type="{{ json_encode(\App\Models\Type::pluck('name', 'id')->toArray()) }}"
                         url-sub="{{ route('event.sub')  }}"
                         url-detail="{{ route('event.detail', 999) }}"
                 ></my-component>

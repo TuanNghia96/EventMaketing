@@ -12,9 +12,9 @@
                     </div>
 
                     <div class="col-12 col-md-4" @change="getSearch">
-                        <select class="form-control search-slt" id="exampleFormControlSelect2" v-model="classifySearch" @change="getSearch()">
+                        <select class="form-control search-slt" id="exampleFormControlSelect2" v-model="categorySearch" @change="getSearch()">
                             <option>Classify</option>
-                            <option  v-for="(classify, i) in classifyData" :key="i" :value="i">{{ classify }}</option>
+                            <option  v-for="(category, i) in categoryData" :key="i" :value="i">{{ category }}</option>
                         </select>
                     </div>
 
@@ -25,12 +25,12 @@
                         </select>
                     </div>
 
-                    <div class="col-12 col-md-3">
-                        <input type="date" placeholder="Date">
-                    </div>
-
-                    <div class="col-12 text-center">
-                        <input class="btn gradient-bg" type="submit" value="Search Events">
+                    <div class="col-12 col-md-4">
+                        <select class="form-control search-slt" id="exampleFormControlSelect3" v-model="statusSearch" @change="getSearch()">
+                            <option>-- Trạng thái--</option>
+                            <option value="1">Chưa bắt đầu</option>
+                            <option value="2">Đã bắt đầu</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -50,7 +50,7 @@
 
                                 <div class="event-location"><a :href="urlEvent.replace(999, event.id)">{{ event.location }}</a></div>
 
-                                <div class="event-date">{{ event.start_date }}May 29, 2018 @ 8:00 Pm - May 30, 2018 @ 4:00 Am</div>
+                                <div class="event-date">{{ event.start_date }}</div>
                             </div>
 
                             <div class="event-cost flex justify-content-center align-items-center">
@@ -81,24 +81,24 @@
         props: [
             'bgUrl',
             'allType',
-            'allClassify',
+            'allCategory',
             'url',
             'allEvent',
             'urlEvent',
         ],
         created() {
             this.typesData = JSON.parse(this.allType) || [];
-            this.classifyData = JSON.parse(this.allClassify) || [];
+            this.categoryData = JSON.parse(this.allCategory) || [];
             this.eventsData = JSON.parse(this.allEvent) || [];
             this.eventsShow = this.eventsData.slice(0, 0);
         },
         data() {
             return {
                 typesData: [],
-                classifyData: [],
+                categoryData: [],
                 typeSearch: null,
                 statusSearch: null,
-                classifySearch: null,
+                categorySearch: null,
                 nameSearch: null,
                 advanceBtn: true,
                 eventsData: [],
@@ -112,7 +112,7 @@
                 axios.get(this.url, {
                         params: {
                             type: this.typeSearch,
-                            classify: this.classifySearch,
+                            category: this.categorySearch,
                             status: this.statusSearch,
                             name: this.nameSearch,
                         }

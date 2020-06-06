@@ -28,7 +28,7 @@ class EventController extends Controller
      */
     public function index(Request $request)
     {
-        $events = $this->event->with('type', 'category')->getPaginate($request->all());
+        $events = $this->event->with('type', 'category')->get();
         return view('backend.events.index', compact('events'));
     }
 
@@ -65,7 +65,6 @@ class EventController extends Controller
     public function getDetail($id)
     {
         $event = $this->event->with('type', 'category')->find($id);
-//        dd($event);
         return view('backend.events.detail', compact('event'));
     }
 

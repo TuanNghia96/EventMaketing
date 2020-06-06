@@ -32,11 +32,13 @@
                             @if(!Auth::check())
                                 <a class="btn gradient-bg" href="{{ route('login') }}">Login to get ticket</a>
                             @else
-                                <a class="btn gradient-bg" @if($event->ticket_number <= $event->buyer->count()) disabled @endif href="{{ route('event.join', $event->id) }}">Get Tikets</a>
+                                @can('buyer')
+                                    <a class="btn gradient-bg" @if($event->ticket_number <= $event->buyer->count()) disabled @endif href="{{ route('event.join', $event->id) }}">Get Tikets</a>
+                                @endcan
                             @endif
                         </div>
                     </header>
-
+                    <br>
                     <figure class="events-thumbnail">
                         <img src="{{ asset($event->avatar) }}" id="event_thumbnail" alt="">
                     </figure>
@@ -74,12 +76,12 @@
 
                                     <div class="single-event-details-row">
                                         <label>Type</label>
-                                        <p>{{ \App\Models\Event::TYPE[$event->type] }}</p>
+                                        <p>{{ $event->type->name }}</p>
                                     </div>
 
                                     <div class="single-event-details-row">
                                         <label>Category:</label>
-                                        <p>{{ \App\Models\Event::$classify[$event->classify] }}</p>
+                                        <p>{{ $event->category->name }}</p>
                                     </div>
                                 </div>
 
@@ -225,7 +227,6 @@
     </div>
 @endsection
 
-
 @section('inline_css')
     <style>
         * {
@@ -251,11 +252,11 @@
         }
 
         #event_thumbnail {
-            width: 100%; height: auto
+            width: 100%;
+            height: auto
         }
     </style>
 @endsection
-
 
 @section('inline_script')
     <script type='text/javascript' src="{{ asset('frontend/js/custom.js') }}"></script>

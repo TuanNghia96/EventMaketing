@@ -1962,20 +1962,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['bgUrl', 'allType', 'allClassify', 'url', 'allEvent', 'urlEvent'],
+  props: ['bgUrl', 'allType', 'allCategory', 'url', 'allEvent', 'urlEvent'],
   created: function created() {
     this.typesData = JSON.parse(this.allType) || [];
-    this.classifyData = JSON.parse(this.allClassify) || [];
+    this.categoryData = JSON.parse(this.allCategory) || [];
     this.eventsData = JSON.parse(this.allEvent) || [];
     this.eventsShow = this.eventsData.slice(0, 0);
   },
   data: function data() {
     return {
       typesData: [],
-      classifyData: [],
+      categoryData: [],
       typeSearch: null,
       statusSearch: null,
-      classifySearch: null,
+      categorySearch: null,
       nameSearch: null,
       advanceBtn: true,
       eventsData: [],
@@ -1991,7 +1991,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.get(this.url, {
         params: {
           type: this.typeSearch,
-          classify: this.classifySearch,
+          category: this.categorySearch,
           status: this.statusSearch,
           name: this.nameSearch
         }
@@ -38572,7 +38572,7 @@ var render = function() {
               ),
               _vm._v(" "),
               _c("div", { staticClass: "event-rating" }, [
-                _vm._v(_vm._s(event.point % 100))
+                _vm._v(_vm._s(event.point / 100))
               ])
             ]),
             _vm._v(" "),
@@ -38602,7 +38602,7 @@ var render = function() {
         ])
       }),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-12 col-sm-12 mt-3 text-center" }, [
+      _c("div", { staticClass: "col-md-12 col-sm-12 mt-3 mb-5 text-center" }, [
         _c(
           "button",
           { staticClass: "btn btn-default btn-sm", on: { click: _vm.getMore } },
@@ -38678,8 +38678,8 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.classifySearch,
-                      expression: "classifySearch"
+                      value: _vm.categorySearch,
+                      expression: "categorySearch"
                     }
                   ],
                   staticClass: "form-control search-slt",
@@ -38695,7 +38695,7 @@ var render = function() {
                             var val = "_value" in o ? o._value : o.value
                             return val
                           })
-                        _vm.classifySearch = $event.target.multiple
+                        _vm.categorySearch = $event.target.multiple
                           ? $$selectedVal
                           : $$selectedVal[0]
                       },
@@ -38708,9 +38708,9 @@ var render = function() {
                 [
                   _c("option", [_vm._v("Classify")]),
                   _vm._v(" "),
-                  _vm._l(_vm.classifyData, function(classify, i) {
+                  _vm._l(_vm.categoryData, function(category, i) {
                     return _c("option", { key: i, domProps: { value: i } }, [
-                      _vm._v(_vm._s(classify))
+                      _vm._v(_vm._s(category))
                     ])
                   })
                 ],
@@ -38767,9 +38767,52 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _vm._m(1),
-          _vm._v(" "),
-          _vm._m(2)
+          _c("div", { staticClass: "col-12 col-md-4" }, [
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.statusSearch,
+                    expression: "statusSearch"
+                  }
+                ],
+                staticClass: "form-control search-slt",
+                attrs: { id: "exampleFormControlSelect3" },
+                on: {
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.statusSearch = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    },
+                    function($event) {
+                      return _vm.getSearch()
+                    }
+                  ]
+                }
+              },
+              [
+                _c("option", [_vm._v("-- Trạng thái--")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "1" } }, [
+                  _vm._v("Chưa bắt đầu")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "2" } }, [_vm._v("Đã bắt đầu")])
+              ]
+            )
+          ])
         ])
       ])
     ]),
@@ -38827,14 +38870,11 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "event-date" }, [
-                        _vm._v(
-                          _vm._s(event.start_date) +
-                            "May 29, 2018 @ 8:00 Pm - May 30, 2018 @ 4:00 Am"
-                        )
+                        _vm._v(_vm._s(event.start_date))
                       ])
                     ]),
                     _vm._v(" "),
-                    _vm._m(3, true)
+                    _vm._m(1, true)
                   ]
                 ),
                 _vm._v(" "),
@@ -38883,25 +38923,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-12 col-md-3" }, [
       _c("input", { attrs: { type: "date", placeholder: "Date" } })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-12 col-md-3" }, [
-      _c("input", { attrs: { type: "date", placeholder: "Date" } })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-12 text-center" }, [
-      _c("input", {
-        staticClass: "btn gradient-bg",
-        attrs: { type: "submit", value: "Search Events" }
-      })
     ])
   },
   function() {

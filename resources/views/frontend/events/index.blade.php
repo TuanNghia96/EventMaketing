@@ -19,8 +19,8 @@
         <search-event
                 bg-url="{{ asset('frontend/images/img_bg_8.jpg') }}"
                 url-detail="{{ route('event.detail', 999) }}"
-                all-type="{{ json_encode(\App\Models\Event::TYPE) }}"
-                all-classify="{{ json_encode(\App\Models\Event::$classify) }}"
+                all-type="{{ json_encode($types) }}"
+                all-category="{{ json_encode($categories) }}"
                 url="{{ route('event.search') }}"
                     url-event="{{ route('event.detail', 999) }}"
                 all-event="{{ json_encode($events) }}"
