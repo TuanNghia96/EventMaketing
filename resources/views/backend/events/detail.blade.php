@@ -72,9 +72,9 @@
             </tr>
             <tr>
                 <td>
-                    <p>Voucher</p>
+                    <p>Coupon</p>
                 </td>
-                <td><p>{{ $event->voucher_id }}</p></td>
+                <td><p>{{ $event->coupon_id }}</p></td>
             </tr>
             <tr>
                 <td>

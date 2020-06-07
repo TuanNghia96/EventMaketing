@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Voucher extends Model
+class Coupon extends Model
 {
 
     use SoftDeletes;
 
     public $timestamps = true;
-    protected $table = 'vouchers';
+    protected $table = 'coupons';
     protected $fillable = [
         'name',
         'title',
@@ -38,13 +38,13 @@ class Voucher extends Model
 
     public function event()
     {
-        return $this->hasOne('App\Models\Event', 'voucher_id');
+        return $this->hasOne('App\Models\Event', 'coupon_id');
     }
 
     /**
      * Pagination data of model
      *
-     * @return Voucher[]|Builder[]|Collection
+     * @return Coupon[]|Builder[]|Collection
      */
     public function getPaginate()
     {

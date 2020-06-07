@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVouchersTable extends Migration
+class CreateCouponsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateVouchersTable extends Migration
      */
     public function up()
     {
-        Schema::create('vouchers', function (Blueprint $table) {
+        Schema::create('coupons', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 30);
             $table->string('title', 30);
@@ -33,6 +33,6 @@ class CreateVouchersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vouchers');
+        Schema::dropIfExists('coupons');
     }
 }

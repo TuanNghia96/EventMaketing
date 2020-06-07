@@ -70,7 +70,7 @@
                                     </div>
 
                                     <div class="single-event-details-row">
-                                        <label>Voucher:</label>
+                                        <label>Coupon:</label>
                                         <p>$89 <span>Sold Out</span></p>
                                     </div>
 

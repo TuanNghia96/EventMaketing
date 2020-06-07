@@ -65,7 +65,7 @@
                     <th>Name</th>
                     <th>Code</th>
                     <th>Public Date</th>
-                    <th>Voucher Id</th>
+                    <th>Coupon Id</th>
                     <th>Status</th>
                     <th>Point</th>
                 </tr>
@@ -76,7 +76,7 @@
                     <th>Name</th>
                     <th>Code</th>
                     <th>Public Date</th>
-                    <th>Voucher Id</th>
+                    <th>Coupon Id</th>
                     <th>Status</th>
                     <th>Point</th>
                 </tr>
@@ -88,7 +88,7 @@
                         <th><a href="{{ route('events.detail', $event->id) }}">{{ $event->name }}</a></th>
                         <th>{{ $event->code }}</th>
                         <th>{{ date_format(date_create($event->public_date) ,"d/m/Y") }}</th>
-                        <th>{{ $event->voucher_id }}</th>
+                        <th>{{ $event->coupon_id }}</th>
                         <th>{{ \App\Models\Event::$status[$event->status] }}</th>
                         <th>{{ $event->point }}</th>
                     </tr>

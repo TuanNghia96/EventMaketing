@@ -9,6 +9,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Event::class, function (Faker $faker) {
     static $number = 1;
+    $couponId = \App\Models\Coupon::pluck('name', 'id')->toArray();
     return [
         'name' => $faker->name,
         'title' => $faker->title,
@@ -21,9 +22,8 @@ $factory->define(Event::class, function (Faker $faker) {
         'public_date' => $faker->dateTimeBetween($startDate = 'now', $endDate = '+5 months'),
         'start_date' => $faker->dateTimeBetween($startDate = 'now', $endDate = '+5 months'),
         'end_date' => $faker->dateTimeBetween( $startDate = 'now', $endDate = '+5 months'),
-        'voucher_id' => null,
+        'coupon_id' => array_rand($couponId),
         'ticket_number' => $faker->numerify('##000'),
-//        'point' => $faker->numerify('###'),
         'status' => array_rand(Event::$status)
     ];
 });

@@ -2,14 +2,15 @@
 
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 
-use App\Models\Voucher;
+use App\Model;
+use App\Models\Coupon;
 use Faker\Generator as Faker;
 
-$factory->define(Voucher::class, function (Faker $faker) {
-    $value = array_rand(Voucher::$values);
+$factory->define(Coupon::class, function (Faker $faker) {
+    $value = array_rand(Coupon::$values);
     return [
         'name' => $faker->name,
-        'title' => 'Giảm giá ' . Voucher::$values[$value],
+        'title' => 'Giảm giá ' . Coupon::$values[$value],
         'code' => $faker->postcode,
         'image' => $faker->url,
         'type' => 1,

@@ -22,7 +22,7 @@ class Event extends Model
         'public_date',
         'start_date',
         'end_date',
-        'voucher_id',
+        'coupon_id',
         'point',
         'category_id',
         'status',
@@ -41,11 +41,6 @@ class Event extends Model
         self::PUBLIC => 'Đã công bố',
         self::CANCEL => 'Hủy bố',
     ];
-
-    public function user()
-    {
-        return $this->hasOne('App\Models\Voucher');
-    }
 
     /**
      * Pagination data of model
@@ -78,7 +73,7 @@ class Event extends Model
      */
     public function getSearch($input)
     {
-        $query = $this->active()->orderBy('id');
+        $query = $this->active()->with('coupon')->orderBy('id');
 
         //check like
         if (isset($input['name'])) {
@@ -92,6 +87,15 @@ class Event extends Model
         if (isset($input['category'])) {
             $query->where('category_id', $input['category']);
         }
+        //check input to coupon
+        if (isset($input['coupon'])) {
+            //started
+            if ($input['coupon'] == 1) {
+                $query->where('coupon_id', null);
+            } else {
+                $query->where('coupon_id', '<>', null);
+            }
+        }
         //check input to status
         if (isset($input['status'])) {
             //started
@@ -101,7 +105,17 @@ class Event extends Model
                 $query->where('start_date', '<', now())->where('end_date', '>', now());
             }
         }
-        return $query->select('type_id', 'category_id', 'name', 'title', 'id', 'avatar', 'start_date')->get();
+        return $query->get();
+    }
+
+    /**
+     * relationship to coupon
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function coupon()
+    {
+        return $this->belongsTo('App\Models\Coupon');
     }
 
     /**
@@ -115,7 +129,7 @@ class Event extends Model
     }
 
     /**
-     * relationship to enterprise
+     * relationship to buyer
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */

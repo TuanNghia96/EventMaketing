@@ -1961,6 +1961,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['bgUrl', 'allType', 'allCategory', 'url', 'allEvent', 'urlEvent'],
   created: function created() {
@@ -1976,6 +1990,7 @@ __webpack_require__.r(__webpack_exports__);
       typeSearch: null,
       statusSearch: null,
       categorySearch: null,
+      couponSearch: null,
       nameSearch: null,
       advanceBtn: true,
       eventsData: [],
@@ -1993,7 +2008,8 @@ __webpack_require__.r(__webpack_exports__);
           type: this.typeSearch,
           category: this.categorySearch,
           status: this.statusSearch,
-          name: this.nameSearch
+          name: this.nameSearch,
+          coupon: this.couponSearch
         }
       }).then(function (response) {
         console.log(response.data);
@@ -38640,6 +38656,8 @@ var render = function() {
       _c("div", { staticClass: "container" }, [
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-12 col-md-9" }, [
+            _c("label", [_vm._v("Tìm theo tên, tiêu đề")]),
+            _vm._v(" "),
             _c("input", {
               directives: [
                 {
@@ -38649,7 +38667,11 @@ var render = function() {
                   expression: "nameSearch"
                 }
               ],
-              attrs: { id: "search", type: "text", placeholder: "Search..." },
+              attrs: {
+                id: "name search",
+                type: "text",
+                placeholder: "Search..."
+              },
               domProps: { value: _vm.nameSearch },
               on: {
                 keyup: function($event) {
@@ -38669,8 +38691,10 @@ var render = function() {
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "col-12 col-md-4", on: { change: _vm.getSearch } },
+            { staticClass: "col-12 col-md-3", on: { change: _vm.getSearch } },
             [
+              _c("label", [_vm._v("Danh mục")]),
+              _vm._v(" "),
               _c(
                 "select",
                 {
@@ -38706,7 +38730,9 @@ var render = function() {
                   }
                 },
                 [
-                  _c("option", [_vm._v("Classify")]),
+                  _c("option", { domProps: { value: null } }, [
+                    _vm._v("Category searh")
+                  ]),
                   _vm._v(" "),
                   _vm._l(_vm.categoryData, function(category, i) {
                     return _c("option", { key: i, domProps: { value: i } }, [
@@ -38719,7 +38745,9 @@ var render = function() {
             ]
           ),
           _vm._v(" "),
-          _c("div", { staticClass: "col-12 col-md-4" }, [
+          _c("div", { staticClass: "col-12 col-md-3" }, [
+            _c("label", [_vm._v("Thể loại")]),
+            _vm._v(" "),
             _c(
               "select",
               {
@@ -38755,7 +38783,9 @@ var render = function() {
                 }
               },
               [
-                _c("option", [_vm._v("Type")]),
+                _c("option", { domProps: { value: null } }, [
+                  _vm._v("Type searh")
+                ]),
                 _vm._v(" "),
                 _vm._l(_vm.typesData, function(type, i) {
                   return _c("option", { key: i, domProps: { value: i } }, [
@@ -38767,7 +38797,58 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-12 col-md-4" }, [
+          _c("div", { staticClass: "col-12 col-md-3" }, [
+            _c("label", [_vm._v("Coupon")]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.couponSearch,
+                    expression: "couponSearch"
+                  }
+                ],
+                staticClass: "form-control search-slt",
+                attrs: { id: "exampleFormControlSelect3" },
+                on: {
+                  change: [
+                    function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.couponSearch = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    },
+                    function($event) {
+                      return _vm.getSearch()
+                    }
+                  ]
+                }
+              },
+              [
+                _c("option", { domProps: { value: null } }, [
+                  _vm._v("Coupon searh")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "1" } }, [_vm._v("Không có")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "2" } }, [_vm._v("Kèm theo")])
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-12 col-md-3" }, [
+            _c("label", [_vm._v("Trạng thái")]),
+            _vm._v(" "),
             _c(
               "select",
               {
@@ -38780,7 +38861,7 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control search-slt",
-                attrs: { id: "exampleFormControlSelect3" },
+                attrs: { id: "exampleFormControlSelect4" },
                 on: {
                   change: [
                     function($event) {
@@ -38803,7 +38884,9 @@ var render = function() {
                 }
               },
               [
-                _c("option", [_vm._v("-- Trạng thái--")]),
+                _c("option", { domProps: { value: null } }, [
+                  _vm._v("Status searh")
+                ]),
                 _vm._v(" "),
                 _c("option", { attrs: { value: "1" } }, [
                   _vm._v("Chưa bắt đầu")
@@ -38860,13 +38943,7 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "event-location" }, [
-                        _c(
-                          "a",
-                          {
-                            attrs: { href: _vm.urlEvent.replace(999, event.id) }
-                          },
-                          [_vm._v(_vm._s(event.location))]
-                        )
+                        _vm._v(_vm._s(event.location))
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "event-date" }, [
@@ -38874,7 +38951,17 @@ var render = function() {
                       ])
                     ]),
                     _vm._v(" "),
-                    _vm._m(1, true)
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "event-cost flex justify-content-center align-items-center"
+                      },
+                      [
+                        _vm._v("\n                            Kèm coupon "),
+                        _c("span", [_vm._v(_vm._s(event.coupon.value + "%"))])
+                      ]
+                    )
                   ]
                 ),
                 _vm._v(" "),
@@ -38885,7 +38972,7 @@ var render = function() {
                       staticClass: "btn btn-defaul",
                       attrs: { href: _vm.urlEvent.replace(999, event.id) }
                     },
-                    [_vm._v("Buy Tikets")]
+                    [_vm._v("Nhận vé")]
                   )
                 ])
               ])
@@ -38910,7 +38997,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("Load more")]
+                  [_vm._v("Tải thêm")]
                 )
               ])
             ])
@@ -38925,23 +39012,10 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-12 col-md-3" }, [
+      _c("label", [_vm._v("Ngay")]),
+      _vm._v(" "),
       _c("input", { attrs: { type: "date", placeholder: "Date" } })
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "event-cost flex justify-content-center align-items-center"
-      },
-      [
-        _vm._v("\n                            from"),
-        _c("span", [_vm._v("$89")])
-      ]
-    )
   }
 ]
 render._withStripped = true

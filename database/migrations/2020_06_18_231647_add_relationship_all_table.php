@@ -14,7 +14,7 @@ class AddRelationshipAllTable extends Migration
     public function up()
     {
         Schema::table('events', function (Blueprint $table) {
-            $table->foreign('voucher_id')->references('id')->on('vouchers');
+            $table->foreign('coupon_id')->references('id')->on('coupons');
             $table->foreign('type_id')->references('id')->on('types');
             $table->foreign('category_id')->references('id')->on('categories');
         });
@@ -45,7 +45,7 @@ class AddRelationshipAllTable extends Migration
     public function down()
     {
         Schema::table('events', function (Blueprint $table) {
-            $table->dropForeign(['voucher_id']);
+            $table->dropForeign(['coupon_id']);
         });
         Schema::table('admins', function (Blueprint $table) {
             $table->dropForeign(['user_id']);
@@ -61,7 +61,7 @@ class AddRelationshipAllTable extends Migration
         });
         Schema::table('tickets', function (Blueprint $table) {
             $table->dropForeign(['buyer_id']);
-            $table->dropForeign(['voucher_id']);
+            $table->dropForeign(['coupon_id']);
         });
         Schema::table('enterprise_events', function (Blueprint $table) {
             $table->dropForeign(['enterprise_id']);

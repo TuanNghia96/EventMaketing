@@ -37,8 +37,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $events = Event::active()->orderBy('point')->take(5)->get();
-        $subEvents = Event::active()->orderBy('point', 'desc')->skip(5)->take(6)->get();
+        $events = Event::active()->with('coupon')->orderBy('point')->take(5)->get();
+        $subEvents = Event::active()->with('coupon')->orderBy('point', 'desc')->skip(5)->take(6)->get();
         $webInfo = [
             'buyer' => Buyer::count(),
             'event' => Event::where('end_date', '<', Carbon::now())->count(),
@@ -57,7 +57,7 @@ class HomeController extends Controller
     public function getSubEvent(Request $request)
     {
         $params = $request->all();
-        return $subEvents = Event::active()->orderBy('point', 'desc')->skip(5)->take($params['number'] + 6)->get();
+        return $subEvents = Event::active()->with('coupon')->orderBy('point', 'desc')->skip(5)->take($params['number'] + 6)->get();
     }
 
     /**
@@ -82,7 +82,7 @@ class HomeController extends Controller
     public function eventSearch(Request $request)
     {
         $params = $request->all();
-        \Log::info($params);
+        \Log::info($this->event->getSearch($params));
         return $this->event->getSearch($params);
     }
 
@@ -94,7 +94,7 @@ class HomeController extends Controller
      */
     public function eventDetail($id)
     {
-        $event = Event::active()->with('buyer')->findOrFail($id);
+        $event = Event::active()->with('coupon')->with('buyer')->findOrFail($id);
         $event->images = json_decode($event->images);
         return view('frontend.events.detail', compact('event'));
     }
@@ -107,7 +107,7 @@ class HomeController extends Controller
      */
     public function joinEvent($id)
     {
-        $event = Event::active()->with('buyer')->findOrFail($id);
+        $event = Event::active()->with('coupon')->with('buyer')->findOrFail($id);
 
         if (!$event->buyer->find(Auth::user()->user->id)) {
             DB::beginTransaction();
@@ -133,7 +133,7 @@ class HomeController extends Controller
      */
     public function unJoinEvent($id)
     {
-        $event = Event::active()->with('buyer')->findOrFail($id);
+        $event = Event::active()->with('coupon')->with('buyer')->findOrFail($id);
 
         if ($event->buyer->find(Auth::user()->user->id) && ($event->status == Event::VALIDATED)) {
             DB::beginTransaction();

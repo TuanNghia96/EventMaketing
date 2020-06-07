@@ -76,7 +76,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('vouchers.index') }}">
+                                <a href="{{ route('coupons.index') }}">
                                     <span class="sub-item">Phiếu giảm giá.</span>
                                 </a>
                             </li>

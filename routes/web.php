@@ -53,7 +53,7 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => [
     Route::get('/events/detail/{id}', 'EventController@getDetail')->name('events.detail');
     Route::get('/events/success/{id}', 'EventController@setSuccess')->name('events.success');
     Route::get('/events/remove/{id}', 'EventController@removeEvent')->name('events.remove');
-    Route::get('/vouchers', 'VoucherController@index')->name('vouchers.index');
+    Route::get('/coupons', 'CouponController@index')->name('coupons.index');
 
     //type, category
     Route::resource('/types', 'TypeController');
