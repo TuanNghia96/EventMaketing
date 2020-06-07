@@ -22,19 +22,13 @@ class Admin extends Model
         'remember_token',
     ];
 
+    /**
+     * relationship to user
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
         return $this->belongsTo('App\Models\User');
-    }
-
-    /**
-     * Pagination data of model
-     *
-     * @param array $input input data to search
-     * @return Illuminate\Pagination\Paginator
-     */
-    public function getPaginate($input)
-    {
-        return self::with('user')->get();
     }
 }

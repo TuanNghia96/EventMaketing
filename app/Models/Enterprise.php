@@ -35,23 +35,12 @@ class Enterprise extends Model
     ];
 
     /**
-     * relation to buyer table
+     * relation to user
      *
      */
     public function user()
     {
         return $this->hasOne(\App\Models\User::class, 'id', 'user_id');
-    }
-
-    /**
-     * Pagination data of model
-     *
-     * @param array $input input data to search
-     * @return Illuminate\Pagination\Paginator
-     */
-    public function getPaginate($input)
-    {
-        return self::with('user')->get();
     }
 
     /**

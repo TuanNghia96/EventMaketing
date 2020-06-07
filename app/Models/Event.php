@@ -43,17 +43,6 @@ class Event extends Model
     ];
 
     /**
-     * Pagination data of model
-     *
-     * @param array $input input data to search
-     * @return Illuminate\Pagination\Paginator
-     */
-    public function getPaginate($input)
-    {
-        return self::get();
-    }
-
-    /**
      * Scope a query by phone
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
@@ -63,49 +52,6 @@ class Event extends Model
     public function scopeOfPhone($query, $phone)
     {
         return $query->where('phone', $phone);
-    }
-
-    /**
-     * Pagination data of model
-     *
-     * @param array $input input data to search
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    public function getSearch($input)
-    {
-        $query = $this->active()->with('coupon')->orderBy('id');
-
-        //check like
-        if (isset($input['name'])) {
-            $query->where('name', 'like', '%' . $input['name'] . '%')->orWhere('title', 'like', '%' . $input['name'] . '%');
-        }
-        //check input to type
-        if (isset($input['type'])) {
-            $query->where('type_id', $input['type']);
-        }
-        //check input to classify
-        if (isset($input['category'])) {
-            $query->where('category_id', $input['category']);
-        }
-        //check input to coupon
-        if (isset($input['coupon'])) {
-            //started
-            if ($input['coupon'] == 1) {
-                $query->where('coupon_id', null);
-            } else {
-                $query->where('coupon_id', '<>', null);
-            }
-        }
-        //check input to status
-        if (isset($input['status'])) {
-            //started
-            if ($input['status'] == 1) {
-                $query->where('start_date', '>', now());
-            } else {
-                $query->where('start_date', '<', now())->where('end_date', '>', now());
-            }
-        }
-        return $query->get();
     }
 
     /**
@@ -167,5 +113,48 @@ class Event extends Model
     public function scopeActive($query)
     {
         return $query->whereIn('status', [Event::VALIDATED, Event::PUBLIC]);
+    }
+
+    /**
+     * search event with param
+     *
+     * @param array $input input data to search
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function getSearch($input)
+    {
+        $query = $this->with('coupon');
+
+        //check like
+        if (isset($input['name'])) {
+            $query->where('name', 'like', '%' . $input['name'] . '%')->orWhere('title', 'like', '%' . $input['name'] . '%');
+        }
+        //check input to type
+        if (isset($input['type'])) {
+            $query->where('type_id', $input['type']);
+        }
+        //check input to classify
+        if (isset($input['category'])) {
+            $query->where('category_id', $input['category']);
+        }
+        //check input to coupon
+        if (isset($input['coupon'])) {
+            //started
+            if ($input['coupon'] == 1) {
+                $query->where('coupon_id', null);
+            } else {
+                $query->where('coupon_id', '<>', null);
+            }
+        }
+        //check input to status
+        if (isset($input['status'])) {
+            //started
+            if ($input['status'] == 1) {
+                $query->where('start_date', '>', now());
+            } else {
+                $query->where('start_date', '<', now())->where('end_date', '>', now());
+            }
+        }
+        return $query->active()->get();
     }
 }

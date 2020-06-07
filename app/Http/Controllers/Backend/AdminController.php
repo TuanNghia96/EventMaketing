@@ -17,19 +17,17 @@ class AdminController extends Controller
      */
     public function __construct(Admin $admin)
     {
-//        $this->middleware('classable', ['only' => ['create', 'index', 'store']]);
         $this->admin = $admin;
     }
 
     /**
      * Display a listing of the resource.
      *
-     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index(Request $request)
+    public function index()
     {
-        $users = $this->admin->getPaginate($request->all());
+        $users = $this->admin->get();
         return view('backend.admins.index', compact('users'));
     }
 }

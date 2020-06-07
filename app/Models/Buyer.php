@@ -26,22 +26,21 @@ class Buyer extends Model
         'remember_token',
     ];
 
+    /**
+     * relationship to user
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
         return $this->belongsTo('App\Models\User');
     }
 
     /**
-     * Pagination data of model
+     * relationship to event
      *
-     * @param array $input input data to search
-     * @return Illuminate\Pagination\Paginator
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function getPaginate($input)
-    {
-        return self::with('user')->get();
-    }
-
     public function events()
     {
         return $this->belongsToMany(Event::class, 'tickets')->withPivot('qrcode_check');

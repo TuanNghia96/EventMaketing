@@ -28,7 +28,7 @@ class BuyerController extends Controller
      */
     public function index(Request $request)
     {
-        $users = $this->buyer->getPaginate($request->all());
+        $users = $this->buyer->get();
         return view('backend.buyers.index', compact('users'));
     }
 }

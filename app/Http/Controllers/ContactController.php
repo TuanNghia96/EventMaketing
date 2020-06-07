@@ -8,13 +8,16 @@ use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
+    protected $comment;
+
     /**
      * Create a new controller instance.
      *
-     * @return void
+     * @param Comment $comment
      */
-    public function __construct()
+    public function __construct(Comment $comment)
     {
+        $this->comment = $comment;
     }
 
     /**
@@ -35,7 +38,7 @@ class ContactController extends Controller
      */
     public function send(ContactStoreRequest $request)
     {
-        Comment::create($request->all());
+        $this->comment->create($request->all());
         return redirect(route('home'));
     }
 

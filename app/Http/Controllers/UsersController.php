@@ -25,12 +25,11 @@ class UsersController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(Request $request)
     {
-        $users = $this->user->getPaginate($request->all());
+        $users = $this->user->get();
         return view('users.index', compact('users'));
     }
 

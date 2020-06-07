@@ -16,14 +16,4 @@ class Comment extends Model
         'subject',
         'message',
     ];
-
-    /**
-     * relation to users table
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function users()
-    {
-        return $this->hasMany(\App\Models\User::class);
-    }
 }

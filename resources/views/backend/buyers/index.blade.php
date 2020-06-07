@@ -10,7 +10,7 @@
 
 @section('content')
     {{-- check buyers is empty --}}
-    @if($user->count())
+    @if($users->count())
         {{-- buyers table --}}
         <div class="card">
             <div class="card-header">

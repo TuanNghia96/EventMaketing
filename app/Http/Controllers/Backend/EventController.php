@@ -40,7 +40,7 @@ class EventController extends Controller
      */
     public function getWaiting(Request $request)
     {
-        $events = $this->event->with('type', 'category')->where('status', Event::STATUS[0])->orderBy('public_date')->get();
+        $events = $this->event->with('type', 'category')->where('status', Event::$status[0])->orderBy('public_date')->get();
         return view('backend.events.waiting', compact('events'));
     }
 

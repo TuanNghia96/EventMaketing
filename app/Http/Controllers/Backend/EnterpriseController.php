@@ -23,12 +23,11 @@ class EnterpriseController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index(Request $request)
+    public function index()
     {
-        $users = $this->enterprise->getPaginate($request->all());
+        $users = $this->enterprise->get();
         return view('backend.enterprises.index', compact('users'));
     }
 

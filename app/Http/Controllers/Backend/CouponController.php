@@ -27,7 +27,7 @@ class CouponController extends Controller
      */
     public function index()
     {
-        $coupons = $this->coupon->getPaginate();
+        $coupons = $this->coupon->with('event')->get();
         return view('backend.coupons.index', compact('coupons'));
     }
 }

@@ -36,18 +36,13 @@ class Coupon extends Model
         90 => '90%',
     ];
 
+    /**
+     * relationship to event
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function event()
     {
-        return $this->hasOne('App\Models\Event', 'coupon_id');
-    }
-
-    /**
-     * Pagination data of model
-     *
-     * @return Coupon[]|Builder[]|Collection
-     */
-    public function getPaginate()
-    {
-        return self::with('event')->get();
+        return $this->hasMany('App\Models\Event', 'coupon_id');
     }
 }
