@@ -1,5 +1,7 @@
 @extends('layouts.frontend.app')
 
+@section('title', 'Agenda| Tìm kiếm sự kiện')
+
 @section('background_header')
     <div class="page-header events-page-header">
         <div class="container">

@@ -1,5 +1,6 @@
 @extends('layouts.frontend.app')
 
+@section('title', 'Agenda| Trang chủ')
 
 @section('background_header')
     <div class="page-header" data-date="" style="background: url('{{ asset('frontend/images/header-bg.jpg')}}') no-repeat">

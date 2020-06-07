@@ -1,5 +1,7 @@
 @extends('layouts.frontend.app')
 
+@section('title', 'Agenda| Về chúng tôi')
+
 @section('background_header')
     <div class="page-header contact-page-header">
         <div class="container">
