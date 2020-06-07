@@ -24,6 +24,7 @@ class SendTicket extends Mailable
     public function __construct($name, $event, $url)
     {
         $this->name = $name;
+        $this->event = $event;
         $this->url = $url;
     }
 
@@ -35,8 +36,9 @@ class SendTicket extends Mailable
     public function build()
     {
         $name = $this->name;
-        $message= $this;
-        $url =  $this->url;
-        return $this->view('mail.ticket_mail', compact('name', 'message', 'url'));
+        $message = $this;
+        $event = $this->event;
+        $url = $this->url;
+        return $this->view('mail.ticket_mail', compact('name', 'message', 'url', 'event'));
     }
 }

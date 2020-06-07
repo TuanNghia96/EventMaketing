@@ -383,8 +383,8 @@
                                 <div style="text-align: left ; display: inline-block; display: inline;">
 
                                     <h1 style="font-size: 450%">
-                                        <a href="https://www.facebook.com/nguyetanh.nguyen.733"><img src="{{ asset('storage/img-1590070305.png') }}" width="200px" style="width:75px; height:75px;" alt="logo1" border="0"></a>
-                                        Nebula<br>
+                                        <a href="https://ibb.co/6bFHZM2"><img src="https://i.ibb.co/BjByPpm/logo.png" style="width:75px; height:75px;" alt="logo" border="0" /></a>
+                                        Agenda<br>
 
                                         <q style="font-size: 50%"><img src="{{$message->embed($url)}}">
                                     </h1>
@@ -394,15 +394,14 @@
                                 <tr>
                                     <td>
                                         <p>Xin chào {{ $name }},</p>
-                                        <p>Chúng tôi gửi thông tin trả lời phản hồi của bạn của bạn đã đặt tại cửa hàng chúng tôi. Nếu không hài lòng với câu trả lời vui lòng gọi vào số hotline ở cuối thư.</p>
+                                        <p>Đây là vé tham gia sự kiện <b>{{ $event->name }}</b> online. Vui lòng giữ hoặc chụp lại vé này và mang đến sự kiện đang được tổ chức</p>
 
-                                        <h5><b>Phản hồi:</b>"{{ $name }}"</h5>
-                                        <h5><b>Câu trả lời:</b>{{ $name }}</h5>
-                                        <h5><b>Người trả lời:</b>{{ $name }}</h5>
+                                        <h5><b>Thành viên:</b>"{{ $name }}"</h5>
+                                        <h5><b>Sự kiện:</b><a href="{{ route('events.detail', $event->id) }}">{{ $event->name }}</a></h5>
                                         <div>
                                         </div>
                                         <p>Đây là thư gửi đến bạn tự động vui lòng không gửi thư đến địa chỉ này.</p>
-                                        <p>Cảm ơn ban đã mua hàng của chúng tôi.</p>
+                                        <p>Cảm ơn ban đã sử dụng dịch vụ của chúng tôi.</p>
                                     </td>
                                 </tr>
                             </table>
