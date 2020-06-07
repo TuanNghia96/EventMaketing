@@ -1,7 +1,7 @@
 <div class="logo-header">
 
-    <a href="#" class="logo">
-        <img src="{{ asset('backend/img/logoazzara.svg') }}" alt="navbar brand" class="navbar-brand">
+    <a href="{{ route('home') }}" class="logo text-white">
+        AGENDA
     </a>
     <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon">
