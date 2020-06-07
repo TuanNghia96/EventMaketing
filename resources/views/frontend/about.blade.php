@@ -35,11 +35,6 @@
                     <div class="entry-content">
                         <p>Vestibulum eget lacus at mauris sagittis varius. Etiam ut venenatis dui. Nullam tellus risus, pellentesque at facilisis et, scelerisque sit amet metus. Duis vel semper turpis, ac tempus libero. Maecenas id ultrices risus. Aenean nec ornare ipsum, lacinia volutpat urna. Maecenas ut aliquam purus, quis sodales dolor.</p>
                     </div>
-
-                    <footer class="entry-footer">
-                        <a href="#" class="btn gradient-bg">Read More</a>
-                        <a href="#" class="btn dark">Register Now</a>
-                    </footer>
                 </div>
             </div>
         </div>

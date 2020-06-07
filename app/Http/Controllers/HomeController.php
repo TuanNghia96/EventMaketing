@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
+
 //use Alert;
 
 class HomeController extends Controller
@@ -155,9 +156,17 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public
-    function contact()
+    public function contact()
     {
         return view('frontend.contact');
+    }
+    /**
+     * get contact page
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function news()
+    {
+        return view('frontend.events-news');
     }
 }

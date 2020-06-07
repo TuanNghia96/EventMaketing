@@ -41,8 +41,10 @@
                     </div>
 
                     <footer class="entry-footer">
-                        <a href="#" class="btn gradient-bg">Read More</a>
-                        <a href="#" class="btn dark">Register Now</a>
+                        <a href="{{ route('contact.about') }}" class="btn gradient-bg">Read More</a>
+                        @guest()
+                            <a href="{{ route('register') }}" class="btn dark">Register Now</a>
+                        @endguest
                     </footer>
                 </div>
             </div>
@@ -107,7 +109,7 @@
         </div>
     </div>
 
-    <div class="homepage-info-section">
+    {{--<div class="homepage-info-section">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-md-4 col-lg-5">
@@ -132,7 +134,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>--}}
 
     <div class="homepage-featured-events">
         <div class="container">

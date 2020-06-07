@@ -25,6 +25,7 @@ Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/event/detail/{event}', 'HomeController@eventDetail')->name('event.detail');
 Route::get('/event/search', 'HomeController@eventIndex')->name('event.index');
+Route::get('/event/news', 'HomeController@news')->name('event.news');
 Route::get('/event/join/{id}', 'HomeController@joinEvent')->name('event.join');
 Route::get('/event/unjoin/{id}', 'HomeController@unJoinEvent')->name('event.unjoin');
 
@@ -65,15 +66,4 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => [
     Route::get('/charts/event', 'ChartController@chartEvent')->name('chart.event');
     Route::get('/charts/enterprise', 'ChartController@chartEvent')->name('chart.enterprise');
     Route::get('/charts/buyer', 'ChartController@chartEvent')->name('chart.buyer');
-});
-
-Route::get('qrcode', function () {
-    $image = \QrCode::format('png')
-        ->size(200)
-        ->generate('A simple example of QR code!');
-    $output_file = '/img/qr-code/img-' . time() . '.png';
-
-    Storage::disk('local')->put($output_file, $image);
-    return \QrCode::size(500)
-        ->generate('http://127.0.0.1:8000/event/detail/1');
 });

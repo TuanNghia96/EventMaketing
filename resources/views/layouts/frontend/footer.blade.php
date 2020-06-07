@@ -18,9 +18,9 @@
                                 <li><a href="#">List Event</a></li>
                             @elseif(Auth::user()->role == \App\Models\User::BUYER)
                                 <li><a href="#">News</a></li>
-
                             @endif
                         @endif
+                        <li><a href="{{ route('event.news') }}">News</a></li>
                         <li><a href="{{ route('contact.about') }}">About us</a></li>
                         <li><a href="{{ route('contact') }}">Contact</a></li>
                     </ul>
