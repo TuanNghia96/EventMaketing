@@ -128,10 +128,10 @@
                 </td>
                 <td>
                     @if($event->public_date < now())
-                        <a class="btn btn-danger" href="{{ route('events.remove', $event->id) }}">
+                        <a class="btn btn-danger" href="{{ route('events.cancel', $event->id) }}">
                             <span class="btn-label">
                                 <i class="fa fa-times"></i>
-                            </span>Remove
+                            </span>Cancel
                         </a>
                     @endif
                     @if($event->status == \App\Models\Event::$status[0])

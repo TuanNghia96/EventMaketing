@@ -16,5 +16,7 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('/event/search', 'HomeController@eventSearch')->name('event.search');
-Route::get('/sub_event', 'HomeController@getSubEvent')->name('event.sub');
+Route::group(['namespace' => 'Frontend'], function () {
+    Route::get('/event/search', 'EventController@eventSearch')->name('event.search');
+    Route::get('/sub_event', 'EventController@getSubEvent')->name('event.sub');
+});

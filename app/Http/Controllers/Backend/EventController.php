@@ -3,21 +3,22 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Models\Event;
+use App\Services\EventServiceInterface;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class EventController extends Controller
 {
-    protected $event;
+    protected $eventService;
 
     /**
      * create Dependency Injection event
      *
-     * @param Event $event
+     * @param EventServiceInterface $eventService
      */
-    public function __construct(Event $event)
+    public function __construct(EventServiceInterface $eventService)
     {
-        $this->event = $event;
+        $this->eventService = $eventService;
     }
 
     /**
@@ -28,7 +29,7 @@ class EventController extends Controller
      */
     public function index(Request $request)
     {
-        $events = $this->event->with('type', 'category')->get();
+        $events = Event::with('type', 'category')->get();
         return view('backend.events.index', compact('events'));
     }
 
@@ -38,10 +39,9 @@ class EventController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function getWaiting(Request $request)
+    public function getWaiting()
     {
-        $events = $this->event->with('type', 'category')
-            ->where('status', Event::$status[0])->orderBy('public_date')->get();
+        $events = $this->eventService->getEventWaiting();
         return view('backend.events.waiting', compact('events'));
     }
 
@@ -53,8 +53,7 @@ class EventController extends Controller
      */
     public function getValidated(Request $request)
     {
-        $events = $this->event->with('type', 'category')
-            ->where('status', '!=', Event::$status[0])->orderBy('public_date')->get();
+        $events = $this->eventService->getEventValidate();
         return view('backend.events.validated', compact('events'));
     }
 
@@ -66,7 +65,7 @@ class EventController extends Controller
      */
     public function getDetail($id)
     {
-        $event = $this->event->with('type', 'category')->find($id);
+        $event = Event::with('type', 'category')->find($id);
         return view('backend.events.detail', compact('event'));
     }
 
@@ -74,31 +73,23 @@ class EventController extends Controller
      * set success event
      *
      * @param $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function setSuccess($id)
     {
-        $event = $this->event->with('type', 'category')->find($id);
-        if ($event->status == 0){
-            $event->update(['status' => 1]);
-        }
-
-        return view('backend.events.detail', compact('event'));
+        $this->eventService->setEventSuccess($id);
+        return redirect()->route('events.detail', $id);
     }
 
     /**
      * remove event
      *
      * @param $id
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function removeEvent($id)
+    public function cancel($id)
     {
-        $event = $this->event->with('type', 'category')->find($id);
-        if ($event->status != 3){
-            $event->update(['status' => 3]);
-        }
-
-        return view('backend.events.detail', compact('event'));
+        $this->eventService->cancelEvent($id);
+        return redirect()->route('events.detail', $id);
     }
 }

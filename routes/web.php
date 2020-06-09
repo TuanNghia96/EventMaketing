@@ -10,40 +10,36 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-/*Route::get('/', function () {
-    return view('welcome');
-});*/
-
-
-//Restful
-Route::resource('/users', 'UsersController')->middleware('auth');
-
 \Auth::routes();
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::get('/', 'HomeController@index')->name('home');
-Route::get('/event/detail/{event}', 'HomeController@eventDetail')->name('event.detail');
-Route::get('/event/search', 'HomeController@eventIndex')->name('event.index');
-Route::get('/event/news', 'HomeController@news')->name('event.news');
+Route::group(['namespace' => 'Frontend'], function () {
 
-//buyer
-Route::get('/event/join/{id}', 'HomeController@joinEvent')->name('event.join');
-Route::get('/event/resend/{id}', 'HomeController@resend')->name('event.resend');
-Route::get('/events/myEvents', 'HomeController@buyerEvent')->name('event.buyer');
+    //home
+    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/event/news', 'HomeController@news')->name('event.news');
 
-//webinfo
-Route::get('/contact', 'ContactController@contact')->name('contact');
-Route::post('/contact', 'ContactController@send')->name('contact.send');
-Route::get('/about_us', 'ContactController@about')->name('contact.about');
+    //event
+    Route::get('/event/detail/{event}', 'EventController@eventDetail')->name('event.detail');
+    Route::get('/event/search', 'EventController@eventIndex')->name('event.index');
+    Route::get('/event/join/{id}', 'EventController@joinEvent')->name('event.join');
+    Route::get('/event/resend/{id}', 'EventController@resendTicket')->name('event.resend');
+    Route::get('/events/myEvents', 'EventController@buyerEvent')->name('event.buyer');
 
-Route::group(['middleware' => 'enterprise_able'], function () {
-    Route::get('/enterprises/create', 'EnterpriseController@createEvent')->name('event.create');
-    Route::post('/enterprises/event', 'EnterpriseController@postEvent')->name('event.store');
-    Route::post('/enterprises', 'EnterpriseController@show')->name('enterprises.show');
-    Route::get('/event/review/{event}', 'EnterpriseController@eventReview')->name('event.review');
-    Route::get('/event/ticket/{qr}', 'EnterpriseController@checkQR')->name('event.checkQR');
+    //webinfo
+    Route::get('/contact', 'ContactController@contact')->name('contact');
+    Route::post('/contact', 'ContactController@send')->name('contact.send');
+    Route::get('/about_us', 'ContactController@about')->name('contact.about');
+
+    Route::group(['middleware' => 'enterprise_able'], function () {
+        Route::get('/enterprises/create', 'EnterpriseController@createEvent')->name('event.create');
+        Route::post('/enterprises/event', 'EnterpriseController@postEvent')->name('event.store');
+        Route::post('/enterprises', 'EnterpriseController@show')->name('enterprises.show');
+        Route::get('/event/review/{event}', 'EnterpriseController@eventReview')->name('event.review');
+        Route::get('/event/ticket/{qr}', 'EnterpriseController@checkQR')->name('event.checkQR');
+    });
 });
+
 
 Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => ['admin_able']], function () {
     Route::get('/admin', 'AdminController@index')->name('admin.index');
@@ -56,7 +52,7 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => [
     Route::get('/events/validated', 'EventController@getValidated')->name('events.validated');
     Route::get('/events/detail/{id}', 'EventController@getDetail')->name('events.detail');
     Route::get('/events/success/{id}', 'EventController@setSuccess')->name('events.success');
-    Route::get('/events/remove/{id}', 'EventController@removeEvent')->name('events.remove');
+    Route::get('/events/cancel/{id}', 'EventController@cancel')->name('events.cancel');
     Route::get('/coupons', 'CouponController@index')->name('coupons.index');
 
 

@@ -116,45 +116,13 @@ class Event extends Model
     }
 
     /**
-     * search event with param
+     * get images attr
      *
-     * @param array $input input data to search
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @param $value
+     * @return mixed
      */
-    public function getSearch($input)
+    public function getImagesAttribute($value)
     {
-        $query = $this->with('coupon');
-
-        //check like
-        if (isset($input['name'])) {
-            $query->where('name', 'like', '%' . $input['name'] . '%')->orWhere('title', 'like', '%' . $input['name'] . '%');
-        }
-        //check input to type
-        if (isset($input['type'])) {
-            $query->where('type_id', $input['type']);
-        }
-        //check input to classify
-        if (isset($input['category'])) {
-            $query->where('category_id', $input['category']);
-        }
-        //check input to coupon
-        if (isset($input['coupon'])) {
-            //started
-            if ($input['coupon'] == 1) {
-                $query->where('coupon_id', null);
-            } else {
-                $query->where('coupon_id', '<>', null);
-            }
-        }
-        //check input to status
-        if (isset($input['status'])) {
-            //started
-            if ($input['status'] == 1) {
-                $query->where('start_date', '>', now());
-            } else {
-                $query->where('start_date', '<', now())->where('end_date', '>', now());
-            }
-        }
-        return $query->active()->get();
+        return json_decode($value);
     }
 }

@@ -2,12 +2,6 @@
 
 @section('title', 'Danh sách người dùng')
 
-@section('btnAdd')
-    <div class="col text-right">
-        <a href="{{ route('users.create') }}" class="btn btn-primary">Add User</a>
-    </div>
-@endsection
-
 @section('content')
     <div class="mt-10">
         {{-- form search table --}}
