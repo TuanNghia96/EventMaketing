@@ -26,7 +26,10 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/event/detail/{event}', 'HomeController@eventDetail')->name('event.detail');
 Route::get('/event/search', 'HomeController@eventIndex')->name('event.index');
 Route::get('/event/news', 'HomeController@news')->name('event.news');
+
+//buyer
 Route::get('/event/join/{id}', 'HomeController@joinEvent')->name('event.join');
+Route::get('/events/myEvents', 'HomeController@buyerEvent')->name('event.buyer');
 
 //webinfo
 Route::get('/contact', 'ContactController@contact')->name('contact');
@@ -54,6 +57,7 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => [
     Route::get('/events/success/{id}', 'EventController@setSuccess')->name('events.success');
     Route::get('/events/remove/{id}', 'EventController@removeEvent')->name('events.remove');
     Route::get('/coupons', 'CouponController@index')->name('coupons.index');
+
 
     //type, category
     Route::resource('/types', 'TypeController');

@@ -154,4 +154,15 @@ class HomeController extends Controller
     {
         return view('frontend.events-news');
     }
+    /**
+     * get buyer event list
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function buyerEvent()
+    {
+        $buyer = Buyer::with('events')->findOrFail(\Auth::user()->user->id);
+//        dd($buyer);
+        return view('frontend.events.buyer', compact('buyer'));
+    }
 }
