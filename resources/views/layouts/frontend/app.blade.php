@@ -26,7 +26,6 @@
 
 </head>
 <body>
-@include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
 <header class="site-header">
     <div class="header-bar">
         <div class="container-fluid">
@@ -82,6 +81,8 @@
     </div><!-- .header-bar -->
     @yield('background_header')
 </header><!-- .site-header -->
+@include('sweetalert::alert')
+
 @yield('content')
 @include('layouts.frontend.footer')
 <script type='text/javascript' src='{{ asset('frontend/js/jquery.js')}}'></script>
@@ -92,7 +93,7 @@
 <script type='text/javascript' src='{{ asset('frontend/js/jquery.countdown.min.js')}}'></script>
 <script type='text/javascript' src='{{ asset('frontend/js/circle-progress.min.js')}}'></script>
 <script type='text/javascript' src='{{ asset('frontend/js/jquery.countTo.min.js')}}'></script>
-<script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
+<script type='text/javascript' src="{{ asset('backend/js/plugin/sweetalert/sweetalert.min.js') }}"></script>
 @yield('inline_script')
 </body>
 </html>

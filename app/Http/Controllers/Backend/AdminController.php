@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminController extends Controller
 {
@@ -27,6 +28,7 @@ class AdminController extends Controller
      */
     public function index()
     {
+        Alert::success('Title', 'Message');
         $users = $this->admin->get();
         return view('backend.admins.index', compact('users'));
     }

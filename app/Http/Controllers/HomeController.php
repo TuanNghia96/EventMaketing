@@ -45,7 +45,6 @@ class HomeController extends Controller
             'event' => Event::where('end_date', '<', Carbon::now())->count(),
             'enterprise' => Enterprise::count(),
         ];
-        Alert::alert('Title', 'Message', 'Type');
         return view('frontend.index', compact('events', 'subEvents', 'webInfo'));
     }
 
@@ -83,7 +82,6 @@ class HomeController extends Controller
     public function eventSearch(Request $request)
     {
         $params = $request->all();
-        \Log::info($this->event->getSearch($params));
         return $this->event->getSearch($params);
     }
 
@@ -95,9 +93,13 @@ class HomeController extends Controller
      */
     public function eventDetail($id)
     {
-        $event = Event::active()->with('coupon')->with('buyer')->findOrFail($id);
-        $event->images = json_decode($event->images);
-        return view('frontend.events.detail', compact('event'));
+        $event = Event::active()->with('coupon')->with('buyer')->find($id);
+        if ($event){
+            $event->images = json_decode($event->images);
+            return view('frontend.events.detail', compact('event'));
+        } else{
+            return view('frontend.404');
+        }
     }
 
     /**
