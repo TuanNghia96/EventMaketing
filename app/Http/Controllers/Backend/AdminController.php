@@ -28,7 +28,6 @@ class AdminController extends Controller
      */
     public function index()
     {
-        Alert::success('Title', 'Message');
         $users = $this->admin->get();
         return view('backend.admins.index', compact('users'));
     }

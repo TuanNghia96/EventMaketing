@@ -13,7 +13,6 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use RealRashid\SweetAlert\Facades\Alert;
 
 //use Alert;
 
@@ -57,7 +56,8 @@ class HomeController extends Controller
     public function getSubEvent(Request $request)
     {
         $params = $request->all();
-        return $subEvents = Event::active()->with('coupon')->orderBy('point', 'desc')->skip(5)->take($params['number'] + 6)->get();
+        return $subEvents = Event::active()->with('coupon')->
+            orderBy('point', 'desc')->skip(5)->take($params['number'] + 6)->get();
     }
 
     /**
@@ -93,13 +93,10 @@ class HomeController extends Controller
      */
     public function eventDetail($id)
     {
-        $event = Event::active()->with('coupon')->with('buyer')->find($id);
-        if ($event){
-            $event->images = json_decode($event->images);
-            return view('frontend.events.detail', compact('event'));
-        } else{
-            return view('frontend.404');
-        }
+        $event = Event::active()->with('coupon')->with('buyer')->findOrFail($id);
+        $event->images = json_decode($event->images);
+        return view('frontend.events.detail', compact('event'));
+
     }
 
     /**
@@ -111,46 +108,31 @@ class HomeController extends Controller
     public function joinEvent($id)
     {
         $event = Event::active()->with('coupon')->with('buyer')->findOrFail($id);
+        if ($event->buyer->count() >= $event->ticket_number) {
+            alert()->warning('Cảnh báo', 'Đã hết vé');
 
-        if (!$event->buyer->find(Auth::user()->user->id)) {
-            DB::beginTransaction();
-            $check = Auth::user()->user->buyer_code . '-' . $event->code . '-' . rand(100000, 999999);
-            $image = \QrCode::format('png')
-                ->size(200)
-                ->generate(route('event.checkQR', $check));
-            $output_file = '/public/img/qr-code/' . $check . '.png';
-            \Storage::disk('local')->put($output_file, $image);
-
-            $event->buyer()->attach([Auth::user()->user->id => ['qrcode_check' => $check]]);
-            dispatch(new SendTicketMail(Auth::user()->email, Auth::user()->user->toArray(), $event, asset('storage/img/qr-code/' . $check . '.png')));
-            DB::commit();
-        }
-        return redirect(route('event.detail', $event->id));
-    }
-
-    /**
-     * get un join event
-     *
-     * @param $id
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function unJoinEvent($id)
-    {
-        $event = Event::active()->with('coupon')->with('buyer')->findOrFail($id);
-
-        if ($event->buyer->find(Auth::user()->user->id) && ($event->status == Event::VALIDATED)) {
+        } elseif (!$event->buyer->find(Auth::user()->user->id)) {
             DB::beginTransaction();
             try {
-                $event->buyer()->detach(Auth::user()->user->id);
-            } catch (Exception $e) {
-                DB::rollBack();
+                $check = Auth::user()->user->buyer_code . '-' . $event->code . '-' . rand(100000, 999999);
+                $image = \QrCode::format('png')
+                    ->size(200)
+                    ->generate(route('event.checkQR', $check));
+                $output_file = '/public/img/qr-code/' . $check . '.png';
+                \Storage::disk('local')->put($output_file, $image);
 
-                throw new Exception($e->getMessage());
+
+                $event->buyer()->attach([Auth::user()->user->id => ['qrcode_check' => $check]]);
+                dispatch(new SendTicketMail(Auth::user()->email, Auth::user()->user->toArray(), $event, asset('storage/img/qr-code/' . $check . '.png')));
+                DB::commit();
+            } catch (\Exception $e) {
+                DB::rollBack();
+                alert()->error('Lỗi', 'Bạn đã gặp lỗi, xin thử lại');
             }
-            DB::commit();
+        } else {
+            alert()->warning('Cảnh báo', 'Bạn đã tham gia sự kiện');
         }
         return redirect(route('event.detail', $event->id));
-
     }
 
     /**
@@ -162,6 +144,7 @@ class HomeController extends Controller
     {
         return view('frontend.contact');
     }
+
     /**
      * get contact page
      *
