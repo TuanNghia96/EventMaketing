@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\EventStoreRequest;
 use App\Models\Buyer;
 use App\Models\Category;
+use App\Models\Coupon;
 use App\Models\Event;
 use App\Models\Type;
 use Illuminate\Support\Facades\Auth;
@@ -21,17 +22,24 @@ class EnterpriseController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Show form input data
      *
      * @return
      */
     public function createEvent()
     {
-        $types= Type::pluck('name')->toArray();
-        $categories= Category::pluck('name', 'id')->toArray();
-        return view('frontend.events.create', compact('types', 'categories'));
+        $types = Type::pluck('name', 'id')->toArray();
+        $categories = Category::pluck('name', 'id')->toArray();
+        $coupons = Coupon::distinct('value')->pluck('id', 'value');
+        return view('frontend.events.create', compact('types', 'categories', 'coupons'));
     }
 
+    /**
+     * store event data
+     *
+     * @param EventStoreRequest $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function postEvent(EventStoreRequest $request)
     {
         $params = $request->all();
@@ -41,9 +49,9 @@ class EnterpriseController extends Controller
         $params['code'] = $code + 1;
 
         //format date
-        $params['public_date'] = date('Y-m-d H:i:s', strtotime($params['public_date'] . ' '. $params['public_time']));
-        $params['start_date'] = date('Y-m-d H:i:s', strtotime($params['start_date'] . ' '. $params['start_time']));
-        $params['end_date'] = date('Y-m-d H:i:s', strtotime($params['end_date'] . ' '. $params['end_time']));
+        $params['public_date'] = date('Y-m-d H:i:s', strtotime($params['public_date'] . ' ' . $params['public_time']));
+        $params['start_date'] = date('Y-m-d H:i:s', strtotime($params['start_date'] . ' ' . $params['start_time']));
+        $params['end_date'] = date('Y-m-d H:i:s', strtotime($params['end_date'] . ' ' . $params['end_time']));
 
         //save event avatar
         $avatar = $params['avatar'];

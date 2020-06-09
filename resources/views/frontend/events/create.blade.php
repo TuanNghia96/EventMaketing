@@ -50,22 +50,21 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-4 mb-3 md-form">
+                            <div class="col-md-3 mb-3 md-form">
                                 <label for="validationCustom042">Thể loại</label>
-                                <select name="type" class="form-control" id="">
+                                <select name="type_id" class="form-control" id="">
                                     <option value=""></option>
                                     @foreach($types as $key => $value)
                                         <option value="{{ $key }}">{{ $value }}</option>
                                     @endforeach
                                 </select>
-                                {{--<input type="text" class="form-control" id="validationCustom042">--}}
                                 <div class="invalid-feedback">
                                     {{--Please provide a valid state.--}}
                                 </div>
                             </div>
-                            <div class="col-md-4 mb-3 md-form">
+                            <div class="col-md-3 mb-3 md-form">
                                 <label for="validationCustom042">Danh mục</label>
-                                <select name="classify" class="form-control" id="">
+                                <select name="category_id" class="form-control" id="">
                                     <option value=""></option>
                                     @foreach($categories as $key => $value)
                                         <option value="{{ $key }}">{{ $value }}</option>
@@ -74,7 +73,18 @@
                                 <div class="invalid-feedback">
                                 </div>
                             </div>
-                            <div class="col-md-4 mb-3 md-form">
+                            <div class="col-md-3 mb-3 md-form">
+                                <label for="validationCustom042">Coupon</label>
+                                <select name="coupon_id" class="form-control" id="">
+                                    <option value=""></option>
+                                    @foreach($coupons as $key => $coupon)
+                                        <option value="{{ $coupon }}">{{ $key }}</option>
+                                    @endforeach
+                                </select>
+                                <div class="invalid-feedback">
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3 md-form">
                                 <label for="validatinonCustom032">Số vé(min: 100 ticket)</label>
                                 <input type="text" class="form-control" name="ticket_number">
                                 <div class="invalid-feedback">

@@ -2,7 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Category;
+use App\Models\Coupon;
 use App\Models\Event;
+use App\Models\Type;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Carbon;
 
@@ -30,8 +33,9 @@ class EventStoreRequest extends FormRequest
             "title" => "required|string|max:30",
             "location" => "nullable|string|max:30",
             "summary" => "nullable|string|max:255",
-            "type" => "required|numeric|in:" . implode(',', array_keys(Event::TYPE)),
-            "classify" => "required|numeric|in:" . implode(',', array_keys(Event::$classify)),
+            "type_id" => "required|numeric|in:" . implode(',', Type::pluck('id')->toArray()),
+            "category_id" => "required|numeric|in:" . implode(',', Category::pluck('id')->toArray()),
+            "coupon_id" => "required|numeric|in:" . implode(',', Coupon::pluck('id')->toArray()),
             "ticket_number" => "required|numeric|min:100",
             "public_date" => "required|date_format:Y-m-d|after:" . Carbon::now()->addDay(2)->format('Y-m-d'),
             "public_time" => "required|date_format:H:i",
