@@ -50,7 +50,7 @@
                             </div>
 
                             <footer class="entry-footer">
-                                <a href="#">Nhận lại vé</a>
+                                <a href="{{ route('event.resend', $event->id) }}">Nhận lại vé</a>
                             </footer>
                         </div>
                     </div>

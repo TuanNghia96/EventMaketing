@@ -17,7 +17,7 @@
                                 <li><a href="#">Join Event</a></li>
                                 <li><a href="#">List Event</a></li>
                             @elseif(Auth::user()->role == \App\Models\User::BUYER)
-                                <li><a href="#">News</a></li>
+                                <li><a href="{{ route('event.buyer') }}">My Events</a></li>
                             @endif
                         @endif
                         <li><a href="{{ route('event.news') }}">News</a></li>

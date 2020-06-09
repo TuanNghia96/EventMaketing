@@ -57,7 +57,7 @@ class HomeController extends Controller
     {
         $params = $request->all();
         return $subEvents = Event::active()->with('coupon')->
-            orderBy('point', 'desc')->skip(5)->take($params['number'] + 6)->get();
+        orderBy('point', 'desc')->skip(5)->take($params['number'] + 6)->get();
     }
 
     /**
@@ -121,10 +121,10 @@ class HomeController extends Controller
                 $output_file = '/public/img/qr-code/' . $check . '.png';
                 \Storage::disk('local')->put($output_file, $image);
 
-
                 $event->buyer()->attach([Auth::user()->user->id => ['qrcode_check' => $check]]);
                 dispatch(new SendTicketMail(Auth::user()->email, Auth::user()->user->toArray(), $event, asset('storage/img/qr-code/' . $check . '.png')));
                 DB::commit();
+                alert()->success('Thành công', 'Vé đã gửi. Vui lòng kiểm tra hòm thư');
             } catch (\Exception $e) {
                 DB::rollBack();
                 alert()->error('Lỗi', 'Bạn đã gặp lỗi, xin thử lại');
@@ -146,7 +146,7 @@ class HomeController extends Controller
     }
 
     /**
-     * get contact page
+     * get news page
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -154,15 +154,35 @@ class HomeController extends Controller
     {
         return view('frontend.events-news');
     }
+
     /**
-     * get buyer event list
+     * get buyer events list
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function buyerEvent()
     {
         $buyer = Buyer::with('events')->findOrFail(\Auth::user()->user->id);
-//        dd($buyer);
         return view('frontend.events.buyer', compact('buyer'));
+    }
+
+    /**
+     * resend ticket to buyer
+     *
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function resend($id)
+    {
+        $event = Event::active()->with('buyer')->findOrFail($id);
+        $ticket = $event->buyer->find(Auth::user()->user->id);
+        if ($ticket) {
+            $check = $ticket->pivot->qrcode_check;
+            dispatch(new SendTicketMail(Auth::user()->email, Auth::user()->user->toArray(), $event, asset('storage/img/qr-code/' . $check . '.png')));
+            alert()->success('Thành công', 'Vé đã gửi. Vui lòng kiểm tra hòm thư');
+        } else {
+            alert()->warning('Cảnh báo', 'Bạn chưa tham gia sự kiện');
+        }
+        return redirect(route('event.buyer'));
     }
 }

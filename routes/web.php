@@ -29,6 +29,7 @@ Route::get('/event/news', 'HomeController@news')->name('event.news');
 
 //buyer
 Route::get('/event/join/{id}', 'HomeController@joinEvent')->name('event.join');
+Route::get('/event/resend/{id}', 'HomeController@resend')->name('event.resend');
 Route::get('/events/myEvents', 'HomeController@buyerEvent')->name('event.buyer');
 
 //webinfo
