@@ -25,7 +25,7 @@
                         <div class="single-event-heading">
                             <h2 class="entry-title">{{ $event->name }}</h2>
 
-                            <div class="event-location"><a href="#">{{ $event->location }}</a></div>
+                            <div class="event-location">{{ $event->location }}</div>
 
                             <div class="event-date">{{ date('M d, Y @ h:i A', strtotime($event->start_date)) . ' - ' . date('M d, Y @ h:i A', strtotime($event->end_date)) }}</div>
                         </div>
@@ -62,38 +62,38 @@
                             <div class="flex flex-wrap justify-content-between">
                                 <div class="single-event-details">
                                     <div class="single-event-details-row">
-                                        <label>Start:</label>
+                                        <label>Thời gian bắt đầu:</label>
                                         <p>{{ date('M d, Y @ h:i A', strtotime($event->start_date)) }}</p>
                                     </div>
 
                                     <div class="single-event-details-row">
-                                        <label>End:</label>
+                                        <label>Thời gian kết thúc:</label>
                                         <p>{{ date('M d, Y @ h:i A', strtotime($event->end_date)) }}</p>
                                     </div>
 
                                     <div class="single-event-details-row">
-                                        <label>Coupon:</label>
-                                        <p>$89 <span>Sold Out</span></p>
+                                        <label>Mã giảm giá:</label>
+                                        <p><span>{{ $event->coupon->value . '%' }}</span></p>
                                     </div>
 
                                     <div class="single-event-details-row">
-                                        <label>Type</label>
+                                        <label>Thể loại</label>
                                         <p>{{ $event->type->name }}</p>
                                     </div>
 
                                     <div class="single-event-details-row">
-                                        <label>Category:</label>
+                                        <label>Danh mục:</label>
                                         <p>{{ $event->category->name }}</p>
                                     </div>
 
                                     <div class="single-event-details-row">
-                                        <label>Location:</label>
+                                        <label>Địa điểm:</label>
                                         <p>{{ $event->location }}</p>
                                     </div>
+
                                 </div>
 
                                 <div class="single-event-map">
-                                    219+Hà+Trì+4,+Hà+Cầu,+Hà+Đông,+Hà Nội
                                     @php($location = str_replace(' ', '+', $event->location))
                                     <iframe id="gmap_canvas" src="https://maps.google.com/maps?q=
                                             {{ $location }}

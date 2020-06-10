@@ -35,7 +35,7 @@ class EventStoreRequest extends FormRequest
             "summary" => "nullable|string|max:255",
             "type_id" => "required|numeric|in:" . implode(',', Type::pluck('id')->toArray()),
             "category_id" => "required|numeric|in:" . implode(',', Category::pluck('id')->toArray()),
-            "coupon_id" => "required|numeric|in:" . implode(',', Coupon::pluck('id')->toArray()),
+            "coupon_id" => "nullable|numeric|in:" . implode(',', Coupon::pluck('id')->toArray()),
             "ticket_number" => "required|numeric|min:100",
             "public_date" => "required|date_format:Y-m-d|after:" . Carbon::now()->addDay(2)->format('Y-m-d'),
             "public_time" => "required|date_format:H:i",

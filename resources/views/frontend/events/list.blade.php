@@ -36,7 +36,7 @@
                         <div class="col-12 col-sm-6 col-md-4">
                             <div class="next-event-wrap">
                                 <figure>
-                                    <a href="#"><img src="{{ asset($event->avatar) }}" alt="1"></a>
+                                    <a href="{{ route('event.review', $event->id) }}"><img src="{{ asset($event->avatar) }}" alt="1"></a>
                                 </figure>
 
                                 <header class="entry-header">
@@ -64,7 +64,7 @@
                     <div class="col-12 col-sm-6 col-md-4">
                         <div class="next-event-wrap">
                             <figure>
-                                <a href="#"><img src="{{ asset($event->avatar) }}" alt="1"></a>
+                                <a href="{{ route('event.detail', $event->id) }}"><img src="{{ asset($event->avatar) }}" alt="1"></a>
                             </figure>
 
                             <header class="entry-header">
