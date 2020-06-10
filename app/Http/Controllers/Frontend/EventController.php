@@ -8,6 +8,7 @@ use App\Jobs\SendTicketMail;
 use App\Models\Buyer;
 use App\Models\Category;
 use App\Models\Coupon;
+use App\Models\Enterprise;
 use App\Models\Event;
 use App\Models\Type;
 use App\Services\EventServiceInterface;
@@ -84,8 +85,19 @@ class EventController extends Controller
      */
     public function buyerEvent()
     {
-        $buyer = Buyer::with('events')->findOrFail(\Auth::user()->user->id);
-        return view('frontend.events.buyer', compact('buyer'));
+        $user = Buyer::with('events')->findOrFail(\Auth::user()->user->id);
+        return view('frontend.events.list', compact('user'));
+    }
+
+    /**
+     * get user events list
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function enterpriseEvent()
+    {
+        $user = Enterprise::with(['events', 'mainEvent'])->findOrFail(\Auth::user()->user->id);
+        return view('frontend.events.list', compact('user'));
     }
 
     /**
@@ -104,7 +116,7 @@ class EventController extends Controller
      * Show the application dashboard.
      *
      * @param Request $request
-     * @return Renderable
+     * @return Event
      */
     public function getSubEvent(Request $request)
     {
@@ -114,7 +126,7 @@ class EventController extends Controller
     /**
      * Show form input data
      *
-     * @return
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function createEvent()
     {

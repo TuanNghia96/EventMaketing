@@ -34,9 +34,9 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::group(['middleware' => 'enterprise_able'], function () {
         Route::get('/enterprises/create', 'EventController@createEvent')->name('event.create');
         Route::post('/enterprises/event', 'EventController@postEvent')->name('event.store');
-        Route::post('/enterprises', 'EnterpriseController@show')->name('enterprises.show');
+        Route::get('/enterprises', 'EventController@enterpriseEvent')->name('event.enterprise');
         Route::get('/event/review/{event}', 'EventController@eventReview')->name('event.review');
-        Route::get('/event/ticket/{qr}', 'EnterpriseController@checkQR')->name('event.checkQR');
+        Route::get('/event/ticket/{qr}', 'EventController@checkQR')->name('event.checkQR');
     });
 });
 

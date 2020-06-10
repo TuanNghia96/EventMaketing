@@ -13,9 +13,7 @@
                         @if(Auth::user())
                             @if(Auth::user()->role == \App\Models\User::ENTERPRISE)
                                 <li><a href="{{ route('event.create') }}">Make Event</a></li>
-                                <li><a href="#">Main Event</a></li>
-                                <li><a href="#">Join Event</a></li>
-                                <li><a href="#">List Event</a></li>
+                                <li><a href="{{ route('event.enterprise') }}">List Event</a></li>
                             @elseif(Auth::user()->role == \App\Models\User::BUYER)
                                 <li><a href="{{ route('event.buyer') }}">My Events</a></li>
                             @endif

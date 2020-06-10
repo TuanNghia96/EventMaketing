@@ -63,6 +63,16 @@ class Enterprise extends Model
      */
     public function events()
     {
-        return $this->belongsToMany(Event::class, 'enterprise_events');
+        return $this->belongsToMany(Event::class, 'enterprise_events')->where('enterprise_events.role', '=', 2);
+    }
+
+    /**
+     * relationship to event
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function mainEvent()
+    {
+        return $this->belongsToMany(Event::class, 'enterprise_events')->where('enterprise_events.role', '=', 1);
     }
 }
