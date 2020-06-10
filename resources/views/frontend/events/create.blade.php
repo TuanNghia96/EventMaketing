@@ -46,7 +46,7 @@
                                 @enderror
                             </div>
                             <div class="col-md-4 mb-3 md-form">
-                                <label>Đại điểm chính</label>
+                                <label>Đại điểm chính(Nên dùng kết quả của google map)</label>
                                 <input type="text" class="form-control" name="location" data-toggle="datetimepicker" aria-describedby="inputGroupPrepend2" value="{{ old('location') }}">
                                 @error('location')
                                 <span class="text-danger" role="alert">

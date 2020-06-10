@@ -35,7 +35,7 @@ Route::group(['namespace' => 'Frontend'], function () {
         Route::get('/enterprises/create', 'EventController@createEvent')->name('event.create');
         Route::post('/enterprises/event', 'EventController@postEvent')->name('event.store');
         Route::post('/enterprises', 'EnterpriseController@show')->name('enterprises.show');
-        Route::get('/event/review/{event}', 'EnterpriseController@eventReview')->name('event.review');
+        Route::get('/event/review/{event}', 'EventController@eventReview')->name('event.review');
         Route::get('/event/ticket/{qr}', 'EnterpriseController@checkQR')->name('event.checkQR');
     });
 });

@@ -85,19 +85,28 @@
                                         <label>Category:</label>
                                         <p>{{ $event->category->name }}</p>
                                     </div>
+
+                                    <div class="single-event-details-row">
+                                        <label>Location:</label>
+                                        <p>{{ $event->location }}</p>
+                                    </div>
                                 </div>
 
                                 <div class="single-event-map">
-                                    <iframe id="gmap_canvas" src="https://maps.google.com/maps?q={{ $event->location }}&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                                    219+Hà+Trì+4,+Hà+Cầu,+Hà+Đông,+Hà Nội
+                                    @php($location = str_replace(' ', '+', $event->location))
+                                    <iframe id="gmap_canvas" src="https://maps.google.com/maps?q=
+                                            {{ $location }}
+                                            &t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
                                 </div>
                             </div>
                         </div>
 
                         <div id="tab_venue" class="tab-content">
+                            <h5>Nội dung:</h5>
                             <p>{{ $event->summary }}</p>
-                        </div>
-
-                        <div id="tab_organizers" class="tab-images">
+                            <br>
+                            <h5>Hình ảnh của sự kiện:</h5>
                             <div class="row">
                                 @isset($event->images)
                                     @foreach($event->images as $key => $value)
@@ -108,6 +117,10 @@
                                     @endforeach
                                 @endisset
                             </div>
+                        </div>
+
+                        <div id="tab_organizers" class="tab-images">
+
                         </div>
                     </div>
                 </div>

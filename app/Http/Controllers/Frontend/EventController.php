@@ -141,4 +141,34 @@ class EventController extends Controller
         alert()->error('Lỗi', 'Bạn đã gặp lỗi, xin thử lại');
         return redirect(route('event.create'));
     }
+
+
+    /**
+     * get event review
+     *
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function eventReview($id)
+    {
+        $event = Event::with('buyer')->findOrFail($id);
+        return view('frontend.events.detail', compact('event'));
+    }
+
+    /**
+     * check ticket
+     *
+     * @param $number
+     * @return void
+     */
+    public function checkQR($number)
+    {
+        $arr = explode('-', $number);
+        $buyer = Buyer::with('events')->where('buyer_code', $arr[0])->first();
+        $event = $buyer->events->find($arr[1]);
+        if ($buyer && $event && !$event->pivot->is_used && ($event->pivot->qrcode_check == $number)) {
+            $event->pivot->is_used = !$event->pivot->is_used;
+            $event->pivot->save();
+        }
+    }
 }
