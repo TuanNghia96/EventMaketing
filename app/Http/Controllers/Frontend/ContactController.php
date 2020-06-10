@@ -1,23 +1,23 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Frontend;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\ContactStoreRequest;
-use App\Models\Comment;
-use Illuminate\Http\Request;
+use App\Models\Contacts;
 
 class ContactController extends Controller
 {
-    protected $comment;
+    protected $contact;
 
     /**
      * Create a new controller instance.
      *
-     * @param Comment $comment
+     * @param Contacts $contact
      */
-    public function __construct(Comment $comment)
+    public function __construct(Contacts $contact)
     {
-        $this->comment = $comment;
+        $this->contact = $contact;
     }
 
     /**
@@ -31,14 +31,14 @@ class ContactController extends Controller
     }
 
     /**
-     * store comment
+     * store contact
      *
      * @param ContactStoreRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function send(ContactStoreRequest $request)
     {
-        $this->comment->create($request->all());
+        $this->contact->create($request->all());
         return redirect(route('home'));
     }
 
