@@ -48,4 +48,27 @@ class EventStoreRequest extends FormRequest
             "avatar" => "required|image",
         ];
     }
+
+    public function attributes()
+    {
+        return[
+            "name" => "Tên",
+            "title" => "Tiêu đề",
+            "location" => "Đại điểm chính",
+            "summary" => "",
+            "type_id" => "Thể loại",
+            "category_id" => "Danh mục",
+            "coupon_id" => "Mã giảm giá",
+            "ticket_number" => "Số vé",
+            "public_date" => "Ngày công bố",
+            "public_time" => "Giờ công bố",
+            "start_date" => "Ngày bắt đầu",
+            "start_time" => "Giờ bắt đầu",
+            "end_date" => "Ngày kết thúc",
+            "end_time" => "Thời gian kết thúc",
+            "images.*.image" => "Tiêu đề ảnh",
+            "images.*.title" => "Ảnh thêm",
+            "avatar" => "Ảnh đại diện",
+        ];
+    }
 }

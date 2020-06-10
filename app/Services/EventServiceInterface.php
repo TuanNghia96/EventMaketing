@@ -12,4 +12,5 @@ interface EventServiceInterface
     public function getEventValidate();
     public function setEventSuccess($id);
     public function cancelEvent($id);
+    public function post($params);
 }

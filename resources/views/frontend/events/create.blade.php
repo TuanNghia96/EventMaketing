@@ -17,9 +17,9 @@
 @endsection
 
 @section('content')
-    @if($errors->any())
+    {{--@if($errors->any())
         {{ implode('', $errors->all('<div>:message</div>')) }}
-    @endif
+    @endif--}}
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -28,130 +28,163 @@
                         @csrf
                         <div class="col-md-12 mb-3 md-form row">
                             <div class="col-md-4 mb-3 md-form">
-                                <label for="validationCustom012">Tên</label>
-                                <input type="text" name="name" class="form-control" id="validationCustom012" placeholder="Event name" value="">
-                                <div class="valid-feedback">
-                                    {{--Looks good!--}}
-                                </div>
+                                <label>Tên</label>
+                                <input type="text" name="name" class="form-control" placeholder="Event name" value="{{ old('name') }}">
+                                @error('name')
+                                <span class="text-danger" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <div class="col-md-4 mb-3 md-form">
-                                <label for="validationCustom022">Tiêu đề</label>
-                                <input type="text" class="form-control" name="title" id="validationCustom022" value="">
-                                <div class="valid-feedback">
-                                    {{--Looks good!--}}
-                                </div>
+                                <label>Tiêu đề</label>
+                                <input type="text" class="form-control" name="title" value="{{ old('title') }}">
+                                @error('title')
+                                <span class="text-danger" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <div class="col-md-4 mb-3 md-form">
-                                <label for="validationCustomUsername2">Đại điểm</label>
-                                <input type="text" class="form-control" name="location" data-toggle="datetimepicker" aria-describedby="inputGroupPrepend2"
-                                >
-                                <div class="invalid-feedback">
-                                    {{--Please choose a username.--}}
-                                </div>
+                                <label>Đại điểm chính</label>
+                                <input type="text" class="form-control" name="location" data-toggle="datetimepicker" aria-describedby="inputGroupPrepend2" value="{{ old('location') }}">
+                                @error('location')
+                                <span class="text-danger" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
 
                             <div class="col-md-3 mb-3 md-form">
-                                <label for="validationCustom042">Thể loại</label>
+                                <label>Thể loại</label>
                                 <select name="type_id" class="form-control" id="">
                                     <option value=""></option>
                                     @foreach($types as $key => $value)
-                                        <option value="{{ $key }}">{{ $value }}</option>
+                                        <option value="{{ $key }}" @if($key == old('type_id')) selected @endif>{{ $value }}</option>
                                     @endforeach
                                 </select>
-                                <div class="invalid-feedback">
-                                    {{--Please provide a valid state.--}}
-                                </div>
+                                @error('type_id')
+                                <span class="text-danger" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <div class="col-md-3 mb-3 md-form">
-                                <label for="validationCustom042">Danh mục</label>
+                                <label>Danh mục</label>
                                 <select name="category_id" class="form-control" id="">
                                     <option value=""></option>
                                     @foreach($categories as $key => $value)
-                                        <option value="{{ $key }}">{{ $value }}</option>
+                                        <option value="{{ $key }}" @if($key == old('category_id')) selected @endif>{{ $value }}</option>
                                     @endforeach
                                 </select>
-                                <div class="invalid-feedback">
-                                </div>
+                                @error('category_id')
+                                <span class="text-danger" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <div class="col-md-3 mb-3 md-form">
-                                <label for="validationCustom042">Coupon</label>
+                                <label>Mã giảm giá</label>
                                 <select name="coupon_id" class="form-control" id="">
                                     <option value=""></option>
                                     @foreach($coupons as $key => $coupon)
-                                        <option value="{{ $coupon }}">{{ $key }}</option>
+                                        <option value="{{ $coupon }}" @if($coupon == old('coupon_id')) selected @endif>{{ $key . '%' }}</option>
                                     @endforeach
                                 </select>
-                                <div class="invalid-feedback">
-                                </div>
+                                @error('coupon_id')
+                                <span class="text-danger" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <div class="col-md-3 mb-3 md-form">
-                                <label for="validatinonCustom032">Số vé(min: 100 ticket)</label>
-                                <input type="text" class="form-control" name="ticket_number">
-                                <div class="invalid-feedback">
-                                </div>
+                                <label>Số vé(min: 100 ticket)</label>
+                                <input type="text" class="form-control" name="ticket_number" value="{{ old('ticket_number') }}">
+                                @error('ticket_number')
+                                <span class="text-danger" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                         <div class="col-md-6 mb-3 md-form row">
                             <div class="col-md-12">
                                 <label for="validatinonCustom032">Nội dung</label>
-                                <textarea name="summary" class="form-control" id="" cols="30" rows="8"></textarea>
-                                {{--<input type="text" class="form-control" id="validationCustom032">--}}
-                                <div class="invalid-feedback">
-                                </div>
+                                <textarea name="summary" class="form-control" id="" cols="30" rows="8">{{ old('summary') }}</textarea>
+                                @error('summary')
+                                <span class="text-danger" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                         <div class="col-md-6 mb-3 md-form row">
                             <div class="col-md-12 mb-3 md-form row">
                                 <div class="col-md-6">
-                                    <label for="validationCustom012">Ngày công bố</label>
-                                    <input type="date" name="public_date" class="form-control datetime_picker" id="publicDate" autocomplete="off">
-                                    <div class="valid-feedback">
-                                        {{--Looks good!--}}
-                                    </div>
+                                    <label>Ngày công bố</label>
+                                    <input type="date" name="public_date" class="form-control datetime_picker" id="publicDate" autocomplete="off" value="{{ old('public_date') }}">
+                                    @error('public_date')
+                                    <span class="text-danger" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="validationCustom012">Giờ công bố</label>
-                                    <input type="time" name="public_time" class="form-control datetime_picker" required>
-                                    <div class="valid-feedback">
-                                        {{--Looks good!--}}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12 mb-3 md-form row">
-                                <div class="col-md-6">
-                                    <label for="validationCustom012">Ngày bắt đầu</label>
-                                    <input type="date" name="start_date" class="form-control datetime_picker" id="publicDate" autocomplete="off">
-                                    <div class="valid-feedback">
-                                        {{--Looks good!--}}
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="validationCustom012">Giờ bắt đầu</label>
-                                    <input type="time" name="start_time" class="form-control datetime_picker" required>
-                                    <div class="valid-feedback">
-                                        {{--Looks good!--}}
-                                    </div>
+                                    <label>Giờ công bố</label>
+                                    <input type="time" name="public_time" class="form-control datetime_picker" value="{{ old('public_time') }}">
+                                    @error('public_time')
+                                    <span class="text-danger" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-12 mb-3 md-form row">
                                 <div class="col-md-6">
-                                    <label for="validationCustom012">Ngày kết thúc</label>
-                                    <input type="date" name="end_date" class="form-control datetime_picker" id="publicDate" autocomplete="off">
-                                    <div class="valid-feedback">
-                                        {{--Looks good!--}}
-                                    </div>
+                                    <label>Ngày bắt đầu</label>
+                                    <input type="date" name="start_date" class="form-control datetime_picker" id="publicDate" value="{{ old('start_date') }}">
+                                    @error('start_date')
+                                    <span class="text-danger" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="validationCustom012">Thời gian kết thúc</label>
-                                    <input type="time" name="end_time" class="form-control datetime_picker" required>
-                                    <div class="valid-feedback">
-                                        {{--Looks good!--}}
-                                    </div>
+                                    <label>Giờ bắt đầu</label>
+                                    <input type="time" name="start_time" class="form-control datetime_picker" value="{{ old('start_time') }}">
+                                    @error('start_time')
+                                    <span class="text-danger" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-3 md-form row">
+                                <div class="col-md-6">
+                                    <label>Ngày kết thúc</label>
+                                    <input type="date" name="end_date" class="form-control datetime_picker" id="publicDate" value="{{ old('end_date') }}">
+                                    @error('end_date')
+                                    <span class="text-danger" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Thời gian kết thúc</label>
+                                    <input type="time" name="end_time" class="form-control datetime_picker" value="{{ old('end_time') }}">
+                                    @error('end_time')
+                                    <span class="text-danger" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
                         <div id="app" class="col-md-12 mb-3 md-form">
-                            <create-event></create-event>
+                            <create-event
+                                    old-images="{{ json_encode(old('images') ?? null) }}"
+                                    all-error="{{ json_encode($errors->messages() ?? null) }}"
+                            ></create-event>
                         </div>
                         <script src="/js/app.js"></script>
                         <div class="col-md-12 mb-12 md-form">

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\EventStoreRequest;
 use App\Jobs\SendTicketMail;
 use App\Models\Buyer;
 use App\Models\Category;
+use App\Models\Coupon;
 use App\Models\Event;
 use App\Models\Type;
 use App\Services\EventServiceInterface;
@@ -107,5 +109,36 @@ class EventController extends Controller
     public function getSubEvent(Request $request)
     {
         return $this->eventService->getSubEvent($request->all());
+    }
+
+    /**
+     * Show form input data
+     *
+     * @return
+     */
+    public function createEvent()
+    {
+        $types = Type::pluck('name', 'id')->toArray();
+        $categories = Category::pluck('name', 'id')->toArray();
+        $coupons = Coupon::distinct('value')->pluck('id', 'value');
+        return view('frontend.events.create', compact('types', 'categories', 'coupons'));
+    }
+
+
+    /**
+     * store event data
+     *
+     * @param EventStoreRequest $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function postEvent(EventStoreRequest $request)
+    {
+        $event = $this->eventService->post($request->all());
+        if ($event) {
+            alert()->success('Thành công', 'Sự kiện đã tạo hoàn thành');
+            return redirect(route('event.review', $event->id));
+        }
+        alert()->error('Lỗi', 'Bạn đã gặp lỗi, xin thử lại');
+        return redirect(route('event.create'));
     }
 }

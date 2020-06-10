@@ -1746,13 +1746,18 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
+  props: ["oldImages", "allError"],
+  created: function created() {
+    this.imageData = JSON.parse(this.oldImages) || [];
+    this.errors = JSON.parse(this.allError) || [];
   },
   data: function data() {
     return {
-      imageData: []
+      imageData: [],
+      errors: []
     };
   },
   methods: {
@@ -38394,47 +38399,110 @@ var render = function() {
   return _c(
     "div",
     [
-      _vm._m(0),
+      _c("div", { staticClass: "col-md-12 mb-3 md-form" }, [
+        _c("label", [
+          _vm._v("Ảnh đại diện(độ phân giải tối thiểu 1280x720px)")
+        ]),
+        _vm._v(" "),
+        _c("input", {
+          staticClass: "form-control",
+          attrs: {
+            type: "file",
+            name: "avatar",
+            placeholder: "Event name",
+            value: "",
+            accept: "image/*",
+            required: ""
+          }
+        }),
+        _vm._v(" "),
+        _vm.errors["avatar"]
+          ? _c(
+              "span",
+              { staticClass: "text-danger", attrs: { role: "alert" } },
+              [_c("strong", [_vm._v(_vm._s(_vm.errors["avatar"][0]))])]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c("label", [_vm._v("Ảnh thêm(độ phân giải tối thiểu 1280x720px)")])
+      ]),
       _vm._v(" "),
-      _vm._l(_vm.imageData, function(event, i) {
+      _vm._l(_vm.imageData, function(image, i) {
         return _c(
           "div",
           { key: i, staticClass: "col-md-12 mb-3 md-form row" },
           [
             _c("div", { staticClass: "col-md-4" }, [
-              _c("label", [_vm._v("Tiêu đề ảnh thứ " + _vm._s(i + 1))]),
+              _c("label", [_vm._v("Tiêu đề ảnh số " + _vm._s(i + 1))]),
               _vm._v(" "),
               _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: image.title,
+                    expression: "image.title"
+                  }
+                ],
                 staticClass: "form-control",
                 attrs: {
                   type: "text",
                   name: "images[" + i + "][title]",
                   placeholder: "Image title",
-                  value: "",
                   accept: "image/*",
                   required: ""
+                },
+                domProps: { value: image.title },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(image, "title", $event.target.value)
+                  }
                 }
               }),
               _vm._v(" "),
-              _c("div", { staticClass: "invalid-feedback" })
+              _vm.errors["images." + i + ".title"]
+                ? _c(
+                    "span",
+                    { staticClass: "text-danger", attrs: { role: "alert" } },
+                    [
+                      _c("strong", [
+                        _vm._v(_vm._s(_vm.errors["images." + i + ".title"][0]))
+                      ])
+                    ]
+                  )
+                : _vm._e()
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "col-md-8" }, [
-              _c("label", [_vm._v("Ảnh thứ " + _vm._s(i + 1))]),
+              _c("label", [_vm._v("Ảnh thêm số " + _vm._s(i + 1))]),
               _vm._v(" "),
               _c("input", {
                 staticClass: "form-control",
                 attrs: {
                   type: "file",
                   name: "images[" + i + "][image]",
-                  placeholder: "Event name",
-                  value: "",
+                  placeholder: "Image",
                   accept: "image/*",
                   required: ""
                 }
               }),
               _vm._v(" "),
-              _c("div", { staticClass: "invalid-feedback" })
+              _vm.errors["images." + i + ".image"]
+                ? _c(
+                    "span",
+                    { staticClass: "text-danger", attrs: { role: "alert" } },
+                    [
+                      _c("strong", [
+                        _vm._v(_vm._s(_vm.errors["images." + i + ".image"][0]))
+                      ])
+                    ]
+                  )
+                : _vm._e()
             ])
           ]
         )
@@ -38477,34 +38545,7 @@ var render = function() {
     2
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-12 mb-3 md-form" }, [
-      _c("label", [_vm._v("Ảnh đại diện(độ phân giải tối thiểu 1280x720px)")]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control",
-        attrs: {
-          type: "file",
-          name: "avatar",
-          placeholder: "Event name",
-          value: "",
-          accept: "image/*",
-          required: ""
-        }
-      }),
-      _vm._v(" "),
-      _c("div", { staticClass: "invalid-feedback" }),
-      _vm._v(" "),
-      _c("br"),
-      _vm._v(" "),
-      _c("label", [_vm._v("Ảnh thêm(độ phân giải tối thiểu 1280x720px)")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
