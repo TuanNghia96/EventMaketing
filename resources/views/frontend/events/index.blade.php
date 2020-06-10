@@ -24,8 +24,11 @@
                 all-type="{{ json_encode($types) }}"
                 all-category="{{ json_encode($categories) }}"
                 url="{{ route('event.search') }}"
-                    url-event="{{ route('event.detail', 999) }}"
+                ep-url="{{ route('event.ep_search') }}"
+                url-event="{{ route('event.detail', 999) }}"
                 all-event="{{ json_encode($events) }}"
+                is-buyer="{{ \Auth::user()->role == \App\Models\User::BUYER}}"
+                all-status="{{ json_encode(\App\Models\Event::$status) }}"
         >
         </search-event>
     </div>

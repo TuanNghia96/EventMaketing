@@ -1980,13 +1980,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['bgUrl', 'allType', 'allCategory', 'url', 'allEvent', 'urlEvent'],
+  props: ['bgUrl', 'allType', 'allCategory', 'url', 'epUrl', 'allEvent', 'urlEvent', 'isBuyer', 'allStatus'],
   created: function created() {
     this.typesData = JSON.parse(this.allType) || [];
     this.categoryData = JSON.parse(this.allCategory) || [];
     this.eventsData = JSON.parse(this.allEvent) || [];
+    this.statusData = JSON.parse(this.allStatus) || [];
     this.eventsShow = this.eventsData.slice(0, 0);
+    this.apiUrl = this.isBuyer ? this.url : this.epUrl;
   },
   data: function data() {
     return {
@@ -1999,7 +2011,9 @@ __webpack_require__.r(__webpack_exports__);
       nameSearch: null,
       advanceBtn: true,
       eventsData: [],
+      statusData: [],
       eventsShow: [],
+      apiUrl: null,
       result: 6
     };
   },
@@ -2008,7 +2022,7 @@ __webpack_require__.r(__webpack_exports__);
     getSearch: function getSearch() {
       var _this = this;
 
-      axios.get(this.url, {
+      axios.get(this.apiUrl, {
         params: {
           type: this.typeSearch,
           category: this.categorySearch,
@@ -38887,56 +38901,109 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-12 col-md-3" }, [
-            _c("label", [_vm._v("Trạng thái")]),
-            _vm._v(" "),
-            _c(
-              "select",
-              {
-                directives: [
+          this.isBuyer
+            ? _c("div", { staticClass: "col-12 col-md-3" }, [
+                _c("label", [_vm._v("Trạng thái")]),
+                _vm._v(" "),
+                _c(
+                  "select",
                   {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.statusSearch,
-                    expression: "statusSearch"
-                  }
-                ],
-                staticClass: "form-control search-slt",
-                attrs: { id: "exampleFormControlSelect4" },
-                on: {
-                  change: [
-                    function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.statusSearch = $event.target.multiple
-                        ? $$selectedVal
-                        : $$selectedVal[0]
-                    },
-                    function($event) {
-                      return _vm.getSearch()
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.statusSearch,
+                        expression: "statusSearch"
+                      }
+                    ],
+                    staticClass: "form-control search-slt",
+                    on: {
+                      change: [
+                        function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.statusSearch = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        },
+                        function($event) {
+                          return _vm.getSearch()
+                        }
+                      ]
                     }
+                  },
+                  [
+                    _c("option", [_vm._v("Tất cả")]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "1" } }, [
+                      _vm._v("Chưa bắt đầu")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "2" } }, [
+                      _vm._v("Đã bắt đầu")
+                    ])
                   ]
-                }
-              },
-              [
-                _c("option", { domProps: { value: null } }, [
-                  _vm._v("Status searh")
-                ]),
+                )
+              ])
+            : _c("div", { staticClass: "col-12 col-md-3" }, [
+                _c("label", [_vm._v("Trạng thái")]),
                 _vm._v(" "),
-                _c("option", { attrs: { value: "1" } }, [
-                  _vm._v("Chưa bắt đầu")
-                ]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "2" } }, [_vm._v("Đã bắt đầu")])
-              ]
-            )
-          ])
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.statusSearch,
+                        expression: "statusSearch"
+                      }
+                    ],
+                    staticClass: "form-control search-slt",
+                    on: {
+                      change: [
+                        function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.statusSearch = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        },
+                        function($event) {
+                          return _vm.getSearch()
+                        }
+                      ]
+                    }
+                  },
+                  [
+                    _c("option", [_vm._v("Tất cả")]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "0" } }, [
+                      _vm._v("Chưa công bố")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "1" } }, [
+                      _vm._v("Chưa bắt đầu")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "2" } }, [
+                      _vm._v("Đã bắt đầu")
+                    ])
+                  ]
+                )
+              ])
         ])
       ])
     ]),
@@ -38989,6 +39056,14 @@ var render = function() {
                       _vm._v(" "),
                       _c("div", { staticClass: "event-date" }, [
                         _vm._v(_vm._s(event.start_date))
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "event-date" }, [
+                        _c("span", [
+                          _c("b", [
+                            _vm._v(_vm._s(_vm.statusData[event.status]))
+                          ])
+                        ])
                       ])
                     ]),
                     _vm._v(" "),
@@ -39006,16 +39081,18 @@ var render = function() {
                   ]
                 ),
                 _vm._v(" "),
-                _c("footer", { staticClass: "entry-footer text-center" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "btn btn-defaul",
-                      attrs: { href: _vm.urlEvent.replace(999, event.id) }
-                    },
-                    [_vm._v("Nhận vé")]
-                  )
-                ])
+                _vm.isBuyer
+                  ? _c("footer", { staticClass: "entry-footer text-center" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "btn btn-defaul",
+                          attrs: { href: _vm.urlEvent.replace(999, event.id) }
+                        },
+                        [_vm._v("Nhận vé")]
+                      )
+                    ])
+                  : _vm._e()
               ])
             ]
           )

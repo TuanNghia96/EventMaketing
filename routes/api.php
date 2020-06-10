@@ -18,5 +18,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/event/search', 'EventController@eventSearch')->name('event.search');
+    Route::get('/event/ep_search', 'EventController@eventEpSearch')->name('event.ep_search');
     Route::get('/sub_event', 'EventController@getSubEvent')->name('event.sub');
 });

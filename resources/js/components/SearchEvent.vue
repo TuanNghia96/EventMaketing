@@ -38,10 +38,19 @@
                         </select>
                     </div>
 
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-3" v-if="this.isBuyer">
                         <label>Trạng thái</label>
-                        <select class="form-control search-slt" id="exampleFormControlSelect4" v-model="statusSearch" @change="getSearch()">
-                            <option :value="null">Status searh</option>
+                        <select class="form-control search-slt" v-model="statusSearch" @change="getSearch()">
+                            <option>Tất cả</option>
+                            <option value="1">Chưa bắt đầu</option>
+                            <option value="2">Đã bắt đầu</option>
+                        </select>
+                    </div>
+                    <div class="col-12 col-md-3" v-else>
+                        <label>Trạng thái</label>
+                        <select class="form-control search-slt" v-model="statusSearch" @change="getSearch()">
+                            <option>Tất cả</option>
+                            <option value="0">Chưa công bố</option>
                             <option value="1">Chưa bắt đầu</option>
                             <option value="2">Đã bắt đầu</option>
                         </select>
@@ -65,6 +74,7 @@
                                 <div class="event-location">{{ event.location }}</div>
 
                                 <div class="event-date">{{ event.start_date }}</div>
+                                <div class="event-date"><span><b>{{ statusData[event.status] }}</b></span></div>
                             </div>
 
                             <div class="event-cost flex justify-content-center align-items-center">
@@ -72,7 +82,7 @@
                             </div>
                         </header>
 
-                        <footer class="entry-footer text-center">
+                        <footer class="entry-footer text-center" v-if="isBuyer">
                             <a :href="urlEvent.replace(999, event.id)" class="btn btn-defaul">Nhận vé</a>
                         </footer>
                     </div>
@@ -97,14 +107,19 @@
             'allType',
             'allCategory',
             'url',
+            'epUrl',
             'allEvent',
             'urlEvent',
+            'isBuyer',
+            'allStatus',
         ],
         created() {
             this.typesData = JSON.parse(this.allType) || [];
             this.categoryData = JSON.parse(this.allCategory) || [];
             this.eventsData = JSON.parse(this.allEvent) || [];
+            this.statusData = JSON.parse(this.allStatus) || [];
             this.eventsShow = this.eventsData.slice(0, 0);
+            this.apiUrl = this.isBuyer ? this.url : this.epUrl;
         },
         data() {
             return {
@@ -117,14 +132,16 @@
                 nameSearch: null,
                 advanceBtn: true,
                 eventsData: [],
+                statusData: [],
                 eventsShow: [],
+                apiUrl: null,
                 result: 6,
             }
         },
         computed: {},
         methods: {
             getSearch() {
-                axios.get(this.url, {
+                axios.get(this.apiUrl, {
                         params: {
                             type: this.typeSearch,
                             category: this.categorySearch,

@@ -55,6 +55,18 @@ class EventController extends Controller
     }
 
     /**
+     * api get search ajax
+     *
+     * @param Request $request
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function eventEpSearch(Request $request)
+    {
+        $params = $request->all();
+        return $this->eventService->getEpSearch($params);
+    }
+
+    /**
      * get event detail
      *
      * @param $id

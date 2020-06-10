@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Jobs\SendTicketMail;
 use App\Models\Event;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -49,6 +50,46 @@ class EventService implements EventServiceInterface
                 $query->where('start_date', '<', now())->where('end_date', '>', now());
             }
         }
+        return $query->active()->get();
+    }
+
+    public function getEpSearch($input)
+    {
+        $query = Event::with('coupon');
+\Log::info(Event::with('coupon')->where('status',1)->get()->toArray());
+        //check like
+        if (isset($input['name'])) {
+            $query->where('name', 'like', '%' . $input['name'] . '%')->orWhere('title', 'like', '%' . $input['name'] . '%');
+        }
+        //check input to type
+        if (isset($input['type'])) {
+            $query->where('type_id', $input['type']);
+        }
+        //check input to classify
+        if (isset($input['category'])) {
+            $query->where('category_id', $input['category']);
+        }
+        //check input to coupon
+        if (isset($input['coupon'])) {
+            //started
+            if ($input['coupon'] == 1) {
+                $query->where('coupon_id', null);
+            } else {
+                $query->where('coupon_id', '<>', null);
+            }
+        }
+        $query->where('status',1);
+        //check input to status
+        if (isset($input['status'])) {
+            if ($input['status'] == 0) {
+                $query->where('status',Event::VALIDATED);
+            } elseif ($input['status'] == 1) {
+                $query->where('status',Event::PUBLIC);
+            } else {
+                $query->where('start_date', '<', now())->where('end_date', '>', now());
+            }
+        }
+        $query->where('status','<>',Event::CANCEL);
         return $query->active()->get();
     }
 
@@ -146,9 +187,10 @@ class EventService implements EventServiceInterface
      *
      * @param $id
      */
-    public function setEventSuccess($id){
+    public function setEventSuccess($id)
+    {
         $event = Event::with('type', 'category')->find($id);
-        if ($event->status == 0){
+        if ($event->status == 0) {
             $event->update(['status' => 1]);
         }
     }
@@ -158,9 +200,10 @@ class EventService implements EventServiceInterface
      *
      * @param $id
      */
-    public function cancelEvent($id){
+    public function cancelEvent($id)
+    {
         $event = Event::with('type', 'category')->find($id);
-        if ($event->status != 3){
+        if ($event->status != 3) {
             $event->update(['status' => 3]);
         }
     }
