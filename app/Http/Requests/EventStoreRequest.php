@@ -32,7 +32,7 @@ class EventStoreRequest extends FormRequest
             "name" => "required|string|max:30",
             "title" => "required|string|max:30",
             "location" => "nullable|string|max:100",
-            "summary" => "nullable|string|max:255",
+            "summary" => "nullable|string",
             "type_id" => "required|numeric|in:" . implode(',', Type::pluck('id')->toArray()),
             "category_id" => "required|numeric|in:" . implode(',', Category::pluck('id')->toArray()),
             "coupon_id" => "nullable|numeric|in:" . implode(',', Coupon::pluck('id')->toArray()),

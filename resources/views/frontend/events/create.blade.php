@@ -110,7 +110,7 @@
                         <div class="col-md-6 mb-3 md-form row">
                             <div class="col-md-12">
                                 <label for="validatinonCustom032">Nội dung</label>
-                                <textarea name="summary" class="form-control" id="" cols="30" rows="8">{{ old('summary') }}</textarea>
+                                <textarea class="form-control" id="" cols="30" rows="8">{{ old('summary') }}</textarea>
                                 @error('summary')
                                 <span class="text-danger" role="alert">
                                         <strong>{{ $message }}</strong>

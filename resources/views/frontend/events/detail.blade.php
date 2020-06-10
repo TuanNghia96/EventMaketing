@@ -104,7 +104,7 @@
 
                         <div id="tab_venue" class="tab-content">
                             <h5>Nội dung:</h5>
-                            <p>{{ $event->summary }}</p>
+                            <p>{!! $event->summary !!}</p>
                             <br>
                             <h5>Hình ảnh của sự kiện:</h5>
                             <div class="row">

@@ -3,6 +3,7 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+import { VueEditor } from "vue2-editor";
 
 require('./bootstrap');
 

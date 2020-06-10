@@ -1,6 +1,11 @@
 <template>
     <div>
         <div class="col-md-12 mb-3 md-form">
+            <label>Nội dung</label>
+            <vue-editor v-model="content"></vue-editor>
+            <input type="hidden" v-model="content" name="summary" >
+        </div>
+        <div class="col-md-12 mb-3 md-form">
             <label>Ảnh đại diện(độ phân giải tối thiểu 1280x720px)</label>
             <input type="file" name="avatar" class="form-control" placeholder="Event name" value=""
                    accept="image/*" required>
@@ -38,7 +43,12 @@
 </template>
 
 <script>
+    import {VueEditor} from "vue2-editor";
+
     export default {
+        components: {
+            VueEditor
+        },
         props: [
             "oldImages",
             "allError",
@@ -51,6 +61,7 @@
             return {
                 imageData: [],
                 errors: [],
+                content: null,
             }
         },
         methods: {
