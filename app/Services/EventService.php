@@ -153,10 +153,11 @@ class EventService implements EventServiceInterface
      * get more event
      *
      * @param $params
+     * @return Event
      */
     public function getMore($params)
     {
-        Event::active()->with('coupon')
+        return Event::active()->with('coupon')
             ->orderBy('point', 'desc')->skip(5)->take($params['number'] + 6)->get();
     }
 

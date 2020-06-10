@@ -132,7 +132,7 @@ class EventController extends Controller
      */
     public function getSubEvent(Request $request)
     {
-        return $this->eventService->getSubEvent($request->all());
+        return $this->eventService->getMore($request->all());
     }
 
     /**
