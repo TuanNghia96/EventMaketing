@@ -21,7 +21,7 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('my-component', require('./components/MyComponent.vue').default);
+Vue.component('sub-event', require('./components/SubEvent.vue').default);
 Vue.component('search-event', require('./components/SearchEvent.vue').default);
 Vue.component('create-event', require('./components/CreateEvent.vue').default);
 
