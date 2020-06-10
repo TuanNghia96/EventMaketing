@@ -61,4 +61,32 @@ class ChartController extends Controller
             ->with('types', json_encode(\App\Models\Type::pluck('name')->toArray()))
             ->with('categories', json_encode(\App\Models\Category::pluck('name')->toArray()));
     }
+
+    /**
+     * get calendar events
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function calendar()
+    {
+        $events = Event::get()->toArray();
+        $status = Array(
+            Event::WAITING => 'fc-default',
+            Event::VALIDATED => 'fc-primary',
+            Event::PUBLIC =>  'fc-success',
+            Event::CANCEL => 'fc-danger',
+        );
+        $events = array_map(function ($event) use ($status) {
+            return [
+                'title' => $event['name'],
+                'start' => Carbon::parse($event['public_date']),
+//                'end' => Carbon::parse($event['end_date']),
+                'allDay' => false,
+                'url' => route('events.detail', $event['id']),
+                'className' => $status[$event['status']],
+            ];
+        }, $events);
+        $events = json_encode($events);
+        return view('backend.charts.calendar', compact('events'));
+    }
 }

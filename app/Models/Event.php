@@ -36,10 +36,10 @@ class Event extends Model
     const CANCEL = 3;
 
     public static $status = [
-        self::WAITING => 'Chưa kiểm duyệt',
+        self::WAITING => 'Chờ kiểm duyệt',
         self::VALIDATED => 'Đã kiểm duyệt',
         self::PUBLIC => 'Đã công bố',
-        self::CANCEL => 'Hủy bố',
+        self::CANCEL => 'Hủy bỏ',
     ];
 
     /**

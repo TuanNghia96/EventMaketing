@@ -147,22 +147,7 @@
                                 <a href="{{ route('admin.index') }}">
                                     <span class="sub-item">Nhân viên</span>
                                 </a>
-                            </li>{{--
-                            <li>
-                                <a href="#">
-                                    <span class="sub-item">Chấm công</span>
-                                </a>
                             </li>
-                            <li>
-                                <a href="#">
-                                    <span class="sub-item">Bảng tính lương</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="sub-item">Thiết lập hoa hồng</span>
-                                </a>
-                            </li>--}}
                         </ul>
                     </div>
                 </li>
@@ -175,7 +160,7 @@
                 <li class="nav-item">
                     <a data-toggle="collapse" href="#charts">
                         <i class="far fa-chart-bar"></i>
-                        <p>Báo cáo</p>
+                        <p>Thống kê</p>
                         <span class="caret"></span>
                     </a>
                     <div class="collapse" id="charts">
@@ -186,38 +171,8 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
-                                    <span class="sub-item">Bán hàng</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="sub-item">Đặt hàng</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="sub-item">Hàng hóa</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="sub-item">Khách hàng</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="sub-item">Nhà cung cấp</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="sub-item">Nhân viên</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <span class="sub-item">Tài chình</span>
+                                <a href="{{ route('chart.calendar') }}">
+                                    <span class="sub-item">Lịch sự kiện</span>
                                 </a>
                             </li>
                         </ul>

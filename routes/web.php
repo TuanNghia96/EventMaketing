@@ -66,4 +66,5 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => [
     Route::get('/charts/event', 'ChartController@chartEvent')->name('chart.event');
     Route::get('/charts/enterprise', 'ChartController@chartEvent')->name('chart.enterprise');
     Route::get('/charts/buyer', 'ChartController@chartEvent')->name('chart.buyer');
+    Route::get('/calendar', 'ChartController@calendar')->name('chart.calendar');
 });
