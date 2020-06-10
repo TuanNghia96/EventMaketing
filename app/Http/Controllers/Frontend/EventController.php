@@ -156,6 +156,7 @@ class EventController extends Controller
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function postEvent(EventStoreRequest $request)
+//    public function postEvent(Request $request)
     {
         $event = $this->eventService->post($request->all());
         if ($event) {

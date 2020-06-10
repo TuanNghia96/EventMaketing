@@ -28,7 +28,7 @@
                         @csrf
                         <div class="col-md-12 mb-3 md-form row">
                             <div class="col-md-4 mb-3 md-form">
-                                <label>Tên</label>
+                                <label>Tên <span class="text-danger">*</span> <span class="text-danger">*</span></label>
                                 <input type="text" name="name" class="form-control" placeholder="Event name" value="{{ old('name') }}">
                                 @error('name')
                                 <span class="text-danger" role="alert">
@@ -37,8 +37,8 @@
                                 @enderror
                             </div>
                             <div class="col-md-4 mb-3 md-form">
-                                <label>Tiêu đề</label>
-                                <input type="text" class="form-control" name="title" value="{{ old('title') }}">
+                                <label>Tiêu đề <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" placeholder="Event title" name="title" value="{{ old('title') }}">
                                 @error('title')
                                 <span class="text-danger" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -56,7 +56,7 @@
                             </div>
 
                             <div class="col-md-3 mb-3 md-form">
-                                <label>Thể loại</label>
+                                <label>Thể loại <span class="text-danger">*</span></label>
                                 <select name="type_id" class="form-control" id="">
                                     <option value=""></option>
                                     @foreach($types as $key => $value)
@@ -70,7 +70,7 @@
                                 @enderror
                             </div>
                             <div class="col-md-3 mb-3 md-form">
-                                <label>Danh mục</label>
+                                <label>Danh mục <span class="text-danger">*</span></label>
                                 <select name="category_id" class="form-control" id="">
                                     <option value=""></option>
                                     @foreach($categories as $key => $value)
@@ -84,7 +84,7 @@
                                 @enderror
                             </div>
                             <div class="col-md-3 mb-3 md-form">
-                                <label>Mã giảm giá</label>
+                                <label>Mã giảm giá <span class="text-danger">*</span></label>
                                 <select name="coupon_id" class="form-control" id="">
                                     <option value="">Không kèm theo</option>
                                     @foreach($coupons as $key => $coupon)
@@ -98,7 +98,7 @@
                                 @enderror
                             </div>
                             <div class="col-md-3 mb-3 md-form">
-                                <label>Số vé(min: 100 ticket)</label>
+                                <label>Số vé <span class="text-danger">*</span> (min: 100 ticket)</label>
                                 <input type="text" class="form-control" name="ticket_number" value="{{ old('ticket_number') }}">
                                 @error('ticket_number')
                                 <span class="text-danger" role="alert">
@@ -107,81 +107,9 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md-6 mb-3 md-form row">
-                            <div class="col-md-12">
-                                <label for="validatinonCustom032">Nội dung</label>
-                                <textarea class="form-control" id="" cols="30" rows="8">{{ old('summary') }}</textarea>
-                                @error('summary')
-                                <span class="text-danger" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3 md-form row">
-                            <div class="col-md-12 mb-3 md-form row">
-                                <div class="col-md-6">
-                                    <label>Ngày công bố</label>
-                                    <input type="date" name="public_date" class="form-control datetime_picker" id="publicDate" autocomplete="off" value="{{ old('public_date') }}">
-                                    @error('public_date')
-                                    <span class="text-danger" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                                <div class="col-md-6">
-                                    <label>Giờ công bố</label>
-                                    <input type="time" name="public_time" class="form-control datetime_picker" value="{{ old('public_time') }}">
-                                    @error('public_time')
-                                    <span class="text-danger" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-12 mb-3 md-form row">
-                                <div class="col-md-6">
-                                    <label>Ngày bắt đầu</label>
-                                    <input type="date" name="start_date" class="form-control datetime_picker" id="publicDate" value="{{ old('start_date') }}">
-                                    @error('start_date')
-                                    <span class="text-danger" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                                <div class="col-md-6">
-                                    <label>Giờ bắt đầu</label>
-                                    <input type="time" name="start_time" class="form-control datetime_picker" value="{{ old('start_time') }}">
-                                    @error('start_time')
-                                    <span class="text-danger" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-12 mb-3 md-form row">
-                                <div class="col-md-6">
-                                    <label>Ngày kết thúc</label>
-                                    <input type="date" name="end_date" class="form-control datetime_picker" id="publicDate" value="{{ old('end_date') }}">
-                                    @error('end_date')
-                                    <span class="text-danger" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                                <div class="col-md-6">
-                                    <label>Thời gian kết thúc</label>
-                                    <input type="time" name="end_time" class="form-control datetime_picker" value="{{ old('end_time') }}">
-                                    @error('end_time')
-                                    <span class="text-danger" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
                         <div id="app" class="col-md-12 mb-3 md-form">
                             <create-event
+                                    old="{{ json_encode(old() ?? null) }}"
                                     old-images="{{ json_encode(old('images') ?? null) }}"
                                     all-error="{{ json_encode($errors->messages() ?? null) }}"
                             ></create-event>

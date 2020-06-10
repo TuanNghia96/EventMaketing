@@ -223,9 +223,9 @@ class EventService implements EventServiceInterface
             $params['code'] = $code + 1;
 
             //format date
-            $params['public_date'] = date('Y-m-d H:i:s', strtotime($params['public_date'] . ' ' . $params['public_time']));
-            $params['start_date'] = date('Y-m-d H:i:s', strtotime($params['start_date'] . ' ' . $params['start_time']));
-            $params['end_date'] = date('Y-m-d H:i:s', strtotime($params['end_date'] . ' ' . $params['end_time']));
+            $params['public_date'] = date('Y-m-d H:i:s', strtotime($params['public_date']));
+            $params['start_date'] = date('Y-m-d H:i:s', strtotime($params['start_date']));
+            $params['end_date'] = date('Y-m-d H:i:s', strtotime($params['end_date']));
 
             //save event avatar
             $avatar = $params['avatar'];
