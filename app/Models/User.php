@@ -31,6 +31,9 @@ class User extends Model implements Authenticatable
         'password',
         'remember_token',
     ];
+    protected $appends = [
+        'user'
+    ];
 
     public static $role = [
         self::ADMIN => 'Quản trị viên',
