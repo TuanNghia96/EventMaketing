@@ -15,33 +15,37 @@
                     <table id="multi-filter-select" class="display table table-striped table-hover">
                         <thead>
                         <tr>
-                            <th>No.</th>
-                            <th>Name</th>
-                            <th>Enterprise Code</th>
-                            <th>Account</th>
-                            <th>Address</th>
-                            <th>Phone</th>
-                            <th>Bank Acount</th>
-                            <th>Start date</th>
+                            <th>Stt.</th>
+                            <th>Tên</th>
+                            <th>Mã số</th>
+                            <th>Tài khoản</th>
+                            <th>Địa chỉ</th>
+                            <th>Số điện thoại</th>
+                            <th>Tk ngân hàng</th>
+                            <th>Thời gian sử dụng</th>
                         </tr>
                         </thead>
                         <tfoot>
                         <tr>
-                            <th>No.</th>
-                            <th>Name</th>
-                            <th>Enterprise Code</th>
-                            <th>Account</th>
-                            <th>Address</th>
-                            <th>Phone</th>
-                            <th>Bank Acount</th>
-                            <th>Start date</th>
+                            
+                            <th>Stt.</th>
+                            <th>Tên</th>
+                            <th>Mã số</th>
+                            <th>Tài khoản</th>
+                            <th>Địa chỉ</th>
+                            <th>Số điện thoại</th>
+                            <th>Tk ngân hàng</th>
+                            <th>Thời gian sử dụng</th>
                         </tr>
                         </tfoot>
                         <tbody>
                         @foreach($users as $key => $user)
+                            
                             <tr>
                                 <th>{{ $key + 1 }}</th>
-                                <th>{{ $user->name }}</th>
+                                <th><a href="{{ route('enterprises.show', $user->id) }}">
+                                    {{ $user->name }}
+                                    </a></th>
                                 <th>{{ $user->enterprise_code }}</th>
                                 <th>{{ $user->user->email }}</th>
                                 <th>{{ $user->address }}</th>
@@ -49,6 +53,7 @@
                                 <th>{{ $user->bank_account }}</th>
                                 <th>{{ date_format(date_create($user->created_at) ,"H:i:s d/m/Y") }}</th>
                             </tr>
+                            
                         @endforeach
                         </tbody>
                     </table>
