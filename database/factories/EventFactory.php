@@ -24,6 +24,7 @@ $factory->define(Event::class, function (Faker $faker) {
         'end_date' => $faker->dateTimeBetween( $startDate = 'now', $endDate = '+5 months'),
         'coupon_id' => array_rand($couponId),
         'ticket_number' => $faker->numerify('##000'),
+        'point' => $faker->numberBetween(0, 1000),
         'status' => array_rand(Event::$status)
     ];
 });

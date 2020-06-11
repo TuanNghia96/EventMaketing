@@ -13,7 +13,9 @@ class EventTableSeeder extends Seeder
     public function run()
     {
         Event::truncate();
-        factory('App\Models\Event', 100)->create();
-        factory('App\Models\Event', 50)->create();
+        $enpArr = \App\Models\Enterprise::pluck('id')->toArray();
+        factory('App\Models\Event', 200)->create()->each(function ($event) use ($enpArr){
+            $event->enterprises()->sync([array_rand($enpArr) => ['role' => 1]]);
+        });
     }
 }

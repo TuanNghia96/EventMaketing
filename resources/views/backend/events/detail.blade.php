@@ -44,7 +44,7 @@
                 <td>
                     <p>summary</p>
                 </td>
-                <td><p>{{ $event->summary }}</p></td>
+                <td><p>{!! $event->summary !!}</p></td>
             </tr>
             <tr>
                 <td>
@@ -114,11 +114,41 @@
             </tr>
             <tr>
                 <td>
-                    <p>Tên doanh nghiệp</p>
+                    <p>Đánh giá trung bình</p>
                 </td>
                 <td>
-                    @foreach($event->enterprises()->get()->pluck('name', 'id')->toArray() as $key => $value)
-                        <a href="{{ route('enterprises.show', $key) }}"><p>{{ $value }}</p></a>
+                    <div class="col-md-6">
+                        <div class="demo">
+                            <div class="progress-card">
+                                <div class="progress-status">
+                                    {{--<span class="text-muted">Open Rate</span>--}}
+                                    <span class="text-muted fw-bold"> {{ $event->rating * 20 }}%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: {{ $event->rating * 20 }}%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="" data-original-title="60%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Chủ doanh nghiệp</p>
+                </td>
+                <td>
+                    @foreach($event->mainEnp->pluck('name', 'id')->toArray() as $key => $value)
+                        <a href="{{ route('enterprises.show', $key) }}">{{ $value }}</a>&nbsp;&nbsp;&nbsp;
+                    @endforeach
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Các doanh nghiệp</p>
+                </td>
+                <td>
+                    @foreach($event->enterprises->pluck('name', 'id')->toArray() as $key => $value)
+                        <a href="{{ route('enterprises.show', $key) }}">{{ $value }}</a>&nbsp;&nbsp;&nbsp;
                     @endforeach
                 </td>
             </tr>

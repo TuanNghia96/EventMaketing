@@ -29,7 +29,7 @@ class EventController extends Controller
      */
     public function index(Request $request)
     {
-        $events = Event::with('type', 'category')->get();
+        $events = Event::with('type', 'category', 'comments')->get();
         return view('backend.events.index', compact('events'));
     }
 
@@ -65,7 +65,7 @@ class EventController extends Controller
      */
     public function getDetail($id)
     {
-        $event = Event::with('type', 'category')->find($id);
+        $event = Event::with('type', 'category', 'comments', 'mainEnp', 'enterprises')->find($id);
         return view('backend.events.detail', compact('event'));
     }
 

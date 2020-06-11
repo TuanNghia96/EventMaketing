@@ -79,6 +79,16 @@ class Event extends Model
     }
 
     /**
+     * relationship to enterprise
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function mainEnp()
+    {
+        return $this->belongsToMany(Enterprise::class, 'enterprise_events')->where('role', 1);
+    }
+
+    /**
      * relationship to buyer
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
