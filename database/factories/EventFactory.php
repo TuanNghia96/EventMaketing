@@ -5,6 +5,7 @@
 use App\Models\Category;
 use App\Models\Event;
 use App\Models\Type;
+use Database\Factories\ExampleFactory;
 use Faker\Generator as Faker;
 
 $factory->define(Event::class, function (Faker $faker) {
@@ -14,9 +15,9 @@ $factory->define(Event::class, function (Faker $faker) {
         'name' => $faker->name,
         'title' => $faker->title,
         'code' => $number++,
-        'location' => $faker->randomElement(ExampleFactory::$location),
+        'location' => $faker->randomElement(Helper::getLocation()),
         'summary' => $faker->realText(300),
-        'avatar' => 'fakers/images/img_bg_' . rand(1, 50) . '.jpg',
+        'avatar' => 'fakers/events/img_bg_' . rand(1, 50) . '.jpg',
         'type_id' => $faker->randomElement(Type::pluck('id')),
         'category_id' => $faker->randomElement(Category::pluck('id')),
         'public_date' => $faker->dateTimeBetween($startDate = 'now', $endDate = '+5 months'),

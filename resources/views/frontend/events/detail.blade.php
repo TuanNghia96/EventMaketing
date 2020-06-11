@@ -52,9 +52,9 @@
             <div class="col-12">
                 <div class="tabs">
                     <ul class="tabs-nav flex">
-                        <li class="tab-nav flex justify-content-center align-items-center" data-target="#tab_details">Summary</li>
-                        <li class="tab-nav flex justify-content-center align-items-center" data-target="#tab_venue">Detail</li>
-                        <li class="tab-nav flex justify-content-center align-items-center" data-target="#tab_organizers">Images</li>
+                        <li class="tab-nav flex justify-content-center align-items-center" data-target="#tab_details">Tiêu điểm</li>
+                        <li class="tab-nav flex justify-content-center align-items-center" data-target="#tab_venue">Nội dung</li>
+                        <li class="tab-nav flex justify-content-center align-items-center" data-target="#tab_organizers">Nhà cung cấp</li>
                     </ul>
 
                     <div class="tabs-container">
@@ -120,7 +120,17 @@
                         </div>
 
                         <div id="tab_organizers" class="tab-images">
-
+                            <div class="col-md-12 row">
+                                @foreach($event->enterprises as $key => $enterprise)
+                                    <div class="col text-center">
+                                        <figure class="events-thumbnail">
+                                            <a href="#"><img id="{{ 'logo' . $key }}" src="{{ asset($enterprise->avatar) }}" class="logo" alt="" style="border-radius: 50%"></a>
+                                        </figure>
+                                        <span><b>{{ $enterprise->name }}</b></span><br>
+                                        <span>{{ $enterprise->address }}</span>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -128,13 +138,13 @@
         </div>
         <div id="app">
             <rating-event
-                event="{{ json_encode($event) }}"
-                comments="{{ json_encode($event->comments) }}"
-                post-url="{{ route('event.postComment') }}"
-                csrf-token="{{ csrf_token() }}"
-                @can('buyer')
+                    event="{{ json_encode($event) }}"
+                    comments="{{ json_encode($event->comments) }}"
+                    post-url="{{ route('event.postComment') }}"
+                    csrf-token="{{ csrf_token() }}"
+                    @can('buyer')
                     is-joined="{{ \App\Models\Comment::where('buyer_id', \Auth::user()->user->id)->where('event_id', $event->id)->get()->toArray() ? true : false }}"
-                @endcan
+                    @endcan
             >
             </rating-event>
         </div>
@@ -147,6 +157,10 @@
 
 @section('inline_css')
     <style>
+        :root {
+            --bannerFontSize: #logo0.with;
+        }
+
         * {
             box-sizing: border-box;
         }
@@ -173,9 +187,20 @@
             width: 100%;
             height: auto
         }
+
+        img.logo {
+            object-fit: cover;
+            width: 180px;
+            height: 180px;
+        }
     </style>
 @endsection
 
 @section('inline_script')
     <script type='text/javascript' src="{{ asset('frontend/js/custom.js') }}"></script>
+    <script !src="">
+        $(document).ready(function(){
+console.log($("#logo0").with);
+        });
+    </script>
 @endsection

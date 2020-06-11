@@ -58,8 +58,11 @@
                 </div>
             </div>
             <div class="upcoming-events">
-                <div class="upcoming-events-header">
+                <div class="upcoming-events-header" v-if="commentData.length">
                     <h4>Đánh giá</h4>
+                </div>
+                <div class="upcoming-events-header" v-else>
+                    <h4>Chưa có đánh giá</h4>
                 </div>
                 
                 <div class="upcoming-events-list" v-for="(comment, i) in commentData">

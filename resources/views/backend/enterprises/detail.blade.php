@@ -50,7 +50,7 @@
                 <td>
                     <p>Ảnh đại diện</p>
                 </td>
-                <td><p>{{ $user->avatar }}</p></td>
+                <td><img src="{{ asset($user->avatar) }}" alt=""></td>
             </tr>
             <tr>
                 <td>

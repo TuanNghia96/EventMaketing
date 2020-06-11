@@ -15,9 +15,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        App::bind('helper', function()
-        {
-            return new \App\Facade\Helper;
+        $this->app->singleton('helper', function () {
+            return new App\Facade\Helper();
         });
     }
 
