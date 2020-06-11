@@ -54,7 +54,7 @@
     <div class="swiper-container hero-slider">
         <div class="swiper-wrapper">
             @foreach($events as $key => $event)
-                <div class="swiper-slide" data-date="{{ ($event->start_date > now()) ? $event->start_date : $event->end_date }}" style="background: url('{{ asset($event->avatar)}}') no-repeat">
+                <div class="swiper-slide" data-date="{{ ($event->start_date > now()) ? $event->start_date : $event->end_date }}" style="background: url('{{ asset($event->avatar)}}') no-repeat;background-size:cover" >
                     <div class="hero-content">
                         <div class="container">
                             <div class="row">
@@ -63,22 +63,22 @@
                                         <div class="countdown flex align-items-center">
                                             <div class="countdown-holder flex align-items-baseline">
                                                 <span class="dday"></span>
-                                                <label>Days</label>
+                                                <label>Ngày</label>
                                             </div><!-- .countdown-holder -->
 
                                             <div class="countdown-holder flex align-items-baseline">
                                                 <span class="dhour"></span>
-                                                <label>Hours</label>
+                                                <label>Giờ</label>
                                             </div><!-- .countdown-holder -->
 
                                             <div class="countdown-holder flex align-items-baseline">
                                                 <span class="dmin"></span>
-                                                <label>Minutes</label>
+                                                <label>Phút</label>
                                             </div><!-- .countdown-holder -->
 
                                             <div class="countdown-holder flex align-items-baseline">
                                                 <span class="dsec"></span>
-                                                <label>Seconds</label>
+                                                <label>Giây</label>
                                             </div><!-- .countdown-holder -->
                                         </div><!-- .countdown -->
 
@@ -86,7 +86,7 @@
                                     </div><!--- .entry-header -->
 
                                     <div class="entry-footer">
-                                        <a class="btn gradient-bg" href="{{ route('event.detail', $event->id) }}">Order here</a>
+                                        <a class="btn gradient-bg" href="{{ route('event.detail', $event->id) }}">Nhận vé</a>
                                     </div><!-- .entry-footer" -->
                                 </div><!-- .col -->
                             </div><!-- .container -->

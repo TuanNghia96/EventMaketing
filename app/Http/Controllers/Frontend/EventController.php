@@ -74,7 +74,7 @@ class EventController extends Controller
      */
     public function eventDetail($id)
     {
-        $event = Event::active()->with('coupon')->with('buyer')->findOrFail($id);
+        $event = Event::active()->with('coupon')->with('buyer')->with('comments')->findOrFail($id);
         return view('frontend.events.detail', compact('event'));
     }
 
@@ -156,7 +156,6 @@ class EventController extends Controller
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function postEvent(EventStoreRequest $request)
-//    public function postEvent(Request $request)
     {
         $event = $this->eventService->post($request->all());
         if ($event) {
@@ -195,5 +194,22 @@ class EventController extends Controller
             $event->pivot->is_used = !$event->pivot->is_used;
             $event->pivot->save();
         }
+    }
+
+    /**
+     * post comment
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function postComment(Request $request)
+    {
+        $params = $request->all();
+        if($this->eventService->storeComment($params)) {
+            alert()->success('Thành công', 'Đánh giá hoàn thành');
+        } else{
+            alert()->error('Lỗi', 'Bạn đã gặp lỗi, xin thử lại');
+        }
+        return redirect(route('event.detail', $params['event_id']));
     }
 }

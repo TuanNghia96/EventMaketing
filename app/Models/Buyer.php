@@ -21,6 +21,10 @@ class Buyer extends Model
         'bank_account',
     ];
 
+    protected $appends = [
+        'name',
+    ];
+
     protected $hidden = [
         'password',
         'remember_token',
@@ -44,5 +48,17 @@ class Buyer extends Model
     public function events()
     {
         return $this->belongsToMany(Event::class, 'tickets')->active()->withPivot('qrcode_check');
+    }
+
+
+    /**
+     * get name attr
+     *
+     * @param $value
+     * @return mixed
+     */
+    public function getNameAttribute($value)
+    {
+        return $this->first_name . ' ' . $this->last_name;
     }
 }

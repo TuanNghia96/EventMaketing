@@ -25,6 +25,7 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/event/join/{id}', 'EventController@joinEvent')->name('event.join');
     Route::get('/event/resend/{id}', 'EventController@resendTicket')->name('event.resend');
     Route::get('/events/myEvents', 'EventController@buyerEvent')->name('event.buyer');
+    Route::post('/event/comment', 'EventController@postComment')->name('event.postComment');
 
     //webinfo
     Route::get('/contact', 'ContactController@contact')->name('contact');

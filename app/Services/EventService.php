@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Jobs\SendTicketMail;
+use App\Models\Comment;
 use App\Models\Event;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -56,7 +57,7 @@ class EventService implements EventServiceInterface
     public function getEpSearch($input)
     {
         $query = Event::with('coupon');
-\Log::info(Event::with('coupon')->where('status',1)->get()->toArray());
+        \Log::info(Event::with('coupon')->where('status', 1)->get()->toArray());
         //check like
         if (isset($input['name'])) {
             $query->where('name', 'like', '%' . $input['name'] . '%')->orWhere('title', 'like', '%' . $input['name'] . '%');
@@ -78,18 +79,18 @@ class EventService implements EventServiceInterface
                 $query->where('coupon_id', '<>', null);
             }
         }
-        $query->where('status',1);
+        $query->where('status', 1);
         //check input to status
         if (isset($input['status'])) {
             if ($input['status'] == 0) {
-                $query->where('status',Event::VALIDATED);
+                $query->where('status', Event::VALIDATED);
             } elseif ($input['status'] == 1) {
-                $query->where('status',Event::PUBLIC);
+                $query->where('status', Event::PUBLIC);
             } else {
                 $query->where('start_date', '<', now())->where('end_date', '>', now());
             }
         }
-        $query->where('status','<>',Event::CANCEL);
+        $query->where('status', '<>', Event::CANCEL);
         return $query->active()->get();
     }
 
@@ -253,6 +254,26 @@ class EventService implements EventServiceInterface
             \Auth::user()->user->events()->sync([$event->id => ['role' => 1]]);
             DB::commit();
             return $event;
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return false;
+        }
+    }
+
+    /**
+     * post comment
+     *
+     * @param $params
+     * @return bool
+     */
+    public function storeComment($params)
+    {
+        DB::beginTransaction();
+        try{
+            $params['buyer_id'] = \Auth::user()->user->id;
+            $comment = Comment::updateOrCreate(['buyer_id' => \Auth::user()->user->id, 'event_id' => $params['event_id']], $params);
+            DB::commit();
+            return true;
         } catch (\Exception $e) {
             DB::rollBack();
             return false;

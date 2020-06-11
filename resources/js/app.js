@@ -4,6 +4,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 import { VueEditor } from "vue2-editor";
+import StarRating from 'vue-star-rating'
 
 require('./bootstrap');
 
@@ -24,6 +25,8 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('sub-event', require('./components/SubEvent.vue').default);
 Vue.component('search-event', require('./components/SearchEvent.vue').default);
 Vue.component('create-event', require('./components/CreateEvent.vue').default);
+Vue.component('rating-event', require('./components/RatingEvent.vue').default);
+Vue.component('star-rating', StarRating);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

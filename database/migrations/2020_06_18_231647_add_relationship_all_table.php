@@ -35,6 +35,10 @@ class AddRelationshipAllTable extends Migration
             $table->foreign('enterprise_id')->references('id')->on('enterprises');
             $table->foreign('event_id')->references('id')->on('events');
         });
+        Schema::table('comments', function (Blueprint $table) {
+            $table->foreign('event_id')->references('id')->on('events');
+            $table->foreign('buyer_id')->references('id')->on('buyers');
+        });
     }
 
     /**

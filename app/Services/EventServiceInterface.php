@@ -14,4 +14,5 @@ interface EventServiceInterface
     public function cancelEvent($id);
     public function post($params);
     public function getEpSearch($input);
+    public function storeComment($params);
 }

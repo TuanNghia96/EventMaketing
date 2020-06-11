@@ -30,6 +30,10 @@ class Event extends Model
         'ticket_number',
     ];
 
+    protected $appends = [
+        'rating'
+    ];
+
     const WAITING = 0;
     const VALIDATED = 1;
     const PUBLIC = 2;
@@ -105,6 +109,16 @@ class Event extends Model
     }
 
     /**
+     * relationship to category
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    /**
      * Scope a query to only active.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
@@ -124,5 +138,16 @@ class Event extends Model
     public function getImagesAttribute($value)
     {
         return json_decode($value);
+    }
+
+    /**
+     * get images attr
+     *
+     * @param $value
+     * @return mixed
+     */
+    public function getRatingAttribute($value)
+    {
+        return $this->comments->avg('rating');
     }
 }

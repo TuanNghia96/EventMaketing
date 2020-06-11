@@ -126,90 +126,20 @@
                 </div>
             </div>
         </div>
-
-        <div class="row">
-            <div class="col-12">
-                <div class="upcoming-events">
-                    <div class="upcoming-events-header">
-                        <h4>Upcoming Events</h4>
-                    </div>
-
-                    <div class="upcoming-events-list">
-                        <div class="upcoming-event-wrap flex flex-wrap justify-content-between align-items-center">
-                            <figure class="events-thumbnail">
-                                <a href="#"><img src="{{ asset('frontend/images/upcoming-1.jpg') }}" alt=""></a>
-                            </figure>
-
-                            <div class="entry-meta">
-                                <div class="event-date">
-                                    25<span>February</span>
-                                </div>
-                            </div>
-
-                            <header class="entry-header">
-                                <h3 class="entry-title"><a href="#">Blockchain Conference</a></h3>
-
-                                <div class="event-date-time">May 29, 2018 @ 8:00 Pm - May 30, 2018 @ 4:00 Am</div>
-
-                                <div class="event-speaker">Speackers: Maria Williams, Luis Smith, James Doe</div>
-                            </header>
-
-                            <footer class="entry-footer">
-                                <a href="#">Buy Tikets</a>
-                            </footer>
-                        </div>
-
-                        <div class="upcoming-event-wrap flex flex-wrap justify-content-between align-items-center">
-                            <figure class="events-thumbnail">
-                                <a href="#"><img src="{{ asset('frontend/images/upcoming-2.jpg') }}" alt=""></a>
-                            </figure>
-
-                            <div class="entry-meta">
-                                <div class="event-date">
-                                    27<span>February</span>
-                                </div>
-                            </div>
-
-                            <header class="entry-header">
-                                <h3 class="entry-title"><a href="#">Financial Conference</a></h3>
-
-                                <div class="event-date-time">May 29, 2018 @ 8:00 Pm - May 30, 2018 @ 4:00 Am</div>
-
-                                <div class="event-speaker">Speackers: Maria Williams, Luis Smith, James Doe</div>
-                            </header>
-
-                            <footer class="entry-footer">
-                                <a href="#">Buy Tikets</a>
-                            </footer>
-                        </div>
-
-                        <div class="upcoming-event-wrap flex flex-wrap justify-content-between align-items-center">
-                            <figure class="events-thumbnail">
-                                <a href="#"><img src="{{ asset('frontend/images/upcoming-3.jpg') }}" alt=""></a>
-                            </figure>
-
-                            <div class="entry-meta">
-                                <div class="event-date">
-                                    27<span>February</span>
-                                </div>
-                            </div>
-
-                            <header class="entry-header">
-                                <h3 class="entry-title"><a href="#">Winter Festival</a></h3>
-
-                                <div class="event-date-time">May 29, 2018 @ 8:00 Pm - May 30, 2018 @ 4:00 Am</div>
-
-                                <div class="event-speaker">Speackers: Maria Williams, Luis Smith, James Doe</div>
-                            </header>
-
-                            <footer class="entry-footer">
-                                <a href="#">Buy Tikets</a>
-                            </footer>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div id="app">
+            <rating-event
+                event="{{ json_encode($event) }}"
+                comments="{{ json_encode($event->comments) }}"
+                post-url="{{ route('event.postComment') }}"
+                csrf-token="{{ csrf_token() }}"
+                @can('buyer')
+                    is-joined="{{ \App\Models\Comment::where('buyer_id', \Auth::user()->user->id)->where('event_id', $event->id)->get()->toArray() ? true : false }}"
+                @endcan
+            >
+            </rating-event>
         </div>
+        <script src="/js/app.js"></script>
+
     </div>
 
     <div class="newsletter-subscribe">
