@@ -190,10 +190,14 @@ class EventController extends Controller
         $arr = explode('-', $number);
         $buyer = Buyer::with('events')->where('buyer_code', $arr[0])->first();
         $event = $buyer->events->find($arr[1]);
-        if ($buyer && $event && !$event->pivot->is_used && ($event->pivot->qrcode_check == $number)) {
-            $event->pivot->is_used = !$event->pivot->is_used;
+        if ($buyer && $event && (!$event->pivot->enterprise_id) && ($event->pivot->qrcode_check == $number)) {
+            $event->pivot->enterprise_id = \Auth::user()->user->id;
             $event->pivot->save();
+            alert()->success('Thành công', 'Vé tồn tại');
+        } else{
+            alert()->error('Thất bại', 'Vé lỗi');
         }
+        return view('frontend.events.ticket');
     }
 
     /**
