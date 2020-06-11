@@ -51,34 +51,7 @@
             </div>
         </div>
     </div>
-    <div class="newsletter-subscribe">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <header class="entry-header">
-                        <h2 class="entry-title">Subscribe to our newsletter to get the latest trends & news</h2>
-                        <p>Join our database NOW!</p>
-                    </header>
-                    
-                    <div class="newsletter-form">
-                        <form class="flex flex-wrap justify-content-center align-items-center">
-                            <div class="col-md-12 col-lg-3">
-                                <input type="text" placeholder="Name">
-                            </div>
-                            
-                            <div class="col-md-12 col-lg-6">
-                                <input type="email" placeholder="Your e-mail">
-                            </div>
-                            
-                            <div class="col-md-12 col-lg-3">
-                                <input class="btn gradient-bg" type="submit" value="Subscribe">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
 @endsection
 
 

@@ -9,7 +9,6 @@
                 <div class="row">
                     <div class="col flex flex-column justify-content-center">
                         <div class="entry-header">
-
                         </div>
                         <div class="entry-footer">
                         </div>

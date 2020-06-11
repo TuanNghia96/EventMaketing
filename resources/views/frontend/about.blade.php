@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-12">
                     <header class="entry-header">
-                        <h1 class="entry-title">Contact.</h1>
+                        <h1 class="entry-title">Giới thiệu.</h1>
                     </header>
                 </div>
             </div>
@@ -17,28 +17,7 @@
 @endsection
 
 @section('content')
-
-    <div class="homepage-info-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-md-4 col-lg-5">
-                    <figure>
-                        <img src="{{ asset('frontend/images/logo-2.png')}}" alt="logo">
-                    </figure>
-                </div>
-
-                <div class="col-12 col-md-8 col-lg-7">
-                    <header class="entry-header">
-                        <h2 class="entry-title">What is Agenda and why choose our services?</h2>
-                    </header>
-
-                    <div class="entry-content">
-                        <p>Vestibulum eget lacus at mauris sagittis varius. Etiam ut venenatis dui. Nullam tellus risus, pellentesque at facilisis et, scelerisque sit amet metus. Duis vel semper turpis, ac tempus libero. Maecenas id ultrices risus. Aenean nec ornare ipsum, lacinia volutpat urna. Maecenas ut aliquam purus, quis sodales dolor.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    @include('layouts.frontend.introduce')
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-6 col-lg-4">
@@ -99,34 +78,5 @@
 
     <div class="contact-page-map">
         <iframe id="gmap_canvas" src="https://maps.google.com/maps?q=Bách Khoa, Hai Bà Trưng, Hà Nội, Việt Nam&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
-    </div>
-
-    <div class="newsletter-subscribe">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <header class="entry-header">
-                        <h2 class="entry-title">Subscribe to our newsletter to get the latest trends & news</h2>
-                        <p>Join our database NOW!</p>
-                    </header>
-
-                    <div class="newsletter-form">
-                        <form class="flex flex-wrap justify-content-center align-items-center">
-                            <div class="col-md-12 col-lg-3">
-                                <input type="text" placeholder="Name">
-                            </div>
-
-                            <div class="col-md-12 col-lg-6">
-                                <input type="email" placeholder="Your e-mail">
-                            </div>
-
-                            <div class="col-md-12 col-lg-3">
-                                <input class="btn gradient-bg" type="submit" value="Subscribe">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 @endsection

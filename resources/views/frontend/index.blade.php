@@ -22,34 +22,7 @@
 @endsection
 
 @section('content')
-    <div class="homepage-info-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-md-4 col-lg-5">
-                    <figure>
-                        <img src="{{ asset('frontend/images/logo-2.png')}}" alt="logo">
-                    </figure>
-                </div>
-
-                <div class="col-12 col-md-8 col-lg-7">
-                    <header class="entry-header">
-                        <h2 class="entry-title">What is Agenda and why choose our services?</h2>
-                    </header>
-
-                    <div class="entry-content">
-                        <p>Vestibulum eget lacus at mauris sagittis varius. Etiam ut venenatis dui. Nullam tellus risus, pellentesque at facilisis et, scelerisque sit amet metus. Duis vel semper turpis, ac tempus libero. Maecenas id ultrices risus. Aenean nec ornare ipsum, lacinia volutpat urna. Maecenas ut aliquam purus, quis sodales dolor.</p>
-                    </div>
-
-                    <footer class="entry-footer">
-                        <a href="{{ route('contact.about') }}" class="btn gradient-bg">Read More</a>
-                        @guest()
-                            <a href="{{ route('register') }}" class="btn dark">Register Now</a>
-                        @endguest
-                    </footer>
-                </div>
-            </div>
-        </div>
-    </div>
+    @include('layouts.frontend.introduce')
 
     <div class="swiper-container hero-slider">
         <div class="swiper-wrapper">
@@ -116,7 +89,7 @@
                     <div class="featured-events-wrap flex flex-wrap justify-content-between">
                         <div class="event-content-wrap positioning-event-1">
                             <figure>
-                                <a href="#"><img src="{{ asset('frontend/images/1.jpg')}}" alt="1"></a>
+                                <a href="{{ route('event.news') }}"><img src="{{ asset('frontend/images/1.jpg')}}" alt="1"></a>
                             </figure>
 
                             <header class="entry-header">
@@ -128,7 +101,7 @@
 
                         <div class="event-content-wrap positioning-event-2">
                             <figure>
-                                <a href="#"><img src="{{ asset('frontend/images/2.jpg')}}" alt=""></a>
+                                <a href="{{ route('event.news') }}"><img src="{{ asset('frontend/images/2.jpg')}}" alt=""></a>
                             </figure>
 
                             <header class="entry-header">
@@ -140,7 +113,7 @@
 
                         <div class="event-content-wrap positioning-event-3">
                             <figure>
-                                <a href="#"><img src="{{ asset('frontend/images/3.jpg')}}" alt=""></a>
+                                <a href="{{ route('event.news') }}"><img src="{{ asset('frontend/images/3.jpg')}}" alt=""></a>
                             </figure>
 
                             <header class="entry-header">
@@ -152,25 +125,25 @@
 
                         <div class="event-content-wrap positioning-event-4 half">
                             <figure>
-                                <a href="#"><img src="{{ asset('frontend/images/events-in-london.jpg')}}" alt=""></a>
+                                <a href="{{ route('event.news') }}"><img src="{{ asset('frontend/images/events-in-london.jpg')}}" alt=""></a>
                             </figure>
                         </div>
 
                         <div class="event-content-wrap positioning-event-5 half">
                             <figure>
-                                <a href="#"><img src="{{ asset('frontend/images/check-july.png')}}" alt=""></a>
+                                <a href="{{ route('event.news') }}"><img src="{{ asset('frontend/images/check-july.png')}}" alt=""></a>
                             </figure>
                         </div>
 
                         <div class="event-content-wrap positioning-event-6 half">
                             <figure>
-                                <a href="#"><img src="{{ asset('frontend/images/summer-festivals.jpg')}}" alt=""></a>
+                                <a href="{{ route('event.news') }}"><img src="{{ asset('frontend/images/summer-festivals.jpg')}}" alt=""></a>
                             </figure>
                         </div>
 
                         <div class="event-content-wrap positioning-event-7">
                             <figure>
-                                <a href="#"><img src="{{ asset('frontend/images/90.jpg')}}" alt=""></a>
+                                <a href="{{ route('event.news') }}"><img src="{{ asset('frontend/images/90.jpg')}}" alt=""></a>
                             </figure>
 
                             <header class="entry-header">
@@ -182,7 +155,7 @@
 
                         <div class="event-content-wrap positioning-event-8">
                             <figure>
-                                <a href="#"><img src="{{ asset('frontend/images/modern.jpg')}}" alt="1"></a>
+                                <a href="{{ route('event.news') }}"><img src="{{ asset('frontend/images/modern.jpg')}}" alt="1"></a>
                             </figure>
 
                             <header class="entry-header">
@@ -194,7 +167,7 @@
 
                         <div class="event-content-wrap positioning-event-9">
                             <figure>
-                                <a href="#"><img src="{{ asset('frontend/images/smoke.jpg')}}" alt=""></a>
+                                <a href="{{ route('event.news') }}"><img src="{{ asset('frontend/images/smoke.jpg')}}" alt=""></a>
                             </figure>
 
                             <header class="entry-header">
@@ -206,13 +179,13 @@
 
                         <div class="event-content-wrap positioning-event-10 half">
                             <figure>
-                                <a href="#"><img src="{{ asset('frontend/images/summer-festival.jpg')}}" alt=""></a>
+                                <a href="{{ route('event.news') }}"><img src="{{ asset('frontend/images/summer-festival.jpg')}}" alt=""></a>
                             </figure>
                         </div>
 
                         <div class="event-content-wrap positioning-event-11 half">
                             <figure>
-                                <a href="#"><img src="{{ asset('frontend/images/autumn.jpg')}}" alt=""></a>
+                                <a href="{{ route('event.news') }}"><img src="{{ asset('frontend/images/autumn.jpg')}}" alt=""></a>
                             </figure>
                         </div>
                     </div>
@@ -225,8 +198,8 @@
         <div class="container">
             <div class="row">
                 <div class="next-events-section-header">
-                    <h2 class="entry-title">Our next events</h2>
-                    <p>Vestibulum eget lacus at mauris sagittis varius. Etiam ut venenatis dui. Nullam tellus risus, pellentesque at facilisis et, scelerisque sit amet metus. Duis vel semper turpis, ac tempus libero. Maecenas id ultrices risus. Aenean nec ornare ipsum, lacinia.</p>
+                    <h2 class="entry-title">Sự kiện tiếp theo</h2>
+                    <p>Không tìm thấy sự kiện mong muốn. Đừng lo, chúng tôi còn rất nhiều sự kiện khác mà bạn có thể quan tâm. Hãy tham gia vào hệ thống của chúng tôi để có những trải nghiệm thật tuyệt vời.</p>
                 </div>
             </div>
             <div id="app">
@@ -241,34 +214,7 @@
         </div>
     </div>
 
-    <div class="newsletter-subscribe">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <header class="entry-header">
-                        <h2 class="entry-title">Subscribe to our newsletter to get the latest trends & news</h2>
-                        <p>Join our database NOW!</p>
-                    </header>
 
-                    <div class="newsletter-form">
-                        <form class="flex flex-wrap justify-content-center align-items-center">
-                            <div class="col-md-12 col-lg-3">
-                                <input type="text" placeholder="Name">
-                            </div>
-
-                            <div class="col-md-12 col-lg-6">
-                                <input type="email" placeholder="Your e-mail">
-                            </div>
-
-                            <div class="col-md-12 col-lg-3">
-                                <input class="btn gradient-bg" type="submit" value="Subscribe">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 @endsection
 
 @section('inline_script')

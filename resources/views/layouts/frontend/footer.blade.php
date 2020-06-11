@@ -1,3 +1,31 @@
+<div class="newsletter-subscribe">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <header class="entry-header">
+                    <h2 class="entry-title">Theo dõi bản tin của chúng tôi để nhận được các tin tức mới nhất</h2>
+                    <p>Tham gia vào hệ thống NGAY!</p>
+                </header>
+
+                <div class="newsletter-form">
+                    <form class="flex flex-wrap justify-content-center align-items-center">
+                        <div class="col-md-12 col-lg-3">
+                            <input type="text" placeholder="Name">
+                        </div>
+
+                        <div class="col-md-12 col-lg-6">
+                            <input type="email" placeholder="Your e-mail">
+                        </div>
+
+                        <div class="col-md-12 col-lg-3">
+                            <input class="btn gradient-bg" type="submit" value="Subscribe">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <footer class="site-footer">
     <div class="container">
         <div class="row">
