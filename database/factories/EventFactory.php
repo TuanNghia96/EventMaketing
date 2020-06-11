@@ -14,7 +14,7 @@ $factory->define(Event::class, function (Faker $faker) {
         'name' => $faker->name,
         'title' => $faker->title,
         'code' => $number++,
-        'location' => $faker->streetAddress,
+        'location' => $faker->randomElement(ExampleFactory::$location),
         'summary' => $faker->realText(300),
         'avatar' => 'fakers/images/img_bg_' . rand(1, 50) . '.jpg',
         'type_id' => $faker->randomElement(Type::pluck('id')),
