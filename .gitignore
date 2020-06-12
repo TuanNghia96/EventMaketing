@@ -3,8 +3,8 @@
 /public/storage
 /public/images/events/
 /storage/*.key
-/storage/fakers/
-/public/fakers/
+#/storage/fakers/
+#/public/fakers/
 /vendor
 .env
 .phpunit.result.cache
