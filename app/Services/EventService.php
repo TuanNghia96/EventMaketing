@@ -198,19 +198,6 @@ class EventService implements EventServiceInterface
     }
 
     /**
-     * set event cancel
-     *
-     * @param $id
-     */
-    public function cancelEvent($id)
-    {
-        $event = Event::with('type', 'category')->find($id);
-        if ($event->status != 3) {
-            $event->update(['status' => 3]);
-        }
-    }
-
-    /**
      * save event data
      *
      * @param $params
@@ -278,5 +265,34 @@ class EventService implements EventServiceInterface
             DB::rollBack();
             return false;
         }
+    }
+
+    /**
+     * set event cancel
+     *
+     * @param $id
+     */
+    public function cancelEvent($id)
+    {
+        $event = Event::with('type', 'category')->find($id);
+        if ($event->status != 3) {
+            $event->update(['status' => 3]);
+        }
+    }
+
+    /**
+     * set connect event
+     *
+     * @param $id
+     * @return bool
+     */
+    public function connect($id)
+    {
+        $event = Event::with('type', 'category')->find($id);
+        if ($event){
+            \Auth::user()->user->events()->sync([$event->id => ['role' => 1]]);
+            return true;
+        }
+        return false;
     }
 }

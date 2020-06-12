@@ -216,4 +216,23 @@ class EventController extends Controller
         }
         return redirect(route('event.detail', $params['event_id']));
     }
+
+
+    /**
+     * connect event
+     *
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function connectEvent($id)
+    {
+        $this->authorize('enterprise');
+        if ($this->eventService->connect($id)){
+            alert()->success('Thành công', 'Đã tham gia sự kiện');
+        } else{
+            alert()->error('Lỗi', 'Bạn đã gặp lỗi, xin thử lại');
+        };
+        return redirect()->route('event.review', $id);
+    }
 }
