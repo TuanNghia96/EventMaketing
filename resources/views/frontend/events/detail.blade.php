@@ -108,14 +108,18 @@
                             <br>
                             <h5>Hình ảnh của sự kiện:</h5>
                             <div class="row">
-                                @isset($event->images)
-                                    @foreach($event->images as $key => $value)
+                            @isset($event->images)
+    
+                                @foreach($event->images as $key => $value)
+            
                                         <div class="column">
-                                            <img src="{{ $value->image }}" alt="Snow" style="width:100%">
+                                            <img src="{{ asset($value->image) }}" alt="Snow" style="width:100%">
+    
                                             <label for="">{{ $value->title }}</label>
                                         </div>
                                     @endforeach
                                 @endisset
+
                             </div>
                         </div>
 

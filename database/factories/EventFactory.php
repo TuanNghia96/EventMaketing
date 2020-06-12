@@ -17,12 +17,26 @@ $factory->define(Event::class, function (Faker $faker) {
         'code' => $number++,
         'location' => $faker->randomElement(Helper::getLocation()),
         'summary' => $faker->realText(300),
-        'avatar' => 'fakers/events/img_bg_' . rand(1, 50) . '.jpg',
+        'avatar' => 'fakers/events/faker_bg_' . rand(1, 50) . '.jpg',
+        'images' => json_encode([
+            [
+                'title' => 'title2',
+                'image' => 'fakers/events/faker_bg_' . rand(1, 50) . '.jpg'
+            ],
+            [
+                'title' => 'title2',
+                'image' => 'fakers/events/faker_bg_' . rand(1, 50) . '.jpg'
+            ],
+            [
+                'title' => 'title2',
+                'image' => 'fakers/events/faker_bg_' . rand(1, 50) . '.jpg'
+            ]
+        ]),
         'type_id' => $faker->randomElement(Type::pluck('id')),
         'category_id' => $faker->randomElement(Category::pluck('id')),
         'public_date' => $faker->dateTimeBetween($startDate = 'now', $endDate = '+5 months'),
         'start_date' => $faker->dateTimeBetween($startDate = 'now', $endDate = '+5 months'),
-        'end_date' => $faker->dateTimeBetween( $startDate = 'now', $endDate = '+5 months'),
+        'end_date' => $faker->dateTimeBetween($startDate = 'now', $endDate = '+5 months'),
         'coupon_id' => array_rand($couponId),
         'ticket_number' => $faker->numerify('##000'),
         'point' => $faker->numberBetween(0, 1000),

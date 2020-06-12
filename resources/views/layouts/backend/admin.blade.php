@@ -9,7 +9,7 @@
     <title>@yield('title', 'Event count')</title>
 
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport'/>
-    <link rel="icon" href="{{ asset('backend/img/icon.ico') }}" type="image/x-icon"/>
+    <link rel="icon" href="{{ asset('frontend/images/logo.png') }}" type="image/x-icon">
 
     <!-- Fonts and icons -->
     <script src="{{ asset('backend/js/plugin/webfont/webfont.min.js') }}"></script>
@@ -40,7 +40,7 @@
     <!--
         Tip 1: You can change the background color of the main header using: data-background-color="blue | purple | light-blue | green | orange | red"
     -->
-    <div class="main-header" data-background-color="dark">
+    <div class="main-header" data-background-color="purple">
         <!-- Logo Header -->
     @include('layouts.backend.logo_header')
     <!-- End Logo Header -->

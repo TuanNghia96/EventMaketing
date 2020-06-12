@@ -30,7 +30,7 @@ class EnterpriseTableSeeder extends Seeder
             'enterprise_code' => $code,
             'name' => $faker->name,
             'address' => $faker->randomElement(Helper::getLocation()),
-            'avatar' => 'fakers/events/1_logo.png',
+            'avatar' => 'fakers/enterprises/1_logo.png',
             'city' => array_rand(Enterprise::CITY),
             'phone' => $faker->phoneNumber,
             'bank_account' => $faker->bankAccountNumber,
