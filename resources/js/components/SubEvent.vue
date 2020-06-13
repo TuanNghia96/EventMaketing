@@ -63,9 +63,3 @@
         }
     }
 </script>
-
-<style lang="scss" scoped>
-    .my-component {
-        color: red;
-    }
-</style>

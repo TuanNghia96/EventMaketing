@@ -1,6 +1,6 @@
 <template>
     <div class="row">
-        <div class="col-12">
+        <div class="col-12 mb-5">
             <div class="upcoming-events" v-if="isJoined">
                 <!--                <div class="upcoming-events-header">
                                     <h4>Đánh giá trung bình</h4>
@@ -12,14 +12,14 @@
                                 Thêm đánh giá:
                             </h3>
                         </figure>
-                        
+
                         <div class="entry-meta">
                             <div class="event-date">
                                 <star-rating v-model="rating"></star-rating>
                                 <input type="hidden" v-model="rating" name="rating">
                             </div>
                         </div>
-                        
+
                         <header class="entry-header">
                             <h3 class="entry-title">Bình luận</h3>
                             <form :action="this.postUrl" method="post" class="row" novalidate with="100%">
@@ -36,9 +36,9 @@
                                 color: #9a28d7;">Gửi
                                 </button>
                             </form>
-                        
+
                         </header>
-                    
+
                     </div>
                 </div>
             </div>
@@ -46,7 +46,7 @@
                 <div class="upcoming-events-header">
                     <h4>Đánh giá trung bình</h4>
                 </div>
-                
+
                 <div class="upcoming-events-list">
                     <div class="upcoming-event-wrap flex flex-wrap justify-content-between align-items-center">
                         <div class="entry-meta" style="margin-left: auto;margin-right: auto">
@@ -57,32 +57,37 @@
                     </div>
                 </div>
             </div>
-            <div class="upcoming-events">
-                <div class="upcoming-events-header" v-if="commentData.length">
-                    <h4>Đánh giá</h4>
+            <div class="upcoming-events" v-if="count">
+                <div class="upcoming-events-header">
+                    <h4>Có {{ count }} Đánh giá</h4>
                 </div>
-                <div class="upcoming-events-header" v-else>
-                    <h4>Chưa có đánh giá</h4>
-                </div>
-                
-                <div class="upcoming-events-list" v-for="(comment, i) in commentData">
+
+                <div class="upcoming-events-list" v-for="(comment, i) in commentShow">
                     <div class="upcoming-event-wrap flex flex-wrap justify-content-between align-items-center">
                         <figure class="events-thumbnail">
                             <a href="#"><img :src="`/frontend/images/upcoming-3.jpg`" alt=""></a>
                         </figure>
-                        
+
                         <div class="entry-meta">
                             <div class="event-date">
                                 <star-rating v-model="comment.rating" read-only></star-rating>
                             </div>
                         </div>
-                        
+
                         <header class="entry-header">
                             <h3 class="entry-title">{{ comment.buyer_name }}</h3>
-                            
+
                             <div class="event-speaker">{{ comment.message }}</div>
                         </header>
                     </div>
+                </div>
+                <div class="text-center">
+                    <button class="button" @click="getMore">...</button>
+                </div>
+            </div>
+            <div class="upcoming-events" v-else>
+                <div class="upcoming-events-header">
+                    <h4>Chưa có đánh giá</h4>
                 </div>
             </div>
         </div>
@@ -103,15 +108,36 @@
         created() {
             this.eventData = JSON.parse(this.event) || [];
             this.commentData = JSON.parse(this.comments) || [];
+            this.commentShow = this.commentData.slice(0, 2);
+            this.count = this.commentShow.length;
         },
         data() {
             return {
                 rating: 0,
                 eventData: [],
                 commentData: [],
-                comment: [],
+                commentShow: [],
+                count: [],
             }
         },
-        methods: {}
+        methods: {
+            getMore() {
+                this.count = this.count + 2;
+                this.commentShow = this.commentData.slice(0, this.count);
+            },
+        }
     }
 </script>
+
+<style lang="scss" scoped>
+    .button {
+        background-color: #6f42c1;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+    }
+</style>
