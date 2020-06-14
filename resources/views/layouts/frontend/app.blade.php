@@ -57,6 +57,9 @@
                                 @elseif(Auth::user()->role == \App\Models\User::BUYER)
                                     <li><a href="{{ route('event.buyer') }}">My Events</a></li>
                                 @endif
+                                @cannot('admin')
+                                    <li><a href="{{ route('users.info') }}">My Info</a></li>
+                                @endcannot
                             @endif
                             <li><a href="{{ route('event.news') }}">News</a></li>
                             <li><a href="{{ route('contact.about') }}">About us</a></li>

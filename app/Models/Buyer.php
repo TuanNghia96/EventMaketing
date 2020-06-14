@@ -19,6 +19,7 @@ class Buyer extends Model
         'address',
         'phone',
         'bank_account',
+        'event_category',
     ];
 
     protected $appends = [

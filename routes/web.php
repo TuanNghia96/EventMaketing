@@ -19,6 +19,12 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('/event/news', 'HomeController@news')->name('event.news');
 
+    //user
+    Route::get('/users', 'UserController@getInfo')->name('users.info');
+    Route::get('/users/edit', 'UserController@edit')->name('users.edit');
+    Route::post('/users', 'UserController@store')->name('users.post');
+
+
     //event
     Route::get('/event/detail/{event}', 'EventController@eventDetail')->name('event.detail');
     Route::get('/event/search', 'EventController@eventIndex')->name('event.index');

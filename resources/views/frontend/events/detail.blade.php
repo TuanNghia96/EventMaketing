@@ -133,7 +133,7 @@
                                 @foreach($event->enterprises as $key => $enterprise)
                                     <div class="col text-center">
                                         <figure class="events-thumbnail">
-                                            <a href="#"><img id="{{ 'logo' . $key }}" src="{{ asset($enterprise->avatar) }}" class="logo" alt="" style="border-radius: 50%"></a>
+                                            <a href="#"><img id="{{ 'logo' . $key }}" src="{{ asset($enterprise->avatar) }}" class="logo" alt=""></a>
                                         </figure>
                                         <span><b>{{ $enterprise->name }}</b></span><br>
                                         <span>{{ $enterprise->address }}</span>
@@ -201,15 +201,11 @@
             object-fit: cover;
             width: 180px;
             height: 180px;
+            border-radius: 50%;
         }
     </style>
 @endsection
 
 @section('inline_script')
     <script type='text/javascript' src="{{ asset('frontend/js/custom.js') }}"></script>
-    <script !src="">
-        $(document).ready(function () {
-            console.log($("#logo0").with);
-        });
-    </script>
 @endsection

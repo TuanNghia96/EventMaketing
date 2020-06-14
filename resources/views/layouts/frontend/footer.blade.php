@@ -45,6 +45,9 @@
                             @elseif(Auth::user()->role == \App\Models\User::BUYER)
                                 <li><a href="{{ route('event.buyer') }}">My Events</a></li>
                             @endif
+                            @cannot('admin')
+                                <li><a href="{{ route('users.info') }}">My Info</a></li>
+                            @endcannot
                         @endif
                         <li><a href="{{ route('event.news') }}">News</a></li>
                         <li><a href="{{ route('contact.about') }}">About us</a></li>
@@ -53,7 +56,8 @@
                 </nav>
 
                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://www.facebook.com/nghia.batuan" target="_blank">Nghia.nbt</a>
+                Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+                All rights reserved | This website is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://www.facebook.com/nghia.batuan" target="_blank">Nghia.nbt</a>
                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 
                 <div class="footer-social">
