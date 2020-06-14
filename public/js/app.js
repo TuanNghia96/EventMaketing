@@ -1978,8 +1978,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     getMore: function getMore() {
-      this.count = this.count + 2;
-      this.commentShow = this.commentData.slice(0, this.count);
+      if (this.commentData.length - this.count == 3) {
+        console.log(this.commentData.length, this.count);
+        this.count = this.count + 1;
+        this.commentShow = this.commentData.slice(0, this.count);
+      } else {
+        this.count = this.commentData.length;
+        this.commentShow = this.commentData;
+      }
     }
   }
 });

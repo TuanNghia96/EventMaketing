@@ -3,12 +3,17 @@
 @section('title', 'Agenda| Trang chủ')
 
 @section('background_header')
-    <div class="page-header" data-date="" style="background: url('{{ asset('frontend/images/header-bg.jpg')}}') no-repeat">
+    <div class="swiper-slide" data-date="2020/10/01" style="background: url('{{ asset('frontend/images/header-bg.jpg')}}') no-repeat">
         <div class="hero-content">
             <div class="container">
                 <div class="row">
                     <div class="col flex flex-column justify-content-center">
                         <div class="entry-header">
+                            <div class="countdown flex align-items-center">
+                                <h1 class="text-center text-white"><label>AGENDA</label></h1>
+                            </div><!-- .countdown -->
+
+                            <h2 class="entry-title text-white">Chúng tôi có những sự kiện tuyệt vời. <br>Hãy xem ngay!</h2>
                         </div><!--- .entry-header -->
 
                         <div class="entry-footer">
@@ -18,7 +23,8 @@
                 </div><!-- .container -->
             </div><!-- .hero-content -->
         </div><!-- .swiper-slide -->
-    </div>
+    </div><!-- .swiper-wrapper -->
+
 @endsection
 
 @section('content')
@@ -34,25 +40,6 @@
                                 <div class="col flex flex-column justify-content-center">
                                     <div class="entry-header">
                                         <div class="countdown flex align-items-center">
-                                            <div class="countdown-holder flex align-items-baseline">
-                                                <span class="dday"></span>
-                                                <label>Ngày</label>
-                                            </div><!-- .countdown-holder -->
-
-                                            <div class="countdown-holder flex align-items-baseline">
-                                                <span class="dhour"></span>
-                                                <label>Giờ</label>
-                                            </div><!-- .countdown-holder -->
-
-                                            <div class="countdown-holder flex align-items-baseline">
-                                                <span class="dmin"></span>
-                                                <label>Phút</label>
-                                            </div><!-- .countdown-holder -->
-
-                                            <div class="countdown-holder flex align-items-baseline">
-                                                <span class="dsec"></span>
-                                                <label>Giây</label>
-                                            </div><!-- .countdown-holder -->
                                         </div><!-- .countdown -->
 
                                         <h2 class="entry-title">{{ $event->name }}<br>{{ $event->title }}</h2>
@@ -213,8 +200,6 @@
             <script src="/js/app.js"></script>
         </div>
     </div>
-
-
 @endsection
 
 @section('inline_script')

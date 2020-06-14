@@ -10,15 +10,15 @@
                 <div class="newsletter-form">
                     <form class="flex flex-wrap justify-content-center align-items-center">
                         <div class="col-md-12 col-lg-3">
-                            <input type="text" placeholder="Name">
+                            <input type="text" placeholder="Tên">
                         </div>
 
                         <div class="col-md-12 col-lg-6">
-                            <input type="email" placeholder="Your e-mail">
+                            <input type="email" placeholder="Email">
                         </div>
 
                         <div class="col-md-12 col-lg-3">
-                            <input class="btn gradient-bg" type="submit" value="Subscribe">
+                            <input class="btn gradient-bg" type="submit" value="Truy cập">
                         </div>
                     </form>
                 </div>
