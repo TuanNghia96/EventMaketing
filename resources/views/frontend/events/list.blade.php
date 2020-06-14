@@ -3,16 +3,13 @@
 @section('title', 'Agenda| Trang chủ')
 
 @section('background_header')
-    <div class="page-header" data-date="" style="background: url('{{ asset('frontend/images/header-bg.jpg')}}') no-repeat">
-        <div class="hero-content">
-            <div class="container">
-                <div class="row">
-                    <div class="col flex flex-column justify-content-center">
-                        <div class="entry-header">
-                        </div>
-                        <div class="entry-footer">
-                        </div>
-                    </div>
+    <div class="page-header events-page-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <header class="entry-header">
+                        <h1 class="entry-title">Sự kiện của tôi.</h1>
+                    </header>
                 </div>
             </div>
         </div>
