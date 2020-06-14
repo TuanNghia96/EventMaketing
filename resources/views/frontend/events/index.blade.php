@@ -30,6 +30,9 @@
                 @can('buyer')
                 is-buyer="1"
                 @endcan
+                @can('enterprise')
+                is-ent="1"
+                @endcan
                 all-status="{{ json_encode(\App\Models\Event::$status) }}"
         >
         </search-event>

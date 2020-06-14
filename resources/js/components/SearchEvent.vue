@@ -3,17 +3,17 @@
         <form class="events-search">
             <div class="container">
                 <div class="row">
-                    <div class="col-12 col-md-9">
+                    <div class="col-12 col-md-8">
                         <label>Tìm theo tên, tiêu đề</label>
                         <input id="name search" type="text" placeholder="Search..." v-model="nameSearch" @keyup="getSearch()"/>
                     </div>
 
-                    <div class="col-12 col-md-3">
+                    <!--<div class="col-12 col-md-3">
                         <label>Ngay</label>
                         <input type="date" placeholder="Date">
-                    </div>
+                    </div>-->
 
-                    <div class="col-12 col-md-3" @change="getSearch">
+                    <div class="col-12 col-md-4" @change="getSearch">
                         <label>Danh mục</label>
                         <select class="form-control search-slt" id="exampleFormControlSelect2" v-model="categorySearch" @change="getSearch()">
                             <option :value="null">Category searh</option>
@@ -21,7 +21,7 @@
                         </select>
                     </div>
 
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-4">
                         <label>Thể loại</label>
                         <select class="form-control search-slt" id="exampleFormControlSelect1" v-model="typeSearch" @change="getSearch()">
                             <option :value="null">Type searh</option>
@@ -29,7 +29,7 @@
                         </select>
                     </div>
 
-                    <div class="col-12 col-md-3">
+                    <div class="col-12 col-md-4">
                         <label>Coupon</label>
                         <select class="form-control search-slt" id="exampleFormControlSelect3" v-model="couponSearch" @change="getSearch()">
                             <option :value="null">Coupon searh</option>
@@ -38,19 +38,19 @@
                         </select>
                     </div>
 
-                    <div class="col-12 col-md-3" v-if="this.isBuyer">
+                    <div class="col-12 col-md-4" v-if="this.isEnt">
                         <label>Trạng thái</label>
                         <select class="form-control search-slt" v-model="statusSearch" @change="getSearch()">
-                            <option>Tất cả</option>
+                            <option :value="null">Tất cả</option>
+                            <option value="0">Chưa công bố</option>
                             <option value="1">Chưa bắt đầu</option>
                             <option value="2">Đã bắt đầu</option>
                         </select>
                     </div>
-                    <div class="col-12 col-md-3" v-else>
+                    <div class="col-12 col-md-4" v-else>
                         <label>Trạng thái</label>
                         <select class="form-control search-slt" v-model="statusSearch" @change="getSearch()">
-                            <option>Tất cả</option>
-                            <option value="0">Chưa công bố</option>
+                            <option :value="null">Tất cả</option>
                             <option value="1">Chưa bắt đầu</option>
                             <option value="2">Đã bắt đầu</option>
                         </select>
@@ -111,6 +111,7 @@
             'allEvent',
             'urlEvent',
             'isBuyer',
+            'isEnt',
             'allStatus',
         ],
         created() {

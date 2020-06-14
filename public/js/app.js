@@ -2104,7 +2104,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['bgUrl', 'allType', 'allCategory', 'url', 'epUrl', 'allEvent', 'urlEvent', 'isBuyer', 'allStatus'],
+  props: ['bgUrl', 'allType', 'allCategory', 'url', 'epUrl', 'allEvent', 'urlEvent', 'isBuyer', 'isEnt', 'allStatus'],
   created: function created() {
     this.typesData = JSON.parse(this.allType) || [];
     this.categoryData = JSON.parse(this.allCategory) || [];
@@ -55532,7 +55532,7 @@ var render = function() {
     _c("form", { staticClass: "events-search" }, [
       _c("div", { staticClass: "container" }, [
         _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-12 col-md-9" }, [
+          _c("div", { staticClass: "col-12 col-md-8" }, [
             _c("label", [_vm._v("Tìm theo tên, tiêu đề")]),
             _vm._v(" "),
             _c("input", {
@@ -55564,11 +55564,9 @@ var render = function() {
             })
           ]),
           _vm._v(" "),
-          _vm._m(0),
-          _vm._v(" "),
           _c(
             "div",
-            { staticClass: "col-12 col-md-3", on: { change: _vm.getSearch } },
+            { staticClass: "col-12 col-md-4", on: { change: _vm.getSearch } },
             [
               _c("label", [_vm._v("Danh mục")]),
               _vm._v(" "),
@@ -55622,7 +55620,7 @@ var render = function() {
             ]
           ),
           _vm._v(" "),
-          _c("div", { staticClass: "col-12 col-md-3" }, [
+          _c("div", { staticClass: "col-12 col-md-4" }, [
             _c("label", [_vm._v("Thể loại")]),
             _vm._v(" "),
             _c(
@@ -55674,7 +55672,7 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "col-12 col-md-3" }, [
+          _c("div", { staticClass: "col-12 col-md-4" }, [
             _c("label", [_vm._v("Coupon")]),
             _vm._v(" "),
             _c(
@@ -55723,8 +55721,8 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          this.isBuyer
-            ? _c("div", { staticClass: "col-12 col-md-3" }, [
+          this.isEnt
+            ? _c("div", { staticClass: "col-12 col-md-4" }, [
                 _c("label", [_vm._v("Trạng thái")]),
                 _vm._v(" "),
                 _c(
@@ -55761,7 +55759,13 @@ var render = function() {
                     }
                   },
                   [
-                    _c("option", [_vm._v("Tất cả")]),
+                    _c("option", { domProps: { value: null } }, [
+                      _vm._v("Tất cả")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "0" } }, [
+                      _vm._v("Chưa công bố")
+                    ]),
                     _vm._v(" "),
                     _c("option", { attrs: { value: "1" } }, [
                       _vm._v("Chưa bắt đầu")
@@ -55773,7 +55777,7 @@ var render = function() {
                   ]
                 )
               ])
-            : _c("div", { staticClass: "col-12 col-md-3" }, [
+            : _c("div", { staticClass: "col-12 col-md-4" }, [
                 _c("label", [_vm._v("Trạng thái")]),
                 _vm._v(" "),
                 _c(
@@ -55810,10 +55814,8 @@ var render = function() {
                     }
                   },
                   [
-                    _c("option", [_vm._v("Tất cả")]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: "0" } }, [
-                      _vm._v("Chưa công bố")
+                    _c("option", { domProps: { value: null } }, [
+                      _vm._v("Tất cả")
                     ]),
                     _vm._v(" "),
                     _c("option", { attrs: { value: "1" } }, [
@@ -55946,18 +55948,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-12 col-md-3" }, [
-      _c("label", [_vm._v("Ngay")]),
-      _vm._v(" "),
-      _c("input", { attrs: { type: "date", placeholder: "Date" } })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
