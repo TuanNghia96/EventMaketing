@@ -1,6 +1,6 @@
 @extends('layouts.backend.admin')
 
-@section('title', 'Danh sách người dùng')
+@section('title', 'Danh sách thể loại')
 
 @section('content')
     {{-- check types is empty --}}
@@ -64,7 +64,6 @@
 @endsection
 
 @section('inline_scripts')
-
     <script>
         $(document).ready(function () {
             $('#basic-datatables').DataTable({});

@@ -6,7 +6,6 @@
     {{-- check events is empty --}}
     @if($events->count())
         {{-- events table --}}
-
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">Danh sách sự kiện thành công</h4>

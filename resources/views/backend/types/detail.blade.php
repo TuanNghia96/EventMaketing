@@ -1,6 +1,6 @@
 @extends('layouts.backend.admin')
 
-@section('title', 'Chi tiết sự kiện')
+@section('title', 'Chi tiết thể loại')
 
 @section('content')
     <div class="card-header">

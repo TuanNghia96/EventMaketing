@@ -1,6 +1,6 @@
 @extends('layouts.backend.admin')
 
-@section('title', 'Danh sách người dùng')
+@section('title', 'Danh sách doanh nghiệp')
 
 @section('content')
     {{-- check events is empty --}}
@@ -8,7 +8,7 @@
         {{-- events table --}}
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Danh sách tất cả doanh nghiệp</h4>
+                <h4 class="card-title">Danh sách doanh nghiệp</h4>
             </div>
             <div class="card-body">
                 <div class="table-responsive">

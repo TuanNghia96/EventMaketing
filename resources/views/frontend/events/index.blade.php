@@ -37,7 +37,6 @@
         >
         </search-event>
     </div>
-
     <script src="/js/app.js"></script>
 
     <div class="upcoming-events-outer">
@@ -127,9 +126,6 @@
             </div>
         </div>
     </div>
-
-
-
     <footer class="site-footer">
         <div class="container">
             <div class="row">

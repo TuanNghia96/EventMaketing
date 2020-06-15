@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="card-header row">
-        <div class="card-title col">Event detail</div>
+        <div class="card-title col">Chi tiết doanh nghiệp</div>
         <div class="col text-right">
             @if($user->deleted_at)
                 <a class="btn btn-success" href="{{ route('enterprises.restore', $user->id) }}">Phục hồi tài khoản</a>

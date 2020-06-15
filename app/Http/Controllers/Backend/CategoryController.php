@@ -55,7 +55,7 @@ class CategoryController extends Controller
         $category = $this->category->create($params);
         if ($category) {
             $category->update($params);
-            return view('backend.categories.detail', compact('category'));
+            return redirect()->route('types.show', $category->id);
         } else {
             return redirect(url()->previous());
         }
@@ -98,7 +98,7 @@ class CategoryController extends Controller
         $category = $this->category->findOrFail($id);
         if ($category) {
             $category->update($params);
-            return view('backend.categories.detail', compact('category'));
+            return redirect()->route('types.show', $category->id);
         } else {
             return redirect(url()->previous());
         }

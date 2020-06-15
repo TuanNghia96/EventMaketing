@@ -1,6 +1,6 @@
 @extends('layouts.backend.admin')
 
-@section('title', 'Chi tiết sự kiện')
+@section('title', 'Lịch sự kiện')
 
 @section('content')
     <div class="page-inner">

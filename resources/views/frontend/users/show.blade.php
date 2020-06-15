@@ -1,6 +1,6 @@
 @extends('layouts.frontend.app')
 
-@section('title', 'Agenda| Tạo sự kiện')
+@section('title', 'Agenda| Thông tin cá nhân')
 
 @section('background_header')
     <div class="page-header single-event-page-header">
@@ -90,7 +90,6 @@
         }
     </style>
 @endsection
-
 
 @section('inline_script')
     <script type='text/javascript' src="{{ asset('frontend/js/custom.js') }}"></script>

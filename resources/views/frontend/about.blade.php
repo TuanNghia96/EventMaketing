@@ -1,6 +1,6 @@
 @extends('layouts.frontend.app')
 
-@section('title', 'Agenda| Về chúng tôi')
+@section('title', 'Agenda| Giới thiệu')
 
 @section('background_header')
     <div class="page-header contact-page-header">
@@ -77,7 +77,6 @@
             </div>
         </div>
     </div>
-
     <div class="contact-page-map">
         <iframe id="gmap_canvas" src="https://maps.google.com/maps?q=Bách Khoa, Hai Bà Trưng, Hà Nội, Việt Nam&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
     </div>

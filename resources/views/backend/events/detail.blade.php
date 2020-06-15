@@ -5,7 +5,6 @@
 @section('content')
     <div class="card-header">
         <div class="card-title">Event detail</div>
-        {{--<div class="card-category">Card Category</div>--}}
     </div>
     <div class="card-body">
         <table class="table table-typo">

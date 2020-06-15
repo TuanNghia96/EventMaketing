@@ -160,8 +160,6 @@
         <script src="/js/app.js"></script>
     
     </div>
-
-
 @endsection
 
 @section('inline_css')

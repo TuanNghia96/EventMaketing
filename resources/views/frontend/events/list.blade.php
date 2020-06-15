@@ -1,6 +1,6 @@
 @extends('layouts.frontend.app')
 
-@section('title', 'Agenda| Trang chủ')
+@section('title', 'Agenda| Sự kiện của tôi')
 
 @section('background_header')
     <div class="page-header events-page-header">

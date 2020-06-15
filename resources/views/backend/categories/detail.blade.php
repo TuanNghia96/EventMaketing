@@ -1,11 +1,10 @@
 @extends('layouts.backend.admin')
 
-@section('title', 'Chi tiết sự kiện')
+@section('title', 'Chi tiết danh mục')
 
 @section('content')
     <div class="card-header">
         <div class="card-title">Chi tiết danh mục.</div>
-        {{--<div class="card-category">Card Category</div>--}}
     </div>
     <div class="card-body">
         <table class="table table-typo">

@@ -1,6 +1,6 @@
 @extends('layouts.backend.admin')
 
-@section('title', 'Danh sách người dùng')
+@section('title', 'Danh sách người mua')
 
 @section('content')
     {{-- check buyers is empty --}}
@@ -8,7 +8,7 @@
         {{-- buyers table --}}
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Danh sách tất cả người mua</h4>
+                <h4 class="card-title">Danh sách người mua</h4>
             </div>
             <div class="card-body">
                 <div class="table-responsive">

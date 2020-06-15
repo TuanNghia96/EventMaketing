@@ -1,6 +1,6 @@
 @extends('layouts.backend.admin')
 
-@section('title', 'Danh sách quản lý')
+@section('title', 'Danh sách nhân viên')
 
 @section('content')
     {{-- check admins is empty --}}
@@ -8,7 +8,7 @@
         {{-- admins table --}}
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Danh sách tất cả quản lý</h4>
+                <h4 class="card-title">Danh sách nhân viên</h4>
             </div>
             <div class="card-body">
                 <div class="table-responsive">

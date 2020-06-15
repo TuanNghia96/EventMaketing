@@ -1,6 +1,6 @@
 @extends('layouts.backend.admin')
 
-@section('title', 'Danh sách danh mục sự kiện')
+@section('title', 'Danh sách danh mục')
 
 @section('content')
     {{-- check categories is empty --}}

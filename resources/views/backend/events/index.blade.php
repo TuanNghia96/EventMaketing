@@ -1,6 +1,6 @@
 @extends('layouts.backend.admin')
 
-@section('title', 'Danh sách người dùng')
+@section('title', 'Danh sách sự kiện')
 
 @section('content')
     {{-- check events is empty --}}

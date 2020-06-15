@@ -54,7 +54,7 @@ class TypeController extends Controller
         $type = $this->type->create($params);
         if ($type) {
             $type->update($params);
-            return view('backend.types.detail', compact('type'));
+            return redirect()->route('types.show', $type->id);
         } else {
             return redirect(url()->previous());
         }
@@ -97,7 +97,7 @@ class TypeController extends Controller
         $type = $this->type->findOrFail($id);
         if ($type) {
             $type->update($params);
-            return view('backend.types.detail', compact('type'));
+            return redirect()->route('types.show', $type->id);
         } else {
             return redirect(url()->previous());
         }

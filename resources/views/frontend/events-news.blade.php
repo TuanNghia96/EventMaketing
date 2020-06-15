@@ -1,6 +1,6 @@
 @extends('layouts.frontend.app')
 
-@section('title', 'Agenda| Trang chủ')
+@section('title', 'Agenda| Tin tức')
 
 @section('background_header')
     <div class="page-header events-news-page-header">
@@ -90,21 +90,7 @@
                 </article>
             </div>
         </div>
-
-        {{--<div class="row">
-            <div class="col-12">
-                <div class="blog-pagination">
-                    <ul class="flex align-items-center">
-                        <li><a href="#">01</a></li>
-                        <li class="active"><a href="#">02</a></li>
-                        <li><a href="#">03</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>--}}
     </div>
-
-
 @endsection
 
 @section('inline_script')

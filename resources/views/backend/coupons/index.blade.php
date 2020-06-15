@@ -1,18 +1,15 @@
 @extends('layouts.backend.admin')
 
-@section('title', 'Danh sách người dùng')
+@section('title', 'Danh sách mã giảm giá')
 
 @section('content')
     <div class="mt-10">
-        {{-- form search table --}}
-        {{-- check coupons is empty --}}
-
         {{-- coupons table --}}
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Basic</h4>
+                        <h4 class="card-title">Danh sách mã giảm giá</h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
