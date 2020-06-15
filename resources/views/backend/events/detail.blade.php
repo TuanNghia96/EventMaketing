@@ -104,7 +104,21 @@
                 <td>
                     <p>Hình ảnh</p>
                 </td>
-                <td><p>{{ $event->images }}</p></td>
+                <td>
+                    <table class="table table-typo">
+                        <tbody>
+                        @foreach($event->images as $image)
+                                <td>
+                                    {{ $image->title }}
+                                </td>
+                                <td>
+                                    <img src="{{ asset($image->image) }}" alt="" width="50%">
+                                </td>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </td>
+            
             </tr>
             <tr>
                 <td>
@@ -154,6 +168,12 @@
             </tr>
             <tr>
                 <td>
+                    <p>Trạng thái</p>
+                </td>
+                <td>{{ $statuses[$event->status] }}</td>
+            </tr>
+            <tr>
+                <td>
                     <p>Hành động</p>
                 </td>
                 <td>
@@ -176,7 +196,4 @@
             </tbody>
         </table>
     </div>
-@endsection
-
-@section('inline_scripts')
 @endsection

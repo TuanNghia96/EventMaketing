@@ -66,7 +66,8 @@ class EventController extends Controller
     public function getDetail($id)
     {
         $event = Event::with('type', 'category', 'comments', 'mainEnp', 'enterprises')->find($id);
-        return view('backend.events.detail', compact('event'));
+        $statuses = Event::$status;
+        return view('backend.events.detail', compact('event', 'statuses'));
     }
 
     /**
