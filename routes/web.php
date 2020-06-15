@@ -50,7 +50,11 @@ Route::group(['namespace' => 'Frontend'], function () {
 
 
 Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => ['admin_able']], function () {
+    //admin
     Route::get('/admin', 'AdminController@index')->name('admin.index');
+    Route::get('/admin/create', 'AdminController@create')->name('admin.create');
+    Route::post('/admin', 'AdminController@store')->name('admin.store');
+
     //enterprise
     Route::resource('/enterprises', 'EnterpriseController');
     Route::get('/enterprises/delete/{id}', 'EnterpriseController@delete')->name('enterprises.delete');

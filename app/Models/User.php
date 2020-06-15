@@ -23,7 +23,6 @@ class User extends Model implements Authenticatable
     protected $perPage = 20;
     protected $fillable = [
         'email',
-        'user_name',
         'password',
         'role',
     ];

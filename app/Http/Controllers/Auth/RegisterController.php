@@ -55,7 +55,6 @@ class RegisterController extends Controller
             $data['role'] == User::ENTERPRISE ? [
                 'name' => ['required', 'string', 'max:255'],
                 'email' => ['required', 'string', 'email', 'max:255'],
-                'user_name' => ['required', 'string', 'max:255'],
                 'password' => ['required', 'string', 'min:6'],
                 'confirmpassword' => ['required', 'string', 'min:6', 'same:password'],
                 'role' => ['required'],
@@ -67,7 +66,6 @@ class RegisterController extends Controller
                 'last_name' => ['required', 'string', 'max:255'],
                 'first_name' => ['required', 'string', 'max:255'],
                 'email' => ['required', 'string', 'email', 'max:255'],
-                'user_name' => ['required', 'string', 'max:255'],
                 'password' => ['required', 'string', 'min:6'],
                 'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 'confirmpassword' => ['required', 'string', 'min:6', 'same:password'],

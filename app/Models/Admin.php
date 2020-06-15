@@ -15,6 +15,7 @@ class Admin extends Model
         'user_id',
         'admin_code',
         'name',
+        'birthday',
     ];
 
     protected $hidden = [

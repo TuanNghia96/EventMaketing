@@ -19,7 +19,6 @@ class EnterpriseTableSeeder extends Seeder
 
         $user = User::create([
             'email' => 'doanhnghiep@gmail.com',
-            'user_name' => 'Doanh Nghiep',
             'password' => Hash::make('123456'),
             'role' => User::ENTERPRISE,
         ]);
@@ -40,7 +39,6 @@ class EnterpriseTableSeeder extends Seeder
             //seeder user
             $user = User::create([
                 'email' => $faker->unique()->email,
-                'user_name' => $faker->unique()->name,
                 'password' => Hash::make('123456'),
                 'role' => User::ENTERPRISE,
             ]);

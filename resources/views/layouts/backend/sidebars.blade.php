@@ -145,18 +145,17 @@
                         <ul class="nav nav-collapse">
                             <li>
                                 <a href="{{ route('admin.index') }}">
-                                    <span class="sub-item">Nhân viên</span>
+                                    <span class="sub-item">Danh sách</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('admin.create') }}">
+                                    <span class="sub-item">Tạo mới</span>
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </li>
-                {{--<li class="nav-item">
-                    <a href="#">
-                        <i class="fas fa-hand-holding-usd"></i>
-                        <p>Sổ quỹ</p>
-                    </a>
-                </li>--}}
                 <li class="nav-item">
                     <a data-toggle="collapse" href="#charts">
                         <i class="far fa-chart-bar"></i>

@@ -17,9 +17,6 @@
 @endsection
 
 @section('content')
-    {{--@if($errors->any())
-        {{ implode('', $errors->all('<div>:message</div>')) }}
-    @endif--}}
     <div class="container">
         <div class="row">
             <div class="col-12">

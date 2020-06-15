@@ -75,13 +75,6 @@
                                                 <div>{{ $message }}</div>
                                                 @enderror
                                             </div>
-                                            <div class="form-group @error('user_name') has-error @enderror">
-                                                <label>Tên đăng nhập :</label>
-                                                <input type="text" name="user_name" class="form-control" value="{{ old('user_name') }}">
-                                                @error('user_name')
-                                                <div>{{ $message }}</div>
-                                                @enderror
-                                            </div>
                                             <div class="form-group @error('password') has-error @enderror">
                                                 <label>Mật khẩu :</label>
                                                 <input type="password" name="password" class="form-control">

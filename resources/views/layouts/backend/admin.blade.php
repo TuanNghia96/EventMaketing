@@ -51,7 +51,7 @@
     </div>
 
     <!-- Sidebar -->
-    @include('layouts.backend.sidebar')
+    @include('layouts.backend.sidebars')
     <!-- End Sidebar -->
 
     <div class="main-panel">
