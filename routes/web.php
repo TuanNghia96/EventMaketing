@@ -53,6 +53,7 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => [
     //admin
     Route::get('/admin', 'AdminController@index')->name('admin.index');
     Route::get('/admin/create', 'AdminController@create')->name('admin.create');
+    Route::get('/admin/detail/{id}', 'AdminController@show')->name('admin.show');
     Route::post('/admin', 'AdminController@store')->name('admin.store');
 
     //enterprise

@@ -68,7 +68,7 @@ class UserService implements UserServiceInterface
             $params['birthday'] = date('Y-m-d', strtotime($params['birthday']));
             $admin = Admin::create($params);
             DB::commit();
-            return true;
+            return $admin;
         } catch (\Exception $e) {
             DB::rollBack();
             return false;

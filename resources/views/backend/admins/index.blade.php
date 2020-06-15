@@ -37,7 +37,7 @@
                         @foreach($users as $key => $user)
                             <tr>
                                 <th>{{ $key + 1 }}</th>
-                                <th>{{ $user->name }}</th>
+                                <th><a href="{{ route('admin.show', $user->id) }}">{{ $user->name }}</a></th>
                                 <th>{{ $user->admin_code }}</th>
                                 <th>{{ $user->user->email }}</th>
                                 <th>{{ date_format(date_create($user->birthday) ,"d/m/Y") }}</th>

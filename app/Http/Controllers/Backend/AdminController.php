@@ -48,6 +48,18 @@ class AdminController extends Controller
     }
 
     /**
+     * show admin info
+     *
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function show($id)
+    {
+        $user = $this->admin->findOrFail($id);
+        return view('backend.admins.detail', compact('user'));
+    }
+
+    /**
      * store admin account
      *
      * @param AdminStoreRequest $request
@@ -56,7 +68,11 @@ class AdminController extends Controller
     public function store(AdminStoreRequest $request)
     {
         $params = $request->all();
-        $this->userService->storeAdmin($params);
-        return redirect()->route('admin.index');
+        $admin = $this->userService->storeAdmin($params);
+        if ($admin) {
+            return redirect()->route('admin.show', $admin->id);
+        } else{
+            return redirect()->route('admin.create');
+        }
     }
 }
