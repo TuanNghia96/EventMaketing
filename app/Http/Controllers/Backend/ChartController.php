@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Models\Comment;
 use App\Models\Event;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -53,7 +54,14 @@ class ChartController extends Controller
             return $count['data'];
         }, $countCategory->toArray());
 
-        return view('backend.charts.event')
+        $events = [
+            'total' => Event::count(),
+            'end' => Event::where('end_date', '>', now()->format('Y-m-d H:i:s'))->count(),
+            'comments' => Comment::count(),
+            'tickets' => DB::table('tickets')->count(),
+        ];
+
+        return view('backend.charts.event', compact('events'))
             ->with('countThisYears', json_encode($countThisYears))
             ->with('countLastYear', json_encode($countLastYear))
             ->with('countTypes', json_encode($countTypes))
@@ -73,14 +81,13 @@ class ChartController extends Controller
         $status = Array(
             Event::WAITING => 'fc-default',
             Event::VALIDATED => 'fc-primary',
-            Event::PUBLIC =>  'fc-success',
+            Event::PUBLIC => 'fc-success',
             Event::CANCEL => 'fc-danger',
         );
         $events = array_map(function ($event) use ($status) {
             return [
                 'title' => $event['name'],
                 'start' => Carbon::parse($event['public_date']),
-//                'end' => Carbon::parse($event['end_date']),
                 'allDay' => false,
                 'url' => route('events.detail', $event['id']),
                 'className' => $status[$event['status']],
