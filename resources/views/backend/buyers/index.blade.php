@@ -16,41 +16,47 @@
                         <thead>
                         <tr>
                             <th>Id</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Buyer Code</th>
-                            <th>Account</th>
-                            <th>Address</th>
-                            <th>Phone</th>
-                            <th>Bank Acount</th>
-                            <th>Start date</th>
+                            <th>Tên</th>
+                            <th>Mã</th>
+                            <th>Email</th>
+                            <th>Địa chỉ</th>
+                            <th>Sdt</th>
+                            <th>Tk ngân hàng</th>
+                            <th>Tg khởi tạo</th>
+                            <th>Trạng thái</th>
                         </tr>
                         </thead>
                         <tfoot>
                         <tr>
                             <th>Id</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Buyer Code</th>
-                            <th>Account</th>
-                            <th>Address</th>
-                            <th>Phone</th>
-                            <th>Bank Acount</th>
-                            <th>Start date</th>
+                            <th>Tên</th>
+                            <th>Mã</th>
+                            <th>Email</th>
+                            <th>Địa chỉ</th>
+                            <th>Sdt</th>
+                            <th>Tk ngân hàng</th>
+                            <th>Tg khởi tạo</th>
+                            <th>Trạng thái</th>
                         </tr>
                         </tfoot>
                         <tbody>
                         @foreach($users as $key => $user)
                             <tr>
                                 <th>{{ $key + 1 }}</th>
-                                <th>{{ $user->first_name }}</th>
-                                <th>{{ $user->last_name }}</th>
+                                <th><a href="{{ route('buyers.show', $user->id) }}">{{ $user->name }}</a></th>
                                 <th>{{ $user->buyer_code }}</th>
                                 <th>{{ $user->user->email }}</th>
                                 <th>{{ $user->address }}</th>
                                 <th>{{ $user->phone }}</th>
                                 <th>{{ $user->bank_account }}</th>
                                 <th>{{ date_format(date_create($user->created_at) ,"H:i:s d/m/Y") }}</th>
+                                <th>
+                                    @if($user->deleted_at)
+                                        <span class="badge badge-danger">Khóa</span>
+                                    @else
+                                        <span class="badge badge-success">Hoạt động</span>
+                                    @endif
+                                </th>
                             </tr>
                         @endforeach
                         </tbody>

@@ -1,15 +1,15 @@
 @extends('layouts.backend.admin')
 
-@section('title', 'Chi tiết doanh nghiệp')
+@section('title', 'Chi tiết người mua')
 
 @section('content')
     <div class="card-header row">
         <div class="card-title col">Event detail</div>
         <div class="col text-right">
             @if($user->deleted_at)
-                <a class="btn btn-success" href="{{ route('enterprises.restore', $user->id) }}">Phục hồi tài khoản</a>
+                <a class="btn btn-success" href="{{ route('buyers.restore', $user->id) }}">Phục hồi tài khoản</a>
             @else
-                <a class="btn btn-danger" href="{{ route('enterprises.delete', $user->id) }}">Khóa tài khoản</a>
+                <a class="btn btn-danger" href="{{ route('buyers.delete', $user->id) }}">Khóa tài khoản</a>
             @endif
         </div>
     </div>
@@ -32,7 +32,7 @@
                 <td>
                     <p>Mã số</p>
                 </td>
-                <td><p>{{ $user->enterprise_code }}</p></td>
+                <td><p>{{ $user->buyer_code }}</p></td>
             </tr>
             <tr>
                 <td>
@@ -45,12 +45,6 @@
                     <p>Địa chỉ</p>
                 </td>
                 <td><p>{{ $user->address }}</p></td>
-            </tr>
-            <tr>
-                <td>
-                    <p>Thành phố</p>
-                </td>
-                <td><p>{{ $cites[$user->city] }}</p></td>
             </tr>
             <tr>
                 <td>

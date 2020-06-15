@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Models\Enterprise;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class EnterpriseController extends Controller
@@ -27,7 +26,7 @@ class EnterpriseController extends Controller
      */
     public function index()
     {
-        $users = $this->enterprise->get();
+        $users = $this->enterprise->withTrashed()->get();
         return view('backend.enterprises.index', compact('users'));
     }
 
@@ -39,7 +38,35 @@ class EnterpriseController extends Controller
      */
     public function show($id)
     {
-        $user = Enterprise::with('user')->findOrFail($id);
-        return view('backend.enterprises.detail', compact('user'));
+        $user = $this->enterprise->withTrashed()->with('user')->findOrFail($id);
+        $cites = Enterprise::CITY;
+        return view('backend.enterprises.detail', compact('user', 'cites'));
+    }
+
+    /**
+     * delete enterprise
+     *
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function delete($id)
+    {
+        $enterprise = $this->enterprise->findOrFail($id);
+        $enterprise->delete();
+        return redirect()->route('enterprises.index');
+    }
+
+
+    /**
+     * restore enterprise
+     *
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function restore($id)
+    {
+        $enterprise = $this->enterprise->withTrashed()->findOrFail($id);
+        $enterprise->restore();
+        return redirect()->route('enterprises.index');
     }
 }

@@ -53,7 +53,15 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => [
     Route::get('/admin', 'AdminController@index')->name('admin.index');
     //enterprise
     Route::resource('/enterprises', 'EnterpriseController');
+    Route::get('/enterprises/delete/{id}', 'EnterpriseController@delete')->name('enterprises.delete');
+    Route::get('/enterprises/restore/{id}', 'EnterpriseController@restore')->name('enterprises.restore');
+
+    //buyers
     Route::get('/buyers', 'BuyerController@index')->name('buyers.index');
+    Route::get('/buyers/{id}', 'BuyerController@show')->name('buyers.show');
+    Route::get('/buyers/delete/{id}', 'BuyerController@delete')->name('buyers.delete');
+    Route::get('/buyers/restore/{id}', 'BuyerController@restore')->name('buyers.restore');
+
     //events
     Route::get('/events', 'EventController@index')->name('events.index');
     Route::get('/events/waiting', 'EventController@getWaiting')->name('events.waiting');

@@ -23,6 +23,7 @@
                             <th>Số điện thoại</th>
                             <th>Tk ngân hàng</th>
                             <th>Thời gian sử dụng</th>
+                            <th>Trạng thái</th>
                         </tr>
                         </thead>
                         <tfoot>
@@ -36,6 +37,7 @@
                             <th>Số điện thoại</th>
                             <th>Tk ngân hàng</th>
                             <th>Thời gian sử dụng</th>
+                            <th>Trạng thái</th>
                         </tr>
                         </tfoot>
                         <tbody>
@@ -52,8 +54,14 @@
                                 <th>{{ $user->phone }}</th>
                                 <th>{{ $user->bank_account }}</th>
                                 <th>{{ date_format(date_create($user->created_at) ,"H:i:s d/m/Y") }}</th>
+                                <th>
+                                    @if($user->deleted_at)
+                                        <span class="badge badge-danger">Khóa</span>
+                                    @else
+                                        <span class="badge badge-success">Hoạt động</span>
+                                    @endif
+                                </th>
                             </tr>
-                            
                         @endforeach
                         </tbody>
                     </table>
