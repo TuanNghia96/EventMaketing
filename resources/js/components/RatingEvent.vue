@@ -65,7 +65,7 @@
                 <div class="upcoming-events-list" v-for="(comment, i) in commentShow">
                     <div class="upcoming-event-wrap flex flex-wrap justify-content-between align-items-center">
                         <figure class="events-thumbnail">
-                            <a href="#"><img :src="`/frontend/images/upcoming-3.jpg`" alt=""></a>
+                            <a href="#"><img class="avatar" :src="comment.buyer.avatar" alt=""></a>
                         </figure>
 
                         <div class="entry-meta">
@@ -145,5 +145,11 @@
         text-decoration: none;
         display: inline-block;
         font-size: 16px;
+    }
+    img.avatar {
+        object-fit: cover;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
     }
 </style>
