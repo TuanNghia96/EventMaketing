@@ -4,6 +4,8 @@
 /storage/*.key
 /storage/fakers/
 /public/fakers/
+#/public/fakers/enterprise
+/public/images/
 /vendor
 .env
 .phpunit.result.cache
