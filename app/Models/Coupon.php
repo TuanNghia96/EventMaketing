@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Gate;
 
 class Coupon extends Model
 {
@@ -35,6 +36,23 @@ class Coupon extends Model
         80 => '80%',
         90 => '90%',
     ];
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        if (Gate::allows('edit-settings')) {
+            static::addGlobalScope('withTrashed', function (Builder $builder) {
+                $builder->withTrashed();
+            });
+        }
+    }
+
 
     /**
      * relationship to event

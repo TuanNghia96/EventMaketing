@@ -2,8 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Gate;
+
+//use Illuminate\Support\Facades\Gate;
+
 
 class Event extends Model
 {
@@ -45,6 +50,22 @@ class Event extends Model
         self::PUBLIC => 'Đã công bố',
         self::CANCEL => 'Hủy bỏ',
     ];
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot( )
+    {
+        parent::boot();
+
+        if (Gate::allows('admin')) {
+            static::addGlobalScope('withTrashed', function (Builder $builder) {
+                $builder->withTrashed();
+            });
+        }
+    }
 
     /**
      * Scope a query by phone

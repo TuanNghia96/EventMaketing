@@ -111,7 +111,7 @@ class TypeController extends Controller
      */
     public function destroy($id)
     {
-        $this->type->find($id)->delete();
+        $type = $this->type->find($id);
         return redirect(route('types.index'));
     }
 

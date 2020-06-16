@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Gate;
 
 class Buyer extends Model
 {
@@ -31,6 +33,22 @@ class Buyer extends Model
         'password',
         'remember_token',
     ];
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        if (Gate::allows('edit-settings')) {
+            static::addGlobalScope('withTrashed', function (Builder $builder) {
+                $builder->withTrashed();
+            });
+        }
+    }
 
     /**
      * relationship to user

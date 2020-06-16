@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Gate;
 
 class Comment extends Model
 {
@@ -18,6 +20,22 @@ class Comment extends Model
         'message',
         'rating',
     ];
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        if (Gate::allows('edit-settings')) {
+            static::addGlobalScope('withTrashed', function (Builder $builder) {
+                $builder->withTrashed();
+            });
+        }
+    }
 
     /**
      * relationship to buyer

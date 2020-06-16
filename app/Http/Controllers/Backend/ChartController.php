@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Backend;
 use App\Models\Comment;
 use App\Models\Event;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 

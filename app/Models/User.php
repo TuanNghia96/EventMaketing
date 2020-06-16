@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use App\Models\Admin;
 use Illuminate\Auth\Authenticatable as AuthenticableTrait;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Gate;
 
 class User extends Model implements Authenticatable
 {
@@ -39,6 +39,22 @@ class User extends Model implements Authenticatable
         self::ENTERPRISE => 'Doanh nghiệp',
         self::BUYER => 'Khách hàng',
     ];
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        if (Gate::allows('edit-settings')) {
+            static::addGlobalScope('withTrashed', function (Builder $builder) {
+                $builder->withTrashed();
+            });
+        }
+    }
 
     /**
      * relation to admin table

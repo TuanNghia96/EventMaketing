@@ -20,7 +20,7 @@ class EnterpriseController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of the enterprise.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -31,7 +31,7 @@ class EnterpriseController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of the enterprise.
      *
      * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
@@ -44,7 +44,7 @@ class EnterpriseController extends Controller
     }
 
     /**
-     * delete enterprise
+     * block enterprise
      *
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
