@@ -55,7 +55,7 @@ class CategoryController extends Controller
         $category = $this->category->create($params);
         if ($category) {
             $category->update($params);
-            return redirect()->route('types.show', $category->id);
+            return redirect()->route('categories.show', $category->id);
         } else {
             return redirect(url()->previous());
         }
@@ -98,7 +98,7 @@ class CategoryController extends Controller
         $category = $this->category->findOrFail($id);
         if ($category) {
             $category->update($params);
-            return redirect()->route('types.show', $category->id);
+            return redirect()->route('categories.show', $category->id);
         } else {
             return redirect(url()->previous());
         }
@@ -112,7 +112,10 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $this->category->find($id)->delete();
+        $category = $this->category->find($id);
+        if ($category->disable()) {
+            return redirect(route('categories.show', $id));
+        }
         return redirect(route('categories.index'));
     }
 
@@ -124,7 +127,10 @@ class CategoryController extends Controller
      */
     public function restore(Request $request)
     {
-        $this->category->withTrashed()->find($request->id)->restore();
-        return redirect(route('categories.show', $request->id));
+        $category = $this->category->find($request->id);
+        if ($category->enable()) {
+            return redirect(route('categories.show', $request->id));
+        }
+        return redirect(route('categories.index'));
     }
 }

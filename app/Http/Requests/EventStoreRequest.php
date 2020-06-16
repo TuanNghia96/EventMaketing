@@ -33,12 +33,11 @@ class EventStoreRequest extends FormRequest
             "title" => "required|string|max:30",
             "location" => "nullable|string|max:100",
             "summary" => "nullable|string",
-            "type_id" => "required|numeric|in:" . implode(',', Type::pluck('id')->toArray()),
-            "category_id" => "required|numeric|in:" . implode(',', Category::pluck('id')->toArray()),
-            "coupon_id" => "nullable|numeric|in:" . implode(',', Coupon::pluck('id')->toArray()),
+            "type_id" => "required|numeric|in:" . implode(',', Type::active()->pluck('id')->toArray()),
+            "category_id" => "required|numeric|in:" . implode(',', Category::active()->pluck('id')->toArray()),
+            "coupon_id" => "nullable|numeric|in:" . implode(',', Coupon::active()->pluck('id')->toArray()),
             "ticket_number" => "required|numeric|min:100",
             "public_date" => "required|date_format:d-m-Y H:i:s|after:" . Carbon::now()->addDay(2)->format('Y-m-d  H:i:s'),
-//            "start_date" => "required|date_format:d-m-Y H:i:s|after:" . Carbon::parse($this->get('public_date'))->addDay(1),
             "start_date" => "required|date_format:d-m-Y H:i:s|after:public_date",
             "end_date" => "required|date_format:d-m-Y H:i:s|after:start_date",
             "images.*.image" => "required|image",
@@ -47,6 +46,11 @@ class EventStoreRequest extends FormRequest
         ];
     }
 
+    /**
+     * Get attributes instate
+     *
+     * @return array
+     */
     public function attributes()
     {
         return[

@@ -26,10 +26,10 @@
                     <p>Tình trạng</p>
                 </td>
                 <td>
-                    @if($category->deleted_at)
-                        <p class="text-danger">NGỪNG HOẠT ĐỘNG</p>
-                    @else
+                    @if($category->status)
                         <p class="text-success">ĐANG HOẠT ĐỘNG</p>
+                    @else
+                        <p class="text-danger">NGỪNG HOẠT ĐỘNG </p>
                     @endif
                 </td>
             </tr>
@@ -38,12 +38,12 @@
                     <p>Quản lý</p>
                 </td>
                 <td>
-                    <form action="{{ !$category->deleted_at ? route('categories.destroy', $category->id) : route('categories.restore') }}" method="post">
+                    <form action="{{ $category->status ? route('categories.destroy', $category->id) : route('categories.restore') }}" method="post">
                         @csrf
-                        @if(!$category->deleted_at)
+                        @if($category->status)
                             <input type="hidden" name="_method" value="delete">
                             <a class="btn btn-info" href="{{ route('categories.edit', $category->id) }}">Chỉnh sửa</a>
-                            <button class="btn btn-danger">Xóa</button>
+                            <button class="btn btn-danger">Khóa</button>
                         @else
                             <input type="hidden" name="id" value="{{ $category->id }}">
                             <button class="btn btn-success">Phục hồi</button>

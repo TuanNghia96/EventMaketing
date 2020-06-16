@@ -21,6 +21,7 @@ class CreateCouponsTable extends Migration
             $table->string('image');
             $table->tinyInteger('type');
             $table->integer('value');
+            $table->boolean('status')->default(true);
             $table->timestamps();
             $table->softDeletes();
         });

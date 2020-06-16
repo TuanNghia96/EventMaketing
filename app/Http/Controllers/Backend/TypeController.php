@@ -112,6 +112,9 @@ class TypeController extends Controller
     public function destroy($id)
     {
         $type = $this->type->find($id);
+        if ($type->disable()) {
+            return redirect(route('types.show', $id));
+        }
         return redirect(route('types.index'));
     }
 
@@ -123,7 +126,10 @@ class TypeController extends Controller
      */
     public function restore(Request $request)
     {
-        $this->type->withTrashed()->find($request->id)->restore();
-        return redirect(route('types.show', $request->id));
+        $type = $this->type->find($request->id);
+        if ($type->enable()) {
+            return redirect(route('types.show', $request->id));
+        }
+        return redirect(route('types.index'));
     }
 }

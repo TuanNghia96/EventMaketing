@@ -37,8 +37,8 @@ class EventController extends Controller
     public function eventIndex()
     {
         $events = Event::get();
-        $types = Type::pluck('name', 'id')->toArray();
-        $categories = Category::pluck('name', 'id')->toArray();
+        $types = Type::active()->pluck('name', 'id')->toArray();
+        $categories = Category::active()->pluck('name', 'id')->toArray();
         return view('frontend.events.index', compact('events', 'types', 'categories'));
     }
 
@@ -142,9 +142,9 @@ class EventController extends Controller
      */
     public function createEvent()
     {
-        $types = Type::pluck('name', 'id')->toArray();
-        $categories = Category::pluck('name', 'id')->toArray();
-        $coupons = Coupon::distinct('value')->pluck('id', 'value');
+        $types = Type::active()->pluck('name', 'id')->toArray();
+        $categories = Category::active()->pluck('name', 'id')->toArray();
+        $coupons = Coupon::active()->distinct('value')->pluck('id', 'value');
         return view('frontend.events.create', compact('types', 'categories', 'coupons'));
     }
 

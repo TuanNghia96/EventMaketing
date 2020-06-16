@@ -238,7 +238,7 @@ class EventService implements EventServiceInterface
             //create event
             $event = Event::create($params);
             //attach event to enterprise
-            \Auth::user()->user->events()->sync([$event->id => ['role' => 1]]);
+            \Auth::user()->user->events()->attach([$event->id => ['role' => 1]]);
             DB::commit();
             return $event;
         } catch (\Exception $e) {
@@ -290,7 +290,7 @@ class EventService implements EventServiceInterface
     {
         $event = Event::with('type', 'category')->find($id);
         if ($event){
-            \Auth::user()->user->events()->sync([$event->id => ['role' => 1]]);
+            \Auth::user()->user->events()->attach([$event->id => ['role' => 2]]);
             return true;
         }
         return false;

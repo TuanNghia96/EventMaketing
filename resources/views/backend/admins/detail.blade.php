@@ -44,7 +44,7 @@
                     <p>Trạng thái</p>
                 </td>
                 <td>
-                    @if($user->deleted_at)
+                    @if($user->status)
                         <span class="badge badge-danger">Khóa</span>
                     @else
                         <span class="badge badge-success">Hoạt động</span>

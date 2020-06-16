@@ -14,6 +14,7 @@ class Type extends Model
     protected $table = 'types';
     protected $fillable = [
         'name',
+        'status',
     ];
 
     const CATEGORIES = [
@@ -35,19 +36,14 @@ class Type extends Model
     ];
 
     /**
-     * The "booting" method of the model.
+     * Scope a query to only include active.
      *
-     * @return void
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
      */
-    protected static function boot()
+    public function scopeActive($query)
     {
-        parent::boot();
-
-        if (Gate::allows('edit-settings')) {
-            static::addGlobalScope('withTrashed', function (Builder $builder) {
-                $builder->withTrashed();
-            });
-        }
+        return $query->where('status', '=', true);
     }
 
     /**
@@ -58,5 +54,33 @@ class Type extends Model
     public function events()
     {
         return $this->hasMany(Event::class);
+    }
+
+    /**
+     * disable status
+     *
+     * @return bool
+     */
+    public function disable()
+    {
+        if ($this->status) {
+            $this->status = false;
+            return $this->save();
+        }
+        return false;
+    }
+
+    /**
+     * disable status
+     *
+     * @return bool
+     */
+    public function enable()
+    {
+        if (!$this->status) {
+            $this->status = true;
+            return $this->save();
+        }
+        return false;
     }
 }

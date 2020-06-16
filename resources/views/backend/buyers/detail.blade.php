@@ -6,7 +6,7 @@
     <div class="card-header row">
         <div class="card-title col">Chi tiết người mua</div>
         <div class="col text-right">
-            @if($user->deleted_at)
+            @if($user->status)
                 <a class="btn btn-success" href="{{ route('buyers.restore', $user->id) }}">Phục hồi tài khoản</a>
             @else
                 <a class="btn btn-danger" href="{{ route('buyers.delete', $user->id) }}">Khóa tài khoản</a>
@@ -75,7 +75,7 @@
                     <p>Trạng thái</p>
                 </td>
                 <td>
-                    @if($user->deleted_at)
+                    @if($user->status)
                         <span class="badge badge-danger">Khóa</span>
                     @else
                         <span class="badge badge-success">Hoạt động</span>

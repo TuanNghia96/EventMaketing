@@ -41,10 +41,10 @@
                                 <th><a href="{{ route('types.show', $type->id) }}">{{ $type->name }}</a></th>
                                 <th>{{ date_format(date_create($type->created_at) ,"H:i:s d/m/Y") }}</th>
                                 <th>
-                                    @if($type->deleted_at)
-                                        <p class="text-danger">NGỪNG HOẠT ĐỘNG </p>
-                                    @else
+                                    @if($type->status)
                                         <p class="text-success"> ĐANG HOẠT ĐỘNG</p>
+                                    @else
+                                        <p class="text-danger">NGỪNG HOẠT ĐỘNG </p>
                                     @endif
                                 </th>
                             </tr>

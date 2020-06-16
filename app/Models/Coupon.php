@@ -38,23 +38,6 @@ class Coupon extends Model
     ];
 
     /**
-     * The "booting" method of the model.
-     *
-     * @return void
-     */
-    protected static function boot()
-    {
-        parent::boot();
-
-        if (Gate::allows('edit-settings')) {
-            static::addGlobalScope('withTrashed', function (Builder $builder) {
-                $builder->withTrashed();
-            });
-        }
-    }
-
-
-    /**
      * relationship to event
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -62,5 +45,44 @@ class Coupon extends Model
     public function event()
     {
         return $this->hasMany('App\Models\Event', 'coupon_id');
+    }
+
+    /**
+     * Scope a query to only include active.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeActive($query)
+    {
+        return $query->where('status', '=', true);
+    }
+
+    /**
+     * disable status
+     *
+     * @return bool
+     */
+    public function disable()
+    {
+        if ($this->status) {
+            $this->status = false;
+            return $this->save();
+        }
+        return false;
+    }
+
+    /**
+     * disable status
+     *
+     * @return bool
+     */
+    public function enable()
+    {
+        if (!$this->status) {
+            $this->status = true;
+            return $this->save();
+        }
+        return false;
     }
 }

@@ -43,10 +43,10 @@
                                         <th>{{ $coupon->code }}</th>
                                         <th>{{ date_format(date_create($coupon->created_at) ,"H:i:s d/m/Y") }}</th>
                                         <th>
-                                            @if($coupon->deleted_at)
-                                                <p class="text-danger">NGỪNG HOẠT ĐỘNG </p>
-                                            @else
+                                            @if($coupon->status)
                                                 <p class="text-success"> ĐANG HOẠT ĐỘNG</p>
+                                            @else
+                                                <p class="text-danger">NGỪNG HOẠT ĐỘNG </p>
                                             @endif
                                         </th>
                                     </tr>

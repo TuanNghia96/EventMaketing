@@ -41,10 +41,10 @@
                                 <th><a href="{{ route('categories.show', $category->id) }}">{{ $category->name }}</a></th>
                                 <th>{{ date_format(date_create($category->created_at) ,"H:i:s d/m/Y") }}</th>
                                 <th>
-                                    @if($category->deleted_at)
-                                        <p class="text-danger">NGỪNG HOẠT ĐỘNG </p>
-                                    @else
+                                    @if($category->status)
                                         <p class="text-success"> ĐANG HOẠT ĐỘNG</p>
+                                    @else
+                                        <p class="text-danger">NGỪNG HOẠT ĐỘNG </p>
                                     @endif
                                 </th>
                             </tr>

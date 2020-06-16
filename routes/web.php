@@ -28,9 +28,6 @@ Route::group(['namespace' => 'Frontend'], function () {
     //event
     Route::get('/event/detail/{event}', 'EventController@eventDetail')->name('event.detail');
     Route::get('/event/search', 'EventController@eventIndex')->name('event.index');
-    Route::get('/event/join/{id}', 'EventController@joinEvent')->name('event.join');
-    Route::get('/event/resend/{id}', 'EventController@resendTicket')->name('event.resend');
-    Route::get('/events/myEvents', 'EventController@buyerEvent')->name('event.buyer');
     Route::post('/event/comment', 'EventController@postComment')->name('event.postComment');
 
     //webinfo
@@ -38,6 +35,14 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::post('/contact', 'ContactController@send')->name('contact.send');
     Route::get('/about_us', 'ContactController@about')->name('contact.about');
 
+    //buyer allow
+    Route::group(['middleware' => 'buyer_able'], function () {
+        Route::get('/event/join/{id}', 'EventController@joinEvent')->name('event.join');
+        Route::get('/event/resend/{id}', 'EventController@resendTicket')->name('event.resend');
+        Route::get('/events/myEvents', 'EventController@buyerEvent')->name('event.buyer');
+    });
+
+    //enterprise allow
     Route::group(['middleware' => 'enterprise_able'], function () {
         Route::get('/enterprises/create', 'EventController@createEvent')->name('event.create');
         Route::post('/enterprises/event', 'EventController@postEvent')->name('event.store');
