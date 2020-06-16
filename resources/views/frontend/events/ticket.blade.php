@@ -54,39 +54,6 @@
 
 @endsection
 
-
-@section('inline_css')
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        .column {
-            float: left;
-            width: 33.33%;
-            padding: 5px;
-        }
-
-        /* Clearfix (clear floats) */
-        .row::after {
-            content: "";
-            clear: both;
-            display: table;
-        }
-
-        a.disabled {
-            pointer-events: none;
-            color: #ccc;
-        }
-
-        #event_thumbnail {
-            width: 100%;
-            height: auto
-        }
-    </style>
-@endsection
-
-
 @section('inline_script')
     <script type='text/javascript' src="{{ asset('frontend/js/custom.js') }}"></script>
 @endsection

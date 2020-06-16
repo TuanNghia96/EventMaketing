@@ -91,9 +91,6 @@
             </div>
         </div>
     </div>
-    <!-- Custom backend | don't include it in your project! -->
-    @include('layouts.backend.custom_template')
-    <!-- End Custom backend -->
 </div>
 
 <!--   Core JS Files   -->

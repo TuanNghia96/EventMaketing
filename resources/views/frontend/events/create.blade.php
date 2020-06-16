@@ -152,15 +152,11 @@
             </div>
         </div>
     </div>
-
 @endsection
 
 @section('inline_script')
     <script type='text/javascript' src="{{ asset('frontend/js/custom.js') }}"></script>
-    <script src="{{ asset('frontend/js/moment.min.js') }}"></script>
-    <script src="{{ asset('backend/js/plugin/summernote/summernote-bs4.min.js') }}"></script>
     <script !src="">
-
         $('#agreeCheck').change(function () {
             if (this.checked) {
                 $('#submitBtn').prop("disabled", false);
