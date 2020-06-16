@@ -121,14 +121,11 @@
 <script src="{{ asset('backend/js/plugin/bootstrap-notify/bootstrap-notify.min.js') }}"></script>
 
 <!-- Bootstrap Toggle -->
-<script src="{{ asset('backend/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js') }}"></script>
+{{--<script src="{{ asset('backend/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js') }}"></script>--}}
 
 <!-- jQuery Vector Maps -->
 <script src="{{ asset('backend/js/plugin/jqvmap/jquery.vmap.min.js') }}"></script>
 <script src="{{ asset('backend/js/plugin/jqvmap/maps/jquery.vmap.world.js') }}"></script>
-
-<!-- Google Maps Plugin -->
-<script src="{{ asset('backend/js/plugin/gmaps/gmaps.js') }}"></script>
 
 <!-- Dropzone -->
 <script src="{{ asset('backend/js/plugin/dropzone/dropzone.min.js') }}"></script>
@@ -151,22 +148,10 @@
 <!-- jQuery Validation -->
 <script src="{{ asset('backend/js/plugin/jquery.validate/jquery.validate.min.js') }}"></script>
 
-<!-- Summernote -->
-<script src="{{ asset('backend/js/plugin/summernote/summernote-bs4.min.js') }}"></script>
-
-<!-- Select2 -->
-<script src="{{ asset('backend/js/plugin/select2/select2.full.min.js') }}"></script>
-
-<!-- Sweet Alert -->
 <script src="{{ asset('backend/js/plugin/sweetalert/sweetalert.min.js') }}"></script>
 
 <!-- Azzara JS -->
 <script src="{{ asset('backend/js/ready.min.js') }}"></script>
-
-<!-- Azzara DEMO methods, don't include it in your project! -->
-<script src="{{ asset('backend/js/setting-demo.js') }}"></script>
-{{--<script src="{{ asset('backend/js/demo.js') }}"></script>--}}
-
 @yield('inline_scripts')
 </body>
 </html>
