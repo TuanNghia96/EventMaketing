@@ -7,9 +7,9 @@
         <div class="card-title col">Chi tiết doanh nghiệp</div>
         <div class="col text-right">
             @if($user->status)
-                <a class="btn btn-success" href="{{ route('enterprises.restore', $user->id) }}">Phục hồi tài khoản</a>
-            @else
                 <a class="btn btn-danger" href="{{ route('enterprises.delete', $user->id) }}">Khóa tài khoản</a>
+            @else
+                <a class="btn btn-success" href="{{ route('enterprises.restore', $user->id) }}">Phục hồi tài khoản</a>
             @endif
         </div>
     </div>
@@ -82,9 +82,9 @@
                 </td>
                 <td>
                     @if($user->status)
-                        <span class="badge badge-danger">Khóa</span>
-                    @else
                         <span class="badge badge-success">Hoạt động</span>
+                    @else
+                        <span class="badge badge-danger">Khóa</span>
                     @endif
                 </td>
             </tr>

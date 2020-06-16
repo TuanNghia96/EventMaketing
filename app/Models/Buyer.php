@@ -27,6 +27,7 @@ class Buyer extends Model
 
     protected $appends = [
         'name',
+        'status',
     ];
 
     protected $hidden = [
@@ -80,5 +81,16 @@ class Buyer extends Model
     public function getNameAttribute($value)
     {
         return $this->first_name . ' ' . $this->last_name;
+    }
+
+    /**
+     * get name attr
+     *
+     * @param $value
+     * @return mixed
+     */
+    public function getStatusAttribute($value)
+    {
+        return $this->user()->first()->status;
     }
 }

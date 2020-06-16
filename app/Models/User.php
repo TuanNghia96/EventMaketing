@@ -130,4 +130,33 @@ class User extends Model implements Authenticatable
         $number = $codeArray[1] + 1;
         return sprintf($role . "%05s", $number);
     }
+
+
+    /**
+     * disable status
+     *
+     * @return bool
+     */
+    public function disable()
+    {
+        if ($this->status) {
+            $this->status = false;
+            return $this->save();
+        }
+        return false;
+    }
+
+    /**
+     * disable status
+     *
+     * @return bool
+     */
+    public function enable()
+    {
+        if (!$this->status) {
+            $this->status = true;
+            return $this->save();
+        }
+        return false;
+    }
 }

@@ -56,9 +56,9 @@
                                 <th>{{ date_format(date_create($user->created_at) ,"H:i:s d/m/Y") }}</th>
                                 <th>
                                     @if($user->status)
-                                        <span class="badge badge-danger">Khóa</span>
-                                    @else
                                         <span class="badge badge-success">Hoạt động</span>
+                                    @else
+                                        <span class="badge badge-danger">Khóa</span>
                                     @endif
                                 </th>
                             </tr>

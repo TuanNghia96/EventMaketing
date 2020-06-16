@@ -52,8 +52,8 @@ class BuyerController extends Controller
      */
     public function delete($id)
     {
-        $buyer = $this->buyer->findOrFail($id);
-        if ($buyer->delete()) {
+        $user = $this->buyer->findOrFail($id)->user()->first();
+        if ($user->disable()) {
             alert()->success('Thành công', 'Đã thay đổi thành công.');
             return redirect()->route('buyers.index');
         }
@@ -69,8 +69,9 @@ class BuyerController extends Controller
      */
     public function restore($id)
     {
-        $buyer = $this->buyer->withTrashed()->findOrFail($id);
-        if ($buyer->restore()) {
+        $user = $this->buyer->findOrFail($id)->user()->first();
+
+        if ($user->enable()) {
             alert()->success('Thành công', 'Đã thay đổi thành công.');
             return redirect()->route('buyers.index');
         }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
@@ -95,5 +96,23 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         return view('auth.login');
+    }
+
+    /**
+     * check account is block
+     *
+     * @param Request $request
+     * @param $user
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    protected function authenticated(Request $request, $user)
+    {
+        //Check if user is approved
+        if(!$user->status) {
+            alert()->error('Lỗi', 'Tài khoản đang bị khóa. Hãy liên lạc với quản trị viên.');
+            Auth::logout();
+            return redirect()->route('home');
+
+        }
     }
 }

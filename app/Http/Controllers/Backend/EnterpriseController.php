@@ -51,8 +51,8 @@ class EnterpriseController extends Controller
      */
     public function delete($id)
     {
-        $enterprise = $this->enterprise->findOrFail($id);
-        if ($enterprise->delete()) {
+        $enterprise = $this->enterprise->findOrFail($id)->user()->first();
+        if ($enterprise->disable()) {
             alert()->success('Thành công', 'Đã thay đổi thành công.');
             return redirect()->route('enterprises.index');
         }
@@ -69,8 +69,8 @@ class EnterpriseController extends Controller
      */
     public function restore($id)
     {
-        $enterprise = $this->enterprise->withTrashed()->findOrFail($id);
-        if ($enterprise->restore()) {
+        $enterprise = $this->enterprise->findOrFail($id)->user()->first();
+        if ($enterprise->enable()) {
             alert()->success('Thành công', 'Đã thay đổi thành công.');
             return redirect()->route('enterprises.index');
         }

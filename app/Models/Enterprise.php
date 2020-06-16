@@ -24,6 +24,10 @@ class Enterprise extends Model
         'bank_account',
     ];
 
+    protected $appends = [
+        'status',
+    ];
+
     /**
      * The "booting" method of the model.
      *
@@ -92,5 +96,16 @@ class Enterprise extends Model
     public function mainEvent()
     {
         return $this->belongsToMany(Event::class, 'enterprise_events')->where('enterprise_events.role', '=', 1);
+    }
+
+    /**
+     * get name attr
+     *
+     * @param $value
+     * @return mixed
+     */
+    public function getStatusAttribute($value)
+    {
+        return $this->user()->first()->status;
     }
 }
