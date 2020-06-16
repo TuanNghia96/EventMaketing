@@ -54,6 +54,8 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => [
     Route::get('/admin', 'AdminController@index')->name('admin.index');
     Route::get('/admin/create', 'AdminController@create')->name('admin.create');
     Route::get('/admin/detail/{id}', 'AdminController@show')->name('admin.show');
+    Route::get('/admin/edit', 'AdminController@edit')->name('admin.edit');
+    Route::put('/admin/update', 'AdminController@update')->name('admin.update');
     Route::post('/admin', 'AdminController@store')->name('admin.store');
 
     //enterprise

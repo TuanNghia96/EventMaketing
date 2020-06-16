@@ -17,18 +17,13 @@
                     <div class="collapse in" id="collapseExample">
                         <ul class="nav">
                             <li>
-                                <a href="#profile">
+                                <a href="{{ route('admin.show', \Auth::user()->user->id) }}">
                                     <span class="link-collapse">Thông tin</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="#edit">
+                                <a href="{{ route('admin.edit') }}">
                                     <span class="link-collapse">Cập nhật thông tin</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#settings">
-                                    <span class="link-collapse">Cài đặt</span>
                                 </a>
                             </li>
                         </ul>

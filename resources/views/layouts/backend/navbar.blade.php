@@ -32,20 +32,15 @@
                     </li>
                     <li>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Thông tin</a>
-                        <a class="dropdown-item" href="#">Inbox</a>
+                        <a class="dropdown-item" href="{{ route('admin.show', \Auth::user()->user->id) }}">Thông tin</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Cài đặt tài khoản</a>
+                        <a class="dropdown-item" href="{{ route('admin.edit') }}">Cài đặt tài khoản</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                             {{ __('Đăng xuất') }}
                         </a>
-
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
                     </li>
                 </ul>
             </li>

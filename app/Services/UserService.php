@@ -2,20 +2,16 @@
 
 namespace App\Services;
 
-use App\Jobs\SendTicketMail;
 use App\Models\Admin;
 use App\Models\Buyer;
-use App\Models\Comment;
-use App\Models\Event;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
 class UserService implements UserServiceInterface
 {
     /**
-     * search event with param
+     * update buyer enterprise account
      *
      * @param $param
      * @return bool
@@ -59,14 +55,47 @@ class UserService implements UserServiceInterface
     {
         DB::beginTransaction();
         try {
+            //create account
             $params['role'] = User::ADMIN;
             $user = User::create($params);
+
+            //create admin
             $params['user_id'] = $user->id;
             $lastByr = Admin::withTrashed()->orderBy('admin_code', 'desc')->first();
             $codeLast = $lastByr->admin_code;
             $params['admin_code'] = User::getNextCode('AD', $codeLast);
             $params['birthday'] = date('Y-m-d', strtotime($params['birthday']));
             $admin = Admin::create($params);
+            DB::commit();
+            return $admin;
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return false;
+        }
+    }
+
+    /**
+     * update admin account
+     *
+     * @param $params
+     * @return bool
+     */
+    public function updateAdmin($params)
+    {
+        DB::beginTransaction();
+        try {
+            //update account
+            if (!isset($params['password'])) {
+                unset($params['password']);
+            }
+            $params['role'] = User::ADMIN;
+            $user = User::find(\Auth::user()->id);;
+            $user->update($params);
+
+            //update admin
+            $params['birthday'] = date('Y-m-d', strtotime($params['birthday']));
+            $admin = Admin::find(\Auth::user()->user->id);
+            $admin->update($params);
             DB::commit();
             return $admin;
         } catch (\Exception $e) {
