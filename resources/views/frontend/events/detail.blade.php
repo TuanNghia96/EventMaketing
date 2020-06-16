@@ -24,9 +24,7 @@
                     <header class="entry-header flex flex-wrap justify-content-between align-items-end">
                         <div class="single-event-heading">
                             <h2 class="entry-title">{{ $event->name }}</h2>
-                            
                             <div class="event-location">{{ $event->location }}</div>
-                            
                             <div class="event-date">{{ date('M d, Y @ h:i A', strtotime($event->start_date)) . ' - ' . date('M d, Y @ h:i A', strtotime($event->end_date)) }}</div>
                         </div>
                         
@@ -63,7 +61,6 @@
                         <li class="tab-nav flex justify-content-center align-items-center" data-target="#tab_venue">Nội dung</li>
                         <li class="tab-nav flex justify-content-center align-items-center" data-target="#tab_organizers">Nhà cung cấp</li>
                     </ul>
-                    
                     <div class="tabs-container">
                         <div id="tab_details" class="tab-content">
                             <div class="flex flex-wrap justify-content-between">
@@ -108,7 +105,6 @@
                                 </div>
                             </div>
                         </div>
-                        
                         <div id="tab_venue" class="tab-content">
                             <h5>Nội dung:</h5>
                             <p>{!! $event->summary !!}</p>
@@ -124,11 +120,23 @@
                                         </div>
                                     @endforeach
                                 @endisset
-                            
                             </div>
                         </div>
-                        
                         <div id="tab_organizers" class="tab-images">
+                            <h3>Doanh nghiệp chủ quản</h3>
+                            <div class="col-md-12 row">
+                                @foreach($event->mainEnp as $key => $enterprise)
+                                    <div class="col text-center">
+                                        <figure class="events-thumbnail">
+                                            <a href="#"><img id="{{ 'logo' . $key }}" src="{{ asset($enterprise->avatar) }}" class="logo" alt=""></a>
+                                        </figure>
+                                        <span><b>{{ $enterprise->name }}</b></span><br>
+                                        <span>{{ $enterprise->address }}</span>
+                                    </div>
+                                @endforeach
+                            </div>
+                            <br>
+                            <h3>Doanh nghiệp tham gia liên kết</h3>
                             <div class="col-md-12 row">
                                 @foreach($event->enterprises as $key => $enterprise)
                                     <div class="col text-center">
@@ -158,7 +166,6 @@
             </rating-event>
         </div>
         <script src="/js/app.js"></script>
-    
     </div>
 @endsection
 

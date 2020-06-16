@@ -16,8 +16,6 @@
 
                             <button disabled class="btn-primary"></button>&nbsp;{{ $status[\App\Models\Event::VALIDATED] }}
 
-                            <button disabled class="btn-success"></button>&nbsp;{{ $status[\App\Models\Event::PUBLIC] }}
-
                             <button disabled class="btn-danger"></button>&nbsp;{{ $status[\App\Models\Event::CANCEL] }}
                         </div>
                     </div>

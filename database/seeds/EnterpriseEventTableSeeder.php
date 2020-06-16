@@ -22,7 +22,7 @@ class EnterpriseEventTableSeeder extends Seeder
             DB::table('enterprise_events')->insert([
                 'enterprise_id' => array_rand($enterpriseId),
                 'event_id' => array_rand($eventId),
-                'role' => array_rand([1, 2]),
+                'role' => array_rand([1 => 1, 2 => 2]),
             ]);
         }
     }

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 //use Illuminate\Support\Facades\Gate;
@@ -41,13 +42,11 @@ class Event extends Model
 
     const WAITING = 0;
     const VALIDATED = 1;
-    const PUBLIC = 2;
-    const CANCEL = 3;
+    const CANCEL = 2;
 
     public static $status = [
         self::WAITING => 'Chờ kiểm duyệt',
         self::VALIDATED => 'Đã kiểm duyệt',
-        self::PUBLIC => 'Đã công bố',
         self::CANCEL => 'Hủy bỏ',
     ];
 
@@ -60,9 +59,14 @@ class Event extends Model
     {
         parent::boot();
 
-        if (Gate::allows('admin')) {
-            static::addGlobalScope('withTrashed', function (Builder $builder) {
-                $builder->withTrashed();
+        if (Gate::allows('enterprise')) {
+            static::addGlobalScope('all', function (Builder $builder) {
+                $builder->where('status', '<>', Event::WAITING);
+            });
+        }
+        if (Gate::allows('buyer') || Auth::guest()) {
+            static::addGlobalScope('all', function (Builder $builder) {
+                $builder->where('status', '=', Event::VALIDATED)->where('public_date', '>', now());
             });
         }
     }
@@ -96,7 +100,8 @@ class Event extends Model
      */
     public function enterprises()
     {
-        return $this->belongsToMany(Enterprise::class, 'enterprise_events');
+        return $this->belongsToMany(Enterprise::class, 'enterprise_events')->where('role',  2);
+
     }
 
     /**
@@ -157,7 +162,7 @@ class Event extends Model
      */
     public function scopeActive($query)
     {
-        return $query->whereIn('status', [Event::VALIDATED, Event::PUBLIC]);
+        return $query->where('status', Event::VALIDATED);
     }
 
     /**

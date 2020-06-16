@@ -80,7 +80,6 @@ class ChartController extends Controller
         $status = Array(
             Event::WAITING => 'fc-default',
             Event::VALIDATED => 'fc-primary',
-            Event::PUBLIC => 'fc-success',
             Event::CANCEL => 'fc-danger',
         );
         $events = array_map(function ($event) use ($status) {

@@ -85,7 +85,7 @@ class EventService implements EventServiceInterface
             if ($input['status'] == 0) {
                 $query->where('status', Event::VALIDATED);
             } elseif ($input['status'] == 1) {
-                $query->where('status', Event::PUBLIC);
+                $query->where('public_date', '>', now());;
             } else {
                 $query->where('start_date', '<', now())->where('end_date', '>', now());
             }
