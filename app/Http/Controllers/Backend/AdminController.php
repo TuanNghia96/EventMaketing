@@ -60,10 +60,11 @@ class AdminController extends Controller
         $params = $request->all();
         $admin = $this->userService->storeAdmin($params);
         if ($admin) {
+            alert()->success('Thành công', 'Đã thay đổi thành công.');
             return redirect()->route('admin.show', $admin->id);
-        } else {
-            return redirect()->route('admin.create');
         }
+        alert()->error('Lỗi', 'Bạn đã gặp lỗi, xin thử lại');
+        return redirect()->route('admin.create');
     }
 
     /**
@@ -99,8 +100,10 @@ class AdminController extends Controller
         $params = $request->all();
         $admin = $this->userService->updateAdmin($params);
         if ($admin) {
+            alert()->success('Thành công', 'Đã thay đổi thành công.');
             return redirect()->route('admin.show', $admin->id);
         } else {
+            alert()->error('Lỗi', 'Bạn đã gặp lỗi, xin thử lại');
             return redirect()->route('admin.edit');
         }
     }

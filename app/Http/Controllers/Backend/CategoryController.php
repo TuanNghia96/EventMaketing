@@ -96,12 +96,12 @@ class CategoryController extends Controller
     {
         $params = $request->all();
         $category = $this->category->findOrFail($id);
-        if ($category) {
-            $category->update($params);
+        if ($category->update($params)) {
+            alert()->success('Thành công', 'Đã thay đổi thành công.');
             return redirect()->route('categories.show', $category->id);
-        } else {
-            return redirect(url()->previous());
         }
+        alert()->error('Lỗi', 'Bạn đã gặp lỗi, xin thử lại');
+        return redirect(url()->previous());
     }
 
     /**
@@ -114,8 +114,10 @@ class CategoryController extends Controller
     {
         $category = $this->category->find($id);
         if ($category->disable()) {
+            alert()->success('Thành công', 'Đã thay đổi thành công.');
             return redirect(route('categories.show', $id));
         }
+        alert()->error('Lỗi', 'Bạn đã gặp lỗi, xin thử lại');
         return redirect(route('categories.index'));
     }
 
@@ -129,8 +131,10 @@ class CategoryController extends Controller
     {
         $category = $this->category->find($request->id);
         if ($category->enable()) {
+            alert()->success('Thành công', 'Đã thay đổi thành công.');
             return redirect(route('categories.show', $request->id));
         }
+        alert()->error('Lỗi', 'Bạn đã gặp lỗi, xin thử lại');
         return redirect(route('categories.index'));
     }
 }

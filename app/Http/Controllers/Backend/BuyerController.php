@@ -53,8 +53,12 @@ class BuyerController extends Controller
     public function delete($id)
     {
         $buyer = $this->buyer->findOrFail($id);
-        $buyer->delete();
-        return redirect()->route('buyers.index');
+        if ($buyer->delete()) {
+            alert()->success('Thành công', 'Đã thay đổi thành công.');
+            return redirect()->route('buyers.index');
+        }
+        alert()->error('Lỗi', 'Bạn đã gặp lỗi, xin thử lại');
+        return redirect(url()->previous());
     }
 
     /**
@@ -66,7 +70,11 @@ class BuyerController extends Controller
     public function restore($id)
     {
         $buyer = $this->buyer->withTrashed()->findOrFail($id);
-        $buyer->restore();
-        return redirect()->route('buyers.index');
+        if ($buyer->restore()) {
+            alert()->success('Thành công', 'Đã thay đổi thành công.');
+            return redirect()->route('buyers.index');
+        }
+        alert()->error('Lỗi', 'Bạn đã gặp lỗi, xin thử lại');
+        return redirect(url()->previous());
     }
 }

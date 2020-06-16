@@ -170,7 +170,7 @@ class EventService implements EventServiceInterface
     public function getEventWaiting()
     {
         return Event::with('type', 'category')
-            ->where('status', Event::$status[0])->orderBy('public_date')->get();
+            ->where('status', Event::WAITING)->orderBy('public_date')->get();
     }
 
     /**
@@ -181,20 +181,22 @@ class EventService implements EventServiceInterface
     public function getEventValidate()
     {
         return Event::with('type', 'category')
-            ->where('status', Event::$status[0])->orderBy('public_date')->get();
+            ->where('status', Event::VALIDATED)->orderBy('public_date')->get();
     }
 
     /**
      * set event success
      *
      * @param $id
+     * @return bool|int
      */
     public function setEventSuccess($id)
     {
         $event = Event::with('type', 'category')->find($id);
         if ($event->status == 0) {
-            $event->update(['status' => 1]);
+            return $event->update(['status' => Event::VALIDATED]);
         }
+        return false;
     }
 
     /**
@@ -271,13 +273,15 @@ class EventService implements EventServiceInterface
      * set event cancel
      *
      * @param $id
+     * @return bool|int
      */
     public function cancelEvent($id)
     {
         $event = Event::with('type', 'category')->find($id);
         if ($event->status != 3) {
-            $event->update(['status' => 3]);
+            return $event->update(['status' => Event::CANCEL]);
         }
+        return false;
     }
 
     /**

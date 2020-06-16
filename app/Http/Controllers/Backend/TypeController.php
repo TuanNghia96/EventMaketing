@@ -56,6 +56,7 @@ class TypeController extends Controller
             $type->update($params);
             return redirect()->route('types.show', $type->id);
         } else {
+            alert()->error('Lỗi', 'Bạn đã gặp lỗi, xin thử lại');
             return redirect(url()->previous());
         }
     }
@@ -97,8 +98,10 @@ class TypeController extends Controller
         $type = $this->type->findOrFail($id);
         if ($type) {
             $type->update($params);
+            alert()->success('Thành công', 'Đã thay đổi thành công.');
             return redirect()->route('types.show', $type->id);
         } else {
+            alert()->error('Lỗi', 'Bạn đã gặp lỗi, xin thử lại');
             return redirect(url()->previous());
         }
     }
@@ -113,8 +116,10 @@ class TypeController extends Controller
     {
         $type = $this->type->find($id);
         if ($type->disable()) {
+            alert()->success('Thành công', 'Đã thay đổi thành công.');
             return redirect(route('types.show', $id));
         }
+        alert()->error('Lỗi', 'Bạn đã gặp lỗi, xin thử lại');
         return redirect(route('types.index'));
     }
 
@@ -128,8 +133,10 @@ class TypeController extends Controller
     {
         $type = $this->type->find($request->id);
         if ($type->enable()) {
+            alert()->success('Thành công', 'Đã thay đổi thành công.');
             return redirect(route('types.show', $request->id));
         }
+        alert()->error('Lỗi', 'Bạn đã gặp lỗi, xin thử lại');
         return redirect(route('types.index'));
     }
 }

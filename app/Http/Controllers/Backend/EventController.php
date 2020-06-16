@@ -78,8 +78,12 @@ class EventController extends Controller
      */
     public function setSuccess($id)
     {
-        $this->eventService->setEventSuccess($id);
-        return redirect()->route('events.detail', $id);
+        if ($this->eventService->setEventSuccess($id)) {
+            alert()->success('Thành công', 'Đã thay đổi thành công.');
+            return redirect()->route('events.detail', $id);
+        }
+        alert()->error('Lỗi', 'Bạn đã gặp lỗi, xin thử lại');
+        return redirect(url()->previous());
     }
 
     /**
@@ -90,7 +94,11 @@ class EventController extends Controller
      */
     public function cancel($id)
     {
-        $this->eventService->cancelEvent($id);
-        return redirect()->route('events.detail', $id);
+        if ($this->eventService->cancelEvent($id)) {
+            alert()->success('Thành công', 'Đã thay đổi thành công.');
+            return redirect()->route('events.detail', $id);
+        }
+        alert()->error('Lỗi', 'Bạn đã gặp lỗi, xin thử lại');
+        return redirect(url()->previous());
     }
 }

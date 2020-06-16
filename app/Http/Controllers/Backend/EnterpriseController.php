@@ -52,8 +52,12 @@ class EnterpriseController extends Controller
     public function delete($id)
     {
         $enterprise = $this->enterprise->findOrFail($id);
-        $enterprise->delete();
-        return redirect()->route('enterprises.index');
+        if ($enterprise->delete()) {
+            alert()->success('Thành công', 'Đã thay đổi thành công.');
+            return redirect()->route('enterprises.index');
+        }
+        alert()->error('Lỗi', 'Bạn đã gặp lỗi, xin thử lại');
+        return redirect(url()->previous());
     }
 
 
@@ -66,7 +70,11 @@ class EnterpriseController extends Controller
     public function restore($id)
     {
         $enterprise = $this->enterprise->withTrashed()->findOrFail($id);
-        $enterprise->restore();
-        return redirect()->route('enterprises.index');
+        if ($enterprise->restore()) {
+            alert()->success('Thành công', 'Đã thay đổi thành công.');
+            return redirect()->route('enterprises.index');
+        }
+        alert()->error('Lỗi', 'Bạn đã gặp lỗi, xin thử lại');
+        return redirect(url()->previous());
     }
 }

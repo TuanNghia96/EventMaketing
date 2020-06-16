@@ -176,14 +176,12 @@
                     <p>Hành động</p>
                 </td>
                 <td>
-                    @if($event->public_date < now())
+                    @if($event->status == \App\Models\Event::$status[0])
                         <a class="btn btn-danger" href="{{ route('events.cancel', $event->id) }}">
                             <span class="btn-label">
                                 <i class="fa fa-times"></i>
                             </span>Cancel
                         </a>
-                    @endif
-                    @if($event->status == \App\Models\Event::$status[0])
                         <a class="btn btn-success" href="{{ route('events.success', $event->id) }}">
                             <span class="btn-label">
                                 <i class="fa fa-check"></i>
