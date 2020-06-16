@@ -6,6 +6,7 @@
 /public/fakers/
 /public/fakers/enterprise/*
 /public/fakers/events/*
+/public/fakers/images/*
 /public/images/
 /vendor
 .env
