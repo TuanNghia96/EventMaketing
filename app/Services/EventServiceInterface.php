@@ -11,7 +11,7 @@ interface EventServiceInterface
     public function getEventWaiting();
     public function getEventValidate();
     public function setEventSuccess($id);
-    public function cancelEvent($id);
+    public function cancelEvent($params);
     public function post($params);
     public function getEpSearch($input);
     public function storeComment($params);

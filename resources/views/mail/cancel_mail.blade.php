@@ -5,10 +5,11 @@
         <tr>
             <td>
                 <p>Xin chào {{ $name }},</p>
-                <p>Đây là vé tham gia sự kiện <b>{{ $event->name }}</b> online. Vui lòng giữ hoặc chụp lại vé này và mang đến sự kiện đang được tổ chức</p>
+                <p>Đây là thư thông báo hủy sự kiện <b>{{ $event->name }}</b> online.</p>
                 
-                <h5><b>Thành viên:</b>"{{ $name }}"</h5>
-                <h5><b>Sự kiện:</b><a href="{{ route('events.detail', $event->id) }}">{{ $event->name }}</a></h5>
+                <h5>Doanh nghiệp:"{{ $name }}"</h5>
+                <h5>Sự kiện:{{ $event->name }}</h5>
+                <h5>Ly do hủy:<b>&nbsp;&nbsp;{{ $reason }}</b></h5>
                 <div>
                 </div>
                 <p>Đây là thư gửi đến bạn tự động vui lòng không gửi thư đến địa chỉ này.</p>

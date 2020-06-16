@@ -80,7 +80,7 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => [
     Route::get('/events/validated', 'EventController@getValidated')->name('events.validated');
     Route::get('/events/detail/{id}', 'EventController@getDetail')->name('events.detail');
     Route::get('/events/success/{id}', 'EventController@setSuccess')->name('events.success');
-    Route::get('/events/cancel/{id}', 'EventController@cancel')->name('events.cancel');
+    Route::post('/events/cancel', 'EventController@cancel')->name('events.cancel');
     Route::get('/coupons', 'CouponController@index')->name('coupons.index');
 
 

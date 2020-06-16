@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Jobs\SendCancelMail;
 use App\Jobs\SendTicketMail;
 use App\Models\Comment;
 use App\Models\Event;
@@ -57,7 +58,6 @@ class EventService implements EventServiceInterface
     public function getEpSearch($input)
     {
         $query = Event::with('coupon');
-        \Log::info(Event::with('coupon')->where('status', 1)->get()->toArray());
         //check like
         if (isset($input['name'])) {
             $query->where('name', 'like', '%' . $input['name'] . '%')->orWhere('title', 'like', '%' . $input['name'] . '%');
@@ -272,13 +272,14 @@ class EventService implements EventServiceInterface
     /**
      * set event cancel
      *
-     * @param $id
+     * @param $params
      * @return bool|int
      */
-    public function cancelEvent($id)
+    public function cancelEvent($params)
     {
-        $event = Event::with('type', 'category')->find($id);
+        $event = Event::with('type', 'category', 'mainEnp')->find($params['id']);
         if ($event->status != 3) {
+            dispatch(new SendCancelMail($event, $params['reason']));
             return $event->update(['status' => Event::CANCEL]);
         }
         return false;

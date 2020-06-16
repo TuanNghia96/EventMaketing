@@ -89,14 +89,15 @@ class EventController extends Controller
     /**
      * remove event
      *
-     * @param $id
+     * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function cancel($id)
+    public function cancel(Request $request)
     {
-        if ($this->eventService->cancelEvent($id)) {
+        $params = $request->all();
+        if ($this->eventService->cancelEvent($params)) {
             alert()->success('Thành công', 'Đã thay đổi thành công.');
-            return redirect()->route('events.detail', $id);
+            return redirect()->route('events.detail', $params['id']);
         }
         alert()->error('Lỗi', 'Bạn đã gặp lỗi, xin thử lại');
         return redirect(url()->previous());
