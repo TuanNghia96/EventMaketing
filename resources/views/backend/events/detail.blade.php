@@ -177,20 +177,12 @@
                 </td>
                 <td>
                     @if($event->status == \App\Models\Event::$status[0])
-                        <a class="btn btn-danger" href="{{ route('events.cancel', $event->id) }}">
-                            <span class="btn-label">
-                                <i class="fa fa-times"></i>
-                            </span>Cancel
-                        </a>
-                        
-                        <!-- Button trigger modal -->
                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
                             <span class="btn-label">
                                 <i class="fa fa-times"></i>
-                            </span>Cancel
+                            </span>Hủy bỏ
                         </button>
                         
-                        <!-- Modal -->
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -208,8 +200,8 @@
                                         <input type="text" class="form-control" name="reason" required>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Save changes</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                        <button type="submit" class="btn btn-primary">Hủy bỏ</button>
                                     </div>
                                     </form>
                                 </div>
@@ -218,7 +210,7 @@
                         <a class="btn btn-success" href="{{ route('events.success', $event->id) }}">
                             <span class="btn-label">
                                 <i class="fa fa-check"></i>
-                            </span>Success
+                            </span>Xác nhận
                         </a>
                     @endif
                 </td>
