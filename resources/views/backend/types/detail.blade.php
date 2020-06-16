@@ -57,45 +57,7 @@
         </table>
         <h3><b>Những sự kiện thuộc thể loại {{ $type->name }}.</b></h3>
         <br>
-        <div class="table-responsive">
-            <table id="multi-filter-select" class="display table table-striped table-hover">
-                <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Code</th>
-                    <th>Public Date</th>
-                    <th>Coupon Id</th>
-                    <th>Status</th>
-                    <th>Point</th>
-                </tr>
-                </thead>
-                <tfoot>
-                <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Code</th>
-                    <th>Public Date</th>
-                    <th>Coupon Id</th>
-                    <th>Status</th>
-                    <th>Point</th>
-                </tr>
-                </tfoot>
-                <tbody>
-                @foreach($type->events as $key => $event)
-                    <tr>
-                        <th>{{ $key + 1 }}</th>
-                        <th><a href="{{ route('events.detail', $event->id) }}">{{ $event->name }}</a></th>
-                        <th>{{ $event->code }}</th>
-                        <th>{{ date_format(date_create($event->public_date) ,"d/m/Y") }}</th>
-                        <th>{{ $event->coupon_id }}</th>
-                        <th>{{ \App\Models\Event::$status[$event->status] }}</th>
-                        <th>{{ $event->point }}</th>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
-        </div>
+        @include('backend.events.table', ['events' => $type->events])
     </div>
 @endsection
 @section('inline_scripts')
