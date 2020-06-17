@@ -160,7 +160,7 @@
                     post-url="{{ route('event.postComment') }}"
                     csrf-token="{{ csrf_token() }}"
                     @can('buyer')
-                    is-joined="{{ \App\Models\Comment::where('buyer_id', \Auth::user()->user->id)->where('event_id', $event->id)->get()->toArray() ? true : false }}"
+                    is-joined="{{ \App\Models\Ticket::where('buyer_id', \Auth::user()->user->id)->where('event_id', $event->id)->get()->toArray() ? true : false }}"
                     @endcan
             >
             </rating-event>

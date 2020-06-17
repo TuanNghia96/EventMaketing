@@ -153,5 +153,41 @@
 <!-- Azzara JS -->
 <script src="{{ asset('backend/js/ready.min.js') }}"></script>
 @yield('inline_scripts')
+<script src="https://js.pusher.com/6.0/pusher.min.js"></script>
+<script>
+    var notificationsWrapper = $('.dropdown-notifications');
+    var notificationsToggle    = notificationsWrapper.find('a[data-toggle]');
+    var notifications          = notificationsWrapper.find('li.pusher');
+    
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+    
+    var pusher = new Pusher('1608558ccb79baab7db8', {
+        cluster: 'ap1'
+    });
+    
+    var channel = pusher.subscribe('my-channel');
+    channel.bind('my-event', function(data) {
+        $('#notification').html(parseInt($('#notification').html()) + 1);
+        $('#count').html(parseInt($('#count').html()) + 1);
+        var existingNotifications = notifications.html();
+        var newNotificationHtml = `
+        <div class="notif-scroll scrollbar-outer">
+            <div class="notif-center">
+            <a href="`+data.message.message+`">
+            <div class="notif-icon notif-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i> </div>
+        <div class="notif-content">
+            <span class="block">
+            `+data.message.title+`
+            </span>
+            <span class="time">`+data.message.created_at+`</span>
+            </div>
+            </a>
+            </div>
+            </div>
+    `;
+        notifications.html(newNotificationHtml + existingNotifications);
+    });
+</script>
 </body>
 </html>

@@ -106,14 +106,16 @@
                 <td>
                     <table class="table table-typo">
                         <tbody>
-                        @foreach($event->images as $image)
-                            <td>
-                                {{ $image->title }}
-                            </td>
-                            <td>
-                                <img src="{{ asset($image->image) }}" alt="" width="50%">
-                            </td>
-                        @endforeach
+                        @isset($event->images)
+                            @foreach($event->images as $image)
+                                <td>
+                                    {{ $image->title }}
+                                </td>
+                                <td>
+                                    <img src="{{ asset($image->image) }}" alt="" width="50%">
+                                </td>
+                            @endforeach
+                        @endisset
                         </tbody>
                     </table>
                 </td>
@@ -187,22 +189,22 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <form action="{{ route('events.cancel') }}" method="post">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Nhập lý do</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        @csrf
-                                        <input type="hidden" name="id" value="{{ $event->id }}">
-                                        <label for="">Lý do</label>
-                                        <input type="text" class="form-control" name="reason" required>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                        <button type="submit" class="btn btn-primary">Hủy bỏ</button>
-                                    </div>
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Nhập lý do</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{ $event->id }}">
+                                            <label for="">Lý do</label>
+                                            <input type="text" class="form-control" name="reason" required>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                            <button type="submit" class="btn btn-primary">Hủy bỏ</button>
+                                        </div>
                                     </form>
                                 </div>
                             </div>

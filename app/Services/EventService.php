@@ -2,10 +2,12 @@
 
 namespace App\Services;
 
+use App\Events\HelloPusherEvent;
 use App\Jobs\SendCancelMail;
 use App\Jobs\SendTicketMail;
 use App\Models\Comment;
 use App\Models\Event;
+use App\Models\Notification;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -239,8 +241,19 @@ class EventService implements EventServiceInterface
 
             //create event
             $event = Event::create($params);
+
             //attach event to enterprise
             \Auth::user()->user->events()->attach([$event->id => ['role' => 1]]);
+
+            //add notification
+            $notification = Notification::create([
+                'title' => 'Tạo mới sự kiện '. $event->name,
+                'message' => route('events.detail', $event->id),
+            ]);
+            //pusher
+            $data = $notification->toArray();
+            event(new HelloPusherEvent($data));
+
             DB::commit();
             return $event;
         } catch (\Exception $e) {
@@ -257,10 +270,12 @@ class EventService implements EventServiceInterface
      */
     public function storeComment($params)
     {
+
         DB::beginTransaction();
         try{
             $params['buyer_id'] = \Auth::user()->user->id;
             $comment = Comment::updateOrCreate(['buyer_id' => \Auth::user()->user->id, 'event_id' => $params['event_id']], $params);
+
             DB::commit();
             return true;
         } catch (\Exception $e) {

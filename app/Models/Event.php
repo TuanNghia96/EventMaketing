@@ -66,7 +66,7 @@ class Event extends Model
         }
         if (Gate::allows('buyer') || Auth::guest()) {
             static::addGlobalScope('all', function (Builder $builder) {
-                $builder->where('status', '=', Event::VALIDATED)->where('public_date', '>', now());
+                $builder->where('status', '=', Event::VALIDATED)->where('public_date', '<', now());
             });
         }
     }

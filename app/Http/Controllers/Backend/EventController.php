@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Models\Event;
+use App\Models\Notification;
 use App\Services\EventServiceInterface;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -60,12 +61,18 @@ class EventController extends Controller
     /**
      * Display a listing of the event have validated.
      *
+     * @param Request $request
      * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function getDetail($id)
+    public function getDetail(Request $request, $id)
     {
-        $event = Event::with('type', 'category', 'comments', 'mainEnp', 'enterprises')->find($id);
+        $params = $request->all();
+        if (isset($params['noti'])) {
+            $notification = Notification::find($params['noti']);
+            $notification->read();
+        }
+        $event = Event::with('type', 'category', 'comments', 'mainEnp', 'enterprises')->findOrFail($id);
         $statuses = Event::$status;
         return view('backend.events.detail', compact('event', 'statuses'));
     }

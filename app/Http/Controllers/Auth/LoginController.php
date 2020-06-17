@@ -112,7 +112,6 @@ class LoginController extends Controller
             alert()->error('Lỗi', 'Tài khoản đang bị khóa. Hãy liên lạc với quản trị viên.');
             Auth::logout();
             return redirect()->route('home');
-
         }
     }
 }
