@@ -38,12 +38,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a data-toggle="collapse" href="#base">
+                    <a data-toggle="collapse" href="#event">
                         <i class="fas fa-calendar"></i>
                         <p>Quản lý sự kiện</p>
                         <span class="caret"></span>
                     </a>
-                    <div class="collapse" id="base">
+                    <div class="collapse" id="event">
                         <ul class="nav nav-collapse">
                             <li>
                                 <a href="{{ route('events.index') }}">
@@ -76,12 +76,12 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a data-toggle="collapse" href="#base">
+                    <a data-toggle="collapse" href="#other">
                         <i class="fas fa-cube"></i>
                         <p>Quản lý liên quan</p>
                         <span class="caret"></span>
                     </a>
-                    <div class="collapse" id="base">
+                    <div class="collapse" id="other">
                         <ul class="nav nav-collapse">
                             <li>
                                 <a href="{{ route('types.index') }}">
@@ -105,12 +105,12 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a data-toggle="collapse" href="#forms">
+                    <a data-toggle="collapse" href="#user">
                         <i class="fas fa-male"></i>
                         <p>Đối tác</p>
                         <span class="caret"></span>
                     </a>
-                    <div class="collapse" id="forms">
+                    <div class="collapse" id="user">
                         <ul class="nav nav-collapse">
                             <li>
                                 <a href="{{ route('buyers.index') }}">
@@ -128,12 +128,12 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a data-toggle="collapse" href="#tables">
+                    <a data-toggle="collapse" href="#admin">
                         <i class="fas fa-user-cog"></i>
                         <p>Nhân viên</p>
                         <span class="caret"></span>
                     </a>
-                    <div class="collapse" id="tables">
+                    <div class="collapse" id="admin">
                         <ul class="nav nav-collapse">
                             <li>
                                 <a href="{{ route('admin.index') }}">
