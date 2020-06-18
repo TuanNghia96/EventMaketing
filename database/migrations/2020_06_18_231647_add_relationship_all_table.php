@@ -13,11 +13,7 @@ class AddRelationshipAllTable extends Migration
      */
     public function up()
     {
-        Schema::table('events', function (Blueprint $table) {
-            $table->foreign('coupon_id')->references('id')->on('coupons');
-            $table->foreign('type_id')->references('id')->on('types');
-            $table->foreign('category_id')->references('id')->on('categories');
-        });
+
         Schema::table('admins', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');
         });
@@ -38,6 +34,9 @@ class AddRelationshipAllTable extends Migration
         Schema::table('comments', function (Blueprint $table) {
             $table->foreign('event_id')->references('id')->on('events');
             $table->foreign('buyer_id')->references('id')->on('buyers');
+        });
+        Schema::table('events', function (Blueprint $table) {
+            $table->foreign('coupon_id')->references('id')->on('coupons');
         });
     }
 

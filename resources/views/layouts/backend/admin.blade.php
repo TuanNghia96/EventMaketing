@@ -175,7 +175,7 @@
         var newNotificationHtml = `
         <div class="notif-scroll scrollbar-outer">
             <div class="notif-center">
-            <a href="`+data.message.message+`">`
+            <a href="`+data.message.url+`">`
             + icon[data.message.type] +
             `<div class="notif-content">
             <span class="block">

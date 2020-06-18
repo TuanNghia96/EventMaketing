@@ -258,7 +258,7 @@ class EventService implements EventServiceInterface
             //add notification
             $notification = Notification::create([
                 'title' => 'Tạo mới sự kiện ' . $event->name,
-                'message' => route('events.detail', $event->id),
+                'url' => route('events.detail', $event->id),
                 'type' => 1,
             ]);
             //pusher
@@ -311,7 +311,7 @@ class EventService implements EventServiceInterface
             $notification = Notification::create([
                 'title' => 'Chờ hủy sự kiện ' . $event->name,
                 'type' => 2,
-                'message' => route('events.detail', $event->id),
+                'url' => route('events.detail', $event->id),
             ]);
             //pusher
             $data = $notification->toArray();
