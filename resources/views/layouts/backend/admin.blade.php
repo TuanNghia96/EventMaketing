@@ -165,7 +165,8 @@
     var pusher = new Pusher('1608558ccb79baab7db8', {
         cluster: 'ap1'
     });
-    
+    var icon = <?php echo json_encode(\App\Models\Notification::ICON_TYPE)?>;
+        console.log();
     var channel = pusher.subscribe('my-channel');
     channel.bind('my-event', function(data) {
         $('#notification').html(parseInt($('#notification').html()) + 1);
@@ -174,9 +175,9 @@
         var newNotificationHtml = `
         <div class="notif-scroll scrollbar-outer">
             <div class="notif-center">
-            <a href="`+data.message.message+`">
-            <div class="notif-icon notif-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i> </div>
-        <div class="notif-content">
+            <a href="`+data.message.message+`">`
+            + icon[data.message.type] +
+            `<div class="notif-content">
             <span class="block">
             `+data.message.title+`
             </span>

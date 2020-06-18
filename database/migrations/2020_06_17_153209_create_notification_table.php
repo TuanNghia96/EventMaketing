@@ -17,6 +17,7 @@ class CreateNotificationTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->string('message');
+            $table->tinyInteger('type')->default(1);
             $table->boolean('status')->default(true);
             $table->timestamps();
         });

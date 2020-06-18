@@ -8,7 +8,6 @@ use App\Jobs\SendTicketMail;
 use App\Models\Comment;
 use App\Models\Event;
 use App\Models\Notification;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -260,6 +259,7 @@ class EventService implements EventServiceInterface
             $notification = Notification::create([
                 'title' => 'Tạo mới sự kiện ' . $event->name,
                 'message' => route('events.detail', $event->id),
+                'type' => 1,
             ]);
             //pusher
             $data = $notification->toArray();
@@ -307,6 +307,15 @@ class EventService implements EventServiceInterface
         if ($event->update([
             'note' => $params['note']
         ])) {
+            //add notification
+            $notification = Notification::create([
+                'title' => 'Chờ hủy sự kiện ' . $event->name,
+                'type' => 2,
+                'message' => route('events.detail', $event->id),
+            ]);
+            //pusher
+            $data = $notification->toArray();
+            event(new HelloPusherEvent($data));
             return true;
         }
         return false;

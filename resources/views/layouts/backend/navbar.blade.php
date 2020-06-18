@@ -16,6 +16,7 @@
         @php
             $notifications = \App\Models\Notification::unread()->get();
                 $count = $notifications->count() ?? 0;
+        $icons = \App\Models\Notification::ICON_TYPE;
         @endphp
         <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
             <li class="nav-item dropdown hidden-caret submenu show dropdown-notifications">
@@ -32,7 +33,7 @@
                             <div class="scroll-wrapper notif-scroll scrollbar-outer" style="position: relative;">
                                 <div class="notif-center">
                                         <a href="{{ $value->message . '?noti=' . $value->id }}">
-                                            <div class="notif-icon notif-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i> </div>
+                                             {!! $icons[$value->type] !!}
                                             <div class="notif-content">
 													<span class="block">
 														{{ $value->title }}
