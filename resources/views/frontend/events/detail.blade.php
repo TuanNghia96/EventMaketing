@@ -36,7 +36,7 @@
                                     <a class="btn gradient-bg" @if($event->ticket_number <= $event->buyer->count()) disabled @endif href="{{ route('event.join', $event->id) }}">Nhận vé</a>
                                 @endcan
                                 @can('enterprise')
-                                    @if(!$event->enterprises->find(\Auth::user()->user->id))
+                                    @if(!$event->enterprises->find(\Auth::user()->user->id) && !$event->mainEnp()->find(\Auth::user()->user->id))
                                         <a class="btn gradient-bg" @if($event->status != \App\Models\Event::VALIDATED) disabled @endif href="{{ route('event.connect', $event->id) }}">Tham gia sự kiện</a>
                                     @else
                                         <a class="btn gradient-bg" readonly>Đã tham gia sự kiện</a>

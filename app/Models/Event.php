@@ -55,17 +55,19 @@ class Event extends Model
      *
      * @return void
      */
-    protected static function boot( )
+    protected static function boot()
     {
         parent::boot();
 
         if (Gate::allows('enterprise')) {
-            static::addGlobalScope('all', function (Builder $builder) {
-                $builder->where('status', '<>', Event::WAITING);
+            static::addGlobalScope('enterprise', function (Builder $builder) {
+                $builder->where('status', '<>', Event::WAITING)->orWhereHas('mainEnp', function ($query) {
+                    $query->where('enterprise_id', \Auth::user()->user->id);
+                });
             });
         }
         if (Gate::allows('buyer') || Auth::guest()) {
-            static::addGlobalScope('all', function (Builder $builder) {
+            static::addGlobalScope('buyer', function (Builder $builder) {
                 $builder->where('status', '=', Event::VALIDATED)->where('public_date', '<', now());
             });
         }
@@ -100,7 +102,7 @@ class Event extends Model
      */
     public function enterprises()
     {
-        return $this->belongsToMany(Enterprise::class, 'enterprise_events')->where('role',  2);
+        return $this->belongsToMany(Enterprise::class, 'enterprise_events')->where('role', 2);
 
     }
 
