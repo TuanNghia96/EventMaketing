@@ -40,7 +40,7 @@ class BuyerController extends Controller
      */
     public function show($id)
     {
-        $user = $this->buyer->withTrashed()->with('user')->findOrFail($id);
+        $user = $this->buyer->withTrashed()->with('user', 'events')->findOrFail($id);
         return view('backend.buyers.detail', compact('user'));
     }
 

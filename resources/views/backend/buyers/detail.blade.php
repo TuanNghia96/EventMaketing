@@ -85,6 +85,58 @@
             </tbody>
         </table>
     </div>
+    @if($user->events->count())
+        {{-- events table --}}
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Vé tham gia</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="multi-filter-select" class="display table table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Tên sự kiện</th>
+                            <th>Sử dụng</th>
+                            <th>Thời gian có</th>
+                        </tr>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <th>Id</th>
+                            <th>Tên sự kiện</th>
+                            <th>Sử dụng</th>
+                            <th>Thời gian có</th>
+                        </tr>
+                        </tfoot>
+                        <tbody>
+                        @foreach($user->events as $key => $event)
+                            <tr>
+                                <th>{{ $key + 1 }}</th>
+                                <th><a href="{{ route('events.detail', $event->id) }}">{{ $event->name }}</a></th>
+                                <th>
+                                    @if($event->enterprise_id)
+                                        <p class="text-success">Chưa sử dụng</p>
+                                    @else
+                                        <p class="text-danger">Đã sử dụng</p>
+                                    @endif
+                                </th>
+                                <th>{{ date_format(date_create($event->created_at) ,"d/m/Y") }}</th>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    @else
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Không có vé nào nào</h4>
+            </div>
+        </div>
+    @endif
 @endsection
 
 @section('css_scripts')
@@ -94,4 +146,8 @@
             border-radius: 50%;
         }
     </style>
+@endsection
+
+@section('inline_scripts')
+    @include('layouts.backend.table_script')
 @endsection

@@ -84,7 +84,7 @@ class EventController extends Controller
             $notification = Notification::find($params['noti']);
             $notification->read();
         }
-        $event = Event::with('type', 'category', 'comments', 'mainEnp', 'enterprises')->findOrFail($id);
+        $event = Event::with('type', 'category', 'comments', 'mainEnp', 'enterprises', 'buyer')->findOrFail($id);
         $statuses = Event::$status;
         return view('backend.events.detail', compact('event', 'statuses'));
     }

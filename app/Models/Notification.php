@@ -15,8 +15,8 @@ class Notification extends Model
     ];
 
     const ICON_TYPE = [
-       1 => '<div class="notif-icon notif-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i></div>',
-       2 => '<div class="notif-icon notif-danger"><i class="fa fa-minus-circle" aria-hidden="true"></i></div>',
+       1 => '<div class="notif-icon notif-primary"><i class="fa fa-plus-circle"></i></div>',
+       2 => '<div class="notif-icon notif-danger"><i class="fa fa-minus-circle"></i></div>',
     ];
 
     /**

@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="card-header">
-        <div class="card-title">Event detail</div>
+        <div class="card-title">Chi tiết sự kiện</div>
     </div>
     <div class="card-body">
         <table class="table table-typo">
@@ -228,4 +228,61 @@
             </tbody>
         </table>
     </div>
+    @if($event->buyer->count())
+        {{-- buyer table --}}
+        <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Vé tham gia</h4>
+                </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="multi-filter-select" class="display table table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Tên người mua</th>
+                            <th>Sử dụng</th>
+                            <th>Thời gian có</th>
+                        </tr>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <th>Id</th>
+                            <th>Tên người mua</th>
+                            <th>Sử dụng</th>
+                            <th>Thời gian có</th>
+                        </tr>
+                        </tfoot>
+                        <tbody>
+                        @foreach($event->buyer as $key => $buyer)
+                            <tr>
+                                <th>{{ $key + 1 }}</th>
+                                <th><a href="{{ route('buyers.show', $buyer->id) }}">{{ $buyer->name }}</a></th>
+                                <th>
+                                    @if($buyer->enterprise_id)
+                                        <p class="text-success">Chưa sử dụng</p>
+                                    @else
+                                        <p class="text-danger">Đã sử dụng</p>
+                                    @endif
+                                </th>
+                                <th>{{ date_format(date_create($buyer->created_at) ,"d/m/Y") }}</th>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    @else
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Không có vé nào nào</h4>
+            </div>
+        </div>
+    @endif
 @endsection
+
+@section('inline_scripts')
+    @include('layouts.backend.table_script')
+@endsection
+

@@ -20,11 +20,11 @@
         @endphp
         <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
             <li class="nav-item dropdown hidden-caret submenu show dropdown-notifications">
-                <a class="nav-link dropdown-toggle" href="#" id="notifDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <a class="nav-link dropdown-toggle" href="#" id="notifDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-bell"></i>
                     <span class="notification" id="count">{{ $count }}</span>
                 </a>
-                <ul class="dropdown-menu notif-box animated fadeIn show" aria-labelledby="notifDropdown">
+                <ul class="dropdown-menu notif-box animated fadeIn" aria-labelledby="notifDropdown">
                     <li>
                         <div class="dropdown-title">Bạn có {{ $count }} thông báo</div>
                     </li>
@@ -72,9 +72,7 @@
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('admin.edit') }}">Cài đặt tài khoản</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{ route('logout') }}"
-                           onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                        <a class="dropdown-item" href="{{ route('logout') }}">
                             {{ __('Đăng xuất') }}
                         </a>
                     </li>
