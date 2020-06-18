@@ -173,6 +173,14 @@
                 </td>
                 <td>{{ $statuses[$event->status] }}</td>
             </tr>
+            @isset($event->note)
+                <tr>
+                    <td>
+                        <p>Lý do xin hủy</p>
+                    </td>
+                    <td>{{ $event->note }}</td>
+                </tr>
+            @endisset
             <tr>
                 <td>
                     <p>Hành động</p>

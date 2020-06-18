@@ -59,6 +59,18 @@ class EventController extends Controller
     }
 
     /**
+     * Display a listing of the event have ready to cancel.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getDelete(Request $request)
+    {
+        $events = $this->eventService->getEventDelete();
+        return view('backend.events.cancel', compact('events'));
+    }
+
+    /**
      * Display a listing of the event have validated.
      *
      * @param Request $request

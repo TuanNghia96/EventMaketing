@@ -36,10 +36,16 @@
                                     <a class="btn gradient-bg" @if($event->ticket_number <= $event->buyer->count()) disabled @endif href="{{ route('event.join', $event->id) }}">Nhận vé</a>
                                 @endcan
                                 @can('enterprise')
-                                    @if(!$event->enterprises->find(\Auth::user()->user->id) && !$event->mainEnp()->find(\Auth::user()->user->id))
-                                        <a class="btn gradient-bg" @if($event->status != \App\Models\Event::VALIDATED) disabled @endif href="{{ route('event.connect', $event->id) }}">Tham gia sự kiện</a>
-                                    @else
+                                    @if($event->mainEnp()->find(\Auth::user()->user->id))
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                                            <span class="btn-label">
+                                                <i class="fa fa-times"></i>
+                                            </span>Hủy bỏ
+                                        </button>
+                                    @elseif($event->enterprises->find(\Auth::user()->user->id))
                                         <a class="btn gradient-bg" readonly>Đã tham gia sự kiện</a>
+                                    @else
+                                        <a class="btn gradient-bg" @if($event->status != \App\Models\Event::VALIDATED) disabled @endif href="{{ route('event.connect', $event->id) }}">Tham gia sự kiện</a>
                                     @endif
                                 @endcan
                             @endif
@@ -49,6 +55,32 @@
                     <figure class="events-thumbnail">
                         <img src="{{ asset($event->avatar) }}" id="event_thumbnail" alt="">
                     </figure>
+                </div>
+            </div>
+        </div>
+    
+        {{--hidden modal--}}
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <form action="{{ route('event.delete') }}" method="post">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Nhập lý do</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $event->id }}">
+                            <label for="">Lý do</label>
+                            <input type="text" class="form-control" name="note" required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                            <button type="submit" class="btn btn-primary">Hủy bỏ</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

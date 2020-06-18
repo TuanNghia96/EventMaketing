@@ -187,6 +187,17 @@ class EventService implements EventServiceInterface
     }
 
     /**
+     * get event status validated
+     *
+     * @return Event[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     */
+    public function getEventDelete()
+    {
+        return Event::with('type', 'category')
+            ->where('note', '<>', null)->orderBy('public_date')->get();
+    }
+
+    /**
      * set event success
      *
      * @param $id
@@ -247,7 +258,7 @@ class EventService implements EventServiceInterface
 
             //add notification
             $notification = Notification::create([
-                'title' => 'Tạo mới sự kiện '. $event->name,
+                'title' => 'Tạo mới sự kiện ' . $event->name,
                 'message' => route('events.detail', $event->id),
             ]);
             //pusher
@@ -272,7 +283,7 @@ class EventService implements EventServiceInterface
     {
 
         DB::beginTransaction();
-        try{
+        try {
             $params['buyer_id'] = \Auth::user()->user->id;
             $comment = Comment::updateOrCreate(['buyer_id' => \Auth::user()->user->id, 'event_id' => $params['event_id']], $params);
 
@@ -282,6 +293,23 @@ class EventService implements EventServiceInterface
             DB::rollBack();
             return false;
         }
+    }
+
+    /**
+     * note event to cancel
+     *
+     * @param $params
+     * @return bool
+     */
+    public function delete($params)
+    {
+        $event = Event::find($params['id']);
+        if ($event->update([
+            'note' => $params['note']
+        ])) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -309,7 +337,7 @@ class EventService implements EventServiceInterface
     public function connect($id)
     {
         $event = Event::with('type', 'category')->find($id);
-        if ($event){
+        if ($event) {
             \Auth::user()->user->events()->attach([$event->id => ['role' => 2]]);
             return true;
         }

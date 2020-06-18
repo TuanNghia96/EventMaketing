@@ -49,6 +49,7 @@ Route::group(['namespace' => 'Frontend'], function () {
         Route::post('/enterprises/event', 'EventController@postEvent')->name('event.store');
         Route::get('/enterprises', 'EventController@enterpriseEvent')->name('event.enterprise');
         Route::get('/event/review/{event}', 'EventController@eventReview')->name('event.review');
+        Route::post('/event/delete', 'EventController@eventDelete')->name('event.delete');
         Route::get('/event/connect/{event}', 'EventController@connectEvent')->name('event.connect');
         Route::get('/event/ticket/{qr}', 'EventController@checkQR')->name('event.checkQR');
     });
@@ -79,6 +80,7 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => [
     Route::get('/events', 'EventController@index')->name('events.index');
     Route::get('/events/waiting', 'EventController@getWaiting')->name('events.waiting');
     Route::get('/events/validated', 'EventController@getValidated')->name('events.validated');
+    Route::get('/events/delete', 'EventController@getDelete')->name('events.delete');
     Route::get('/events/detail/{id}', 'EventController@getDetail')->name('events.detail');
     Route::get('/events/success/{id}', 'EventController@setSuccess')->name('events.success');
     Route::post('/events/cancel', 'EventController@cancel')->name('events.cancel');

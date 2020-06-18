@@ -166,6 +166,23 @@ class EventController extends Controller
         return redirect(route('event.create'));
     }
 
+    /**
+     * note event to cancel
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function eventDelete(Request $request)
+    {
+        $params = $request->all();
+        if ($this->eventService->delete($params)) {
+            alert()->success('Thành công', 'Yêu cầu hủy sự kiện sẽ đến quản trị viên.');
+            return redirect()->route('event.review', $params['id']);
+        }
+        alert()->error('Lỗi', 'Bạn đã gặp lỗi, xin thử lại');
+        return redirect()->route('event.review', $params['id']);
+    }
+
 
     /**
      * get event review
@@ -194,7 +211,7 @@ class EventController extends Controller
             $event->pivot->enterprise_id = \Auth::user()->user->id;
             $event->pivot->save();
             alert()->success('Thành công', 'Vé tồn tại');
-        } else{
+        } else {
             alert()->error('Thất bại', 'Vé lỗi');
         }
         return view('frontend.events.ticket');
@@ -209,14 +226,13 @@ class EventController extends Controller
     public function postComment(Request $request)
     {
         $params = $request->all();
-        if($this->eventService->storeComment($params)) {
+        if ($this->eventService->storeComment($params)) {
             alert()->success('Thành công', 'Đánh giá hoàn thành');
-        } else{
+        } else {
             alert()->error('Lỗi', 'Bạn đã gặp lỗi, xin thử lại');
         }
         return redirect(route('event.detail', $params['event_id']));
     }
-
 
     /**
      * connect event
@@ -228,9 +244,9 @@ class EventController extends Controller
     public function connectEvent($id)
     {
         $this->authorize('enterprise');
-        if ($this->eventService->connect($id)){
+        if ($this->eventService->connect($id)) {
             alert()->success('Thành công', 'Đã tham gia sự kiện');
-        } else{
+        } else {
             alert()->error('Lỗi', 'Bạn đã gặp lỗi, xin thử lại');
         };
         return redirect()->route('event.review', $id);

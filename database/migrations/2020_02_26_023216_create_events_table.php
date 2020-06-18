@@ -30,6 +30,7 @@ class CreateEventsTable extends Migration
             $table->unsignedInteger('ticket_number');
             $table->unsignedInteger('coupon_id')->nullable();
             $table->unsignedInteger('point')->default(1000);
+            $table->string('note', 255)->nullable();
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
             $table->softDeletes();

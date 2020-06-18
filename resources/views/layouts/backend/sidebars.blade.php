@@ -61,6 +61,11 @@
                                 </a>
                             </li>
                             <li>
+                                <a href="{{ route('events.delete') }}">
+                                    <span class="sub-item">Sự kiện xin huỷ</span>
+                                </a>
+                            </li>
+                            <li>
                                 <a href="{{ route('types.index') }}">
                                     <span class="sub-item">Thể loại sự kiện</span>
                                 </a>

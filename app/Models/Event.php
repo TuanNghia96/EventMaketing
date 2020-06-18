@@ -32,6 +32,7 @@ class Event extends Model
         'point',
         'category_id',
         'status',
+        'note',
         'images',
         'ticket_number',
     ];
@@ -114,6 +115,17 @@ class Event extends Model
     public function mainEnp()
     {
         return $this->belongsToMany(Enterprise::class, 'enterprise_events')->where('role', 1);
+    }
+
+    /**
+     * check is belong main enterprise
+     */
+    public function isMain()
+    {
+        if ($this->mainEnp()->find(\Auth::user()->user->id)) {
+            return true;
+        }
+        return false;
     }
 
     /**
