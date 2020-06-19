@@ -347,6 +347,9 @@ class EventService implements EventServiceInterface
     {
         $event = Event::with('type', 'category')->find($id);
         if ($event) {
+            $event->update([
+                'ticket_number' => ($event->ticket_number + 100),
+            ]);
             \Auth::user()->user->events()->attach([$event->id => ['role' => 2]]);
             return true;
         }

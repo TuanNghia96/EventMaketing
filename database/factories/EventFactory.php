@@ -17,7 +17,7 @@ $factory->define(Event::class, function (Faker $faker) {
         'code' => $number++,
         'location' => $faker->randomElement(Helper::getLocation()),
         'summary' => $faker->realText(300),
-        'avatar' => 'fakers/events/faker_bg_' . rand(1, 50) . '.jpg',
+        'avatar' => '/fakers/events/faker_bg_' . rand(1, 50) . '.jpg',
         'images' => json_encode([
             [
                 'title' => 'title2',

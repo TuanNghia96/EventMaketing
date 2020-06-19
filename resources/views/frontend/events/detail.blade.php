@@ -36,13 +36,13 @@
                                     <a class="btn gradient-bg" @if($event->ticket_number <= $event->buyer->count()) disabled @endif href="{{ route('event.join', $event->id) }}">Nhận vé</a>
                                 @endcan
                                 @can('enterprise')
-                                    @if($event->mainEnp()->find(\Auth::user()->user->id))
+                                    @if($event->mainEnp()->find(\Auth::user()->user->id) && !$event->isPublic())
                                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
                                             <span class="btn-label">
                                                 <i class="fa fa-times"></i>
                                             </span>Hủy bỏ
                                         </button>
-                                    @elseif($event->enterprises->find(\Auth::user()->user->id))
+                                    @elseif($event->enterprises->find(\Auth::user()->user->id) || $event->mainEnp->find(\Auth::user()->user->id))
                                         <a class="btn gradient-bg" readonly>Đã tham gia sự kiện</a>
                                     @else
                                         <a class="btn gradient-bg" @if($event->status != \App\Models\Event::VALIDATED) disabled @endif href="{{ route('event.connect', $event->id) }}">Tham gia sự kiện</a>
@@ -125,6 +125,11 @@
                                     <div class="single-event-details-row">
                                         <label>Địa điểm:</label>
                                         <p>{{ $event->location }}</p>
+                                    </div>
+
+                                    <div class="single-event-details-row">
+                                        <label>Số lượng vé:</label>
+                                        <p>{{ $event->ticket_number }}</p>
                                     </div>
                                 
                                 </div>

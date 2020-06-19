@@ -10,7 +10,7 @@ class Notification extends Model
     protected $table = 'notification';
     protected $fillable = [
         'title',
-        'message',
+        'url',
         'type',
     ];
 

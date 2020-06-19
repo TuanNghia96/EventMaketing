@@ -104,7 +104,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div id="app" class="col-md-12 mb-3 md-form">
+                        <div id="app" class="col-md-12 mb-3 md-form pl-0" style="margin-right: 15px">
                             <create-event
                                     old="{{ json_encode(old() ?? null) }}"
                                     old-images="{{ json_encode(old('images') ?? null) }}"
