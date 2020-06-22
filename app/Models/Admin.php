@@ -9,8 +9,6 @@ use Illuminate\Support\Facades\Gate;
 
 class Admin extends Model
 {
-    use SoftDeletes;
-
     public $timestamps = true;
     protected $table = 'admins';
     protected $fillable = [

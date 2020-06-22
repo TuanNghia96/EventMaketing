@@ -11,8 +11,6 @@ use Illuminate\Support\Facades\Gate;
 class Coupon extends Model
 {
 
-    use SoftDeletes;
-
     public $timestamps = true;
     protected $table = 'coupons';
     protected $fillable = [
@@ -50,7 +48,7 @@ class Coupon extends Model
     /**
      * Scope a query to only include active.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @param \Illuminate\Database\Eloquent\Builder $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeActive($query)

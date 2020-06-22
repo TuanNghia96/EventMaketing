@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Gate;
 
 class User extends Model implements Authenticatable
 {
-    use SoftDeletes;
     use AuthenticableTrait;
 
     const ADMIN = 1;

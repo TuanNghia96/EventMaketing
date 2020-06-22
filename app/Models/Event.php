@@ -13,8 +13,6 @@ use Illuminate\Support\Facades\Gate;
 
 class Event extends Model
 {
-    use SoftDeletes;
-
     public $timestamps = true;
     protected $table = 'events';
     protected $fillable = [

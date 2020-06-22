@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Gate;
 
 class Type extends Model
 {
-    use SoftDeletes;
     public $timestamps = true;
     protected $table = 'types';
     protected $fillable = [

@@ -9,8 +9,6 @@ use Illuminate\Support\Facades\Gate;
 
 class Buyer extends Model
 {
-    use SoftDeletes;
-
     public $timestamps = true;
     protected $table = 'buyers';
     protected $fillable = [

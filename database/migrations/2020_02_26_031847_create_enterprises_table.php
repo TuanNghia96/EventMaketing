@@ -20,7 +20,7 @@ class CreateEnterprisesTable extends Migration
             $table->string('name', 50);
             $table->tinyInteger('city');
             $table->string('address', 100);
-            $table->string('phone', 20);
+            $table->string('phone', 30);
             $table->string('avatar', 255)->nullable();
             $table->string('bank_account');
             $table->timestamps();

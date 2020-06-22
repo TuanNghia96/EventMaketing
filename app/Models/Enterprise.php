@@ -9,8 +9,6 @@ use Illuminate\Support\Facades\Gate;
 
 class Enterprise extends Model
 {
-    use SoftDeletes;
-
     public $timestamps = true;
     protected $table = 'enterprises';
     protected $fillable = [
@@ -58,7 +56,6 @@ class Enterprise extends Model
 
     /**
      * relation to user
-     *
      */
     public function user()
     {

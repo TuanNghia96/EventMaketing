@@ -20,7 +20,7 @@ class CreateBuyersTable extends Migration
             $table->string('first_name', 30);
             $table->string('last_name', 30);
             $table->string('phone', 30);
-            $table->string('address', 50);
+            $table->string('address', 100);
             $table->string('bank_account', 20)->nullable();
             $table->string('avatar', 255)->nullable();
             $table->timestamps();
