@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Faker\Generator as Faker;
+use Faker\Factory;
 use App\Models\User;
 use App\Models\Classroom;
 

@@ -4,7 +4,7 @@ use App\Models\Buyer;
 use App\Models\Event;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Faker\Generator as Faker;
+use Faker\Factory;
 
 class TicketsTableSeeder extends Seeder
 {
@@ -17,7 +17,7 @@ class TicketsTableSeeder extends Seeder
     {
         \App\Models\Comment::truncate();
         DB::table('tickets')->truncate();
-        $faker = Faker::create();
+        $faker = Factory::create();
         $eventArr = Event::pluck('id')->toArray();
         $buyerArr = Buyer::pluck('id')->toArray();
         for ($i = 1; $i <= 50; $i++) {
