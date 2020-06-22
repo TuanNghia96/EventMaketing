@@ -55194,7 +55194,7 @@ var staticRenderFns = [
     return _c("label", [
       _vm._v("Ngày giờ công bố "),
       _c("span", { staticClass: "text-danger" }, [_vm._v("*")]),
-      _vm._v(" (sau thời gian hiện tại 1 ngày)")
+      _vm._v(" (sau thời gian hiện tại 3 ngày)")
     ])
   },
   function() {

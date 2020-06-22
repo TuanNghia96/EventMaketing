@@ -17,11 +17,11 @@ class CreateBuyersTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id')->unique();
             $table->string('buyer_code')->unique();
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('phone');
-            $table->string('address');
-            $table->string('bank_account')->nullable();
+            $table->string('first_name', 30);
+            $table->string('last_name', 30);
+            $table->string('phone', 30);
+            $table->string('address', 50);
+            $table->string('bank_account', 20)->nullable();
             $table->string('avatar', 255)->nullable();
             $table->tinyInteger('event_type')->nullable();
             $table->tinyInteger('event_category')->nullable();

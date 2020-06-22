@@ -34,7 +34,7 @@ $factory->define(Event::class, function (Faker $faker) {
         ]),
         'type_id' => $faker->randomElement(Type::pluck('id')),
         'category_id' => $faker->randomElement(Category::pluck('id')),
-        'public_date' => $faker->dateTimeBetween($startDate = 'now', $endDate = '+5 months'),
+        'public_date' => $faker->dateTimeBetween($startDate = '-5 days', $endDate = 'now'),
         'start_date' => $faker->dateTimeBetween($startDate = 'now', $endDate = '+5 months'),
         'end_date' => $faker->dateTimeBetween($startDate = 'now', $endDate = '+5 months'),
         'coupon_id' => array_rand($couponId),

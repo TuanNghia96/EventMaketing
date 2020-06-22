@@ -60,7 +60,7 @@ class Event extends Model
     {
         parent::boot();
 
-/*        if (Gate::allows('enterprise')) {
+        if (Gate::allows('enterprise')) {
             static::addGlobalScope('enterprise', function (Builder $builder) {
                 $builder->where('status', '<>', Event::WAITING)->orWhereHas('mainEnp', function ($query) {
                     $query->where('enterprise_id', \Auth::user()->user->id);
@@ -71,7 +71,7 @@ class Event extends Model
             static::addGlobalScope('buyer', function (Builder $builder) {
                 $builder->where('status', '=', Event::VALIDATED)->where('public_date', '<', now());
             });
-        }*/
+        }
     }
 
     /**

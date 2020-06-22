@@ -2,7 +2,7 @@
     <div>
         <div class="col-md-12 mb-3 md-form row">
             <div class="col-md-4">
-                <label>Ngày giờ công bố <span class="text-danger">*</span> (sau thời gian hiện tại 1 ngày)</label>
+                <label>Ngày giờ công bố <span class="text-danger">*</span> (sau thời gian hiện tại 3 ngày)</label>
                 <datetime format="DD-MM-YYYY H:i:s" name="public_date" v-model="oldData.public_date"></datetime>
                 <span class="text-danger" role="alert" v-if="errors[`public_date`]">
                     <strong>{{ errors[`public_date`][0] }}</strong>
