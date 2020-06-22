@@ -2,7 +2,7 @@
 
 use App\Models\Enterprise;
 use App\Models\User;
-use Faker\Factory;
+use Faker\Generator as Faker;
 use Illuminate\Database\Seeder;
 
 class EnterpriseTableSeeder extends Seeder
@@ -14,7 +14,7 @@ class EnterpriseTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Factory::create();
+        $faker = Faker::create();
         Enterprise::truncate();
 
         $user = User::create([

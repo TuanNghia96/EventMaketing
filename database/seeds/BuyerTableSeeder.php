@@ -2,7 +2,7 @@
 
 use App\Models\Buyer;
 use App\Models\User;
-use Faker\Factory;
+use Faker\Generator as Faker;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -15,7 +15,7 @@ class BuyerTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Factory::create();
+        $faker = Faker::create();
         Buyer::truncate();
 
         $user1 = User::create([
