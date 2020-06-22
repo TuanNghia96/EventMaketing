@@ -9,7 +9,7 @@
 /public/fakers/images/*
 /public/images/
 /vendor
-.env
+#.env
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml
