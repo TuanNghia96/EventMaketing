@@ -18,7 +18,7 @@ class CreateTypesTable extends Migration
             $table->string('name', 100);
             $table->boolean('status')->default(true);
             $table->timestamps();
-            $table->softDeletes();
+
         });
     }
 

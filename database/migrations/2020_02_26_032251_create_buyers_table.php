@@ -23,10 +23,8 @@ class CreateBuyersTable extends Migration
             $table->string('address', 50);
             $table->string('bank_account', 20)->nullable();
             $table->string('avatar', 255)->nullable();
-            $table->tinyInteger('event_type')->nullable();
-            $table->tinyInteger('event_category')->nullable();
             $table->timestamps();
-            $table->softDeletes();
+
         });
     }
 

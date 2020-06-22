@@ -19,7 +19,7 @@ class CreateEnterpriseEventsTable extends Migration
             $table->unsignedInteger('event_id');
             $table->tinyInteger('role');
             $table->timestamps();
-            $table->softDeletes();
+
         });
     }
 

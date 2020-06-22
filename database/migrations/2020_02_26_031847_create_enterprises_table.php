@@ -16,15 +16,15 @@ class CreateEnterprisesTable extends Migration
         Schema::create('enterprises', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id')->unique();
-            $table->string('enterprise_code')->unique();
-            $table->string('name');
+            $table->string('enterprise_code', 10)->unique();
+            $table->string('name', 50);
             $table->tinyInteger('city');
-            $table->string('address');
-            $table->string('phone');
+            $table->string('address', 100);
+            $table->string('phone', 20);
             $table->string('avatar', 255)->nullable();
             $table->string('bank_account');
             $table->timestamps();
-            $table->softDeletes();
+
         });
     }
 

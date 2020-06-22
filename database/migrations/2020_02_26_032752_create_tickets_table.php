@@ -20,7 +20,7 @@ class CreateTicketsTable extends Migration
             $table->string('qrcode_check')->nullable();
             $table->unsignedInteger('enterprise_id')->nullable();
             $table->timestamps();
-            $table->softDeletes();
+
         });
     }
 
