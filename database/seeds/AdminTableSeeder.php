@@ -2,8 +2,9 @@
 
 use App\Models\Admin;
 use App\Models\User;
-use Faker\Factory;
+use Faker\Generator as Faker;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class AdminTableSeeder extends Seeder
 {
@@ -14,7 +15,7 @@ class AdminTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Factory::create();
+        $faker = Faker::create();
         Admin::truncate();
         // crete admin account
         Admin::create([
