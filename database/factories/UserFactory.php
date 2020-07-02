@@ -19,8 +19,6 @@ use Faker\Generator as Faker;
 $factory->define(User::class, function (Faker $faker) {
     return [
         'email' => $faker->unique()->email,
-        'user_name' => $faker->unique()->name,
         'password' => Hash::make('123456'),
-        'role' => User::ADMIN,
     ];
 });
