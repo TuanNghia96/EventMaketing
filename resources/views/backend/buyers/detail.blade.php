@@ -116,7 +116,7 @@
                                 <th>{{ $key + 1 }}</th>
                                 <th><a href="{{ route('events.detail', $event->id) }}">{{ $event->name }}</a></th>
                                 <th>
-                                    @if($event->enterprise_id)
+                                    @if($event->supplier_id)
                                         <p class="text-success">Chưa sử dụng</p>
                                     @else
                                         <p class="text-danger">Đã sử dụng</p>

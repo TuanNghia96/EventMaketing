@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\Buyer;
-use App\Models\Enterprise;
+use App\Models\Supplier;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -52,7 +52,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data,
             isset($data['role']) ? (
-            $data['role'] == User::ENTERPRISE ? [
+            $data['role'] == User::SUPPLIER ? [
                 'name' => ['required', 'string', 'max:255'],
                 'email' => ['required', 'string', 'email', 'max:255'],
                 'password' => ['required', 'string', 'min:6'],
@@ -69,7 +69,7 @@ class RegisterController extends Controller
                 'password' => ['required', 'string', 'min:6'],
                 'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 'confirmpassword' => ['required', 'string', 'min:6', 'same:password'],
-                'city' => ['nullable', 'string', 'in:' . implode(',', array_keys(Enterprise::CITY))],
+                'city' => ['nullable', 'string', 'in:' . implode(',', array_keys(Supplier::CITY))],
                 'role' => ['required'],
                 'bank_account' => ['nullable', 'string', 'min:12'],
                 'phone' => ['required', 'string', 'min:10'],
@@ -92,23 +92,23 @@ class RegisterController extends Controller
         try {
             $user = User::create($data);
             $data['user_id'] = $user->id;
-            if ($data['role'] == User::ENTERPRISE) {
+            if ($data['role'] == User::SUPPLIER) {
                 //make code
-                $lastEnp = Enterprise::withTrashed()->orderBy('enterprise_code', 'desc')->first();
-                $codeLast = $lastEnp->enterprise_code;
-                $data['enterprise_code'] = User::getNextCode('EP', $codeLast);
+                $lastSupplier = Supplier::orderBy('supplier_code', 'desc')->first();
+                $codeLast = $lastSupplier->supplier_code;
+                $data['supplier_code'] = User::getNextCode('SL', $codeLast);
 
-                //save enterprise avatar
+                //save suppliers avatar
                 $image = $data['avatar'];
-                $name = $data['enterprise_code'] . '.' . $image->getClientOriginalExtension();
-                if ($image->move(public_path('/images/enterprise'), $name)) {
-                    $data['avatar'] = '/images/enterprise/' . $name;
+                $name = $data['supplier_code'] . '.' . $image->getClientOriginalExtension();
+                if ($image->move(public_path('/images/suppliers'), $name)) {
+                    $data['avatar'] = '/images/suppliers/' . $name;
                 }
                 //create
-                Enterprise::create($data);
+                Supplier::create($data);
             } else {
                 //make code
-                $lastByr = Buyer::withTrashed()->orderBy('buyer_code', 'desc')->first();
+                $lastByr = Buyer::orderBy('buyer_code', 'desc')->first();
                 $codeLast = $lastByr->buyer_code;
                 $data['buyer_code'] = User::getNextCode('BY', $codeLast);
 

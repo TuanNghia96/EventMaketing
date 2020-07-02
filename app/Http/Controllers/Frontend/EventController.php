@@ -8,7 +8,7 @@ use App\Jobs\SendTicketMail;
 use App\Models\Buyer;
 use App\Models\Category;
 use App\Models\Coupon;
-use App\Models\Enterprise;
+use App\Models\Supplier;
 use App\Models\Event;
 use App\Models\Type;
 use App\Services\EventServiceInterface;
@@ -106,9 +106,9 @@ class EventController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function enterpriseEvent()
+    public function supplierEvent()
     {
-        $user = Enterprise::with(['events', 'mainEvent'])->findOrFail(\Auth::user()->user->id);
+        $user = Supplier::with(['events', 'mainEvent'])->findOrFail(\Auth::user()->user->id);
         return view('frontend.events.list', compact('user'));
     }
 
@@ -207,8 +207,8 @@ class EventController extends Controller
         $arr = explode('-', $number);
         $buyer = Buyer::with('events')->where('buyer_code', $arr[0])->first();
         $event = $buyer->events->find($arr[1]);
-        if ($buyer && $event && (!$event->pivot->enterprise_id) && ($event->pivot->qrcode_check == $number)) {
-            $event->pivot->enterprise_id = \Auth::user()->user->id;
+        if ($buyer && $event && (!$event->pivot->supplier_id) && ($event->pivot->qrcode_check == $number)) {
+            $event->pivot->supplier_id = \Auth::user()->user->id;
             $event->pivot->save();
             alert()->success('Thành công', 'Vé tồn tại');
         } else {
@@ -243,7 +243,7 @@ class EventController extends Controller
      */
     public function connectEvent($id)
     {
-        $this->authorize('enterprise');
+        $this->authorize('supplier');
         if ($this->eventService->connect($id)) {
             alert()->success('Thành công', 'Đã tham gia sự kiện');
         } else {

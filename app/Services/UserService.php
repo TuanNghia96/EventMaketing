@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\File;
 class UserService implements UserServiceInterface
 {
     /**
-     * update buyer enterprise account
+     * update buyer supplier account
      *
      * @param $param
      * @return bool

@@ -44,7 +44,7 @@
                     <h2 class="entry-title">Đà Nẵng</h2>
 
                     <div class="entry-content">
-                        <p>Với chi nhánh đặt ở Đà Nẵng, công ty Agenda Đà Nẵng đã và đang mở rộng phạm vi phát triển hơn nữa. Đây là chi nhánh quan trọng giúp cho các doanh nghiệp tiềm năng tại đây có được sự hỗ trợ tốt nhất.</p>
+                        <p>Với chi nhánh đặt ở Đà Nẵng, công ty Agenda Đà Nẵng đã và đang mở rộng phạm vi phát triển hơn nữa. Đây là chi nhánh quan trọng giúp cho các nhà cung cấp tiềm năng tại đây có được sự hỗ trợ tốt nhất.</p>
                     </div>
 
                     <footer class="entry-footer">

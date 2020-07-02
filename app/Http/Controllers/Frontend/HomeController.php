@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Jobs\SendTicketMail;
 use App\Models\Buyer;
 use App\Models\Category;
-use App\Models\Enterprise;
+use App\Models\supplier;
 use App\Models\Event;
 use App\Models\Type;
 use Carbon\Carbon;
@@ -31,7 +31,7 @@ class HomeController extends Controller
         $webInfo = [
             'buyer' => Buyer::count(),
             'event' => Event::where('end_date', '<', Carbon::now())->count(),
-            'enterprise' => Enterprise::count(),
+            'supplier' => Supplier::count(),
         ];
         return view('frontend.index', compact('events', 'subEvents', 'webInfo'));
     }

@@ -65,7 +65,7 @@ class Buyer extends Model
      */
     public function events()
     {
-        return $this->belongsToMany(Event::class, 'tickets')->active()->withPivot('qrcode_check', 'enterprise_id');
+        return $this->belongsToMany(Event::class, 'tickets')->active()->withPivot('qrcode_check', 'supplier_id');
     }
 
 

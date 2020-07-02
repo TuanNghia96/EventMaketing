@@ -51,9 +51,9 @@
                             <li><a href="{{ route('home') }}">Home</a></li>
                             <li><a href="{{ route('event.index') }}">Events</a></li>
                             @if(Auth::user())
-                                @if(Auth::user()->role == \App\Models\User::ENTERPRISE)
+                                @if(Auth::user()->role == \App\Models\User::SUPPLIER)
                                     <li><a href="{{ route('event.create') }}">Make Event</a></li>
-                                    <li><a href="{{ route('event.enterprise') }}">List Event</a></li>
+                                    <li><a href="{{ route('event.supplier') }}">List Event</a></li>
                                 @elseif(Auth::user()->role == \App\Models\User::BUYER)
                                     <li><a href="{{ route('event.buyer') }}">My Events</a></li>
                                 @endif

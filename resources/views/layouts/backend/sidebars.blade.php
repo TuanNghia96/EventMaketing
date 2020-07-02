@@ -119,7 +119,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('enterprises.index') }}">
+                                <a href="{{ route('suppliers.index') }}">
                                     <span class="sub-item"><i class="fas fas fa-hands-helping"></i>
                                     Nhà cung cấp</span>
                                 </a>

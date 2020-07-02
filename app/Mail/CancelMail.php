@@ -35,7 +35,7 @@ class CancelMail extends Mailable
      */
     public function build()
     {
-        $name = $this->event->mainEnp()->first()->name;
+        $name = $this->event->mainSupplier()->first()->name;
         $reason = $this->reason;
         $event = $this->event;
         $url = $this->url;

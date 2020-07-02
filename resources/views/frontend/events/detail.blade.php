@@ -39,14 +39,14 @@
                                         <a class="btn gradient-bg" @if($event->ticket_number <= $event->buyer->count()) disabled @endif href="{{ route('event.join', $event->id) }}">Nhận vé</a>
                                     @endif
                                 @endcan
-                                @can('enterprise')
-                                    @if($event->mainEnp()->find(\Auth::user()->user->id) && !$event->isPublic())
+                                @can('supplier')
+                                    @if($event->mainSupplier()->find(\Auth::user()->user->id) && !$event->isPublic())
                                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
                                             <span class="btn-label">
                                                 <i class="fa fa-times"></i>
                                             </span>Yêu cầu hủy bỏ
                                         </button>
-                                    @elseif($event->enterprises->find(\Auth::user()->user->id) || $event->mainEnp->find(\Auth::user()->user->id))
+                                    @elseif($event->suppliers->find(\Auth::user()->user->id) || $event->mainSupplier->find(\Auth::user()->user->id))
                                         <a class="btn gradient-bg" readonly>Đã tham gia sự kiện</a>
                                     @elseif(($event->status != \App\Models\Event::VALIDATED) || ($event->public_date < now()))
                                         <button class="btn btn-default">Sự kiện đã bắt đầu</button>
@@ -166,28 +166,28 @@
                             </div>
                         </div>
                         <div id="tab_organizers" class="tab-images">
-                            <h3>Doanh nghiệp chủ quản</h3>
+                            <h3>Nhà cung cấp chủ quản</h3>
                             <div class="col-md-12 row">
-                                @foreach($event->mainEnp as $key => $enterprise)
+                                @foreach($event->mainSupplier as $key => $supplier)
                                     <div class="col text-center">
                                         <figure class="events-thumbnail">
-                                            <a href="#"><img id="{{ 'logo' . $key }}" src="{{ asset($enterprise->avatar) }}" class="logo" alt=""></a>
+                                            <a href="#"><img id="{{ 'logo' . $key }}" src="{{ asset($supplier->avatar) }}" class="logo" alt=""></a>
                                         </figure>
-                                        <span><b>{{ $enterprise->name }}</b></span><br>
-                                        <span>{{ $enterprise->address }}</span>
+                                        <span><b>{{ $supplier->name }}</b></span><br>
+                                        <span>{{ $supplier->address }}</span>
                                     </div>
                                 @endforeach
                             </div>
                             <br>
-                            <h3>Doanh nghiệp tham gia liên kết</h3>
+                            <h3>Nhà cung cấp tham gia liên kết</h3>
                             <div class="col-md-12 row">
-                                @foreach($event->enterprises as $key => $enterprise)
+                                @foreach($event->suppliers as $key => $supplier)
                                     <div class="col text-center">
                                         <figure class="events-thumbnail">
-                                            <a href="#"><img id="{{ 'logo' . $key }}" src="{{ asset($enterprise->avatar) }}" class="logo" alt=""></a>
+                                            <a href="#"><img id="{{ 'logo' . $key }}" src="{{ asset($supplier->avatar) }}" class="logo" alt=""></a>
                                         </figure>
-                                        <span><b>{{ $enterprise->name }}</b></span><br>
-                                        <span>{{ $enterprise->address }}</span>
+                                        <span><b>{{ $supplier->name }}</b></span><br>
+                                        <span>{{ $supplier->address }}</span>
                                     </div>
                                 @endforeach
                             </div>

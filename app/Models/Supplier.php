@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Gate;
 
-class Enterprise extends Model
+class Supplier extends Model
 {
     public $timestamps = true;
-    protected $table = 'enterprises';
+    protected $table = 'suppliers';
     protected $fillable = [
         'user_id',
-        'enterprise_code',
+        'supplier_code',
         'name',
         'address',
         'city',
@@ -69,7 +69,7 @@ class Enterprise extends Model
      */
     public function events()
     {
-        return $this->belongsToMany(Event::class, 'enterprise_events')->where('enterprise_events.role', '=', 2);
+        return $this->belongsToMany(Event::class, 'supplier_events')->where('supplier_events.role', '=', 2);
     }
 
     /**
@@ -79,7 +79,7 @@ class Enterprise extends Model
      */
     public function mainEvent()
     {
-        return $this->belongsToMany(Event::class, 'enterprise_events')->where('enterprise_events.role', '=', 1);
+        return $this->belongsToMany(Event::class, 'supplier_events')->where('supplier_events.role', '=', 1);
     }
 
     /**

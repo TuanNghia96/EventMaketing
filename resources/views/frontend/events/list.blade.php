@@ -25,7 +25,7 @@
                     <p>Đây là sự kiện mà bạn đang tham gia.</p>
                 </div>
             </div>
-            @can('enterprise')
+            @can('supplier')
                 <h4 class="entry-title">Sự kiện chính</h4>
                 <div class="row">
                     @foreach($user->mainEvent as $key => $event)

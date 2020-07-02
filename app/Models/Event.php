@@ -58,10 +58,10 @@ class Event extends Model
     {
         parent::boot();
 
-        if (Gate::allows('enterprise')) {
-            static::addGlobalScope('enterprise', function (Builder $builder) {
-                $builder->where('status', '<>', Event::WAITING)->orWhereHas('mainEnp', function ($query) {
-                    $query->where('enterprise_id', \Auth::user()->user->id);
+        if (Gate::allows('supplier')) {
+            static::addGlobalScope('supplier', function (Builder $builder) {
+                $builder->where('status', '<>', Event::WAITING)->orWhereHas('mainSupplier', function ($query) {
+                    $query->where('supplier_id', \Auth::user()->user->id);
                 });
             });
         }
@@ -95,32 +95,32 @@ class Event extends Model
     }
 
     /**
-     * relationship to enterprise
+     * relationship to supplier
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function enterprises()
+    public function suppliers()
     {
-        return $this->belongsToMany(Enterprise::class, 'enterprise_events')->where('role', 2);
+        return $this->belongsToMany(Supplier::class, 'supplier_events')->where('role', 2);
 
     }
 
     /**
-     * relationship to enterprise
+     * relationship to supplier
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function mainEnp()
+    public function mainSupplier()
     {
-        return $this->belongsToMany(Enterprise::class, 'enterprise_events')->where('role', 1);
+        return $this->belongsToMany(Supplier::class, 'supplier_events')->where('role', 1);
     }
 
     /**
-     * check is belong main enterprise
+     * check is belong main supplier
      */
     public function isMain()
     {
-        if ($this->mainEnp()->find(\Auth::user()->user->id)) {
+        if ($this->mainSupplier()->find(\Auth::user()->user->id)) {
             return true;
         }
         return false;
@@ -141,7 +141,7 @@ class Event extends Model
      */
     public function buyer()
     {
-        return $this->belongsToMany(Buyer::class, 'tickets')->withPivot('qrcode_check', 'enterprise_id');
+        return $this->belongsToMany(Buyer::class, 'tickets')->withPivot('qrcode_check', 'supplier_id');
     }
 
     /**

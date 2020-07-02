@@ -38,6 +38,6 @@ class SendCancelMail implements ShouldQueue
     {
         $url = route('events.detail', $this->event->id);
         $email = new CancelMail($this->event, $this->reason, $url);
-        Mail::to($this->event->mainEnp()->first()->user()->first()->email)->send($email);
+        Mail::to($this->event->mainSupplier()->first()->user()->first()->email)->send($email);
     }
 }

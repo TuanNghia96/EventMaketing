@@ -33,8 +33,8 @@ class AuthServiceProvider extends ServiceProvider
             return false;
         });
 
-        Gate::define('enterprise', function ($user) {
-            if ($user->role == User::ENTERPRISE) {
+        Gate::define('supplier', function ($user) {
+            if ($user->role == User::SUPPLIER) {
                 return true;
             }
             return false;

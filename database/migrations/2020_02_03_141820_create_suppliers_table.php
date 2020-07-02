@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEnterprisesTable extends Migration
+class CreateSuppliersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateEnterprisesTable extends Migration
      */
     public function up()
     {
-        Schema::create('enterprises', function (Blueprint $table) {
+        Schema::create('suppliers', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id')->unique();
-            $table->string('enterprise_code', 10)->unique();
+            $table->string('supplier_code', 10)->unique();
             $table->string('name', 50);
             $table->tinyInteger('city');
             $table->string('address', 100);
@@ -24,7 +24,6 @@ class CreateEnterprisesTable extends Migration
             $table->string('avatar', 255)->nullable();
             $table->string('bank_account');
             $table->timestamps();
-
         });
     }
 
@@ -35,6 +34,6 @@ class CreateEnterprisesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('enterprises');
+        Schema::dropIfExists('suppliers');
     }
 }

@@ -14,7 +14,7 @@ class User extends Model implements Authenticatable
     use AuthenticableTrait;
 
     const ADMIN = 1;
-    const ENTERPRISE = 2;
+    const SUPPLIER = 2;
     const BUYER = 3;
 
     public $timestamps = true;
@@ -35,7 +35,7 @@ class User extends Model implements Authenticatable
 
     public static $role = [
         self::ADMIN => 'Quản trị viên',
-        self::ENTERPRISE => 'Doanh nghiệp',
+        self::SUPPLIER => 'Nhà cung cấp',
         self::BUYER => 'Khách hàng',
     ];
 
@@ -66,13 +66,13 @@ class User extends Model implements Authenticatable
     }
 
     /**
-     * relation to enterprise table
+     * relation to supplier table
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function enterprise()
+    public function supplier()
     {
-        return $this->hasOne(\App\Models\Enterprise::class, 'user_id', 'id');
+        return $this->hasOne(\App\Models\Supplier::class, 'user_id', 'id');
     }
     /**
      * relation to buyer table
@@ -93,8 +93,8 @@ class User extends Model implements Authenticatable
     {
         if ($this->role == self::ADMIN) {
             return $this->admin;
-        } elseif ($this->role == self::ENTERPRISE) {
-            return $this->enterprise;
+        } elseif ($this->role == self::SUPPLIER) {
+            return $this->supplier;
         } else {
             return $this->buyer;
         }
@@ -109,8 +109,8 @@ class User extends Model implements Authenticatable
     {
         if ($this->role == self::ADMIN) {
             return $this->admin->name;
-        } elseif ($this->role == self::ENTERPRISE) {
-            return $this->enterprise->name;
+        } elseif ($this->role == self::SUPPLIER) {
+            return $this->supplier->name;
         } else {
             return $this->buyer->first_name . $this->buyer->last_name;
         }

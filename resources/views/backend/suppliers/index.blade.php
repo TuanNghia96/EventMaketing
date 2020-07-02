@@ -1,6 +1,6 @@
 @extends('layouts.backend.admin')
 
-@section('title', 'Danh sách doanh nghiệp')
+@section('title', 'Danh sách nhà cung cấp')
 
 @section('content')
     {{-- check events is empty --}}
@@ -8,7 +8,7 @@
         {{-- events table --}}
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Danh sách doanh nghiệp</h4>
+                <h4 class="card-title">Danh sách nhà cung cấp</h4>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -45,10 +45,10 @@
                             
                             <tr>
                                 <th>{{ $key + 1 }}</th>
-                                <th><a href="{{ route('enterprises.show', $user->id) }}">
+                                <th><a href="{{ route('suppliers.show', $user->id) }}">
                                     {{ $user->name }}
                                     </a></th>
-                                <th>{{ $user->enterprise_code }}</th>
+                                <th>{{ $user->supplier_code }}</th>
                                 <th>{{ $user->user->email }}</th>
                                 <th>{{ $user->address }}</th>
                                 <th>{{ $user->phone }}</th>
@@ -71,7 +71,7 @@
     @else
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Không có doanh nghiệp nào</h4>
+                <h4 class="card-title">Không có nhà cung cấp nào</h4>
             </div>
         </div>
     @endif

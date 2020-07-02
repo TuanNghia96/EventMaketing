@@ -4,7 +4,7 @@
 /storage/*.key
 /storage/fakers/
 /public/fakers/
-/public/fakers/enterprise/*
+/public/fakers/suppliers/*
 /public/fakers/events/*
 /public/fakers/images/*
 /public/images/

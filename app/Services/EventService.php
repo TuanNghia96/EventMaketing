@@ -252,7 +252,7 @@ class EventService implements EventServiceInterface
             //create event
             $event = Event::create($params);
 
-            //attach event to enterprise
+            //attach event to supplier
             \Auth::user()->user->events()->attach([$event->id => ['role' => 1]]);
 
             //add notification
@@ -329,7 +329,7 @@ class EventService implements EventServiceInterface
      */
     public function cancelEvent($params)
     {
-        $event = Event::with('type', 'category', 'mainEnp')->find($params['id']);
+        $event = Event::with('type', 'category', 'mainSupplier')->find($params['id']);
         if ($event->status != 3) {
             dispatch(new SendCancelMail($event, $params['reason']));
             return $event->update(['status' => Event::CANCEL]);

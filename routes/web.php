@@ -43,11 +43,11 @@ Route::group(['namespace' => 'Frontend'], function () {
         Route::get('/events/myEvents', 'EventController@buyerEvent')->name('event.buyer');
     });
 
-    //enterprise allow
-    Route::group(['middleware' => 'enterprise_able'], function () {
-        Route::get('/enterprises/create', 'EventController@createEvent')->name('event.create');
-        Route::post('/enterprises/event', 'EventController@postEvent')->name('event.store');
-        Route::get('/enterprises', 'EventController@enterpriseEvent')->name('event.enterprise');
+    //supplier allow
+    Route::group(['middleware' => 'supplier_able'], function () {
+        Route::get('/suppliers/create', 'EventController@createEvent')->name('event.create');
+        Route::post('/suppliers/event', 'EventController@postEvent')->name('event.store');
+        Route::get('/suppliers', 'EventController@supplierEvent')->name('event.supplier');
         Route::get('/event/review/{event}', 'EventController@eventReview')->name('event.review');
         Route::post('/event/delete', 'EventController@eventDelete')->name('event.delete');
         Route::get('/event/connect/{event}', 'EventController@connectEvent')->name('event.connect');
@@ -65,10 +65,10 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => [
     Route::put('/admin/update', 'AdminController@update')->name('admin.update');
     Route::post('/admin', 'AdminController@store')->name('admin.store');
 
-    //enterprise
-    Route::resource('/enterprises', 'EnterpriseController');
-    Route::get('/enterprises/delete/{id}', 'EnterpriseController@delete')->name('enterprises.delete');
-    Route::get('/enterprises/restore/{id}', 'EnterpriseController@restore')->name('enterprises.restore');
+    //supplier
+    Route::resource('/suppliers', 'supplierController');
+    Route::get('/suppliers/delete/{id}', 'supplierController@delete')->name('suppliers.delete');
+    Route::get('/suppliers/restore/{id}', 'supplierController@restore')->name('suppliers.restore');
 
     //buyers
     Route::get('/buyers', 'BuyerController@index')->name('buyers.index');
@@ -95,7 +95,7 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => [
 
     //chart
     Route::get('/charts/event', 'ChartController@chartEvent')->name('chart.event');
-    Route::get('/charts/enterprise', 'ChartController@chartEvent')->name('chart.enterprise');
+    Route::get('/charts/supplier', 'ChartController@chartEvent')->name('chart.supplier');
     Route::get('/charts/buyer', 'ChartController@chartEvent')->name('chart.buyer');
     Route::get('/calendar', 'ChartController@calendar')->name('chart.calendar');
 });

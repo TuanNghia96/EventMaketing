@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEnterpriseEventsTable extends Migration
+class CreateSupplierEventsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateEnterpriseEventsTable extends Migration
      */
     public function up()
     {
-        Schema::create('enterprise_events', function (Blueprint $table) {
+        Schema::create('supplier_events', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('enterprise_id');
+            $table->unsignedInteger('supplier_id');
             $table->unsignedInteger('event_id');
             $table->tinyInteger('role');
             $table->timestamps();
@@ -30,6 +30,6 @@ class CreateEnterpriseEventsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('enterprise_events');
+        Schema::dropIfExists('supplier_events');
     }
 }

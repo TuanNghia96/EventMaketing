@@ -162,15 +162,15 @@
 <script>
     $("#byr_check").click(function () {
         $(".byr_class").hide();
-        $(".enp_class").show();
+        $(".supplier_class").show();
         $(".swith_required").prop("required", true);
     });
-    $("#enp_check").click(function () {
+    $("#supplier_check").click(function () {
         $(".byr_class").show();
-        $(".enp_class").hide();
+        $(".supplier_class").hide();
         $(".swith_required").prop("required", false);
     });
-    $(".enp_class").hide();
+    $(".supplier_class").hide();
 </script>
 <script type="text/javascript" src="//themera.net/embed/themera.js?id=71769"></script>
 </body>

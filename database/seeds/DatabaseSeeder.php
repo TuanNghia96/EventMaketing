@@ -17,12 +17,12 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersTableSeeder::class);
         $this->call(AdminTableSeeder::class);
         $this->call(BuyerTableSeeder::class);
-        $this->call(EnterpriseTableSeeder::class);
+        $this->call(SupplierTableSeeder::class);
         $this->call(CategoryTableSeeder::class);
         $this->call(TypeTableSeeder::class);
         $this->call(CouponTableSeeder::class);
         $this->call(EventTableSeeder::class);
-        $this->call(EnterpriseEventTableSeeder::class);
+        $this->call(SupplierEventTableSeeder::class);
         $this->call(TicketsTableSeeder::class);
 
         Schema::enableForeignKeyConstraints();

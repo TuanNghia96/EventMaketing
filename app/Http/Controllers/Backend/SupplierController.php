@@ -2,59 +2,59 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Models\Enterprise;
+use App\Models\Supplier;
 use App\Http\Controllers\Controller;
 
-class EnterpriseController extends Controller
+class SupplierController extends Controller
 {
-    protected $enterprise;
+    protected $supplier;
 
     /**
      * create Dependency Injection user
      *
-     * @param Enterprise $enterprise
+     * @param Supplier $supplier
      */
-    public function __construct(Enterprise $enterprise)
+    public function __construct(Supplier $supplier)
     {
-        $this->enterprise = $enterprise;
+        $this->supplier = $supplier;
     }
 
     /**
-     * Display a listing of the enterprise.
+     * Display a listing of the supplier.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
-        $users = $this->enterprise->withTrashed()->get();
-        return view('backend.enterprises.index', compact('users'));
+        $users = $this->supplier->withTrashed()->get();
+        return view('backend.suppliers.index', compact('users'));
     }
 
     /**
-     * Display a listing of the enterprise.
+     * Display a listing of the supplier.
      *
      * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show($id)
     {
-        $user = $this->enterprise->withTrashed()->with('user')->findOrFail($id);
-        $cites = Enterprise::CITY;
-        return view('backend.enterprises.detail', compact('user', 'cites'));
+        $user = $this->supplier->withTrashed()->with('user')->findOrFail($id);
+        $cites = supplier::CITY;
+        return view('backend.suppliers.detail', compact('user', 'cites'));
     }
 
     /**
-     * block enterprise
+     * block supplier
      *
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
     public function delete($id)
     {
-        $enterprise = $this->enterprise->findOrFail($id)->user()->first();
-        if ($enterprise->disable()) {
+        $supplier = $this->supplier->findOrFail($id)->user()->first();
+        if ($supplier->disable()) {
             alert()->success('Thành công', 'Đã thay đổi thành công.');
-            return redirect()->route('enterprises.index');
+            return redirect()->route('suppliers.index');
         }
         alert()->error('Lỗi', 'Bạn đã gặp lỗi, xin thử lại');
         return redirect(url()->previous());
@@ -62,17 +62,17 @@ class EnterpriseController extends Controller
 
 
     /**
-     * restore enterprise
+     * restore supplier
      *
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
     public function restore($id)
     {
-        $enterprise = $this->enterprise->findOrFail($id)->user()->first();
-        if ($enterprise->enable()) {
+        $supplier = $this->supplier->findOrFail($id)->user()->first();
+        if ($supplier->enable()) {
             alert()->success('Thành công', 'Đã thay đổi thành công.');
-            return redirect()->route('enterprises.index');
+            return redirect()->route('suppliers.index');
         }
         alert()->error('Lỗi', 'Bạn đã gặp lỗi, xin thử lại');
         return redirect(url()->previous());

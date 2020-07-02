@@ -18,7 +18,7 @@ class CreateTicketsTable extends Migration
             $table->unsignedInteger('buyer_id');
             $table->unsignedInteger('event_id');
             $table->string('qrcode_check')->nullable();
-            $table->unsignedInteger('enterprise_id')->nullable();
+            $table->unsignedInteger('supplier_id')->nullable();
             $table->timestamps();
 
         });

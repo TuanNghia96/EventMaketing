@@ -57,7 +57,7 @@
     @else
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Không có doanh nghiệp nào</h4>
+                <h4 class="card-title">Không có nhà cung cấp nào</h4>
             </div>
         </div>
     @endif

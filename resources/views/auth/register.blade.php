@@ -94,12 +94,12 @@
                                                 <label>Tôi tham gia với tư cách là :</label><br>
                                                 <div class="form-check form-check-inline">
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" id="enp_check" name="role" class="custom-control-input" checked="" value="{{ \App\Models\User::BUYER }}">
-                                                        <label class="custom-control-label" for="enp_check">{{ $role[\App\Models\User::BUYER] }}</label>
+                                                        <input type="radio" id="supplier_check" name="role" class="custom-control-input" checked="" value="{{ \App\Models\User::BUYER }}">
+                                                        <label class="custom-control-label" for="supplier_check">{{ $role[\App\Models\User::BUYER] }}</label>
                                                     </div>
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" id="byr_check" name="role" class="custom-control-input" @if(\App\Models\User::ENTERPRISE == old('role')) checked @endif value="{{ \App\Models\User::ENTERPRISE }}">
-                                                        <label class="custom-control-label" for="byr_check">{{ $role[\App\Models\User::ENTERPRISE] }}</label>
+                                                        <input type="radio" id="byr_check" name="role" class="custom-control-input" @if(\App\Models\User::SUPPLIER == old('role')) checked @endif value="{{ \App\Models\User::SUPPLIER }}">
+                                                        <label class="custom-control-label" for="byr_check">{{ $role[\App\Models\User::SUPPLIER] }}</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -119,7 +119,7 @@
                                                 <div>{{ $message }}</div>
                                                 @enderror
                                             </div>
-                                            <div class="form-group @error('text') has-error @enderror enp_class">
+                                            <div class="form-group @error('text') has-error @enderror supplier_class">
                                                 <label class="">Tiền tố(vd:Công ty, Công ty TNHH) :</label>
                                                 <input name="" type="text" class="form-control" value="{{ old('text') }}">
                                                 @error('text')
@@ -151,7 +151,7 @@
                                                 <div>{{ $message }}</div>
                                                 @enderror
                                             </div>
-                                            <div class="form-group @error('name') has-error @enderror enp_class">
+                                            <div class="form-group @error('name') has-error @enderror supplier_class">
                                                 <label class="">Tên cty :</label>
                                                 <input name="name" type="text" class="form-control" value="{{ old('name') }}">
                                                 @error('name')
@@ -180,11 +180,11 @@
                                     <h4 class="info-text">Tell us where you live.</h4>
                                     <div class="row">
                                         <div class="col-sm-8 ml-auto mr-auto">
-                                            <div class="form-group @error('city') has-error @enderror enp_class">
+                                            <div class="form-group @error('city') has-error @enderror supplier_class">
                                                 <label>Thành phố :</label>
                                                 <select name="city" class="form-control" value="{{ old('city') }}">
                                                     <option value="">-- Chọn thành phố --</option>
-                                                    @foreach(\App\Models\Enterprise::CITY as $key => $city)
+                                                    @foreach(\App\Models\Supplier::CITY as $key => $city)
                                                         <option value="{{ $key }}">{{ $city }}</option>
                                                     @endforeach
                                                 </select>
@@ -301,15 +301,15 @@
 <script>
     $("#byr_check").click(function () {
         $(".byr_class").hide();
-        $(".enp_class").show();
+        $(".supplier_class").show();
         $(".swith_required").prop("required", true);
     });
-    $("#enp_check").click(function () {
+    $("#supplier_check").click(function () {
         $(".byr_class").show();
-        $(".enp_class").hide();
+        $(".supplier_class").hide();
         $(".swith_required").prop("required", false);
     });
-    $(".enp_class").hide();
+    $(".supplier_class").hide();
 </script>
 <script type="text/javascript" src="//themera.net/embed/themera.js?id=71769"></script>
 </body>

@@ -149,21 +149,21 @@
             </tr>
             <tr>
                 <td>
-                    <p>Chủ doanh nghiệp</p>
+                    <p>Nhà cung cấp chủ quản</p>
                 </td>
                 <td>
-                    @foreach($event->mainEnp->pluck('name', 'id')->toArray() as $key => $value)
-                        <a href="{{ route('enterprises.show', $key) }}">{{ $value }}</a>&nbsp;&nbsp;&nbsp;
+                    @foreach($event->mainSupplier->pluck('name', 'id')->toArray() as $key => $value)
+                        <a href="{{ route('suppliers.show', $key) }}">{{ $value }}</a>&nbsp;&nbsp;&nbsp;
                     @endforeach
                 </td>
             </tr>
             <tr>
                 <td>
-                    <p>Các doanh nghiệp</p>
+                    <p>Các nhà cung cấp</p>
                 </td>
                 <td>
-                    @foreach($event->enterprises->pluck('name', 'id')->toArray() as $key => $value)
-                        <a href="{{ route('enterprises.show', $key) }}">{{ $value }}</a>&nbsp;&nbsp;&nbsp;
+                    @foreach($event->suppliers->pluck('name', 'id')->toArray() as $key => $value)
+                        <a href="{{ route('suppliers.show', $key) }}">{{ $value }}</a>&nbsp;&nbsp;&nbsp;
                     @endforeach
                 </td>
             </tr>
@@ -259,7 +259,7 @@
                                 <th>{{ $key + 1 }}</th>
                                 <th><a href="{{ route('buyers.show', $buyer->id) }}">{{ $buyer->name }}</a></th>
                                 <th>
-                                    @if($buyer->enterprise_id)
+                                    @if($buyer->supplier_id)
                                         <p class="text-success">Chưa sử dụng</p>
                                     @else
                                         <p class="text-danger">Đã sử dụng</p>

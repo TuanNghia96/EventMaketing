@@ -1,10 +1,10 @@
 <?php
 
-use App\Models\Enterprise;
+use App\Models\Supplier;
 use App\Models\Event;
 use Illuminate\Database\Seeder;
 
-class EnterpriseEventTableSeeder extends Seeder
+class SupplierEventTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,14 +13,14 @@ class EnterpriseEventTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('enterprise_events')->truncate();
+        DB::table('supplier_events')->truncate();
 
         $eventId = Event::pluck('id')->toArray();
-        $enterpriseId = Enterprise::pluck('id')->toArray();
+        $supplierId = Supplier::pluck('id')->toArray();
 
         for ($i = 1; $i <= 50; $i++) {
-            DB::table('enterprise_events')->insert([
-                'enterprise_id' => array_rand($enterpriseId),
+            DB::table('supplier_events')->insert([
+                'supplier_id' => array_rand($supplierId),
                 'event_id' => array_rand($eventId),
                 'role' => array_rand([1 => 1, 2 => 2]),
             ]);

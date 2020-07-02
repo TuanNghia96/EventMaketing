@@ -17,7 +17,7 @@ class AddRelationshipAllTable extends Migration
         Schema::table('admins', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');
         });
-        Schema::table('enterprises', function (Blueprint $table) {
+        Schema::table('suppliers', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');
         });
         Schema::table('buyers', function (Blueprint $table) {
@@ -27,8 +27,8 @@ class AddRelationshipAllTable extends Migration
             $table->foreign('buyer_id')->references('id')->on('buyers');
             $table->foreign('event_id')->references('id')->on('events');
         });
-        Schema::table('enterprise_events', function (Blueprint $table) {
-            $table->foreign('enterprise_id')->references('id')->on('enterprises');
+        Schema::table('supplier_events', function (Blueprint $table) {
+            $table->foreign('supplier_id')->references('id')->on('suppliers');
             $table->foreign('event_id')->references('id')->on('events');
         });
         Schema::table('comments', function (Blueprint $table) {
@@ -53,21 +53,21 @@ class AddRelationshipAllTable extends Migration
         Schema::table('admins', function (Blueprint $table) {
             $table->dropForeign(['user_id']);
         });
-        Schema::table('enterprises', function (Blueprint $table) {
+        Schema::table('suppliers', function (Blueprint $table) {
             $table->dropForeign(['user_id']);
         });
         Schema::table('buyers', function (Blueprint $table) {
             $table->dropForeign(['user_id']);
         });
-        Schema::table('enterprise_staffs', function (Blueprint $table) {
-            $table->dropForeign(['enterprise_id']);
+        Schema::table('supplier_staffs', function (Blueprint $table) {
+            $table->dropForeign(['supplier_id']);
         });
         Schema::table('tickets', function (Blueprint $table) {
             $table->dropForeign(['buyer_id']);
             $table->dropForeign(['coupon_id']);
         });
-        Schema::table('enterprise_events', function (Blueprint $table) {
-            $table->dropForeign(['enterprise_id']);
+        Schema::table('supplier_events', function (Blueprint $table) {
+            $table->dropForeign(['supplier_id']);
             $table->dropForeign(['event_id']);
         });
     }

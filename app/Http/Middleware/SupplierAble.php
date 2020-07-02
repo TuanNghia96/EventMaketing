@@ -6,7 +6,7 @@ use App\Models\User;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class EnterpiseAble
+class SupplierAble
 {
     /**
      * Handle an incoming request.
@@ -18,7 +18,7 @@ class EnterpiseAble
     public function handle($request, Closure $next)
     {
         if (Auth::user()) {
-            if (Auth::user()->role == User::ENTERPRISE) {
+            if (Auth::user()->role == User::SUPPLIER) {
                 return $next($request);
             }
         }
