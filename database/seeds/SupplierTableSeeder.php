@@ -17,16 +17,15 @@ class SupplierTableSeeder extends Seeder
         $faker = Factory::create();
         Supplier::truncate();
 
+        // create main buyer account
         $user = User::create([
             'email' => 'doanhnghiep@gmail.com',
             'password' => Hash::make('123456'),
             'role' => User::SUPPLIER,
         ]);
-
-        $code = sprintf("EP%05s", 1);
         Supplier::create([
             'user_id' => $user->id,
-            'supplier_code' => $code,
+            'supplier_code' => sprintf("EP%05s", 1),
             'name' => $faker->name,
             'address' => $faker->randomElement(Helper::getLocation()),
             'avatar' => 'fakers/suppliers/1_logo.png',
@@ -35,25 +34,7 @@ class SupplierTableSeeder extends Seeder
             'bank_account' => $faker->bankAccountNumber,
         ]);
 
-        for ($i = 2; $i <= 20; $i++) {
-            //seeder user
-            $user = User::create([
-                'email' => $faker->unique()->email,
-                'password' => Hash::make('123456'),
-                'role' => User::SUPPLIER,
-            ]);
-
-            $code = sprintf("SL%05s", $i);
-            Supplier::create([
-                'user_id' => $user->id,
-                'supplier_code' => $code,
-                'name' => $faker->name,
-                'address' => $faker->randomElement(Helper::getLocation()),
-                'avatar' => "fakers/suppliers/$i" . '_logo.png',
-                'city' => array_rand(Supplier::CITY),
-                'phone' => $faker->phoneNumber,
-                'bank_account' => $faker->bankAccountNumber,
-            ]);
-        }
+        //create buyers account
+        factory('App\Models\Supplier', 10)->create();
     }
 }

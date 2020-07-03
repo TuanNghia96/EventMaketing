@@ -30,6 +30,6 @@ class AdminTableSeeder extends Seeder
         ]);
 
         //create admins account
-        factory('App\Models\Admin', 50)->create();
+        factory('App\Models\Admin', 1)->create();
     }
 }
