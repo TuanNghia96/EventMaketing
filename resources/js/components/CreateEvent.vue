@@ -314,7 +314,7 @@
           <div class="single-event-heading">
             <h2 class="entry-title">{{ oldData.title }}</h2>
             <div class="event-location">{{ oldData.location }}</div>
-            <div class="event-date">{{ oldData.start_date }}</div>
+            <div class="event-date" v-if="oldData.start_date">{{ moment(oldData.start_date, 'DD-MM-Y hh:mm:ss').format('MM ddd, Y @ h:mm A') }}</div>
           </div>
         </header>
         <br />
@@ -346,12 +346,12 @@
               <div class="single-event-details">
                 <div class="single-event-details-row">
                   <label>Thời gian bắt đầu:</label>
-                  {{ oldData.start_date }}
+                  <p v-if="oldData.start_date">{{ moment(oldData.start_date, 'DD-MM-Y hh:mm:ss').format('MM ddd, Y @ h:mm A') }}</p>
                 </div>
 
                 <div class="single-event-details-row">
                   <label>Thời gian kết thúc:</label>
-                  {{ oldData.end_date }}
+                  <p v-if="oldData.end_date">{{ moment(oldData.end_date, 'DD-MM-Y hh:mm:ss').format('MM ddd, Y @ h:mm A') }}</p>
                 </div>
 
                 <div class="single-event-details-row">
