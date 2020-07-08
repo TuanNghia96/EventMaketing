@@ -222,7 +222,7 @@ class EventService implements EventServiceInterface
         DB::beginTransaction();
         //code
         try {
-            $code = Event::withTrashed()->orderBy('code', 'desc')->first()->code;
+            $code = Event::orderBy('code', 'desc')->first()->code;
             $params['code'] = $code + 1;
 
             //format date

@@ -144,7 +144,7 @@ class EventController extends Controller
     {
         $types = Type::active()->pluck('name', 'id')->toArray();
         $categories = Category::active()->pluck('name', 'id')->toArray();
-        $coupons = Coupon::active()->distinct('value')->pluck('id', 'value');
+        $coupons = Coupon::active()->distinct('value')->orderBy('value')->pluck('value', 'id')->toArray();
         return view('frontend.events.create', compact('types', 'categories', 'coupons'));
     }
 

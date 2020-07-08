@@ -17,4 +17,5 @@ interface EventServiceInterface
     public function post($params);
     public function getEpSearch($input);
     public function storeComment($params);
+    public function connect($id);
 }
