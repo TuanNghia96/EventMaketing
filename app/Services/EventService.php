@@ -10,6 +10,7 @@ use App\Models\Event;
 use App\Models\Notification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class EventService implements EventServiceInterface
 {
@@ -112,11 +113,11 @@ class EventService implements EventServiceInterface
                 $image = \QrCode::format('png')
                     ->size(200)
                     ->generate(route('event.checkQR', $check));
-                $output_file = '/public/img/qr-code/' . $check . '.png';
-                \Storage::disk('local')->put($output_file, $image);
+                $output_file = '/images/qrCode/' . $check . '.png';
+                Storage::disk('public_qr')->put($output_file, $image);
 
                 $event->buyer()->attach([Auth::user()->user->id => ['qrcode_check' => $check]]);
-                dispatch(new SendTicketMail(Auth::user()->email, Auth::user()->user->toArray(), $event, asset('storage/img/qr-code/' . $check . '.png')));
+                dispatch(new SendTicketMail(Auth::user()->email, Auth::user()->user->toArray(), $event, asset('/images/qrCode/' . $check . '.png')));
                 DB::commit();
                 alert()->success('Thành công', 'Vé đã gửi. Vui lòng kiểm tra hòm thư');
             } catch (\Exception $e) {
@@ -143,7 +144,7 @@ class EventService implements EventServiceInterface
                 Auth::user()->email,
                 Auth::user()->user->toArray(),
                 $event,
-                asset('storage/img/qr-code/' . $check . '.png')
+                asset('/images/qrCode/' . $check . '.png')
             ));
             alert()->success('Thành công', 'Vé đã gửi. Vui lòng kiểm tra hòm thư');
         } else {
