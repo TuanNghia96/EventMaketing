@@ -1713,6 +1713,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 //
 //
 //
@@ -2190,6 +2192,7 @@ Vue.prototype.moment = moment__WEBPACK_IMPORTED_MODULE_2___default.a;
   },
   methods: {
     addImage: function addImage() {
+      console.log(_typeof(this.oldData.start_date));
       this.imageData = [].concat(_toConsumableArray(this.imageData), [{
         text: "",
         image: ""

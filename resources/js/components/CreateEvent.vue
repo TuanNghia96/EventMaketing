@@ -487,6 +487,7 @@ export default {
   },
   methods: {
     addImage() {
+        console.log(typeof(this.oldData.start_date));
       this.imageData = [
         ...this.imageData,
         {
