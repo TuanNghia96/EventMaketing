@@ -77302,9 +77302,20 @@ var render = function() {
                     _vm._v(_vm._s(_vm.oldData.location))
                   ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "event-date" }, [
-                    _vm._v(_vm._s(_vm.oldData.start_date))
-                  ])
+                  _vm.oldData.start_date
+                    ? _c("div", { staticClass: "event-date" }, [
+                        _vm._v(
+                          _vm._s(
+                            _vm
+                              .moment(
+                                _vm.oldData.start_date,
+                                "DD-MM-Y hh:mm:ss"
+                              )
+                              .format("MM ddd, Y @ h:mm A")
+                          )
+                        )
+                      ])
+                    : _vm._e()
                 ])
               ]
             ),
@@ -77338,20 +77349,40 @@ var render = function() {
                   _c("div", { staticClass: "single-event-details" }, [
                     _c("div", { staticClass: "single-event-details-row" }, [
                       _c("label", [_vm._v("Thời gian bắt đầu:")]),
-                      _vm._v(
-                        "\n                " +
-                          _vm._s(_vm.oldData.start_date) +
-                          "\n              "
-                      )
+                      _vm._v(" "),
+                      _vm.oldData.start_date
+                        ? _c("p", [
+                            _vm._v(
+                              _vm._s(
+                                _vm
+                                  .moment(
+                                    _vm.oldData.start_date,
+                                    "DD-MM-Y hh:mm:ss"
+                                  )
+                                  .format("MM ddd, Y @ h:mm A")
+                              )
+                            )
+                          ])
+                        : _vm._e()
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "single-event-details-row" }, [
                       _c("label", [_vm._v("Thời gian kết thúc:")]),
-                      _vm._v(
-                        "\n                " +
-                          _vm._s(_vm.oldData.end_date) +
-                          "\n              "
-                      )
+                      _vm._v(" "),
+                      _vm.oldData.end_date
+                        ? _c("p", [
+                            _vm._v(
+                              _vm._s(
+                                _vm
+                                  .moment(
+                                    _vm.oldData.end_date,
+                                    "DD-MM-Y hh:mm:ss"
+                                  )
+                                  .format("MM ddd, Y @ h:mm A")
+                              )
+                            )
+                          ])
+                        : _vm._e()
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "single-event-details-row" }, [

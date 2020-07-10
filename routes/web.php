@@ -14,6 +14,12 @@
 \Auth::routes();
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
+//reset password
+Route::get('/password/get', 'Auth\ForgotPasswordController@showResetPassword')->name('password.reset');
+Route::get('/password/send', 'Auth\ForgotPasswordController@sendResetPassword')->name('password.send');
+Route::get('/password/pass', 'Auth\ForgotPasswordController@passToken')->name('password.mail');
+Route::post('/password/pass', 'Auth\ForgotPasswordController@postPassword')->name('password.post');
+
 Route::group(['namespace' => 'Frontend'], function () {
 
     //home
