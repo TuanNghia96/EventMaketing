@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Admin;
 use App\Models\Buyer;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
@@ -18,25 +19,31 @@ class UserService implements UserServiceInterface
      */
     public function update($param)
     {
+        $user = Auth::user();
+        $client = Auth::user()->user;
 
-        $user = User::find(\Auth::user()->id);
-        $buyer = Buyer::find(\Auth::user()->user->id);
         DB::beginTransaction();
         try {
-            unset($param['password']);
+            unset($param['email']);
             if (isset($param['avatar'])) {
-                $image = $param['avatar'];
-                $name = $buyer->buyer_code . '.' . $image->getClientOriginalExtension();
-
-                if (File::exists(public_path('/images/buyers/' . $name))) {
-                    File::delete(public_path('/images/buyers/' . $name));
+                //delete old avatar
+                if (File::exists(public_path($client->avatar))) {
+                    File::delete(public_path($client->avatar));
                 }
-                if ($image->move(public_path('/images/buyers'), $name)) {
+
+                $image = $param['avatar'];
+                if($user->role == User::BUYER){
+                    $name = $client->buyer_code . '.' . $image->getClientOriginalExtension();
+                    $image->move(public_path('/images/buyers'), $name);
                     $param['avatar'] = '/images/buyers/' . $name;
+                } else{
+                    $name = $client->supplier_code . '.' . $image->getClientOriginalExtension();
+                    $image->move(public_path('/images/suppliers'), $name);
+                    $param['avatar'] = '/images/suppliers/' . $name;
                 }
             }
             $user->update($param);
-            $buyer->update($param);
+            $client->update($param);
             DB::commit();
             return true;
         } catch (\Exception $e) {

@@ -58,7 +58,7 @@
                     </div>
                     <div class="col"><b>{{ $user->bank_account }}</b></div>
                 </div>
-                <div class="col-md-6 mb-3 md-form row">
+                {{--  <div class="col-md-6 mb-3 md-form row">
                     <div class="col-md-3">
                         <label>Địa chỉ: </label>
                     </div>
@@ -69,7 +69,7 @@
                         <label>SDT: </label>
                     </div>
                     <div class="col"><b>{{ $user->event_category ? $types[$user->event_category] : 'Không có' }}</b></div>
-                </div>
+                </div>  --}}
             </div>
             <div class="col-12 text-center mb-5">
                 <a class="btn btn-default" href="{{ route('users.edit') }}">Thay đổi</a>

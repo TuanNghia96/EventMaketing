@@ -26,26 +26,8 @@
                         <div class="col-md-12 mb-3 md-form row">
                             <div class="col-md-4 mb-3 md-form">
                                 <label>Email:</label>
-                                <input type="text" name="email" class="form-control" placeholder="Email" value="{{ \Auth::user()->email }}">
+                                <input type="text" name="email" class="form-control" placeholder="Email" value="{{ \Auth::user()->email }}" readonly>
                                 @error('email')
-                                <span class="text-danger" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="col-md-4 mb-3 md-form">
-                                <label>Mật khẩu:</label>
-                                <input type="text" name="password" class="form-control">
-                                @error('password')
-                                <span class="text-danger" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="col-md-4 mb-3 md-form">
-                                <label>Mật khẩu nhập lại:</label>
-                                <input type="text" name="confirm_password" class="form-control">
-                                @error('confirm_password')
                                 <span class="text-danger" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -167,11 +149,11 @@
         function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
-                
+
                 reader.onload = function (e) {
                     $('#blah').attr('src', e.target.result);
                 };
-                
+
                 reader.readAsDataURL(input.files[0]); // convert to base64 string
             }
         }
