@@ -2,16 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Auth\Authenticatable as AuthenticableTrait;
-use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Gate;
 
-class User extends Model implements Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
-    use AuthenticableTrait;
+    use Notifiable;
 
     const ADMIN = 1;
     const SUPPLIER = 2;

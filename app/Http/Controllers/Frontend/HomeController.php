@@ -20,6 +20,14 @@ use Illuminate\Support\Facades\DB;
 class HomeController extends Controller
 {
     /**
+     * constuct controller
+     */
+    public function __construct()
+    {
+        $this->middleware(['auth', 'verified']);
+    }
+
+    /**
      * Show the application dashboard.
      *
      * @return Renderable
