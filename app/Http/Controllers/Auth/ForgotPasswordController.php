@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
-
 class ForgotPasswordController extends Controller
 {
     /*
@@ -76,7 +75,7 @@ class ForgotPasswordController extends Controller
             'email' => $params['email'],
             'token' => $params['token'],
         ])->first();
-        if($token){
+        if ($token) {
             return view('auth.change_password');
         }
         alert()->error('Lỗi', 'Lỗi hệ thống');
@@ -99,7 +98,7 @@ class ForgotPasswordController extends Controller
             'token' => $params['token'],
         ])->first();
         $user = User::where('email', $params['email'])->first();
-        if($token && $user){
+        if ($token && $user) {
             $user->update([
                 'password' => \Hash::make($params['password'])
             ]);

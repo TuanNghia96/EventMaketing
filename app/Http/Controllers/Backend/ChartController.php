@@ -77,7 +77,7 @@ class ChartController extends Controller
     public function calendar()
     {
         $events = Event::get()->toArray();
-        $status = Array(
+        $status = array(
             Event::WAITING => 'fc-default',
             Event::VALIDATED => 'fc-primary',
             Event::CANCEL => 'fc-danger',

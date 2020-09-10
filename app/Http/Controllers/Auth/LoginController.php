@@ -108,7 +108,7 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
         //Check if user is approved
-        if(!$user->status) {
+        if (!$user->status) {
             alert()->error('Lỗi', 'Tài khoản đang bị khóa. Hãy liên lạc với quản trị viên.');
             Auth::logout();
             return redirect()->route('home');

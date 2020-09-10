@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Jobs\SendTicketMail;
 use App\Models\Buyer;
 use App\Models\Category;
-use App\Models\supplier;
+use App\Models\Supplier;
 use App\Models\Event;
 use App\Models\Type;
 use Carbon\Carbon;

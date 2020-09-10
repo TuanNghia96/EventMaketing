@@ -26,7 +26,8 @@ class EventService implements EventServiceInterface
 
         //check like
         if (isset($input['name'])) {
-            $query->where('name', 'like', '%' . $input['name'] . '%')->orWhere('title', 'like', '%' . $input['name'] . '%');
+            $query->where('name', 'like', '%' . $input['name'] . '%')
+                ->orWhere('title', 'like', '%' . $input['name'] . '%');
         }
         //check input to type
         if (isset($input['type'])) {
@@ -62,7 +63,8 @@ class EventService implements EventServiceInterface
         $query = Event::with('coupon');
         //check like
         if (isset($input['name'])) {
-            $query->where('name', 'like', '%' . $input['name'] . '%')->orWhere('title', 'like', '%' . $input['name'] . '%');
+            $query->where('name', 'like', '%' . $input['name'] . '%')
+                ->orWhere('title', 'like', '%' . $input['name'] . '%');
         }
         //check input to type
         if (isset($input['type'])) {
@@ -87,7 +89,8 @@ class EventService implements EventServiceInterface
             if ($input['status'] == 0) {
                 $query->where('status', Event::VALIDATED);
             } elseif ($input['status'] == 1) {
-                $query->where('public_date', '>', now());;
+                $query->where('public_date', '>', now());
+                ;
             } else {
                 $query->where('start_date', '<', now())->where('end_date', '>', now());
             }
@@ -117,7 +120,12 @@ class EventService implements EventServiceInterface
                 Storage::disk('public_qr')->put($output_file, $image);
 
                 $event->buyer()->attach([Auth::user()->user->id => ['qrcode_check' => $check]]);
-                dispatch(new SendTicketMail(Auth::user()->email, Auth::user()->user->toArray(), $event, asset('/images/qrCode/' . $check . '.png')));
+                dispatch(new SendTicketMail(
+                    Auth::user()->email,
+                    Auth::user()->user->toArray(),
+                    $event,
+                    asset('/images/qrCode/' . $check . '.png')
+                ));
                 DB::commit();
                 alert()->success('Thành công', 'Vé đã gửi. Vui lòng kiểm tra hòm thư');
             } catch (\Exception $e) {
@@ -282,12 +290,13 @@ class EventService implements EventServiceInterface
      */
     public function storeComment($params)
     {
-
         DB::beginTransaction();
         try {
             $params['buyer_id'] = \Auth::user()->user->id;
-            $comment = Comment::updateOrCreate(['buyer_id' => \Auth::user()->user->id, 'event_id' => $params['event_id']], $params);
-
+            Comment::updateOrCreate(
+                ['buyer_id' => \Auth::user()->user->id, 'event_id' => $params['event_id']],
+                $params
+            );
             DB::commit();
             return true;
         } catch (\Exception $e) {

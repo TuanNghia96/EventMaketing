@@ -50,7 +50,8 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data,
+        return Validator::make(
+            $data,
             isset($data['role']) ? (
             $data['role'] == User::SUPPLIER ? [
                 'name' => ['required', 'string', 'max:255'],

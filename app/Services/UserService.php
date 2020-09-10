@@ -89,7 +89,8 @@ class UserService implements UserServiceInterface
                 unset($params['password']);
             }
             $params['role'] = User::ADMIN;
-            $user = User::find(\Auth::user()->id);;
+            $user = User::find(\Auth::user()->id);
+            ;
             $user->update($params);
 
             //update admin
